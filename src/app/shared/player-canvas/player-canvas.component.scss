@@ -3,10 +3,14 @@ canvas {
   width: 100%;
   background: #121725;
 }
-:host{
-  height: 100%;
-  width: 100%;
+.canvas-box {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 100%;
+}
+:host {
+  // height: 100%;
+  // width: 100%;
 }

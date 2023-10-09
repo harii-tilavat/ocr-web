@@ -1,13 +1,14 @@
-<ng-container *ngIf="playerPath; else noMedia">
-  <ng-container *ngIf="playerPath.includes('.mp4'); else imageblock">
-    <!-- <canvas appCanvasDirective [id]="canvasId" [playrUrl]="playerPath" [type]="type" id="nugget-canvas"></canvas> -->
-    <canvas></canvas>
+<div class="canvas-box">
+  <ng-container *ngIf="playerPath; else noMedia">
+    <ng-container *ngIf="playerPath.includes('.mp4'); else imageblock">
+      <canvas appCanvasDirective [id]="canvasId" [playrUrl]="playerPath" [type]="type" id="nugget-canvas"></canvas>
+    </ng-container>
+    <ng-template #imageblock>
+      <img [src]="'/assets/gif/'+playerPath" alt="image" class="">
+    </ng-template>
   </ng-container>
-  <ng-template #imageblock>
-    <img [src]="'/assets/gif/'+playerPath" alt="image" class="">
+  <ng-template #noMedia>
+    <img [src]="'/assets/gif/participent-friendly.webp'" alt="image" class="">
   </ng-template>
-</ng-container>
-<ng-template #noMedia>
-  <img [src]="'/assets/gif/participent-friendly.webp'" alt="image" class="">
-</ng-template>
- <!-- <video [src]="'/assets/gif/'+playerPath" controls></video> -->
+  <!-- <video [src]="'/assets/gif/'+playerPath" controls></video> -->
+</div>
