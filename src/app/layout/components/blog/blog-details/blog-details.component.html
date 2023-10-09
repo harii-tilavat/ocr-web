@@ -1,0 +1,24 @@
+<div class="blog-detail nugget-blog">
+  <div class="resource-heading">
+    <app-resource-heading [resourceHeading]="blogHeading" [type]="resourceTypeEnum.BLOG"></app-resource-heading>
+  </div>
+  <div class="blog-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-12 col-sm-12 ">
+          <div class="blog-description" *ngIf="blogDetails.html_content">
+            <app-resource-description [blogContent]="blogDetails.html_content"></app-resource-description>
+          </div>
+        </div>
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 ">
+          <div class="share-article">
+            <app-share-article></app-share-article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="more-story">
+    <app-more-stories [moreStories]="moreStories" [type]="resourceTypeEnum.BLOG"></app-more-stories>
+  </div>
+</div>

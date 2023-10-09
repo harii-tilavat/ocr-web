@@ -1,0 +1,365 @@
+.nav-bar {
+  .announce-bar {
+    background-color: $primary-500;
+    color: $primary-25;
+    @include padding(8px 0px);
+    text-align: center;
+    position: relative;
+    white-space: nowrap;
+    .bar {
+      .announce-content {
+        @include font-size(14px);
+        @include line-height(21px);
+        padding: 0px 3rem;
+        .link {
+          color: $primary-25;
+          font-family: $inter-semibold;
+          letter-spacing: 0.28px;
+        }
+      }
+      .close-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 24px;
+        cursor: pointer;
+        span {
+          height: 16px;
+          width: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+  .navbar {
+    user-select: none;
+    text-align: center;
+    padding: 0;
+    transition: 0.2s;
+    background: $yellow-25;
+    &.scrolled {
+      @include box-shadow-navbar();
+    }
+    &.navwhite {
+      background-color: $primary-25;
+    }
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 0;
+      justify-content: space-between;
+      width: 100%;
+      margin: 0;
+      .hemburg {
+        margin: 20px 15px;
+        width: 19px;
+        height: 14px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        user-select: none;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      }
+      .brand {
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 40px;
+          cursor: pointer;
+        }
+      }
+      img {
+        display: flex;
+        user-select: none;
+      }
+      .navbar-content {
+        position: relative;
+        ul {
+          list-style: none;
+          li {
+            padding: 22.5px 12px;
+            &.nav-item {
+              .menu-item {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .menu-title {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  @include font-size(16px);
+                  // @include font-size(18px);
+                  padding: 0;
+                  cursor: pointer;
+                  .nav-icon {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    // width: 0.729rem;
+                    // height: 0.365rem;
+                    height: 12px;
+                    width: 12px;
+                    padding: 2px;
+                    transition: transform 0.3s ease-in-out;
+                  }
+                  .nav-link {
+                    color: $primary-950;
+                  }
+                  &.active {
+                    .nav-link {
+                      font-family: $inter-semibold;
+                    }
+                  }
+                  &.show {
+                    .nav-icon {
+                      transform: rotate(180deg);
+                    }
+                  }
+                }
+              }
+            }
+            &.dropdown {
+              position: static;
+              .menu-item {
+                .dropdown-menu {
+                  @include padding(16px 0px);
+                  @include box-shadow-default($primary-50);
+                  white-space:normal;
+                  position: absolute;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  width: 100%;
+                  background-color: $yellow-50;
+                  border: 1px solid $primary-100;
+                  margin: 0;
+                  .dd-teams-card {
+                    display: flex;
+                    align-items: stretch;
+                    gap: 8px;
+                    cursor: pointer;
+                    @include padding(16px);
+                    transition: all 0.1s;
+                    border-radius: 8px;
+                    &:hover {
+                      background-color: $primary-25;
+                    }
+                    .dd-teams-card-header {
+                      .dd-team-icon {
+                        span {
+                          @include nugget-icon(24px);
+                        }
+                      }
+                    }
+                    .dd-teams-card-body {
+                      display: flex;
+                      flex-flow: column;
+                      gap: 8px;
+                      .dd-teams-card-title {
+                        font-family: $inter-bold;
+                        @include line-height(20px);
+                      }
+                      .dd-teams-card-desc {
+                        @include font-size(14px);
+                        @include line-height(21px);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .nav-buttons {
+      display: flex;
+      gap: 24px;
+    }
+  }
+}
+@include media-breakpoint-down(lg) {
+  .nav-bar {
+    .announce-bar {
+      .bar {
+        .announce-content {
+          .link {
+          }
+        }
+        .close-icon {
+          cursor: pointer;
+          span {
+          }
+        }
+      }
+    }
+    .navbar {
+      padding: 14px 0px;
+      .navbar-brand {
+        .hemburg {
+          cursor: pointer;
+        }
+        .brand {
+          span {
+            padding: 10px;
+          }
+        }
+        img {
+        }
+        .navbar-content {
+          ul {
+            li {
+              &.nav-item {
+                // padding: 1rem 1.25rem;
+                border-bottom: 1px solid $gray-200;
+                padding: 16px 0px;
+                @include margin(0px 20px);
+                .menu-item {
+                  .menu-title {
+                    width: 100%;
+                    justify-content: space-between;
+                    gap: 8px;
+                    // @include font-size(16px);
+                    &.show {
+                      .nav-icon {
+                      }
+                    }
+                    .nav-icon {
+                      padding: 0;
+                    }
+                    .nav-link {
+                      // font-family: $inter;
+                    }
+                  }
+                }
+                &:last-child {
+                  border: none;
+                }
+              }
+              &.dropdown {
+                position: relative;
+                .menu-item {
+                  flex-flow: column;
+                  .dropdown-menu {
+                    position: static;
+                    transform: none;
+                    background-color: transparent;
+                    border: transparent;
+                    white-space: normal;
+                    box-shadow: none;
+                    .dd-teams-card {
+                      &:hover {
+                      }
+                      .dd-teams-card-header {
+                        .dd-team-icon {
+                          span {
+                          }
+                        }
+                      }
+                      .dd-teams-card-body {
+                        gap: 4px;
+                        .dd-teams-card-title {
+                          @include font-size(14px);
+                        }
+                        .dd-teams-card-desc {
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .nav-buttons {
+      }
+    }
+  }
+}
+// Media Query for Mobile Devices
+@include media-breakpoint-down(sm) {
+  .nav-bar {
+    .announce-bar {
+      @include padding(10px 0px);
+      // text-wrap: wrap;
+      white-space: normal;
+      .bar {
+        .announce-content {
+          .link {
+          }
+        }
+        .close-icon {
+          span {
+          }
+        }
+      }
+    }
+    .navbar {
+      padding: 10.5px 12px;
+      .navbar-brand {
+        .hemburg {
+          cursor: pointer;
+        }
+        .brand {
+          span {
+          }
+        }
+        img {
+        }
+        .navbar-content {
+          ul {
+            li {
+              &.nav-item {
+                // padding: 16px 0px;
+                // @include margin(0px 20px);
+                // border-bottom: 1px solid $gray-200;
+                .menu-item {
+                  .menu-title {
+                    &.show {
+                      .nav-icon {
+                      }
+                    }
+                    .nav-icon {
+                      padding: 0;
+                    }
+                  }
+                }
+              }
+              &.dropdown {
+                .menu-item {
+                  .dropdown-menu {
+                    .dd-teams-card {
+                      // padding: 0px 0.25rem 1.25rem 0.25rem;
+                      // background-color: red;
+                      &:hover {
+                      }
+                      .dd-teams-card-header {
+                        .dd-team-icon {
+                          span {
+                          }
+                        }
+                      }
+                      .dd-teams-card-body {
+                        .teams-card-title {
+                        }
+                        .teams-card-desc {
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .nav-buttons {
+      }
+    }
+  }
+}

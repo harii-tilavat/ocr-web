@@ -1,0 +1,55 @@
+@use "sass:math";
+@import "./animation";
+@import "./form";
+@import "./button";
+// @mixin line-height($value) {
+//   @include rfs($value, line-height);
+// }
+// Base font-size 16px;
+$base-size: 16px;
+@mixin line-height($value) {
+  // $pixelValue: $value + "px"; // It will convert 16 to 16px
+  // $remValue: calc($value / $base-font) + "rem"; // It will convert 16 to 1rem;
+  // line-height: #{$pixelValue};
+  $pixelValue: $value;
+  $remValue: #{math.div($value, $base-size)}rem;
+  line-height: $pixelValue;
+  // line-height: $remValue;
+}
+// @mixin string-to-number($string) {
+//   $pixelValue: $string;
+//   $remValue : #{math.div($string,$base-size)}rem;
+//   background-color: $pixelValue;
+//   // background-color: #{$string};
+//   // $converted: $string/1rem;
+//   // $converted: math.div($string,16px);
+//   // font-size: $converted;
+// }
+// @mixin string-to-number($value) {
+//   background-color: #{$value};
+//   $value: str-slice($value, 1, str-index($value, "px") - 1);
+//   $unit: str-slice($value, str-index($value, "px"));
+//   $value: str-slice($myString, 1, str-index($myString, "px") - 1);
+//   $unit: str-slice($myString, str-index($myString, "px"));
+
+//   $valueNumber: 16;
+//   $unit: px;
+//   background-color: $valueNumber;
+//   color: $unit;
+// }
+@mixin nugget-grid($xl, $lg, $md, $sm) {
+  display: grid;
+  grid-template-columns: repeat($xl, 1fr);
+  // @include media-breakpoint-down(xl) {
+  //   grid-template-columns: repeat($xl, 1fr);
+  // }
+  @include media-breakpoint-down(lg) {
+    grid-template-columns: repeat($lg, 1fr);
+  }
+  @include media-breakpoint-down(md) {
+    grid-template-columns: repeat($md, 1fr);
+  }
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: repeat($sm, 1fr);
+  }
+}

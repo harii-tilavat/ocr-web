@@ -1,0 +1,18 @@
+<div class="nugget-blog">
+  <div class="resource-search">
+    <app-resource-search [blogHeader]="resourceData.blogHeader"
+                         (searchQuery)="searchQuery($event)" [type]="resourceTypeEnum.RESOURCE"></app-resource-search>
+  </div>
+  <div class="resource-list white">
+    <app-resource-list [blogDetails]="resourceList" [paginator]="paginator"
+                       [cardClass]="'bg-purple more-story-card other-story'"
+                       (pageChange)="paginate($event)"
+                       [type]="resourceTypeEnum.RESOURCE"></app-resource-list>
+  </div>
+  <div class="news-letter">
+    <app-news-letter></app-news-letter>
+  </div>
+  <div class="more-story">
+    <app-more-stories [moreStories]="resourceData.moreStories" (sellAllList)="goToBlogList()" [type]="resourceTypeEnum.BLOG"></app-more-stories>
+  </div>
+</div>

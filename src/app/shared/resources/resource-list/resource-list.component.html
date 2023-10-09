@@ -1,0 +1,22 @@
+<div class="container" [class]="type">
+  <div class="row" *ngIf="title">
+    <div class="col-xxl-12">
+      <div class="story-content">
+        <div class="story-heading">
+          <span>{{title}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row g-4 g-sm-5">
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngFor="let item of blogDetails">
+      <!-- <app-blog-card [blogData]="item" [cardClass]="cardClass"></app-blog-card> -->
+      <app-resource-card [cardData]="item" [cardClass]="cardClass" [type]="type"></app-resource-card>
+    </div>
+    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12" *ngIf="blogDetails.length !== paginator.total">
+      <div class="action text-center">
+        <button type="button" class="btn btn-primary-outline" (click)="nextPageLoad()">Show more</button>
+      </div>
+    </div>
+  </div>
+</div>

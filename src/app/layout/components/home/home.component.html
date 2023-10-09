@@ -1,0 +1,158 @@
+<div class="home">
+  <div class="main-section">
+    <div class="main-section-content main-section-content-bg image-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="main-section-header">
+              <div class="nugget-header-title" (click)="toggleFaster()" [class.isactive]="isToggleFaster">
+                <span class="nugget-head" data-placeholder="Deeper, human insights">
+                  Deeper, human insights
+                </span>
+                <span class="nugget-subhead" data-placeholder="faster">faster</span>
+              </div>
+              <div class="nugget-desc">
+                <span>
+                  The only platform you need for 10x faster participant recruitment, research and insights generation
+                </span>
+              </div>
+            </div>
+            <div class="main-section-button">
+              <button type="button" class="btn btn-primary btn-xxl">Get Started Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-section-content image-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="home-banner">
+              <app-player-canvas [playerPath]="'home-banner.mp4'"></app-player-canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="logo-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="logo-content">
+              <div class="logo-header nugget-title">
+                <span>Trusted by teams big & small</span>
+              </div>
+              <div class="logo-body">
+                <div class="logo-swiper-images">
+                  <!-- ----------------For static logo------------------ -->
+                  <!-- <ul>
+                    <li *ngFor="let item of logoList">
+                      <div class="logo-image">
+                        <span>
+                          <img [src]="item.icon" [alt]="item.title" class="img-fluid">
+                        </span>
+                      </div>
+                    </li>
+                  </ul> -->
+                  <!-- --------------------- Swiper-------------------------- -->
+                  <div class="swiper mySwiper logoSwiper">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide" *ngFor="let item of logoList">
+                        <div class="logo-image">
+                          <span>
+                            <img [src]="item.icon" [alt]="item.title" class="img-fluid">
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="swiper-pagination"></div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail">
+    <div class="product-header-main text-center pt-5">
+      <span>Our Tools</span>
+    </div>
+    <div class="product-detail-section" *ngFor="let item of productList;let i=index">
+      <app-slider [sliderList]="item.subMenu" [initClass]="'item-'+i" [swiperdlr]="i"></app-slider>
+    </div>
+  </div>
+  <div class="featured-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="featured-header">
+            <div class="nugget-title featured">
+              <span>As featured on</span>
+            </div>
+          </div>
+          <div class="featured-content">
+            <div class="featured-card" *ngFor="let item of featuredList">
+              <div class="featured-card-header">
+                <div class="featured-icon">
+                  <span>
+                    <nugget-icon [name]="item.icon"></nugget-icon>
+                  </span>
+                </div>
+              </div>
+              <div class="featured-card-body">
+                <div class="featured-description">
+                  <span>{{item.desc}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="teams-of-shapes">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="nugget-header text-center teams-of-shapes-header">
+            <div class="nugget-title mb-4 mb-md-5 help-title">
+              <span>Who we help</span>
+            </div>
+            <div class="nugget-sub-title">
+              <span>Teams of all shapes and sizes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12" >
+          <div class="teams-info">
+            <div class="teams-card" [routerLink]="item.link" *ngFor="let item of teamList">
+              <div class="teams-card-header">
+                <div class="team-icon">
+                  <span>
+                    <nugget-icon [name]="item.icon"></nugget-icon>
+                  </span>
+                </div>
+                <div class="teams-card-title">
+                  <span>{{item.title}}</span>
+                </div>
+              </div>
+              <div class="teams-card-body">
+                <div class="teams-card-desc">
+                  <span>{{item.desc}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="reviews-section">
+    <app-review [reviewList]="reviewList"></app-review>
+  </div>
+</div>

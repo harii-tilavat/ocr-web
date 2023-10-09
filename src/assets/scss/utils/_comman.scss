@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $inter;
+  font-weight: normal;
+  line-height: normal;
+  @include font-size($font-size-base);
+  padding-top: 80px;
+  overflow: auto;
+  @include themed {
+    color: t($text-color);
+    background-color: t($bg-color);
+  }
+  &.announce {
+    padding-top: calc(80px + 37px);
+  }
+}
+div,
+input,
+span {
+  @include box-sizing;
+}
+[hidden] {
+  display: none;
+}
+[readonly] {
+  user-select: none !important;
+  width: 0;
+  padding: 0;
+}
+@include media-breakpoint-down(sm) {
+  body {
+    padding-top: 75px;
+    &.announce {
+      padding-top: calc(75px + 62px);
+    }
+  }
+}

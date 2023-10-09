@@ -1,0 +1,75 @@
+<div class="pricing-card">
+  <!-- [ngClass]="{'h-auto':!priceList.features}"-->
+  <div class="pricing-card-header" [ngClass]="{'h-auto':priceIndex===0 && !priceList.features}">
+    <div class="header-top" [ngClass]="{'mb-0':priceList.id===5}">
+      <div class="plane-type">
+        <span>{{priceList.planType}}</span>
+      </div>
+      <ng-container *ngIf="priceList.price">
+        <div class="plan-price">
+          <div class="price-desc">
+            <span class="price">${{isMonthly? priceList.price : convertedPrice}}</span>
+            <span class="duration"> /{{priceList.id===5?'participant':'month'}}</span>
+          </div>
+          <ng-container *ngIf="!isMonthly">
+            <div class="badge-icon">
+              <ng-container *ngIf="priceList.discount; else noDiscountBlock">
+                <span class="discount-badge">-{{priceList.discount}}%</span>
+              </ng-container>
+              <ng-template #noDiscountBlock>
+                <span>Discount nathi !</span>
+              </ng-template>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+    <ng-container >
+      <div class="header-bottom">
+        <div class="switch-type" *ngIf="priceList.price && priceList.id!==5">
+          <span [ngClass]="{'active':!isMonthly }" (click)="isMonthly=false">Annually</span>
+          <span [ngClass]="{'active':isMonthly}" (click)="isMonthly=true">Monthly</span>
+        </div>
+        <ng-container *ngIf="priceList.id===1">
+          <div class="plan-duration">
+            <span>Forever</span>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+  <div class="pricing-card-body" [ngClass]="{'mt-0':!priceList.participant_per_month && !priceList.features}">
+    <div class="feature-list" *ngIf="priceList.features">
+      <ul>
+        <li class="feature-list-item">
+          <span class="check-icon">
+            <nugget-icon name="check-true"></nugget-icon>
+          </span>
+          <span>{{priceList.features.no_of_resercher}} researcher seat</span>
+        </li>
+        <li class="feature-list-item">
+          <span class="check-icon">
+            <nugget-icon name="check-true"></nugget-icon>
+          </span>
+          <span>{{priceList.features.no_of_sessions}} sessions / month</span>
+        </li>
+        <li class="feature-list-item" *ngIf="priceList.features.is_transcription">
+          <span class="check-icon">
+            <nugget-icon name="check-true"></nugget-icon>
+          </span>
+          <span>Free transcription</span>
+        </li>
+      </ul>
+    </div>
+    <div class="per-month" *ngIf="priceList.participant_per_month">
+      <span class="participant">{{priceList.participant_per_month}}</span>
+      <span class="desc">Participants per month</span>
+    </div>
+  </div>
+  <div class="pricing-card-footer">
+    <div class="get-started">
+      <button type="button" class="btn btn-primary btn-xs" [ngClass]="{'btn-primary-outline':priceIndex===0}">Get
+        Started</button>
+    </div>
+  </div>
+</div>

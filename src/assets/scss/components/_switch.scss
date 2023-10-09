@@ -1,0 +1,190 @@
+.switch-button-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  user-select: none;
+  border-radius: 8px;
+  font-family: $inter-semibold;
+  @include font-size(14px);
+  .switch-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  .toggle-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    .switch-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 7px;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      .switch-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 8px;
+        width: 20px;
+        height: 20px;
+      }
+      .switch-title {
+        display: block;
+        white-space: nowrap;
+      }
+    }
+    .toggle-badge {
+      position: absolute;
+      top: -11px;
+      right: 0;
+      border-radius: 30px;
+      padding: 4px 7px;
+      font-size: 11px;
+      z-index: 1;
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: calc(100% + 2px);
+        height: calc(50% + 2px);
+        left: -1px;
+        top: calc(50% - 2px);
+      }
+    }
+  }
+  .switch-label {
+    display: block;
+    cursor: pointer;
+    padding: 12px 35px;
+  }
+  @include themed() {
+    background: t($switch-bg);
+    border: 1px solid t($switch-border);
+    .switch-checkbox {
+      &:checked {
+        & ~ .switch-label {
+          background: t($switch-color);
+          color: $primary-600;
+          border-color: $primary-600;
+        }
+        & ~ .toggle-badge {
+          background: t($switch-color);
+          color: $primary-600;
+          &::after {
+            background: t($switch-color);
+          }
+        }
+      }
+    }
+    .toggle-button {
+      position: relative;
+      color: t($switch-color);
+      &:last-child {
+        border-right: 0px solid;
+      }
+      .toggle-badge {
+        background: #ffffff;
+        color: #334053;
+        border-top: 1px solid #d0d6dd;
+        border-right: 1px solid #d0d6dd;
+        border-left: 1px solid #d0d6dd;
+        &::after {
+          background: #ffffff;
+        }
+      }
+    }
+  }
+}
+/* Rounded sliders */
+.switch-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .switch-slider {
+    position: relative;
+    display: block;
+    width: 36px;
+    height: 20px;
+    .slider-box {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $gray-400;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+      &:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 2px;
+        bottom: 2px;
+        background-color: $white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+      &.round {
+        border-radius: 34px;
+        &:before {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  .switch-title {
+    display: block;
+    padding-left: 10px;
+    cursor: pointer;
+    font-family: $inter-medium;
+    @include font-size(13px);
+  }
+  input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    &:checked {
+      ~ .switch-slider {
+        .slider-box {
+          &:before {
+            -webkit-transform: translateX(16px);
+            -ms-transform: translateX(16px);
+            transform: translateX(16px);
+          }
+        }
+      }
+    }
+    // &:focus {
+    //   ~ .switch-slider {
+    //     .slider-box {
+    //     }
+    //   }
+    // }
+  }
+  @include themed() {
+    .switch-slider {
+      .slider-box {
+        background-color: $gray-400;
+        &:before {
+          background-color: t($ngt-inverse);
+        }
+      }
+    }
+    input[type="checkbox"] {
+      &:checked {
+        ~ .switch-slider {
+          .slider-box {
+            background-color: $primary-600;
+          }
+        }
+      }
+    }
+  }
+}

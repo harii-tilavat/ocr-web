@@ -1,0 +1,49 @@
+<div class="product-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="row" [ngClass]="{'flex-row-reverse': rtl === 'SLIDE_LEFT', 'flex-wrap-reverse':!isTeams}">
+          <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="product-content">
+              <div class="product-header">
+                <div class="product-title" [ngClass]="{'d-none d-lg-block':!isTeams}">
+                  <span>{{sliderItem.title}}</span>
+                </div>
+              </div>
+              <div class="product-body">
+                <div class="product-sub-title">
+                  <span>{{sliderItem.subTitle}}</span>
+                </div>
+                <div class="product-desc">
+                  <span>{{sliderItem.desc}}</span>
+                </div>
+              </div>
+              <div class="product-footer" *ngIf="sliderItem.action">
+                <div class="product-button action">
+                  <button type="button" class="btn btn-primary-outline btn-xl" [routerLink]="['/pricing']">Try for
+                    free</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="product-image-content">
+              <!-- Removed Product-header-main -->
+              <div class="product-title text-center" *ngIf="!isTeams"
+                [ngClass]="{'d-block d-lg-none':!isTeams}">
+                <span>{{sliderItem.title}}</span>
+              </div>
+              <div class="product-image">
+                <div class="nugget-image" [ngClass]="{'ms-lg-auto':rtl !== 'SLIDE_LEFT'}">
+                  <span>
+                    <app-player-canvas [playerPath]="sliderItem.imagePath"></app-player-canvas>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

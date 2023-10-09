@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="footer-head text-center">
+        <div class="nugget-logo">
+          <div class="nugget-image">
+            <span [routerLink]="['/']">
+              <!-- <img src="/assets/svg/nugget-logo.svg" alt="nugget-logo" class="img-fluid"> -->
+              <nugget-icon name="nugget"></nugget-icon>
+            </span>
+          </div>
+        </div>
+        <div class="footer-title">
+          <span>Deeper human insights, faster</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+      <div class="footer-content">
+        <ul class="footer-list text-start">
+          <li class="footer-list-item" [routerLink]="item.routing" *ngFor="let item of menuList">{{item.title}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-6 col-sm-12">
+      <div class="news-letter-content-footer">
+        <div class="news-letter-footer">
+          <div class="news-letter-input">
+            <input id="newsletter" name="newsletter" type="text" class="form-control" placeholder="Your work email">
+          </div>
+          <div class="footer-button">
+            <button type="button" class="btn btn-primary" [routerLink]="['/pricing']">Try for free</button>
+          </div>
+          <div class="social-icon-footer">
+            <ul class="social-icon-list">
+              <li>
+                <a href="javascript:void(0)" class="logo-icon">
+                  <nugget-icon name="linkedin" [fill]="'#4F37E2'"></nugget-icon>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="logo-icon">
+                  <nugget-icon name="x" [fill]="'#4F37E2'"></nugget-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="footer-logo d-flex justify-content-start justify-content-md-end">
+        <span class="certificate-icon">
+          <nugget-icon name="aicpa"></nugget-icon>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="copyrights-content">
+        <div class="copy-right">
+          <span>Copyright © {{year}} UXR Technologies Pvt. Ltd. | All Rights Reserved</span>
+        </div>
+        <div class="copy-right">
+          <div class="policy-links">
+            <span class="policy-link"  [routerLink]="['/terms','tnc']">T&C | </span>
+            <span class="policy-link" [routerLink]="['/terms','tnc4p']">T&C for Participants | </span>
+            <span class="policy-link" [routerLink]="['/terms','policy']">Privacy Policy </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

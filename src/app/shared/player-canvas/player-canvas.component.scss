@@ -1,0 +1,12 @@
+canvas {
+  height: 100%;
+  width: 100%;
+  background: #121725;
+}
+:host{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

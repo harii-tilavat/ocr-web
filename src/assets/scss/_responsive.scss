@@ -1,0 +1,676 @@
+@include media-breakpoint-down(sm) {
+  // ----------------Home Section----------------
+  .home {
+    .main-section {
+      .main-section-content {
+        .main-section-header {
+          // @include margin-bottom(40px);
+          margin-bottom: 2.5rem;
+          .nugget-header-title {
+            // @include font-size(44px);
+            font-size: 2.75rem;
+          }
+          .nugget-desc {
+            @include line-height(27px);
+            @include font-size(18px);
+          }
+        }
+        .home-banner {
+          img {
+          }
+        }
+        &.main-section-content-bg {
+          padding: 1.5rem 0.75rem 3.75rem 0.75rem;
+          &::after {
+            height: 100%;
+          }
+        }
+      }
+      .logo-section {
+        // @include padding(60px 0px);
+        padding: 3.75rem 0rem;
+        .logo-content {
+          .logo-header {
+            padding: 0;
+            margin-bottom: 2rem;
+          }
+          .logo-body {
+            .logo-swiper-images {
+              .logo-image {
+                span {
+                  height: 24px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .featured-section {
+      .featured-content {
+        gap: 24px;
+        .featured-card {
+        }
+        .featured-card-header {
+        }
+        .featured-card-body {
+          .featured-description {
+          }
+        }
+      }
+    }
+    .teams-of-shapes {
+      padding: 4rem 0.5rem;
+      .teams-of-shapes-header {
+        margin-bottom: 3rem;
+      }
+      .teams-info {
+        gap: 32px 0px;
+        .teams-card {
+          // @include padding(32px 24px);
+          padding: 32px 24px;
+          .teams-card-header {
+            .teams-card-title {
+            }
+          }
+          .teams-card-body {
+            .teams-card-desc {
+            }
+          }
+        }
+      }
+      .nugget-header {
+        .nugget-sub-title {
+          // @include font-size(32px);
+          font-size: 2rem;
+        }
+      }
+    }
+    .nugget-header {
+      .nugget-sub-title {
+      }
+    }
+    .reviews-section {
+      padding: 3rem 0.75rem;
+      .review-header-main {
+        .review-header {
+          @include font-size(20px);
+        }
+      }
+      .review-content {
+        .review-info {
+          .review-content {
+            padding: 2rem 0 4rem 0;
+            .review-desc {
+              font-family: $inter-medium;
+              @include font-size(18px);
+              @include line-height(27px);
+            }
+            .review-footer {
+              .review-person {
+                .person-profile {
+                  .nugget-image {
+                  }
+                }
+                .person-content {
+                  .person-title {
+                    @include font-size(16px);
+                  }
+                  .person-job {
+                    @include font-size(14px);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    // Main title
+    .nugget-title {
+      @include font-size(16px);
+      &.featured {
+        @include font-size(20px);
+      }
+      &.help-title {
+      }
+      &.logo-header {
+      }
+      &.review-title {
+        @include font-size(20px);
+      }
+    }
+  }
+  // ----------------Teams Section----------------
+  .teams {
+    .teams-header-main {
+      .teams-header-content {
+        .teams-title {
+        }
+        .teams-sub-title {
+        }
+      }
+    }
+    .help-section {
+      padding: 3rem 0.75rem 1rem 0.75rem;
+      .help-header-title {
+      }
+      .help-card {
+        border-radius: 12px;
+        .help-image {
+          .nugget-image {
+          }
+        }
+        .help-content {
+          @include font-size(18px);
+          @include line-height(27px);
+        }
+      }
+    }
+    .try-nugget {
+      .try-nugget-content {
+        .description {
+          @include line-height(30px);
+          @include font-size(20px);
+        }
+      }
+    }
+    .nugget-heading,
+    .help-heading {
+      font-size: 2rem;
+    }
+  }
+  // ----------------Pricing Section----------------
+  .pricing {
+    .pricing-header-main {
+      padding: 3rem 0.75rem;
+      .pricing-header-title {
+        @include line-height(43px);
+      }
+      .pricing-header-desc {
+        @include font-size(18px);
+        @include line-height(27px);
+      }
+    }
+    .pricing-section {
+      .pricing-card {
+        padding: 2rem 1.5rem;
+        .pricing-card-header {
+          height: 110px;
+          .header-top {
+            .plane-type {
+            }
+            .plan-price {
+              .price-desc{
+                .price {
+                  @include font-size(20px);
+                }
+                .duration {
+                  @include font-size(14px);
+                }
+              }
+              .badge-icon {
+                .discount-badge {
+                }
+              }
+            }
+          }
+          .header-bottom {
+            .switch-type {
+              span {
+                &.active {
+                }
+              }
+            }
+          }
+        }
+        .pricing-card-body {
+          margin: 2rem 0;
+          .feature-list {
+            ul {
+              li {
+                &.feature-list-item {
+                  .check-icon {
+                  }
+                }
+              }
+            }
+          }
+          .per-month {
+            .participant {
+            }
+          }
+        }
+        .pricing-card-footer {
+        }
+      }
+      &.hiring {
+        padding: 3rem 0.75rem;
+      }
+      &.recruitment {
+        padding: 3rem 0.75rem;
+      }
+    }
+    .pricing-bottom {
+      .custom-plan {
+        .custom-plan-header {
+          @include font-size(20px);
+          @include line-height(30px);
+        }
+      }
+    }
+    .pricing-header {
+      .pricing-title {
+        font-family: $inter-semibold;
+      }
+      .pricing-sub-title {
+        @include font-size(16px);
+        @include line-height(24px);
+      }
+    }
+  }
+  // ----------------About Section----------------
+  .about-us {
+    .about-header {
+      .about-title {
+        @include line-height(43px);
+        font-size: 2rem;
+      }
+    }
+    .meet-the-team {
+      .team-header {
+        .team-title {
+        }
+        .team-desc {
+          @include font-size(18px);
+          @include line-height(27px);
+        }
+      }
+      .team-card {
+        gap: 16px;
+        margin-bottom: 2rem;
+        .team-card-header {
+          .team-card-image {
+            .profile-image {
+              width: 120px;
+              height: 120px;
+            }
+          }
+        }
+        .team-card-body {
+          gap: 4px;
+          .team-job-title {
+            gap: 4px;
+            @include line-height(27px);
+            .title {
+              @include font-size(18px);
+              font-family: $inter-medium;
+            }
+            .job-icon {
+              height: 24px;
+              width: 24px;
+              padding: 3px;
+            }
+          }
+          .team-job-sub-title {
+          }
+        }
+      }
+    }
+    .join-us {
+      .join-us-card {
+        // @include padding(48px 16px);
+        .join-us-header {
+          .join-us-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+          }
+          .join-us-sub-title {
+            @include font-size(16px);
+            margin-bottom: 2rem;
+            @include line-height(24px);
+          }
+        }
+      }
+    }
+  }
+  // ----------------Contact Section----------------
+  .contact {
+    .contact-info {
+      .contact-header {
+        @include padding(48px 0px 0px 0px);
+      }
+      .contact-card {
+        border-radius: 12px;
+        .contact-card-header {
+          @include line-height(24px);
+          @include font-size(16px);
+        }
+        .contact-card-body {
+          .job-image {
+            .nugget-image {
+            }
+          }
+          .job-info {
+            .job-title {
+            }
+            .job-sub-title {
+            }
+            .job-logo {
+            }
+          }
+        }
+      }
+    }
+    .contact-form {
+      .contact-form-card {
+        border: none;
+        border-radius: 0;
+        .card-body {
+          @include padding(32px 24px);
+          form {
+            .form-group {
+              &.description {
+                font-family: $inter;
+              }
+              .form-heading {
+                span {
+                }
+              }
+              .control-label {
+                @include font-size(16px);
+                color: $gray-800;
+              }
+              .form-error {
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // ----------------Blog Section----------------
+  .nugget-blog {
+    .resource-search {
+      .blog-header-content {
+        .blog-title {
+          // @include font-size(32px);
+          font-size: 2rem;
+        }
+        .blog-desc {
+          @include font-size(20px);
+          @include line-height(30px);
+        }
+        .blog-search {
+          .form-control {
+          }
+        }
+      }
+    }
+    .selected-blog {
+      .card {
+        .card-header {
+          .card-image {
+            padding-top: 75.25%;
+            span {
+              max-width: 200px;
+              img {
+              }
+            }
+          }
+        }
+      }
+    }
+    .resource-list {
+      .action {
+      }
+    }
+    .news-letter {
+      .news-letter-content {
+        @include padding(24px 16px);
+        .subscribe-title {
+          font-family: $inter-semibold;
+          @include line-height(27px);
+        }
+        .subscribe-input {
+          .form-control {
+          }
+        }
+        .subscribe-btn {
+        }
+      }
+    }
+    .more-story {
+      .story-content {
+        flex-flow: column;
+        align-items: flex-start;
+        .story-heading {
+        }
+        .action {
+        }
+      }
+      .card {
+        .card-body {
+          .card-title {
+            @include line-height(30px);
+          }
+        }
+      }
+    }
+  }
+  // ----------------Product Detail Section----------------
+  .product-detail {
+    .product-header-main {
+      @include font-size(16px);
+      letter-spacing: 1.6px;
+    }
+    .product-title {
+      @include font-size(16px);
+      letter-spacing: 1.6px;
+      margin-bottom: 2rem;
+      // background-color: red;
+    }
+    .product-section {
+      padding: 2rem 0.75rem 4rem 0.75rem;
+      .product-content {
+        .product-header {
+        }
+        .product-body {
+          .product-sub-title {
+            // @include font-size(32px);
+            font-size: 2rem;
+            @include line-height(43px);
+          }
+          .product-desc {
+            @include font-size(16px);
+            @include line-height(24px);
+          }
+        }
+      }
+      .product-image {
+        .nugget-image {
+          // max-width: 280px;
+        }
+      }
+    }
+    &.teams-product-detail {
+      .product-title {
+        margin-bottom: 0;
+      }
+      .product-section {
+        padding: 2rem 0.75rem;
+        .product-content {
+          gap: 8px;
+          .product-body {
+            .product-desc {
+              @include line-height(24px);
+              @include font-size(16px);
+            }
+          }
+        }
+      }
+    }
+  }
+  //-----------------Blog Details--------------------------
+  .blog-detail {
+    .resource-heading {
+      .blog-image-heading {
+        .detail-content {
+          .breadcrumb {
+            @include font-size(14px);
+            @include line-height(24px);
+          }
+          .detail-title {
+            font-size: 2rem;
+          }
+        }
+      }
+      .blog-image-section {
+        .blog-image {
+          .image-content {
+            .detail-image {
+              span {
+                img {
+                }
+              }
+              &.resource-image {
+                span {
+                  max-width: 200px;
+                  min-height: 240px;
+                }
+              }
+            }
+            .meta-data {
+              .meta-data-value {
+                .meta-data-title {
+                }
+                .meta-data-desc {
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .share-article {
+      .article-title {
+        color: $primary-700;
+      }
+      .article-top {
+        .article-icon-list {
+        }
+      }
+      .article-bottom {
+        .article-content {
+          .article-title {
+          }
+          .arcticle-desc {
+            font-family: $inter;
+            color: $gray-900;
+          }
+        }
+        .blog-news-letter {
+          .news-letter-input {
+            .btn {
+              background-color: $primary-600;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    .blog-content {
+      .blog-description {
+        .description {
+          ul {
+            li {
+              .content {
+                .title {
+                  @include font-size(20px);
+                  @include line-height(32px);
+                }
+                .desc {
+                  @include font-size(16px);
+                  @include line-height(24px);
+                }
+              }
+              .image-section {
+                ul {
+                  gap: 16px;
+                  li {
+                    .nugget-image {
+                      span {
+                        img {
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              &:nth-child(1) {
+                .content {
+                  .title {
+                  }
+                  .desc {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //-----------------privacy Details--------------------------
+  .privacy {
+    .privacy-detail {
+      .privacy-heading {
+        .privacy-title {
+        }
+        .privacy-desc {
+          @include line-height(27px);
+        }
+      }
+      .privacy-content {
+        ul {
+          li {
+            .privacy-list-item {
+              .title {
+                @include line-height(24px);
+              }
+              .desc {
+                @include line-height(24px);
+                .link {
+                }
+              }
+              &.tnc {
+                .title,
+                .desc {
+                }
+                &.inline {
+                  .title,
+                  .desc {
+                  }
+                }
+              }
+              &.faqs {
+                .title,
+                .desc {
+                }
+              }
+            }
+          }
+        }
+      }
+      .email-link {
+        .email-title {
+        }
+        .email-desc {
+          @include line-height(30px);
+          .link {
+          }
+        }
+      }
+    }
+  }
+}

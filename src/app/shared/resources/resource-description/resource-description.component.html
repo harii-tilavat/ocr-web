@@ -1,0 +1,31 @@
+<!-- <div class="description p-0 pb-lg-5">
+  <ul>
+    <li *ngFor="let item of blogContent">
+      <div class="content">
+        <div class="title">
+          <span>{{item.title}}</span>
+        </div>
+        <div class="desc">
+          <span>{{item.desc}}</span>
+        </div>
+      </div>
+      <ng-container *ngIf="item.images.length!==0">
+        <div class="image-section">
+          <ul>
+            <li *ngFor="let subItem of item.images">
+              <div class="nugget-image">
+                <span>
+                  <img [src]="subItem.imagePath" alt="blog-img" class="img-fluid">
+                </span>
+              </div>
+              <div class="image-desc">
+                <span>{{subItem.imageDesc}}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </ng-container>
+    </li>
+  </ul>
+</div> -->
+<div class="description p-0 pb-lg-5" appEditor [innerHTML]="blogContent | dompurify"></div>

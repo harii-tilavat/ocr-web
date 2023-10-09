@@ -1,0 +1,75 @@
+@import "node_modules/swiper/swiper";
+@import "node_modules/bootstrap/scss/bootstrap";
+// regular style toast
+@import "node_modules/ngx-toastr/toastr";
+@import "./../fonts/font";
+@import "./themes/index";
+@import "./utils/index";
+@import "./components/index";
+@import "./pages/index";
+@import "./responsive";
+.g-6 {
+  --bs-gutter-x: 5rem;
+  --bs-gutter-y: 5rem;
+}
+pre {
+  @include line-height(20px);
+  color: white;
+  padding: 0 1rem 1rem;
+  margin: 0;
+  background-color: #23241f;
+  border-radius: 3px;
+  white-space: pre-wrap;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 5px 10px;
+  a {
+    color: #6cff13;
+  }
+  span.info-box {
+    color: #6cff13;
+  }
+  span.decoratore {
+    color: #fff314;
+  }
+  span.highlight {
+    color: #14b8ff;
+  }
+  span.input-box {
+    color: #89fcc8;
+  }
+  span.input-label {
+    color: #7ddff7;
+  }
+  span.text-error-box {
+    color: #f57c6f9b;
+  }
+  span.keyword {
+    color: #569cd6;
+  }
+  span.formgp {
+    color: #4ec9b0;
+  }
+  span.vari {
+    color: #9cdcfe;
+  }
+  span.brkt-rond {
+    color: #da70d6;
+  }
+  span.validate {
+    color: #dcdcaa;
+  }
+  span.bt-color {
+    color: #ce9178;
+  }
+
+  // #ce9178 class
+  // #9cdcfe variable
+  // #569cd6 privet public new keyword
+  // #4ec9b0 formgroup
+  // #808080 arrow html
+}
+// img{
+//   height: 100%;
+//   width: 100%;
+// }

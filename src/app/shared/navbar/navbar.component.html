@@ -1,0 +1,102 @@
+<div class="top-header fixed-top" id="top-header">
+  <div class="announce-bar" *ngIf="isAnnounce">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="bar">
+            <div class="announce-content">
+              <span>A special announcement goes here! Limited time only - </span>
+              <a href="javascript:void(0)" class="link"> Here’s a link</a>
+            </div>
+            <div class="close-icon">
+              <span class="icon" (click)="onCloseIcon()">
+                <nugget-icon name="x-close"></nugget-icon>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg" [ngClass]="{'scrolled':isScrolled, 'navwhite':isNavWhite }">
+    <div class="container">
+      <div class="navbar-brand">
+        <div class="brand order-1 order-lg-1">
+          <span routerLink="/">
+            <!-- <img src="/assets/svg/nugget-logo.svg" alt="" class="img-fluid" routerLink="/"> -->
+            <nugget-icon name="nugget"></nugget-icon>
+          </span>
+        </div>
+        <div class="hemburg order-3 order-lg-2 d-lg-none " data-bs-toggle="collapse" data-bs-target="#navbar-content"
+          aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+          <span>
+            <!-- <img src="/assets/svg/hemburg.svg" alt="hemburg" class="img-fluid"> -->
+            <nugget-icon name="hemburg"></nugget-icon>
+          </span>
+        </div>
+        <div class="navbar-content order-4 order-lg-3 collapse navbar-collapse justify-content-center"
+          id="navbar-content">
+          <ul class="navbar-nav">
+            <li class="nav-item" *ngFor="let item of menuList; let i=index" [ngClass]="{'dropdown':item.subMenu.length!==0}">
+              <div class="menu-item">
+                <ng-container *ngIf="item.subMenu.length; else routerlinkbox">
+                  <div class="menu-title" [attr.data-bs-toggle]="'dropdown'">
+                    <span class="nav-link">
+                      {{item.title}}
+                    </span>
+                    <span class="nav-icon">
+                      <nugget-icon name="down-arrow"></nugget-icon>
+                    </span>
+                  </div>
+                  <div class="dropdown-menu">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                          *ngFor="let subItem of item.subMenu">
+                          <div class="dd-teams-card" [routerLink]="[item.routing, subItem.link]"
+                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                            <div class="dd-teams-card-header">
+                              <div class="dd-team-icon">
+                                <span>
+                                  <nugget-icon [name]="subItem.icon"></nugget-icon>
+                                </span>
+                              </div>
+                            </div>
+                            <div class="dd-teams-card-body">
+                              <div class="dd-teams-card-title">
+                                <span>{{subItem.title}}</span><br>
+                              </div>
+                              <div class="dd-teams-card-desc">
+                                <span>{{subItem.desc}}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-template #routerlinkbox>
+                  <div class="menu-title" [routerLink]="item.routing" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact:true}">
+                    <span class="nav-link">
+                      {{item.title}}
+                    </span>
+                  </div>
+                </ng-template>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="order-2 order-lg-4 nav-buttons">
+          <div class="nav-button d-none d-md-block">
+            <button type="button" class="btn btn-primary-outline btn-xs">Login</button>
+          </div>
+          <div class="nav-button">
+            <button type="button" class="btn btn-primary btn-xs" [routerLink]="['/pricing']">Try for free</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

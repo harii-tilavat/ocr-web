@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="story-content">
+        <div class="story-heading">
+          <span>{{moreStories.title}}</span>
+        </div>
+        <ng-container *ngIf="moreStories.action">
+          <div class="action">
+            <button class="btn btn-primary-outline see-all" type="button" (click)="sellAllList.emit(true)">
+              <span>See All</span>
+              <span class="right-arrow-icon">
+                <nugget-icon name="right-arrow"></nugget-icon>
+              </span>
+            </button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="row g-5 g-sm-5" *ngIf="moreStories.storyModelList">
+    <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12" *ngFor="let item of moreStories.storyModelList">
+      <!-- <app-blog-card [blogData]="item" [cardClass]="moreStories.class"></app-blog-card> -->
+      <app-resource-card [cardData]="item" [cardClass]="moreStories.class" [type]="type"></app-resource-card>
+    </div>
+  </div>
+</div>

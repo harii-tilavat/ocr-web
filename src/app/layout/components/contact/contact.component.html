@@ -1,0 +1,126 @@
+<div class="contact">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="row flex-wrap-reverse row-gap-5">
+          <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 p-lg-0 p-2">
+            <div class="contact-info">
+              <div class="contact-header d-md-block d-none">
+                <span>Reach your customers where they are, with valuable user insights.</span>
+              </div>
+              <div class="contact-card">
+                <div class="contact-card-header">
+                  <div class="description">
+                    <span>
+                      Nugget allows me to connect more personally with people without having to do 75 different
+                      one-on-one
+                      calls, which is just impossible at scale.
+                    </span>
+                  </div>
+                </div>
+                <div class="contact-card-body">
+                  <div class="job-image">
+                    <span>
+                      <!-- <nugget-icon name="dummy-face"></nugget-icon> -->
+                      <img src="/assets/images/dummy-face.svg" alt="job-img">
+                    </span>
+                  </div>
+                  <div class="job-info ">
+                    <span class="job-title">Joanne Carter</span>
+                    <span class="job-sub-title">Designer, Google</span>
+                    <span class="job-logo">
+                      <nugget-icon [fill]="'#475467'" name="google"></nugget-icon>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 p-0">
+            <div class="contact-form">
+              <div class="contact-form-card">
+                <div class="card-body">
+                  <form action="" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group form-header">
+                      <div class="form-heading">
+                        <span>Speak to a Nugget expert to discuss your needs</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name" class="control-label">Name</label>
+                      <input type="text" class="form-control form-control-xl" id="name" formControlName="name">
+                      <div class="form-error"
+                        *ngIf="contactForm.controls['name'].dirty && contactForm.controls['name'].touched">
+                        <span class="error" *ngIf="contactForm.controls['name'].hasError('required')">Name
+                          required!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="email" class="control-label">Work Email</label>
+                      <input type="text" class="form-control form-control-xl" id="email" formControlName="email">
+                      <div class="form-error"
+                        *ngIf="contactForm.controls['email'].dirty && contactForm.controls['email'].touched">
+                        <span class="error" *ngIf="contactForm.controls['email'].hasError('required')">Email
+                          required!</span>
+                        <span class="error" *ngIf="contactForm.controls['email'].hasError('pattern')">Enter valid
+                          email!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="company" class="control-label">Company</label>
+                      <input type="text" class="form-control form-control-xl" id="company" formControlName="company">
+                      <div class="form-error"
+                        *ngIf="contactForm.controls['company'].dirty && contactForm.controls['company'].touched">
+                        <span class="error" *ngIf="contactForm.controls['company'].hasError('required')">Company
+                          required!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="phone" class="control-label">Phone</label>
+                      <input type="text" class="form-control form-control-xl" id="phone" formControlName="phone">
+                      <!-- <div class="form-error"
+                        *ngIf="contactForm.controls['phone'].dirty && contactForm.controls['phone'].touched">
+                        <span class="error" *ngIf="contactForm.controls['phone'].hasError('required')">Number
+                          required!</span>
+                        <span class="error" *ngIf="contactForm.controls['phone'].hasError('pattern')">Enter valid
+                          number!</span>
+                      </div> -->
+                    </div>
+                    <div class="form-group">
+                      <label for="message" class="control-label">What problem are you trying to solve?</label>
+                      <!-- <input type="text" class="form-control form-control-xl" id="message" formControlName="message"> -->
+                      <textarea name="" id="message" rows="4" class="form-control "
+                        formControlName="message"></textarea>
+                      <div class="form-error"
+                        *ngIf="contactForm.controls['message'].dirty && contactForm.controls['message'].touched">
+                        <span class="error" *ngIf="contactForm.controls['message'].hasError('required')">Message
+                          required!</span>
+                      </div>
+                    </div>
+                    <div class="form-group submit">
+                      <button type="submit" class="btn btn-primary btn-xl">Send Message</button>
+                    </div>
+                    <div class="form-group description">
+                      <div class="form-desc">
+                        <span>By submitting, I agree to the processing of my personal data by Nugget (a product of UXR
+                          Technologies) as described in the <a [routerLink]="['/terms','policy']"
+                            class="tearms-link">Privacy Policy.</a></span>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 p-lg-0 p-2 d-md-none d-block">
+            <div class="contact-info ">
+              <div class="contact-header">
+                <span>Reach your customers where they are, with valuable user insights.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

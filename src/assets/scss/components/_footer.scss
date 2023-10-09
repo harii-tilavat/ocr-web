@@ -1,0 +1,127 @@
+.nugget-footer {
+  background-color: $yellow-25;
+  // @include padding(96px 12px);
+  @include padding(96px 12px 48px 12px);
+  .footer-head {
+    @include margin-bottom(32px);
+    display: flex;
+    flex-flow: column;
+    gap: 16px;
+    .nugget-logo {
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: auto;
+        cursor: pointer;
+      }
+    }
+    .footer-title {
+      @include font-size(20px);
+      color: $primary-600;
+      font-family: $inter-semibold;
+      @include line-height(30px);
+    }
+  }
+  .footer-content {
+    // @include margin-bottom(60px);
+    .footer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      row-gap: 24px;
+      // padding: 8px 0px;
+      color: $gray-800;
+      @include font-size(18px);
+      .footer-list-item {
+        cursor: pointer;
+        @include line-height(27px);
+      }
+    }
+  }
+  .news-letter-content-footer {
+    .news-letter-footer {
+      display: flex;
+      flex-flow: column;
+      .news-letter-input{
+
+      }
+      .footer-button{
+        @include margin(16px 0px 24px 0px);
+      }
+      .social-icon-footer{
+        .social-icon-list{
+        }
+      }
+    }
+  }
+  .footer-logo {
+    @include margin(16px 0px 32px 0px);
+    .certificate-icon{
+      @include nugget-icon(48px);
+    }
+  }
+  .copyrights-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap-reverse;
+    color: $gray-600;
+    gap: 48px;
+    @include font-size(14px);
+    .copy-right {
+      @include line-height(27px);
+      // @include margin-bottom(60px);
+      .policy-links {
+        .policy-link {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+@include media-breakpoint-down(md) {
+  // ----------------Footer----------------
+  .nugget-footer {
+    padding: 3.5rem 0.75rem;
+    .footer-head {
+      // @include margin-bottom(48px);
+      margin-bottom: 0;
+      .nugget-logo {
+        span {
+          padding: 5px;
+        }
+      }
+      .footer-title {
+      }
+    }
+    .footer-content {
+      margin: 3rem 0;
+      .footer-list {
+        text-align: center;
+        @include font-size(16px);
+        .footer-list-item {
+          flex-basis: 50%;
+        }
+      }
+    }
+    .news-letter-content-footer {
+      .news-letter-footer {
+        .footer-button{
+          margin: 1rem 0;
+        }
+      }
+    }
+    .footer-logo {
+      // @include margin(48px 0px);
+      margin: 3rem 0;
+    }
+    .copyrights-content {
+      .copy-right {
+        @include line-height(21px);
+      }
+    }
+  }
+}

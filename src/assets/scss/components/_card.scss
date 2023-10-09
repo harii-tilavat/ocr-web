@@ -1,0 +1,192 @@
+.card {
+  background-color: $primary-25;
+  border: 1px solid $primary-100;
+  transition: all 0.2s;
+  overflow: hidden;
+  // height: calc(100% - 64px);
+  height: calc(100%);
+  cursor: pointer;
+  @include box-shadow-card(top);
+  &:hover {
+    @include box-shadow-default($primary-100);
+  }
+  // @include margin(64px 0px 0px 0px);
+  .card-header {
+    background-color: $primary-25;
+    padding: 0;
+    border: none;
+    .card-image {
+      padding-top: 56.25%;
+      position: relative;
+      height: 100%;
+      span {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $gray-900;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  .card-body {
+    background-color: #fff;
+    @include padding(20px 16px);
+    .card-date {
+      color: $gray-500;
+      @include font-size(18px);
+    }
+    .card-title {
+      @include font-size(32px);
+      color: $gray-950;
+      @include margin(16px 0px);
+      font-family: $sora-bold;
+      @include line-height(43px);
+      @include line-clamp(2);
+    }
+    .card-desc {
+      @include font-size(20px);
+      color: $gray-600;
+      span,
+      p {
+        @include line-clamp(3);
+      }
+    }
+  }
+  &.more-story-card {
+    .card-header {
+      background-color: $yellow-25;
+      .card-image {
+        padding-top: 79.71%;
+        position: relative;
+        height: 100%;
+        filter: grayscale(100%);
+        @include transitions(0.2s, ease-in-out);
+        &:hover {
+          filter: grayscale(0%);
+        }
+        span {
+          display: block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          // max-width: 300px;
+          transform: translate(-50%, -50%);
+          // @include padding(5px);
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+    .card-body {
+      .card-date {
+      }
+      .card-title {
+      }
+      .card-desc {
+      }
+    }
+    &.other-story {
+      .card-header {
+        .card-image {
+          padding-top: 56.25%;
+        }
+      }
+      .card-body {
+        .card-date {
+        }
+        .card-title {
+          @include font-size(28px);
+          font-family: $inter-semibold;
+          line-height: clamp(30px, 5vw, 37px);
+        }
+        .card-desc {
+        }
+      }
+    }
+  }
+  &.bg-purple {
+    .card-header {
+      background-color: $primary-100;
+    }
+  }
+  &.image-card {
+    .card-header {
+      .card-image {
+        padding-top: 79.71%;
+        span {
+          height: 100%;
+        }
+      }
+    }
+  }
+  &.selected-card {
+    .card-header {
+      .card-image {
+        padding-top: 30%;
+        position: relative;
+        background-color: $yellow-25;
+        span {
+          max-width: 400px;
+          display: block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 100%;
+          transform: translate(-50%, -50%);
+          img {
+          }
+        }
+      }
+    }
+  }
+}
+@include media-breakpoint-down(md) {
+  .card {
+    .card-header {
+      .card-image {
+      }
+    }
+    .card-body {
+      .card-date {
+      }
+      .card-title {
+      }
+      .card-desc {
+      }
+    }
+  }
+}
+@include media-breakpoint-down(sm) {
+  .card {
+    .card-header {
+      .card-image {
+        // padding-top: 79.71% !important;
+        span {
+          img {
+          }
+        }
+      }
+    }
+    .card-body {
+      .card-date {
+        @include font-size(16px);
+      }
+      .card-title {
+        @include font-size(20px);
+        font-family: $inter-semibold;
+        @include line-height(30px);
+      }
+      .card-desc {
+        @include font-size(16px);
+      }
+    }
+  }
+}

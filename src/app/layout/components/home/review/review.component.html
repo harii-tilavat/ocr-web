@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="review-header-main">
+        <div class="review-header">
+          <div class="review-title nugget-title">
+            <span>What clients say</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="review-content">
+        <div class="review-info">
+          <div class="swiper swiper-dark reviewSwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" *ngFor="let item of reviewList">
+                <div class="review-content">
+                  <div class="review-icon">
+                    <span class="review-social-icon">
+                      <!-- <nugget-icon [name]="item.icon" [fill]="'#F7F9FC'"></nugget-icon> -->
+                      <img [src]="item.logo" alt="social-img" class="img-fluid">
+                    </span>
+                  </div>
+                  <div class="review-desc">
+                    <span>{{item.review}}</span>
+                  </div>
+                  <div class="review-footer">
+                    <div class="review-person">
+                      <div class="person-profile">
+                        <div class="nugget-image">
+                          <span>
+                            <!-- <nugget-icon name="dummy-face"></nugget-icon> -->
+                            <img [src]="item.avtar" alt="review-person-icon" class="img-fluid">
+                          </span>
+                        </div>
+                      </div>
+                      <div class="person-content">
+                        <span class="person-title">{{item.name}}</span>
+                        <span class="person-job">{{item.designation}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+.nugget-blog {
+  .resource-search {
+    @include padding(64px 12px 96px 12px);
+    background-color: $yellow-25;
+    .blog-header-content {
+      text-align: center;
+      max-width: 940px;
+      margin: 0 auto;
+      .blog-title {
+        @include font-size(44px);
+        font-family: $sora-bold;
+        color: $primary-600;
+      }
+      .blog-desc {
+        @include margin-top(48px);
+        @include font-size(24px);
+        color: $primary-950;
+        @include line-height(36px);
+      }
+      .blog-search {
+        @include margin-top(48px);
+        .form {
+          position: relative;
+          .search-input {
+            height: 100%;
+            @include font-size(14px);
+            // @include padding(16px 40px);
+            padding: 17px 40px;
+          }
+          .search-label {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translatey(-50%);
+            color: $gray-500;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            .search-icon {
+              height: 20px;
+              width: 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+        }
+      }
+    }
+  }
+  .selected-blog {
+    @include padding(120px 12px 132px 12px);
+  }
+  .resource-list {
+    @include padding(0px 12px 64px 12px);
+    background-color: $yellow-25;
+    &.white {
+      background-color: $primary-25;
+    }
+    .story-content{
+      @include margin-bottom(64px);
+      .story-heading {
+        @include font-size(28px);
+        font-style: normal;
+        font-family: $inter-semibold;
+      }
+    }
+    .action {
+      @include padding-top(16px);
+    }
+  }
+  .news-letter {
+    @include padding(64px 12px);
+    .news-letter-content {
+      @include padding(48px 120px);
+      background-color: $primary-200;
+      border-radius: 8px;
+      .subscribe-title {
+        color: $primary-950;
+        font-family: $inter-medium;
+        @include margin-right(48px);
+        @include font-size(18px);
+      }
+      .subscribe-input {
+        .form-control {
+          @include padding(13.5px 14px);
+          @include font-size(14px);
+        }
+      }
+      .subscribe-btn {
+      }
+    }
+  }
+  .more-story {
+    @include padding(64px 12px 64px 12px);
+    background-color: $yellow-25;
+    &.white {
+      background-color: $primary-25;
+    }
+    .story-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      @include margin-bottom(64px);
+      .story-heading {
+        @include font-size(28px);
+        font-style: normal;
+        font-family: $inter-semibold;
+      }
+      .action {
+        @include font-size(18px);
+        font-family: $inter-semibold;
+        .see-all {
+          display: flex;
+          gap: 8px;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    .card {
+      .card-body {
+        .card-title {
+          @include font-size(28px);
+          font-family: $inter-semibold;
+          @include line-height(37px);
+        }
+      }
+    }
+  }
+}

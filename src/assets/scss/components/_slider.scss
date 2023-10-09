@@ -1,0 +1,98 @@
+.swiper-dark {
+  .swiper-pagination-fraction,
+  .swiper-pagination-custom,
+  .swiper-horizontal > .swiper-pagination-bullets,
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+    // bottom: var(--swiper-pagination-bottom, 8px);
+    bottom: var(--swiper-pagination-bottom, 20px);
+    top: var(--swiper-pagination-top, auto);
+    left: 0;
+    width: 100%;
+  }
+  .swiper-pagination-bullets-dynamic {
+    .swiper-pagination-bullet {
+    }
+    .swiper-pagination-bullet-active {
+    }
+    .swiper-pagination-bullet-active-main {
+    }
+    .swiper-pagination-bullet-active-prev {
+    }
+    .swiper-pagination-bullet-active-prev-prev {
+    }
+    .swiper-pagination-bullet-active-next {
+    }
+    .swiper-pagination-bullet-active-next-next {
+    }
+  }
+  .swiper-pagination-bullet {
+    background-color: transparent;
+    border: 1px solid $primary-25;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: $primary-25;
+  }
+}
+@include media-breakpoint-down(lg) {
+  .swiper-dark,
+  .swiper {
+    .swiper-pagination-fraction,
+    .swiper-pagination-custom,
+    .swiper-horizontal > .swiper-pagination-bullets,
+    .swiper-pagination-bullets.swiper-pagination-horizontal {
+      // bottom: var(--swiper-pagination-bottom, 8px);
+      bottom: var(--swiper-pagination-bottom, 24px);
+    }
+    .swiper-pagination-bullets-dynamic {
+      .swiper-pagination-bullet {
+      }
+      .swiper-pagination-bullet-active {
+      }
+      .swiper-pagination-bullet-active-main {
+      }
+      .swiper-pagination-bullet-active-prev {
+      }
+      .swiper-pagination-bullet-active-prev-prev {
+      }
+      .swiper-pagination-bullet-active-next {
+      }
+      .swiper-pagination-bullet-active-next-next {
+      }
+    }
+    .swiper-pagination-bullet {
+    }
+    .swiper-pagination-bullet-active {
+    }
+  }
+}
+// @include media-breakpoint-down(md) {
+//   .swiper-dark,.swiper {
+//     .swiper-pagination-fraction,
+//     .swiper-pagination-custom,
+//     .swiper-horizontal > .swiper-pagination-bullets,
+//     .swiper-pagination-bullets.swiper-pagination-horizontal {
+//       // bottom: var(--swiper-pagination-bottom, 8px);
+//       bottom: var(--swiper-pagination-bottom, 10px);
+//     }
+//     .swiper-pagination-bullets-dynamic {
+//       .swiper-pagination-bullet {
+//       }
+//       .swiper-pagination-bullet-active {
+//       }
+//       .swiper-pagination-bullet-active-main {
+//       }
+//       .swiper-pagination-bullet-active-prev {
+//       }
+//       .swiper-pagination-bullet-active-prev-prev {
+//       }
+//       .swiper-pagination-bullet-active-next {
+//       }
+//       .swiper-pagination-bullet-active-next-next {
+//       }
+//     }
+//     .swiper-pagination-bullet {
+//     }
+//     .swiper-pagination-bullet-active {
+//     }
+//   }
+// }

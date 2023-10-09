@@ -1,0 +1,16 @@
+import { NgModule } from '@angular/core';
+
+import { NgbModal } from './modal';
+import { NgbModalBackdrop } from './modal-backdrop';
+import { NgbConfig, NgbModalConfig } from './modal-config';
+import { NgbActiveModal } from './modal-ref';
+import { NgbModalWindow } from './modal-window';
+
+export { NgbModal } from './modal';
+export { NgbModalConfig, NgbModalOptions } from './modal-config';
+export { NgbModalRef, NgbActiveModal } from './modal-ref';
+export { ModalDismissReasons } from './modal-dismiss-reasons';
+
+@NgModule({ declarations: [NgbModalBackdrop, NgbModalWindow], providers: [NgbModal, NgbConfig, NgbActiveModal, NgbModalConfig] })
+export class NgbModalModule {
+}
