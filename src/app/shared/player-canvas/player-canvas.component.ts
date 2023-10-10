@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { NuggetService } from 'src/app/_services';
+import { player } from './player';
 
 @Component({
   selector: 'app-player-canvas',
@@ -15,14 +16,15 @@ export class PlayerCanvasComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.playerPath.includes('.mp4')) {
-      this.nuggetService.getBlobContext('/assets/media/' + this.playerPath).subscribe({
-        next: (res: Blob) => {
-          if (res.type && res.type === 'video/mp4') {
-            this.blobUrl = URL.createObjectURL(res);
-          }
-          console.log(this.playerPath, res, this.blobUrl);
-        }
-      })
+      this.blobUrl = player.homepage;
+      // this.nuggetService.getBlobContext('/assets/media/' + this.playerPath).subscribe({
+      //   next: (res: Blob) => {
+      //     if (res.type && res.type === 'video/mp4') {
+      //       this.blobUrl = URL.createObjectURL(res);
+      //     }
+      //     console.log(this.playerPath, res, this.blobUrl);
+      //   }
+      // })
       // fetch('/assets/images/' + this.playerPath).then(res => res.blob()).then((res) => {
       //   console.log(this.playerPath, res);
       // })
