@@ -12,8 +12,49 @@ import Swiper from 'swiper';
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   public subscription: Array<Subscription> = [];
-  public logoSwiper!: Swiper;
-  public reviewSwiper!: Swiper;
+  public logoSwiper = new Swiper('.logoSwiper', {
+    breakpoints: {
+      300: {
+        slidesPerView: 3,
+        spaceBetween: 24
+      },
+      775: {
+        slidesPerView: 4,
+        spaceBetween: 30,
+      },
+      991: {
+        slidesPerView: 4,
+        spaceBetween: 30
+      },
+      1199: {
+        slidesPerView: 5,
+        spaceBetween: 20
+      },
+    },
+    spaceBetween: 20,
+    loop: true,
+    speed: 4000,
+    // pagination: {
+    //   el: '.swiper-pagination',
+    //   clickable: true,
+    //   type: 'bullets'
+    // },
+    autoplay: {
+      delay: 1,
+      disableOnInteraction: false
+    },
+    allowTouchMove: false,
+  });
+  public reviewSwiper = new Swiper('.reviewSwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      type: 'bullets',
+    },
+  });
   public isToggleFaster = true;
   public logoList = [
     {
@@ -235,11 +276,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.nuggetService.getReviewList().subscribe({
         next: (res: GenericResponseList<Array<ReviewList>>) => {
           if (res.data) {
-            console.log("Data: ", res.data);
             this.reviewList = res.data;
-            this.initReviewSwiper();
-            // setTimeout(()=>{
-            // },0)
+            setTimeout(() => {
+              this.initReviewSwiper();
+            }, 1000)
           }
         }, error: () => {
 
@@ -251,53 +291,43 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isToggleFaster = !this.isToggleFaster;
   }
   ngAfterViewInit(): void {
-    this.logoSwiper = new Swiper('.logoSwiper', {
-      breakpoints: {
-        300: {
-          slidesPerView: 3,
-          spaceBetween: 24
-        },
-        775: {
-          slidesPerView: 4,
-          spaceBetween: 30,
-        },
-        991: {
-          slidesPerView: 4,
-          spaceBetween: 30
-        },
-        1199: {
-          slidesPerView: 5,
-          spaceBetween: 20
-        },
-      },
-      spaceBetween: 20,
-      loop: true,
-      speed: 3000,
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   clickable: true,
-      //   type: 'bullets'
-      // },
-      autoplay: {
-        delay: 1,
-        disableOnInteraction: false
-      },
-      allowTouchMove: false,
-    });
+    // this.logoSwiper = new Swiper('.logoSwiper', {
+    //   breakpoints: {
+    //     300: {
+    //       slidesPerView: 3,
+    //       spaceBetween: 24
+    //     },
+    //     775: {
+    //       slidesPerView: 4,
+    //       spaceBetween: 30,
+    //     },
+    //     991: {
+    //       slidesPerView: 4,
+    //       spaceBetween: 30
+    //     },
+    //     1199: {
+    //       slidesPerView: 5,
+    //       spaceBetween: 20
+    //     },
+    //   },
+    //   spaceBetween: 20,
+    //   loop: true,
+    //   speed: 3000,
+    //   // pagination: {
+    //   //   el: '.swiper-pagination',
+    //   //   clickable: true,
+    //   //   type: 'bullets'
+    //   // },
+    //   autoplay: {
+    //     delay: 1,
+    //     disableOnInteraction: false
+    //   },
+    //   allowTouchMove: false,
+    // });
     this.logoSwiper.init();
   }
   initReviewSwiper(): void {
-    this.reviewSwiper = new Swiper('.reviewSwiper', {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        type: 'bullets',
-      },
-    });
-    this.reviewSwiper.init();
+    this.reviewSwiper.init()
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

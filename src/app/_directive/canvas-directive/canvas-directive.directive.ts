@@ -18,7 +18,7 @@ export class CanvasDirectiveDirective implements OnInit {
     // }
     this.initCanvas();
   }
-  initCanvas(): void {
+  async initCanvas(): Promise<void> {
     this.canvas = (this.el.nativeElement as HTMLCanvasElement);
     this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
     if (this.playrUrl.includes('.mp4')) {
@@ -27,6 +27,8 @@ export class CanvasDirectiveDirective implements OnInit {
       this.video.autoplay = true;
       this.video.muted = true;
       this.video.loop = true;
+      this.video.setAttribute("autoplay", "true");
+      this.video.setAttribute("preload", "none");
       this.video.setAttribute('allow', 'autoplay');
       // Once the video is loaded, draw it on the canvas
       this.video.addEventListener('loadeddata', async () => {
@@ -36,7 +38,19 @@ export class CanvasDirectiveDirective implements OnInit {
           this.drawFrame();
         }
       });
-      this.video.play();
+      console.log(this.video, this.el.nativeElement);
+      // Show loading animation.
+      const playPromise = await this.video.play();
+      if (playPromise !== undefined) {
+        // playPromise.then((_) => {
+        //   console.log(_);
+        // }).catch((error: any) => {
+        //   // Auto-play was prevented
+        //   // Show paused UI.
+        // });
+        return;
+      }
+
     } else {
       this.drawImage(this.playrUrl);
     }
