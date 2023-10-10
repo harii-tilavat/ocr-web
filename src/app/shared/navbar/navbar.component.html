@@ -5,8 +5,9 @@
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="bar">
             <div class="announce-content">
-              <span>A special announcement goes here! Limited time only - </span>
-              <a href="javascript:void(0)" class="link"> Here’s a link</a>
+              <span>We're thrilled to unveil our new identity. Formerly known as UserStudy, we are now getCurious!
+                🚀</span>
+              <!-- <a href="javascript:void(0)" class="link"> Here’s a link</a> -->
             </div>
             <div class="close-icon">
               <span class="icon" (click)="onCloseIcon()">
@@ -27,7 +28,8 @@
             <nugget-icon name="getcurious"></nugget-icon>
           </span>
         </div>
-        <div class="hemburg order-3 order-lg-2 d-lg-none " data-bs-toggle="collapse" data-bs-target="#navbar-content"
+        <div id="hemburg-box" class="hemburg order-3 order-lg-2 d-lg-none " data-bs-toggle="collapse"
+             data-bs-target="#navbar-content"
              aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
           <span>
             <!-- <img src="/assets/svg/hemburg.svg" alt="hemburg" class="img-fluid"> -->
@@ -55,7 +57,8 @@
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12"
                              *ngFor="let subItem of item.subMenu">
                           <div class="dd-teams-card" [routerLink]="[item.routing, subItem.link]"
-                               routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                               routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                               (click)="toggleHemburge()">
                             <div class="dd-teams-card-header">
                               <div class="dd-team-icon">
                                 <span>
@@ -79,7 +82,7 @@
                 </ng-container>
                 <ng-template #routerlinkbox>
                   <div class="menu-title" [routerLink]="item.routing" routerLinkActive="active"
-                       [routerLinkActiveOptions]="{exact:true}">
+                       [routerLinkActiveOptions]="{exact:true}" (click)="toggleHemburge()">
                     <span class="nav-link">
                       {{item.title}}
                     </span>
