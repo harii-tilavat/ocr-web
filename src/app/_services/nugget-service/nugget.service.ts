@@ -58,4 +58,9 @@ export class NuggetService extends BaseProviderService {
   getReviewList(): Observable<GenericResponseList<Array<ReviewList>>> {
     return this.makeGetCall(environment.baseUrl + '/review').pipe(map(res => res));
   }
+
+
+  getBlobContext(requestUrl: string): Observable<Blob> {
+    return this.makeGetFile(requestUrl, 'blob').pipe(map((res) => res)) as Observable<Blob>;
+  }
 }
