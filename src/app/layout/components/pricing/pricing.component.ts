@@ -39,7 +39,7 @@ export class PricingComponent implements OnInit, OnDestroy {
       id: 3,
       planType: 'Team',
       price: 225,
-      discount: 20,
+      discount: null,
       features: {
         no_of_resercher: 5,
         no_of_sessions: 50,
