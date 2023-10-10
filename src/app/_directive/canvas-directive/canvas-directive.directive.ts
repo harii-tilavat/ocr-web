@@ -23,33 +23,30 @@ export class CanvasDirectiveDirective implements OnInit {
     this.canvas = (this.el.nativeElement as HTMLCanvasElement);
     this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
     this.video = this.renderer.createElement('video') as HTMLVideoElement;
-    // this.video.src = `/assets/images/${this.playrUrl}`; // ${mediaType}
     this.video.src = this.playrUrl;
-    this.video.autoplay = true;
     this.video.muted = true;
     this.video.loop = true;
     this.video.id = this.playerId;
     this.video.controls = false;
-    this.video.srcObject
-    this.video.setAttribute('allow', 'autoplay');
-    this.video.setAttribute("autoplay", "true");
-    this.video.setAttribute("preload", "none");
     this.video.addEventListener('loadeddata', async () => {
+      this.video.setAttribute('allow', 'autoplay');
+      this.video.setAttribute("autoplay", "true");
+      this.video.setAttribute("preload", "none");
+      this.video.setAttribute("allowfullscreen", 'false');
+      await this.video.play();
       if (this.ctx) {
         this.canvas.width = this.video.videoWidth;
         this.canvas.height = this.video.videoHeight;
-        await this.video.play();
-        console.log('drawFrame', this.ctx);
-        drawFrame();
+        this.drawFrame();
       }
     });
-    const drawFrame = () => {
-      if (this.ctx) {
-        // console.log('drawFrame', this.ctx);
-        this.ctx.drawImage(this.video, 0, 0);
-        requestAnimationFrame(() => drawFrame());
-      }
-    }
-    console.log(this.video, this.el.nativeElement);
+    // this.video.setAttribute('playsinline', 'playsinline');
   }
+  drawFrame = () => {
+    if (this.ctx) {
+      this.ctx.drawImage(this.video, 0, 0);
+      requestAnimationFrame(() => this.drawFrame());
+    }
+  }
+
 }

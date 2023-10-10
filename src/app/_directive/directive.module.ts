@@ -4,6 +4,7 @@ import { HoverIconDirective } from './hover-icon/hover-icon.directive';
 import { ScrollListenerDirective } from './scroll-listener/scroll-listener.directive';
 import { CanvasDirectiveDirective } from './canvas-directive/canvas-directive.directive';
 import { EditorDirective } from './editor-directive/editor.directive';
+import { AnnounceBarDirective } from './announce-bar/announce-bar.directive';
 
 
 
@@ -12,7 +13,8 @@ import { EditorDirective } from './editor-directive/editor.directive';
     HoverIconDirective,
     ScrollListenerDirective,
     CanvasDirectiveDirective,
-    EditorDirective
+    EditorDirective,
+    AnnounceBarDirective
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { EditorDirective } from './editor-directive/editor.directive';
     HoverIconDirective,
     ScrollListenerDirective,
     CanvasDirectiveDirective,
-    EditorDirective
+    EditorDirective,
+    AnnounceBarDirective
   ]
 })
 export class DirectiveModule { }

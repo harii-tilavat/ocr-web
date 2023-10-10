@@ -161,11 +161,11 @@
     }
     &.btn-xl {
       padding: 15px 24px;
-      @include font-size(14px);
+      @include font-size(13px);
     }
     &.btn-xs {
-      padding: 12px 24px;
-      @include font-size(14px);
+      padding: 10px 16px;
+      @include font-size(12px);
     }
     &.btn-transparent {
       @include button-size(

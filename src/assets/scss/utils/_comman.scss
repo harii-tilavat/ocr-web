@@ -7,12 +7,10 @@ body {
   @include font-size($font-size-base);
   padding-top: 80px;
   overflow: auto;
+  transition: padding-top 0.3s ease-in-out;
   @include themed {
     color: t($text-color);
     background-color: t($bg-color);
-  }
-  &.announce {
-    padding-top: calc(80px + 37px);
   }
 }
 div,
@@ -35,4 +33,7 @@ span {
       padding-top: calc(75px + 62px);
     }
   }
+}
+.popup-element {
+  display: none !important;
 }

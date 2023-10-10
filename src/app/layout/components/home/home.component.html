@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div class="main-section-header">
-              <div class="nugget-header-title" (click)="toggleFaster()" [class.isactive]="isToggleFaster">
+              <div class="nugget-header-title" [class.isactive]="isToggleFaster">
                 <span class="nugget-head" data-placeholder="Deeper, human insights">
                   Deeper, human insights
                 </span>
@@ -128,7 +128,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12" >
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="teams-info">
             <div class="teams-card" [routerLink]="item.link" *ngFor="let item of teamList">
               <div class="teams-card-header">

@@ -106,13 +106,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   onCloseIcon(): void {
     this.isAnnounce = false;
-    document.body.classList.remove('announce');
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());
   }
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(event: Event) {
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
     const scrollPosition = window.scrollY;
     this.isScrolled = scrollPosition > 500 ? true : false;
   }
