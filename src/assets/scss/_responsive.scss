@@ -201,7 +201,7 @@
             .plane-type {
             }
             .plan-price {
-              .price-desc{
+              .price-desc {
                 .price {
                   @include font-size(20px);
                 }
@@ -292,8 +292,10 @@
         .team-card-header {
           .team-card-image {
             .profile-image {
-              width: 120px;
-              height: 120px;
+              span {
+                width: 120px;
+                height: 120px;
+              }
             }
           }
         }

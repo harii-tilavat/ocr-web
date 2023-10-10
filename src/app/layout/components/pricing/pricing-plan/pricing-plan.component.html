@@ -11,20 +11,17 @@
             <span class="price">${{isMonthly? priceList.price : convertedPrice}}</span>
             <span class="duration"> /{{priceList.id===5?'participant':'month'}}</span>
           </div>
-          <ng-container *ngIf="!isMonthly">
+          <ng-container *ngIf="!isMonthly && priceList.discount">
             <div class="badge-icon">
-              <ng-container *ngIf="priceList.discount; else noDiscountBlock">
+              <ng-container>
                 <span class="discount-badge">-{{priceList.discount}}%</span>
               </ng-container>
-              <ng-template #noDiscountBlock>
-                <span>Discount nathi !</span>
-              </ng-template>
             </div>
           </ng-container>
         </div>
       </ng-container>
     </div>
-    <ng-container >
+    <ng-container>
       <div class="header-bottom">
         <div class="switch-type" *ngIf="priceList.price && priceList.id!==5">
           <span [ngClass]="{'active':!isMonthly }" (click)="isMonthly=false">Annually</span>
