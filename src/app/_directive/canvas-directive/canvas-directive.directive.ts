@@ -23,33 +23,44 @@ export class CanvasDirectiveDirective implements OnInit {
     this.canvas = (this.el.nativeElement as HTMLCanvasElement);
     this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
     if (this.playrUrl.includes('.mp4')) {
-      this.video = this.renderer.createElement('video') as HTMLVideoElement;
-      this.video.src = `/assets/gif/${this.playrUrl}`; // ${mediaType}
-      this.video.autoplay = true;
-      this.video.muted = true;
-      this.video.loop = true;
-      this.video.id = this.playerId;
-      this.video.setAttribute("autoplay", "true");
-      this.video.setAttribute("preload", "none");
-      this.video.setAttribute('allow', 'autoplay');
-      // Once the video is loaded, draw it on the canvas
-      this.video.addEventListener('loadeddata', async () => {
-        if (this.ctx) {
-          this.canvas.width = this.video.videoWidth;
-          this.canvas.height = this.video.videoHeight;
-          await this.video.play();
-          console.log('drawFrame', this.ctx);
-          drawFrame();
-        }
-      });
+      fetch(`/assets/gif/${this.playrUrl}`).then(response => response.blob())
+        .then(blob => {
+          // Now 'blob' contains the video data in Blob format.
+          console.log('Video converted to Blob:', blob);
+          this.video = this.renderer.createElement('video') as HTMLVideoElement;
+          // this.video.src = `/assets/gif/${this.playrUrl}`; // ${mediaType}
+          this.video.src = URL.createObjectURL(blob);
+          this.video.autoplay = true;
+          this.video.muted = true;
+          this.video.loop = true;
+          this.video.id = this.playerId;
+          this.video.controls = false;
+          this.video.srcObject
+          this.video.setAttribute('allow', 'autoplay');
+          this.video.setAttribute("autoplay", "true");
+          this.video.setAttribute("preload", "none");
+          this.video.addEventListener('loadeddata', async () => {
+            if (this.ctx) {
+              this.canvas.width = this.video.videoWidth;
+              this.canvas.height = this.video.videoHeight;
+              await this.video.play();
+              console.log('drawFrame', this.ctx);
+              drawFrame();
+            }
+          });
+          const drawFrame = () => {
+            if (this.ctx) {
+              // console.log('drawFrame', this.ctx);
+              this.ctx.drawImage(this.video, 0, 0);
+              requestAnimationFrame(() => drawFrame());
+            }
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching and converting video:', error);
+        });
       console.log(this.video, this.el.nativeElement);
-      const drawFrame = () => {
-        if (this.ctx) {
-          // console.log('drawFrame', this.ctx);
-          this.ctx.drawImage(this.video, 0, 0);
-          requestAnimationFrame(() => drawFrame());
-        }
-      }
+
     }
   }
 }
