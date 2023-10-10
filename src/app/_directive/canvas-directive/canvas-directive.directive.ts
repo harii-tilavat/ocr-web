@@ -23,7 +23,7 @@ export class CanvasDirectiveDirective implements OnInit {
     this.canvas = (this.el.nativeElement as HTMLCanvasElement);
     this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
     this.video = this.renderer.createElement('video') as HTMLVideoElement;
-    // this.video.src = `/assets/gif/${this.playrUrl}`; // ${mediaType}
+    // this.video.src = `/assets/images/${this.playrUrl}`; // ${mediaType}
     this.video.src = this.playrUrl;
     this.video.autoplay = true;
     this.video.muted = true;

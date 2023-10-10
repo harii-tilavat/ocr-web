@@ -3,14 +3,14 @@
     <ng-container *ngIf="playerPath.includes('.mp4'); else imageblock">
       <ng-container *ngIf="blobUrl">
         <canvas appCanvasDirective [id]="canvasId" [playrUrl]="blobUrl" [type]="type"></canvas>
+        <video [src]="'/assets/media/'+playerPath" controls></video>
       </ng-container>
     </ng-container>
     <ng-template #imageblock>
-      <img [src]="'/assets/gif/'+playerPath" alt="image" class="">
+      <img [src]="'/assets/images/'+playerPath" alt="image" class="">
     </ng-template>
   </ng-container>
   <ng-template #noMedia>
-    <img [src]="'/assets/gif/participent-friendly.jpeg'" alt="image" class="">
+    <img [src]="'/assets/images/participent-friendly.jpeg'" alt="image" class="">
   </ng-template>
-  <!-- <video [src]="'/assets/gif/'+playerPath" controls></video> -->
 </div>
