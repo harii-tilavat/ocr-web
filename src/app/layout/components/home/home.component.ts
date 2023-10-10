@@ -192,7 +192,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           title: '1:1 interviews',
           subTitle: 'Participant friendly interview tool',
           desc: 'Non-intimidating experience for participants, while observers watch from behind the screen',
-          imagePath: 'participent-friendly.webp',
+          imagePath: 'participent-friendly.jpeg',
           action: true,
           subMenu: []
         },
@@ -223,7 +223,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           title: 'Insight Hub',
           subTitle: 'Transcripts available at your disposal',
           desc: 'Quickly find the keywords or relevant sections using the transcripts',
-          imagePath: 'transcription-available.webp',
+          imagePath: 'transcription-available.jpeg',
           action: true,
           subMenu: []
         },
@@ -232,7 +232,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           title: 'Insight Hub',
           subTitle: 'Auto-summarisation of interviews instantly',
           desc: 'Understand pain points, delight points from the conversation',
-          imagePath: 'auto-summarisation.webp',
+          imagePath: 'auto-summarisation.jpeg',
           action: true,
           subMenu: []
         },
@@ -254,7 +254,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           title: 'participant panel',
           subTitle: 'No fake or repeat participants',
           desc: 'Screened and vetted participant panel with multi level checks',
-          imagePath: 'no-fake-repeat.webp',
+          imagePath: 'no-fake-repeat.jpeg',
           action: true,
           subMenu: []
         }
