@@ -1,10 +1,15 @@
 <div class="canvas-box">
   <ng-container *ngIf="playerPath; else noMedia">
     <ng-container *ngIf="playerPath.includes('.mp4'); else imageblock">
-      <ng-container *ngIf="blobUrl">
-        <canvas appCanvasDirective [id]="canvasId" [playrUrl]="blobUrl" [type]="type"></canvas>
-        <video [src]="'/assets/media/'+playerPath" controls></video>
+      <ng-container *ngIf="blobUrl; else showNonBlob">
+        <video [src]="blobUrl" nocontrols loop autoplay muted style="height: 100%;width: 100%;"></video>
+        <!-- <canvas appCanvasDirective [id]="canvasId" [playrUrl]="blobUrl" [type]="type"></canvas> -->
       </ng-container>
+      <ng-template #showNonBlob>
+        <video [src]="'/assets/media/' + playerPath" nocontrols loop autoplay muted
+               style="height: 100%;width: 100%;"></video>
+      </ng-template>
+
     </ng-container>
     <ng-template #imageblock>
       <img [src]="'/assets/images/'+playerPath" alt="image" class="">

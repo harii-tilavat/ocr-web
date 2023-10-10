@@ -17,7 +17,9 @@ export class PlayerCanvasComponent implements OnInit, OnDestroy {
     if (this.playerPath.includes('.mp4')) {
       this.nuggetService.getBlobContext('/assets/media/' + this.playerPath).subscribe({
         next: (res: Blob) => {
-          this.blobUrl = URL.createObjectURL(res);
+          if (res.type && res.type === 'video/mp4') {
+            this.blobUrl = URL.createObjectURL(res);
+          }
           console.log(this.playerPath, res, this.blobUrl);
         }
       })
