@@ -29,9 +29,9 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy {
         clickable: true,
         type: 'bullets'
       },
-      autoplay: {
-        delay: 5000
-      },
+      // autoplay: {
+      //   delay: 5000
+      // },
     });
     this.mySwiper.init();
 

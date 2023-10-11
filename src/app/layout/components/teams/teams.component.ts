@@ -71,7 +71,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
           id: 1,
           title: 'unmoderated testing',
           subTitle: 'Get user feedback on prototypes in few hours',
-          desc: 'Run design tests with your own participants or with Nugget’s panel',
+          desc: 'Run design tests with your own participants or with GetCurious’s panel',
           imagePath: 'get-feedback.mp4',
           action: false,
           subMenu: []

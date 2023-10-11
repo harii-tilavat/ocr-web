@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
           id: 2,
           icon: 'customer-story',
           title: 'Customer stories',
-          desc: 'How our customers succesfully leverage Nugget',
+          desc: 'How our customers succesfully leverage GetCurious',
           link: 'resources'
         }
       ]
