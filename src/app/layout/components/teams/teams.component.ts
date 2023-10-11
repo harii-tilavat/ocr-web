@@ -13,7 +13,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
   public teamsList: Array<TeamsResponseModel> = [
     {
       title: 'Product Managers',
-      subTitle: 'Uncover the “Why” behind user behaviour',
+      subTitle: 'Uncover the "why" behind user behaviour',
       enum: 'managers',
       keyPoints: [
         {

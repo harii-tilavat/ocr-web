@@ -20,8 +20,7 @@
               </div>
               <div class="product-footer" *ngIf="sliderItem.action">
                 <div class="product-button action">
-                  <button type="button" class="btn btn-primary-outline btn-xl" [routerLink]="['/pricing']">Try for
-                    free</button>
+                  <button type="button" class="btn btn-primary-outline btn-xl" (click)="goToUdesk()">Try for free</button>
                 </div>
               </div>
             </div>

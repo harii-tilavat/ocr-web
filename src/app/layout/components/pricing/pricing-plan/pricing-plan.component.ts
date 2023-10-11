@@ -21,5 +21,7 @@ export class PricingPlanComponent implements OnInit {
       }
     }
   }
-
+  goToUdesk(): void {
+    window.open('https://app.userstudy.co/', "_blank");
+  }
 }
