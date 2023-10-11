@@ -8,7 +8,7 @@ import Swiper from 'swiper';
 })
 export class SliderComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() sliderList: Array<any> = [];
-  @Input() sliderClass = 'ngt-slider';
+  // @Input() sliderClass = 'ngt-slider';
   @Input() initClass = '';
   @Input() swiperdlr = 0;
   public mySwiper!: Swiper;
@@ -20,10 +20,10 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy {
       slidesPerView: 1,
       spaceBetween: 20,
       loop: true,
-      // navigation: {
-      //   nextEl: '.swiper-button-next',
-      //   prevEl: '.swiper-button-prev',
-      // },
+      navigation: {
+        nextEl: '.next-'+this.initClass,
+        prevEl: '.prev-'+this.initClass,
+      },
       pagination: {
         el: '.swiper-pagination',
         clickable: true,

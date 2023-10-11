@@ -338,9 +338,10 @@
   }
   // ----------------Contact Section----------------
   .contact {
+    padding: 48px 0 32px 0;
     .contact-info {
       .contact-header {
-        @include padding(48px 0px 0px 0px);
+        // @include padding(48px 0px 0px 0px);
       }
       .contact-card {
         border-radius: 12px;
@@ -365,6 +366,7 @@
       }
     }
     .contact-form {
+      margin: 0;
       .contact-form-card {
         border: none;
         border-radius: 0;
@@ -545,8 +547,13 @@
             .meta-data {
               .meta-data-value {
                 .meta-data-title {
+                  @include font-size(16px);
+                  @include line-height(21px);
+                  letter-spacing: 0.32px;
                 }
                 .meta-data-desc {
+                  @include line-height(21px);
+                  @include font-size(14px);
                 }
               }
             }

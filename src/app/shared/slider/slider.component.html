@@ -1,12 +1,32 @@
 <!-- Swiper -->
-<div class="swiper myswiper" [ngClass]="sliderClass" [ngClass]="initClass">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide" *ngFor="let item of sliderList;">
-      <app-slider-item [sliderItem]="item"
-                       [rtl]="((swiperdlr)%2)===1 ? 'SLIDE_LEFT' : 'SLIDE_RIGHT' "></app-slider-item>
+<div class="container">
+  <div class="row">
+    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="swiper-container">
+        <div class="swiper myswiper" [ngClass]="initClass">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let item of sliderList;">
+              <app-slider-item [sliderItem]="item"
+                [rtl]="((swiperdlr)%2)===1 ? 'SLIDE_LEFT' : 'SLIDE_RIGHT' "></app-slider-item>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <div class="swiper-button-prev" [ngClass]="'prev-'+initClass">
+          <div class="caret-icon caret-left">
+            <span>
+              <nugget-icon name="caret-left"></nugget-icon>
+            </span>
+          </div>
+        </div>
+        <div class="swiper-button-next" [ngClass]="'next-'+initClass">
+          <div class="caret-icon caret-right">
+            <span>
+              <nugget-icon name="caret-right"></nugget-icon>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <!-- <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div> -->
-  <div class="swiper-pagination"></div>
 </div>

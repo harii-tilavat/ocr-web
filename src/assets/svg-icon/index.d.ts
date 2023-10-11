@@ -3,6 +3,8 @@ export type NuggetIconNameSubset<T extends Readonly<NuggetIcon[]>> = T[number]['
 export * from './build/ng-affordable_feedback.icon';
 export * from './build/ng-blog.icon';
 export * from './build/ng-build_with_input.icon';
+export * from './build/ng-caret-left.icon';
+export * from './build/ng-caret-right.icon';
 export * from './build/ng-check-true.icon';
 export * from './build/ng-customer-story.icon';
 export * from './build/ng-distraction_free.icon';

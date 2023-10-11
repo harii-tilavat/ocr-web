@@ -24,7 +24,7 @@
           <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div class="detail-content">
               <div class="image-content">
-                <div class="row">
+                <div class="row gx-5 gy-4">
                   <div class=""
                     [ngClass]="resourceHeading.metadata.length!==0?'col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12':'col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12'">
                     <div class="detail-image" [ngClass]="{'resource-image':resourceHeading.metadata.length!==0}">
@@ -35,8 +35,8 @@
                   </div>
                   <ng-container *ngIf="resourceHeading.metadata.length!==0">
                     <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
-                      <div class="meta-data mt-4 mt-md-0 ps-0 ps-md-4">
-                        <div class="row">
+                      <div class="meta-data">
+                        <div class="row g-2">
                           <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-6 col-6"
                             *ngFor="let item of resourceHeading.metadata">
                             <div class="meta-data-value">
@@ -56,12 +56,12 @@
       </div>
     </div>
 
-    <div class="share-this d-block d-md-none">
+    <div class="share-this d-block d-sm-none px-4 pt-4">
       <div class="container">
         <div class="row">
-          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <div class="share-article  pb-0 px-2">
-              <div class="article-top">
+          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 p-0">
+            <div class="share-article ">
+              <div class="article-top m-0">
                 <div class="article-title">
                   <span>Share this article</span>
                 </div>
