@@ -30,7 +30,6 @@ export class ResourceHeadingComponent implements OnInit {
   ]
   constructor(private router: Router, private route: ActivatedRoute) { }
   ngOnInit(): void {
-    console.log("Heading:=====", this.resourceHeading);
   }
   goToResource(): void {
     this.router.navigate(['../'], { relativeTo: this.route });

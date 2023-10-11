@@ -3,12 +3,10 @@
     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
       <div class="footer-head text-center">
         <div class="nugget-logo">
-          <div class="nugget-image">
-            <span [routerLink]="['/']">
-              <!-- <img src="/assets/svg/nugget-logo.svg" alt="nugget-logo" class="img-fluid"> -->
-              <nugget-icon name="getcurious"></nugget-icon>
-            </span>
-          </div>
+          <span [routerLink]="['/']">
+            <!-- <img src="/assets/svg/nugget-logo.svg" alt="nugget-logo" class="img-fluid"> -->
+            <nugget-icon name="getcurious"></nugget-icon>
+          </span>
         </div>
         <div class="footer-title">
           <span>Deeper human insights, faster</span>
@@ -66,7 +64,7 @@
         </div>
         <div class="copy-right">
           <div class="policy-links">
-            <span class="policy-link"  [routerLink]="['/terms','tnc']">T&C | </span>
+            <span class="policy-link" [routerLink]="['/terms','tnc']">T&C | </span>
             <span class="policy-link" [routerLink]="['/terms','tnc4p']">T&C for Participants | </span>
             <span class="policy-link" [routerLink]="['/terms','policy']">Privacy Policy </span>
           </div>
