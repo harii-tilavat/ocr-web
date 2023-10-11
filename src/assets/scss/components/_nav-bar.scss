@@ -128,7 +128,6 @@
               .menu-item {
                 .dropdown-menu {
                   @include padding(16px 0px);
-                  @include box-shadow-default($primary-50);
                   white-space: normal;
                   position: absolute;
                   left: 50%;
@@ -137,6 +136,7 @@
                   background-color: $yellow-50;
                   border: 1px solid $primary-100;
                   margin: 0;
+                  @include box-shadow-navbar();
                   .dd-teams-card {
                     display: flex;
                     align-items: stretch;

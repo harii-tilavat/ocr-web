@@ -10,7 +10,9 @@ export class SliderItemComponent implements OnChanges {
   @Input() sliderItem: any;
   @Input() rtl = 'SLIDE_LEFT';
   @Input() isTeams = false;
-
+  goToUdesk(): void {
+    window.open('https://app.userstudy.co/', "_blank");
+  }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['rtl'] && !changes['rtl'].firstChange) {
       this.rtl = changes['rtl'].currentValue;

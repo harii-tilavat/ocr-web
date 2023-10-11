@@ -130,35 +130,35 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       id: 1,
       icon: 'icon-pm',
       title: 'Product Managers',
-      desc: 'Uncovering the “Why” behind user behaviour',
+      desc: 'Uncover the "why" behind user behaviour',
       link: ['/teams', 'managers']
     },
     {
       id: 2,
       icon: 'icon-pd',
       title: 'Product Designers',
-      desc: 'Empowering design decisions with user-centric research',
+      desc: 'Make design decisions powered by user insights',
       link: ['/teams', 'designers']
     },
     {
       id: 3,
       icon: 'icon-marketer',
       title: 'Marketers',
-      desc: 'Connecting with audiences through informed understanding',
+      desc: 'Connect with audiences through informed understanding',
       link: ['/teams', 'marketers']
     },
     {
       id: 4,
       icon: 'icon-uxr',
       title: 'UX researchers',
-      desc: 'Unlocking user behaviour to power better decision making',
+      desc: 'Unlock user behaviour to power better decision making',
       link: ['/teams', 'researchers']
     },
     {
       id: 5,
       icon: 'icon-founder',
       title: 'Founders',
-      desc: 'Driving business success with user-focused strategies',
+      desc: 'Drive business success with user-focussed strategy',
       link: ['/teams', 'founders']
     },
   ]
@@ -276,7 +276,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.nuggetService.getReviewList().subscribe({
         next: (res: GenericResponseList<Array<ReviewList>>) => {
           if (res.data) {
-            this.reviewList = res.data;
+            this.reviewList = res.data.sort((a: ReviewList, b: ReviewList) => a.company.localeCompare(b.company));
             setTimeout(() => {
               this.initReviewSwiper();
             }, 1000)
@@ -289,6 +289,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   toggleFaster(): void {
     this.isToggleFaster = !this.isToggleFaster;
+  }
+  goToUdesk(): void {
+    window.open('https://app.userstudy.co/', "_blank");
   }
   ngAfterViewInit(): void {
     // this.logoSwiper = new Swiper('.logoSwiper', {

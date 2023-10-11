@@ -14,7 +14,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, data: { title: 'Nugget Home' } },
+  { path: '', component: HomeComponent, data: { title: 'Get Curious Home' } },
   { path: 'product', component: ProductComponent, data: { title: 'Product Home' } },
   { path: 'pricing', component: PricingComponent, data: { title: 'Pricing Home' } },
   { path: 'teams/:id', component: TeamsComponent, data: { title: 'Teams Home' } },

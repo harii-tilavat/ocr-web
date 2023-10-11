@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { PricingModel } from 'src/app/_model';
 import { NgbModal } from 'src/app/shared/ng-modal';
 import { PricingPlanComponent } from './pricing-plan/pricing-plan.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pricing',
@@ -93,7 +94,7 @@ export class PricingComponent implements OnInit, OnDestroy {
       participant_per_month: 100,
     },
   ]
-  constructor(private modalService: NgbModal) {
+  constructor(private router: Router) {
 
   }
 
@@ -102,6 +103,7 @@ export class PricingComponent implements OnInit, OnDestroy {
   }
   openModal(): void {
     // const modalRef = this.modalService.open(PricingPlanComponent,{scrollable:true});
+    this.router.navigate(['/contact']);
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

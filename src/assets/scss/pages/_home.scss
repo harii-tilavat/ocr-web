@@ -263,12 +263,26 @@
             }
           }
           .review-desc {
-            font-family: $sora-semibold;
-            @include font-size(32px);
+            font-family: $inter-medium;
             max-width: 900px;
+            @include font-size(24px);
             @include line-height(43px);
             @include margin(40px auto);
-            @include line-clamp(3);
+            @include line-clamp(4);
+            position: relative;
+            user-select: none;
+            span {
+              position: relative;
+              &::before {
+                content: '"';
+              }
+            }
+            &::after {
+              content: '"';
+              position: absolute;
+              bottom: 0px;
+              right: 0px;
+            }
           }
           .review-footer {
             .review-person {

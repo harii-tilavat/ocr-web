@@ -1,7 +1,8 @@
 <div class="nugget-blog">
   <div class="resource-search">
     <app-resource-search [blogHeader]="resourceData.blogHeader"
-                         (searchQuery)="searchQuery($event)" [type]="resourceTypeEnum.RESOURCE"></app-resource-search>
+                         (searchQuery)="searchQuery($event)"
+                         [type]="resourceTypeEnum.RESOURCE"></app-resource-search>
   </div>
   <div class="resource-list white">
     <app-resource-list [blogDetails]="resourceList" [paginator]="paginator"

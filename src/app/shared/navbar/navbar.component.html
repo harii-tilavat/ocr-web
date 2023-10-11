@@ -24,7 +24,6 @@
       <div class="navbar-brand">
         <div class="brand order-1 order-lg-1">
           <span routerLink="/">
-            <!-- <img src="/assets/svg/nugget-logo.svg" alt="" class="img-fluid" routerLink="/"> -->
             <nugget-icon name="getcurious"></nugget-icon>
           </span>
         </div>
@@ -94,7 +93,7 @@
         </div>
         <div class="order-2 order-lg-4 nav-buttons">
           <div class="nav-button d-none d-md-block">
-            <button type="button" class="btn btn-primary-outline btn-xs">Login</button>
+            <button type="button" class="btn btn-primary-outline btn-xs" (click)="goToUdesk()">Login</button>
           </div>
           <div class="nav-button">
             <button type="button" class="btn btn-primary btn-xs" [routerLink]="['/pricing']">Try for free</button>

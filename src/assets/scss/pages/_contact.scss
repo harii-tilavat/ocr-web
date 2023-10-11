@@ -1,5 +1,5 @@
 .contact {
-  // @include padding(40px 12px);
+  @include padding(40px 0px);
   background: $yellow-25;
   .contact-info {
     @include padding(0px 12px);
@@ -63,11 +63,11 @@
     }
   }
   .contact-form {
+    // @include margin-top(32px);
     .contact-form-card {
       // @include box-shadow-default($primary-100);
       background-color: $primary-25;
       @include box-shadow-card();
-      @include margin-top(32px);
       border-radius: 12px;
       cursor: auto;
       .card-body {
@@ -81,7 +81,7 @@
             .form-heading {
               span {
                 @include line-height(32px);
-                @include font-size(24px);
+                @include font-size(22px);
                 color: $primary-600;
                 font-family: $inter-semibold;
               }
