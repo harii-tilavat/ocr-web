@@ -276,7 +276,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.nuggetService.getReviewList().subscribe({
         next: (res: GenericResponseList<Array<ReviewList>>) => {
           if (res.data) {
-            this.reviewList = res.data;
+            this.reviewList = res.data.sort((a: ReviewList, b: ReviewList) => a.company.localeCompare(b.company));
             setTimeout(() => {
               this.initReviewSwiper();
             }, 1000)
