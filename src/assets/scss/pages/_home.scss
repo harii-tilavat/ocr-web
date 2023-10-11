@@ -253,6 +253,10 @@
         @include padding(0px 40px);
         // @include padding(64px 40px);
         .review-content {
+          display: flex;
+          flex-flow: column;
+          align-items: center;
+          justify-content: center;
           @include padding(64px 0px);
           .review-icon {
             .review-social-icon {
@@ -264,25 +268,27 @@
           }
           .review-desc {
             font-family: $inter-medium;
-            max-width: 900px;
             @include font-size(24px);
             @include line-height(43px);
-            @include margin(40px auto);
-            @include line-clamp(4);
+            @include padding(40px 4rem);
             position: relative;
             user-select: none;
             span {
               position: relative;
-              &::before {
-                content: '"';
-              }
+              @include line-clamp(3);
+              // &::before {
+              //   content: '"';
+              // }
+              // &::after {
+              //   content: '"';
+              // }
             }
-            &::after {
-              content: '"';
-              position: absolute;
-              bottom: 0px;
-              right: 0px;
-            }
+            // &::after {
+            //   content: '"';
+            //   position: absolute;
+            //   bottom: 0px;
+            //   right: 0px;
+            // }
           }
           .review-footer {
             .review-person {
