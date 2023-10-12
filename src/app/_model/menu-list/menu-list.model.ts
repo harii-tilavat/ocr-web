@@ -90,8 +90,8 @@ export const menuConfig = [
   {
     id: 5,
     title: 'Pricing',
-    icon: null,
     routing: '/pricing',
+    icon: null,
     subMenu: []
   },
 ]

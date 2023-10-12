@@ -10,12 +10,21 @@ import { MenuListModel, menuConfig } from 'src/app/_model/menu-list/menu-list.mo
 export class FooterComponent implements OnInit, OnDestroy {
   public subscription: Array<Subscription> = [];
   public year = new Date().getFullYear();
-  public menuList: MenuListModel[] = menuConfig;
+  public menuList: { title: string, routing: string }[] = [
+    { title: 'About', routing: '/about' },
+    { title: 'Contact', routing: '/contact' },
+    { title: 'Pricing', routing: '/pricing' },
+    { title: 'Blog', routing: '/blog' },
+    { title: 'Customer stories', routing: '/resources' },
+
+  ];
   constructor() {
 
   }
   ngOnInit(): void {
     // console.log("Year: ", this.year);
+    // const list = menuConfig.filter(i => (i.id !== 1));
+    // console.log(list);
   }
   goToUdesk(): void {
     window.open('https://app.userstudy.co/', "_blank");
