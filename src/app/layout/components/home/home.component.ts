@@ -221,7 +221,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         {
           id: 2,
           title: 'Insight Hub',
-          subTitle: 'Transcripts available at your disposal',
+          subTitle: 'Transcript available in multiple languages',
           desc: 'Quickly find the keywords or relevant sections using the transcripts',
           imagePath: 'transcription-available.webp',
           action: true,
