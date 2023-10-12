@@ -1,19 +1,20 @@
 <div class="canvas-box">
   <ng-container *ngIf="playerPath; else noMedia">
     <ng-container *ngIf="playerPath.includes('.mp4'); else imageblock">
-      <canvas appCanvasDirective [id]="canvasId"
-              [playrUrl]="'https://media-one.userstudy.co/curious-assets/' + playerPath" [type]="type"></canvas>
-      <!-- <ng-container *ngIf="blobUrl; else showNonBlob">
-        <video [src]="blobUrl" loop autoplay muted style="height: 100%;width: 100%;"></video>
-      </ng-container>
-      <ng-template #showNonBlob>
-        <video [src]="'/assets/media/' + playerPath"  loop autoplay muted
-               style="height: 100%;width: 100%;"></video>
-      </ng-template> -->
+      <!-- <canvas appCanvasDirective [id]="canvasId"
+              [playrUrl]="'https://media-one.userstudy.co/curious-assets/' + playerPath" [type]="type"></canvas> -->
+      <video appCanvasDirective [src]="'https://media-one.userstudy.co/curious-assets/' + playerPath" loop autoplay
+             muted nocontrol playsInline
+             style="height: 100%;width: 100%;"></video>
 
     </ng-container>
     <ng-template #imageblock>
-      <img [src]="'https://media-one.userstudy.co/curious-assets/' + playerPath" alt="image" class="">
+      <ng-container *ngIf="playerPath.includes('.png'); else cdnbox">
+        <img [src]="'/assets/images/' + playerPath" alt="image" class="">
+      </ng-container>
+      <ng-template #cdnbox>
+        <img [src]="'https://media-one.userstudy.co/curious-assets/' + playerPath" alt="image" class="">
+      </ng-template>
     </ng-template>
   </ng-container>
   <ng-template #noMedia>

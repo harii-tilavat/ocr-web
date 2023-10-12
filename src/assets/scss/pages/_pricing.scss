@@ -147,7 +147,7 @@
     }
   }
   .pricing-bottom {
-    @include padding(0px 12px 96px 12px);
+    @include padding(96px 12px 96px 12px);
     text-align: center;
     .custom-plan {
       .custom-plan-header {

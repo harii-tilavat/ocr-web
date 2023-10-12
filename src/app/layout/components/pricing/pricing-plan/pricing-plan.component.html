@@ -8,8 +8,8 @@
       <ng-container *ngIf="priceList.price">
         <div class="plan-price">
           <div class="price-desc">
-            <span class="price">${{isMonthly? priceList.price : convertedPrice}}</span>
-            <span class="duration"> /{{priceList.id===5?'participant':'month'}}</span>
+            <span class="price">${{isMonthly? priceList.price : (((priceList.price * 12) - ((priceList.price * 12) * (priceList.discount || 1) / 100)))}}</span>
+            <span class="duration"> /{{priceList.id===5?'participant': isMonthly? 'Month' : 'Annual'}}</span>
           </div>
           <ng-container *ngIf="!isMonthly && priceList.discount">
             <div class="badge-icon">
@@ -65,7 +65,8 @@
   </div>
   <div class="pricing-card-footer">
     <div class="get-started">
-      <button type="button" (click)="goToUdesk()" class="btn btn-primary btn-xs" [ngClass]="{'btn-primary-outline':priceIndex===0}">Get Started</button>
+      <button type="button" (click)="goToUdesk()" class="btn btn-primary btn-xs"
+              [ngClass]="{'btn-primary-outline':priceIndex===0}">Get Started</button>
     </div>
   </div>
 </div>

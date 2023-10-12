@@ -14,7 +14,7 @@ import { NuggetService } from 'src/app/_services';
 export class BlogComponent implements OnInit {
   public resourceData: ResourceDataModel = {
     blogHeader: {
-      title: 'GetCurious of Information',
+      title: 'Blog for Curious',
       desc: 'Curated articles and guides to help you gain deeper, human insights, and build richer, human experiences.',
       isSearchable: true,
     },

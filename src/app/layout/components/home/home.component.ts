@@ -170,7 +170,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           title: 'Unmoderated testing',
           subTitle: 'Conduct qualitative research at speed of survey',
           desc: 'In depth user research wtith maximum scalability and minimum time',
-          imagePath: 'conduct-qualitative.mp4',
+          imagePath: 'conduct-qualitative-2.mp4',
           action: true,
           subMenu: []
         },
@@ -179,7 +179,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           title: 'Unmoderated testing',
           subTitle: 'Launch video based user research',
           desc: 'Post the study, get insights within hours and not weeks',
-          imagePath: 'conduct-qualitative.mp4',
+          imagePath: 'conduct-qualitative.png',
           action: true,
           subMenu: []
         }
@@ -192,7 +192,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           title: '1:1 interviews',
           subTitle: 'Participant friendly interview tool',
           desc: 'Non-intimidating experience for participants, while observers watch from behind the screen',
-          imagePath: 'participent-friendly.webp',
+          imagePath: 'distraction-free.mp4',
           action: true,
           subMenu: []
         },
@@ -201,7 +201,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           title: '1:1 interviews',
           subTitle: 'Distraction free 1:1 interviews without switching apps',
           desc: 'Take live notes and see interview script on the same screen as the interview',
-          imagePath: 'distraction-free.mp4',
+          imagePath: 'participent-friendly.webp',
           action: true,
           subMenu: []
         },
@@ -245,7 +245,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           title: 'participant panel',
           subTitle: 'Access our diverse database of 1 million+ participants',
           desc: 'Find your B2B or B2C participants with 30+ filters and screeners',
-          imagePath: 'access-diverse.mp4',
+          imagePath: 'access-diverse-2.mp4',
           action: true,
           subMenu: []
         },
@@ -279,7 +279,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             this.reviewList = res.data.sort((a: ReviewList, b: ReviewList) => a.company.localeCompare(b.company));
             setTimeout(() => {
               this.initReviewSwiper();
-            }, 1000)
+            }, 100)
           }
         }, error: () => {
 

@@ -5,7 +5,7 @@
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="bar">
             <div class="announce-content">
-              <span>We're thrilled to unveil our new identity. Formerly known as UserStudy, we are now getCurious!
+              <span>We're thrilled to unveil our new identity. Formerly known as UserStudy, we are now GetCurious!
                 🚀</span>
               <!-- <a href="javascript:void(0)" class="link"> Here’s a link</a> -->
             </div>
@@ -27,12 +27,12 @@
             <nugget-icon name="getcurious"></nugget-icon>
           </span>
         </div>
-        <div id="hemburg-box" class="hemburg order-3 order-lg-2 d-lg-none " data-bs-toggle="collapse"
+        <div id="hemburg-box" class="hemburg order-3 order-lg-2 d-lg-none " (click)="toggleButton()" data-bs-toggle="collapse"
              data-bs-target="#navbar-content"
              aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
           <span>
-            <!-- <img src="/assets/svg/hemburg.svg" alt="hemburg" class="img-fluid"> -->
-            <nugget-icon name="hemburg"></nugget-icon>
+            <!-- <nugget-icon [name]="isOpen?'x-close':'hemburg'"  [stroke]="'#4F37E2'"></nugget-icon> -->
+            <nugget-icon [name]="'hemburg'"  [stroke]="'#4F37E2'"></nugget-icon>
           </span>
         </div>
         <div class="navbar-content order-4 order-lg-3 collapse navbar-collapse justify-content-center"

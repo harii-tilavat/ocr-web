@@ -13,6 +13,7 @@ export class PlayerCanvasComponent implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit(): void {
+
   }
   ngOnDestroy(): void {
   }
