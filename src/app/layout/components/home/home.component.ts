@@ -279,7 +279,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             this.reviewList = res.data.sort((a: ReviewList, b: ReviewList) => a.company.localeCompare(b.company));
             setTimeout(() => {
               this.initReviewSwiper();
-            }, 1000)
+            }, 100)
           }
         }, error: () => {
 

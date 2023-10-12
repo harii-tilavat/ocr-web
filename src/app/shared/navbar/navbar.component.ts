@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public subscription: Array<Subscription> = [];
   public isAnnounce = sessionStorage.getItem('isAnnounce') ? (+(sessionStorage.getItem('isAnnounce') as string) === 0 ? false : true) : false;
   public isScrolled = false;
+  public isOpen = false;
   public menuList: MenuListModel[] = menuConfig;
   constructor(private route: ActivatedRoute) { }
   ngOnInit(): void {
@@ -30,6 +31,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (ishemburg && ishemburg.getAttribute('aria-expanded') === 'true') {
       ishemburg.click();
     }
+  }
+  toggleButton():void{
+    this.isOpen=!this.isOpen;
   }
   goToUdesk(): void {
     window.open('https://app.userstudy.co/', "_blank");

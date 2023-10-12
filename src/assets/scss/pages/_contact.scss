@@ -38,6 +38,12 @@
           align-items: center;
           span {
             @include nugget-icon(72px);
+            border-radius: 50%;
+            overflow: hidden;
+            img{
+              height: 100%;
+              width: 100%;
+            }
           }
         }
         .job-info {
