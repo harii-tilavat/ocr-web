@@ -9,7 +9,12 @@
 
     </ng-container>
     <ng-template #imageblock>
-      <img [src]="'https://media-one.userstudy.co/curious-assets/' + playerPath" alt="image" class="">
+      <ng-container *ngIf="playerPath.includes('.png'); else cdnbox">
+        <img [src]="'/assets/images/' + playerPath" alt="image" class="">
+      </ng-container>
+      <ng-template #cdnbox>
+        <img [src]="'https://media-one.userstudy.co/curious-assets/' + playerPath" alt="image" class="">
+      </ng-template>
     </ng-template>
   </ng-container>
   <ng-template #noMedia>

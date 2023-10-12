@@ -29,9 +29,9 @@
         @include font-size(20px);
       }
       .contact-card-body {
-        display: flex;
-        flex-flow: row;
-        gap: 24px;
+        display: grid;
+        grid-template-columns: 72px 1fr;
+        grid-gap: 24px;
         .job-image {
           display: flex;
           justify-content: center;
@@ -40,7 +40,7 @@
             @include nugget-icon(72px);
             border-radius: 50%;
             overflow: hidden;
-            img{
+            img {
               height: 100%;
               width: 100%;
             }
@@ -50,7 +50,6 @@
           display: flex;
           flex-flow: column;
           gap: 4px;
-          align-items: flex-start;
           .job-title {
             font-family: $inter-semibold;
             font-size: 18px;
@@ -59,11 +58,15 @@
             @include line-height(27px);
           }
           .job-logo {
-            display: flex;
-            justify-content: flex-start;
-            height: 24px;
-            width: auto;
+            height: 30px;
+            img {
+              height: 100%;
+              width: auto;
+            }
           }
+        }
+        span {
+          display: block;
         }
       }
     }
