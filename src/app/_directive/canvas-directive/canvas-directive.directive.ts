@@ -19,8 +19,18 @@ export class CanvasDirectiveDirective implements OnInit {
     (this.el.nativeElement as HTMLVideoElement).id = this.playerId;
     (this.el.nativeElement as HTMLVideoElement).controls = false;
   }
-  async initCanvas(): Promise<void> {
-    await (this.el.nativeElement as HTMLVideoElement).play();
+  initCanvas(): void {
+    const promise = (this.el.nativeElement as HTMLVideoElement).play();
+    if (promise !== undefined) {
+      promise.then(_ => {
+        // Autoplay started!
+      }).catch(error => {
+        console.log(error);
+        // Autoplay was prevented.
+        // Show a "Play" button so that user can start playback.
+      });
+    }
+
     // this.canvas = (this.el.nativeElement as HTMLCanvasElement);
     // this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
     // this.video = this.renderer.createElement('video') as HTMLVideoElement;
