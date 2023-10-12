@@ -50,7 +50,7 @@
                       <label for="name" class="control-label">Name</label>
                       <input type="text" class="form-control form-control-xl" id="name" formControlName="name">
                       <div class="form-error"
-                        *ngIf="contactForm.controls['name'].dirty && contactForm.controls['name'].touched">
+                        *ngIf="contactForm.controls['name'].dirty || contactForm.controls['name'].touched">
                         <span class="error" *ngIf="contactForm.controls['name'].hasError('required')">Name
                           required!</span>
                       </div>
@@ -59,7 +59,7 @@
                       <label for="email" class="control-label">Work Email</label>
                       <input type="text" class="form-control form-control-xl" id="email" formControlName="email">
                       <div class="form-error"
-                        *ngIf="contactForm.controls['email'].dirty && contactForm.controls['email'].touched">
+                        *ngIf="contactForm.controls['email'].dirty || contactForm.controls['email'].touched">
                         <span class="error" *ngIf="contactForm.controls['email'].hasError('required')">Email
                           required!</span>
                         <span class="error" *ngIf="contactForm.controls['email'].hasError('pattern')">Enter valid
@@ -70,7 +70,7 @@
                       <label for="company" class="control-label">Company</label>
                       <input type="text" class="form-control form-control-xl" id="company" formControlName="company">
                       <div class="form-error"
-                        *ngIf="contactForm.controls['company'].dirty && contactForm.controls['company'].touched">
+                        *ngIf="contactForm.controls['company'].dirty || contactForm.controls['company'].touched">
                         <span class="error" *ngIf="contactForm.controls['company'].hasError('required')">Company
                           required!</span>
                       </div>
@@ -92,7 +92,7 @@
                       <textarea name="" id="message" rows="4" class="form-control "
                         formControlName="message"></textarea>
                       <div class="form-error"
-                        *ngIf="contactForm.controls['message'].dirty && contactForm.controls['message'].touched">
+                        *ngIf="contactForm.controls['message'].dirty || contactForm.controls['message'].touched">
                         <span class="error" *ngIf="contactForm.controls['message'].hasError('required')">Message
                           required!</span>
                       </div>

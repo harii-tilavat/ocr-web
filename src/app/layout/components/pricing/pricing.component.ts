@@ -16,7 +16,7 @@ export class PricingComponent implements OnInit, OnDestroy {
     {
       id: 1,
       planType: 'free',
-      price: null,
+      price: 0,
       discount: null,
       features:
       {
@@ -29,7 +29,7 @@ export class PricingComponent implements OnInit, OnDestroy {
       id: 2,
       planType: 'Single',
       price: 50,
-      discount: null,
+      discount: 20,
       features: {
         no_of_resercher: 1,
         no_of_sessions: 10,
@@ -40,7 +40,7 @@ export class PricingComponent implements OnInit, OnDestroy {
       id: 3,
       planType: 'Team',
       price: 225,
-      discount: null,
+      discount: 20,
       features: {
         no_of_resercher: 5,
         no_of_sessions: 50,
@@ -51,7 +51,7 @@ export class PricingComponent implements OnInit, OnDestroy {
       id: 4,
       planType: 'Company',
       price: 400,
-      discount: null,
+      discount: 20,
       features:
       {
         no_of_resercher: 10,

@@ -21,7 +21,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
           title: 'participant recruitment',
           subTitle: 'Flexible methods for participant recruitment',
           desc: 'Recruit participants for the study from our B2C and B2B panel of 1 Mn+ vetted participant pool, or just use your panel',
-          imagePath: 'flexible-method-participants.mp4',
+          imagePath: 'flexible-method-participants-2.mp4',
           action: false,
           subMenu: []
         },
@@ -30,7 +30,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
           title: 'unmoderated testing',
           subTitle: 'Collect user insights within hours, not days or weeks',
           desc: 'Use unmoderated tool to launch studies and get video based insights asynchronously within hours ',
-          imagePath: 'collect-insights.mp4',
+          imagePath: 'flexible-method-participants-2.mp4',
           action: false,
           subMenu: []
         },
@@ -72,7 +72,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
           title: 'unmoderated testing',
           subTitle: 'Get user feedback on prototypes in few hours',
           desc: 'Run design tests with your own participants or with GetCurious’s panel',
-          imagePath: 'get-feedback.mp4',
+          imagePath: 'flexible-method-participants-2.mp4',
           action: false,
           subMenu: []
         },
@@ -81,7 +81,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
           title: 'research templates',
           subTitle: 'Use 30+ templates to setup tests on desktop or mobile prototypes',
           desc: 'Understand the challenges faced by your user and bring empathy to your product designs',
-          imagePath: 'use-templates.mp4',
+          imagePath: 'use-templates-2.mp4',
           action: false,
           subMenu: []
         },
@@ -192,7 +192,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
           title: 'concept testing',
           subTitle: 'Make informed decisions with speed',
           desc: 'Experiment with your concepts faster to find the winning one',
-          imagePath: 'make-decisions.mp4',
+          imagePath: 'conduct-qualitative-2.mp4',
           action: false,
           subMenu: []
         },

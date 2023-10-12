@@ -170,7 +170,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           title: 'Unmoderated testing',
           subTitle: 'Conduct qualitative research at speed of survey',
           desc: 'In depth user research wtith maximum scalability and minimum time',
-          imagePath: 'conduct-qualitative.mp4',
+          imagePath: 'conduct-qualitative-2.mp4',
           action: true,
           subMenu: []
         },
@@ -179,7 +179,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           title: 'Unmoderated testing',
           subTitle: 'Launch video based user research',
           desc: 'Post the study, get insights within hours and not weeks',
-          imagePath: 'conduct-qualitative.mp4',
+          imagePath: 'conduct-qualitative-2.mp4',
           action: true,
           subMenu: []
         }
@@ -245,7 +245,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           title: 'participant panel',
           subTitle: 'Access our diverse database of 1 million+ participants',
           desc: 'Find your B2B or B2C participants with 30+ filters and screeners',
-          imagePath: 'access-diverse.mp4',
+          imagePath: 'access-diverse-2.mp4',
           action: true,
           subMenu: []
         },

@@ -37,6 +37,8 @@ export class ContactComponent implements OnInit, OnDestroy {
           console.log(err);
         }
       });
+    } else {
+      this.contactForm.markAllAsTouched();
     }
 
   }
