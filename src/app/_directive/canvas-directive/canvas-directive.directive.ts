@@ -13,9 +13,9 @@ export class CanvasDirectiveDirective implements OnInit {
   constructor(private el: ElementRef) { }
 
   ngOnInit(): void {
-    this.initCanvas();
+    // this.initCanvas();
     (this.el.nativeElement as HTMLVideoElement).muted = true;
-    (this.el.nativeElement as HTMLVideoElement).loop = true;
+    // (this.el.nativeElement as HTMLVideoElement).loop = true;
     (this.el.nativeElement as HTMLVideoElement).id = this.playerId;
     (this.el.nativeElement as HTMLVideoElement).controls = false;
   }

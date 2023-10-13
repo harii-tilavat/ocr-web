@@ -9,6 +9,7 @@ import { IconsModule } from './icons/icons.module';
 import { register } from 'swiper/element/bundle';
 
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 register();
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ register();
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     SharedModule,
     IconsModule,

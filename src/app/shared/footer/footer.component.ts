@@ -1,6 +1,10 @@
+import { ToastrService } from 'ngx-toastr';
+import { NuggetService } from 'src/app/_services';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MenuListModel, menuConfig } from 'src/app/_model/menu-list/menu-list.model';
+import { GenericResponseList, GenericResponseType } from 'src/app/_model';
 
 @Component({
   selector: 'app-footer',
@@ -18,16 +22,28 @@ export class FooterComponent implements OnInit, OnDestroy {
     { title: 'Customer stories', routing: '/resources' },
 
   ];
-  constructor() {
+  public enquiryForm: FormGroup = new FormGroup({
+    email: new FormControl(null, [Validators.required])
+  })
+  constructor(private nuggetService: NuggetService, private toastrService: ToastrService) {
 
   }
   ngOnInit(): void {
-    // console.log("Year: ", this.year);
-    // const list = menuConfig.filter(i => (i.id !== 1));
-    // console.log(list);
   }
   goToUdesk(): void {
-    window.open('https://app.userstudy.co/', "_blank");
+    if (this.enquiryForm.valid) {
+      this.nuggetService.formalEnquiry(this.enquiryForm.value).subscribe({
+        next: (res: GenericResponseList<GenericResponseType>) => {
+          if (res && res.success) {
+            this.enquiryForm.reset();
+            this.toastrService.success(res.message);
+          }
+        },
+        error: () => { }
+      })
+    } else {
+      this.enquiryForm.markAllAsTouched();
+    }
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

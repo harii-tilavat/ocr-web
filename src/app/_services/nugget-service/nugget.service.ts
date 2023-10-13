@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseProviderService } from '../base-provider.service';
 import { environment } from './../../../environments/environment';
 import { map, Observable } from 'rxjs';
-import { GenericResponseList, ReviewList, TeamsModel } from 'src/app/_model';
+import { GenericResponseList, GenericResponseType, ReviewList, TeamsModel } from 'src/app/_model';
 @Injectable({
   providedIn: 'root'
 })
@@ -62,5 +63,15 @@ export class NuggetService extends BaseProviderService {
 
   getBlobContext(requestUrl: string): Observable<Blob> {
     return this.makeGetFile(requestUrl, 'blob').pipe(map((res) => res)) as Observable<Blob>;
+  }
+
+  // formal-enquiry
+  formalEnquiry(request: any): Observable<any> {
+    return this.makePostCall(environment.baseUrl + '/formal-enquiry', request).pipe(map((res) => res));
+  }
+
+  // NewsLetter
+  createNewsLetter(request: any): Observable<any> {
+    return this.makePostCall(environment.baseUrl + '/news-letters', request).pipe(map((res) => res));
   }
 }

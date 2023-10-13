@@ -3,7 +3,8 @@
     <ng-container *ngIf="playerPath.includes('.mp4'); else imageblock">
       <!-- <canvas appCanvasDirective [id]="canvasId"
               [playrUrl]="'https://media-one.userstudy.co/curious-assets/' + playerPath" [type]="type"></canvas> -->
-      <video appCanvasDirective [src]="'https://media-one.userstudy.co/curious-assets/' + playerPath" [poster]="'https://media-one.userstudy.co/curious-assets/' + playerPath" loop autoplay
+      <video appCanvasDirective [src]="'https://media-one.userstudy.co/curious-assets/' + playerPath"
+             [poster]="('/assets/images/' + playerPath | imgExtention)" loop autoplay
              muted nocontrol playsInline
              style="height: 100%;width: 100%;"></video>
 

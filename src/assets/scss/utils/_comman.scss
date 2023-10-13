@@ -26,6 +26,11 @@ span {
   width: 0;
   padding: 0;
 }
+.curious-container {
+  display: block;
+  position: relative;
+  min-height: 100vh;
+}
 @include media-breakpoint-down(sm) {
   body {
     padding-top: 75px;
