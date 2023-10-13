@@ -8,7 +8,7 @@ export class ImgExtentionPipe implements PipeTransform {
   transform(value: string): string {
     const pattern = /\.(jpeg|jpg|png|mp4)/g;
     if (value) {
-      return value.replace(pattern, '.webp');
+      return value.replace(pattern, '.png');
     }
     return value;
   }
