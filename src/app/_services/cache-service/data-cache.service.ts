@@ -53,9 +53,13 @@ export class DataCacheService {
   }
 
   storeData(key: string, data: any) {
-    const transaction = this.db.transaction(['curious'], 'readwrite');
-    const objectStore = transaction.objectStore('curious');
-    objectStore.put({ id: key, value: data });
+    this.openDatabase().then(() => {
+      const transaction = this.db.transaction(['curious'], 'readwrite');
+      const objectStore = transaction.objectStore('curious');
+      objectStore.put({ id: key, value: data });
+    }).catch((error: any) => {
+
+    });
   }
 
 }

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, filter, map } from 'rxjs';
 import { TitleService } from './_services';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
-import { GenericResponseList, ReviewList, TeamsModel } from './_model';
+import { BlogListResponseModel, GenericResponseList, ReviewList, TeamsModel } from './_model';
 import { NuggetService, DataCacheService } from './_services';
 import { GlobalEventifier } from './_eventifier';
 
@@ -44,6 +44,7 @@ export class AppComponent implements OnInit, OnDestroy {
       }
       this.getReviewList();
     }))
+    this.getAllBlog();
   }
 
   private getTeamMembers(): void {
@@ -71,6 +72,17 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       })
     )
+  }
+  private getAllBlog(): void {
+    const request = { page: 1, pageSize: 10 };
+    this.subscription.push(this.nuggetService.getAllBlogList(request).subscribe({
+      next: (res: GenericResponseList<BlogListResponseModel>) => {
+        if (res.data && res.data.blogList) {
+          this.dataCacheService.storeData('BLOG', res.data);
+        }
+      }, error: (err: any) => {
+      }
+    }))
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

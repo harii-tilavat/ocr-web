@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ResourceTypeEnum } from 'src/app/_enum';
 import { BlogDetailResponseModel, BlogListResponseModel, GenericResponseList, ResourceDataModel } from 'src/app/_model';
 import { PaginatorState } from 'src/app/_model/paginator.model';
-import { NuggetService } from 'src/app/_services';
+import { DataCacheService, NuggetService } from 'src/app/_services';
 
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss']
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, OnDestroy {
   public resourceData: ResourceDataModel = {
     blogHeader: {
       title: 'Blog for Curious',
@@ -32,9 +32,18 @@ export class BlogComponent implements OnInit {
   public paginator = new PaginatorState();
 
   public resourceTypeEnum = ResourceTypeEnum;
-  constructor(public nuggetService: NuggetService, private router: Router) { }
+  constructor(public nuggetService: NuggetService, private router: Router, private dataCacheService: DataCacheService) { }
+
   ngOnInit(): void {
-    this.getAllBlog();
+    this.subscription.push(this.dataCacheService.getData('BLOG').subscribe((res: BlogListResponseModel) => {
+      if (res) {
+        this.paginator.page = res.page || 1;
+        this.paginator.pageSize = res.pageSize || 10;
+        this.paginator.total = res.count || 0;
+        this.blogList = res.blogList;
+      }
+    }))
+    // this.getAllBlog();
   }
   getAllBlog(): void {
     const request = { ...this.requestModel };
@@ -70,5 +79,7 @@ export class BlogComponent implements OnInit {
     this.requestModel = { ...this.requestModel, page: this.paginator.page, pageSize: this.paginator.pageSize };
     this.getAllBlog();
   }
-
+  ngOnDestroy(): void {
+    this.subscription.forEach(i => i.unsubscribe());
+  }
 }
