@@ -41,6 +41,8 @@ export class BlogComponent implements OnInit, OnDestroy {
         this.paginator.pageSize = res.pageSize || 10;
         this.paginator.total = res.count || 0;
         this.blogList = res.blogList;
+      } else {
+        this.getAllBlog();
       }
     }))
     // this.getAllBlog();
