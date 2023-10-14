@@ -30,7 +30,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
           title: 'unmoderated testing',
           subTitle: 'Collect user insights within hours, not days or weeks',
           desc: 'Use unmoderated tool to launch studies and get video based insights asynchronously within hours ',
-          imagePath: 'flexible-method-participants-3.mp4',
+          imagePath: 'conduct-qualitative-3.mp4',
           action: false,
           subMenu: []
         },
