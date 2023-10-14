@@ -24,6 +24,9 @@ export class AboutComponent implements OnInit, OnDestroy {
       })
     )
   }
+  openJobSection(): void {
+    window.open('https://www.linkedin.com/company/userstudy/jobs/')
+  }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());
   }
