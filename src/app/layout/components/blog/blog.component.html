@@ -10,7 +10,7 @@
   <div class="news-letter">
     <app-news-letter></app-news-letter>
   </div>
-  <div class="more-story white">
+  <div class="more-story white" *ngIf="false">
     <app-more-stories [moreStories]="resourceData.moreStories" [type]="resourceTypeEnum.RESOURCE"
                       (sellAllList)="goToBlogList()"></app-more-stories>
   </div>
