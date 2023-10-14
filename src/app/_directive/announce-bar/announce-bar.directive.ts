@@ -12,7 +12,18 @@ export class AnnounceBarDirective implements OnInit, OnChanges, AfterViewInit {
   }
 
   initBodyPadding(): void {
-    (document.body as HTMLElement).style.paddingTop = (this.el.nativeElement as HTMLElement).offsetHeight + 'px';
+    setTimeout(() => {
+      const offset = (this.el.nativeElement as HTMLElement).getBoundingClientRect().height;
+      if (offset && offset < 154) {
+        (document.body as HTMLElement).style.paddingTop = offset + 'px';
+      } else {
+        if (this.isAnnounce) {
+          (document.body as HTMLElement).style.paddingTop = '153px';
+        } else {
+          (document.body as HTMLElement).style.paddingTop = '82px';
+        }
+      }
+    }, 100);
   }
   ngAfterViewInit(): void {
     this.initBodyPadding();
@@ -20,9 +31,7 @@ export class AnnounceBarDirective implements OnInit, OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['isAnnounce'] && !changes['isAnnounce'].firstChange) {
       this.isAnnounce = changes['isAnnounce'].currentValue;
-      setTimeout(() => {
-        this.initBodyPadding();
-      }, 0);
+      this.initBodyPadding();
     }
   }
 

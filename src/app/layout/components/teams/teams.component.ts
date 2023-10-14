@@ -270,7 +270,6 @@ export class TeamsComponent implements OnInit, OnDestroy {
   public selectedTeams: TeamsResponseModel = new TeamsResponseModel();
   constructor(private route: ActivatedRoute) {
     this.route.params.subscribe((_res: Params) => {
-      // console.log(_res);
       if (_res && _res['id']) {
         this.selectedTeams = this.teamsList.filter(i => i.enum === _res['id'])[0];
       }

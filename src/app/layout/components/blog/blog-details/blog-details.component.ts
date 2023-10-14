@@ -144,7 +144,6 @@ export class BlogDetailsComponent implements OnInit {
               this.moreStories = { ...this.moreStories, storyModelList: res.data.relatedArtical }
             }
           }
-          //console.log(res);
         }, error: (ex) => {
           console.log(ex);
         }

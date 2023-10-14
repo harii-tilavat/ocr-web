@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { FeaturedModel, GenericResponseList, ProductDetailModel, ReviewList } from 'src/app/_model';
+import { GlobalEventifier } from 'src/app/_eventifier';
+import { FeaturedModel, ProductDetailModel, ReviewList } from 'src/app/_model';
 import { TeamsOfShapesModel } from 'src/app/_model';
-import { NuggetService } from 'src/app/_services';
 import Swiper from 'swiper';
 
 @Component({
@@ -44,16 +44,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       disableOnInteraction: false
     },
     allowTouchMove: false,
-  });
-  public reviewSwiper = new Swiper('.reviewSwiper', {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    loop: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      type: 'bullets',
-    },
   });
   public isToggleFaster = true;
   public logoList = [
@@ -263,26 +253,18 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ]
   public reviewList: Array<ReviewList> = [];
 
-  constructor(private nuggetService: NuggetService) {
+  constructor(private globalEventifier: GlobalEventifier) {
   }
   ngOnInit(): void {
     setTimeout(() => {
       this.isToggleFaster = false;
     }, 1000);
-    this.getReviewList();
-  }
-  getReviewList(): void {
     this.subscription.push(
-      this.nuggetService.getReviewList().subscribe({
-        next: (res: GenericResponseList<Array<ReviewList>>) => {
-          if (res.data) {
-            this.reviewList = res.data;
-            setTimeout(() => {
-              this.initReviewSwiper();
-            }, 100)
-          }
-        }, error: () => {
-
+      this.globalEventifier.$reviewList.subscribe((res: ReviewList[]) => {
+        if (res) {
+          this.reviewList = res;
+        } else {
+          this.reviewList = [];
         }
       })
     )
@@ -329,14 +311,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // });
     this.logoSwiper.init();
   }
-  initReviewSwiper(): void {
-    this.reviewSwiper.init()
-  }
+
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());
-    if (this.reviewSwiper) {
-      this.reviewSwiper.destroy();
-    }
+    // if (this.reviewSwiper) {
+    //   this.reviewSwiper.destroy();
+    // }
     if (this.logoSwiper) {
       this.logoSwiper.destroy();
     }

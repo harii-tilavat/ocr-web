@@ -154,7 +154,7 @@
       </div>
     </div>
   </div>
-  <div class="reviews-section">
+  <div class="reviews-section" *ngIf="reviewList.length">
     <app-review [reviewList]="reviewList"></app-review>
   </div>
 </div>

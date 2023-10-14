@@ -2,6 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, filter, map } from 'rxjs';
 import { TitleService } from './_services';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { GenericResponseList, ReviewList, TeamsModel } from './_model';
+import { NuggetService, DataCacheService } from './_services';
+import { GlobalEventifier } from './_eventifier';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +16,8 @@ export class AppComponent implements OnInit, OnDestroy {
   public isNavWhite = false;
   public subscription: Array<Subscription> = [];
 
-  constructor(private readonly router: Router, private activatedRoute: ActivatedRoute, private readonly titleService: TitleService) {
+  constructor(private readonly router: Router, private activatedRoute: ActivatedRoute, private readonly titleService: TitleService,
+    private nuggetService: NuggetService, private dataCacheService: DataCacheService, private globalEventifier: GlobalEventifier) {
 
   }
   ngOnInit(): void {
@@ -27,6 +31,46 @@ export class AppComponent implements OnInit, OnDestroy {
       this.isNavWhite = ttl.includes('Teams') ? true : false;
       this.titleService.setTitle(ttl);
     });
+
+    this.subscription.push(this.dataCacheService.getData('TEAM').subscribe((res: TeamsModel[]) => {
+      if (res) {
+        this.globalEventifier.teamListEvent(res);
+      }
+      this.getTeamMembers();
+    }))
+    this.subscription.push(this.dataCacheService.getData('REVIEW').subscribe((res: ReviewList[]) => {
+      if (res) {
+        this.globalEventifier.reviewListEvent(res);
+      }
+      this.getReviewList();
+    }))
+  }
+
+  private getTeamMembers(): void {
+    this.subscription.push(
+      this.nuggetService.getTeams().subscribe({
+        next: (res: GenericResponseList<TeamsModel[]>) => {
+          if (res && res.data) {
+            this.dataCacheService.storeData('TEAM', res.data);
+            this.globalEventifier.teamListEvent(res.data);
+          }
+        }
+      })
+    )
+  }
+  private getReviewList(): void {
+    this.subscription.push(
+      this.nuggetService.getReviewList().subscribe({
+        next: (res: GenericResponseList<Array<ReviewList>>) => {
+          if (res.data) {
+            this.dataCacheService.storeData('REVIEW', res.data);
+            this.globalEventifier.reviewListEvent(res.data);
+          }
+        }, error: () => {
+
+        }
+      })
+    )
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

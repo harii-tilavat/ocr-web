@@ -10,6 +10,9 @@ import { register } from 'swiper/element/bundle';
 
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { DataCacheService } from './_services/cache-service/data-cache.service';
+import { GlobalEventifier } from './_eventifier';
+
 register();
 @NgModule({
   declarations: [
@@ -27,10 +30,11 @@ register();
       easing: 'ease-in',
       timeOut: 3000,
       closeButton: true
-    }),
-  ],
+    })],
   providers: [
     ToastrService,
+    GlobalEventifier,
+    DataCacheService
   ],
   bootstrap: [AppComponent]
 })

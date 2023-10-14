@@ -8,10 +8,7 @@ export class TeamsOfShapesModel {
 export class TeamsModel {
   id!: number;
   avtar!: string;
-  email!: string;
   name!: string;
   social_url!: string;
   designation!: string;
-  created_at!: string;
-  updated_at!: string;
 }
