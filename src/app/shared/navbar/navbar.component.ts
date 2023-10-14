@@ -32,8 +32,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
       ishemburg.click();
     }
   }
-  toggleButton():void{
-    this.isOpen=!this.isOpen;
+  toggleButton(): void {
+    this.isOpen = !this.isOpen;
   }
   goToUdesk(): void {
     window.open('https://app.userstudy.co/', "_blank");

@@ -6,7 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./resource-description.component.scss']
 })
 export class ResourceDescriptionComponent implements OnInit {
-  // @Input() blogContent:BlogDescriptionModel[]=[];
   @Input() blogContent!: any;
   public blogContentHtml = '';
   constructor() { }

@@ -10,7 +10,8 @@
               <span>/ {{type===resourceTypeEnum.BLOG?'Blog':'Customer stories'}}</span>
             </div>
             <div class="detail-title" *ngIf="resourceHeading.title">
-              <span>{{resourceHeading.title}}</span>
+              <span class="title">{{resourceHeading.title}}</span>
+              <span class="sub-title">{{resourceHeading.sub_title}}</span>
             </div>
           </div>
         </div>
@@ -26,7 +27,7 @@
               <div class="image-content">
                 <div class="row gx-5 gy-4">
                   <div class=""
-                    [ngClass]="resourceHeading.metadata.length!==0?'col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12':'col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12'">
+                       [ngClass]="resourceHeading.metadata.length!==0?'col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12':'col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12'">
                     <div class="detail-image" [ngClass]="{'resource-image':resourceHeading.metadata.length!==0}">
                       <span *ngIf="resourceHeading.image">
                         <img [src]="resourceHeading.image" [alt]="resourceHeading.image">
@@ -38,7 +39,7 @@
                       <div class="meta-data">
                         <div class="row g-2">
                           <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-6 col-6"
-                            *ngFor="let item of resourceHeading.metadata">
+                               *ngFor="let item of resourceHeading.metadata">
                             <div class="meta-data-value">
                               <span class="meta-data-title">{{item.key}}</span>
                               <span class="meta-data-desc" [innerHTML]="item.value | metadataFilter"></span>
@@ -70,7 +71,7 @@
                     <li *ngFor="let item of iconList; let i=index">
                       <span class="logo-icon" (mouseenter)="mouseEnter(i)" (mouseleave)="mouseLeave()">
                         <nugget-icon [name]="item.icon" [stroke]="hoverIndex===i?'#4F37E2':'#344054'"
-                          [fill]="hoverIndex===i?'#4F37E2':'#344054'"></nugget-icon>
+                                     [fill]="hoverIndex===i?'#4F37E2':'#344054'"></nugget-icon>
                       </span>
                     </li>
                   </ul>

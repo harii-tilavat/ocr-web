@@ -1,9 +1,3 @@
-export class BlogDescriptionModel {
-  id!: number;
-  title!: string;
-  desc!: string;
-  images: Array<BlogImageModel> = [];
-}
 
 export class BlogImageModel {
   imagePath!: string;
@@ -12,6 +6,7 @@ export class BlogImageModel {
 export class BlogHeadingModel {
   id!: number;
   title!: string | null;
+  sub_title!: string | null;
   image!: string | null;
   metadata: Array<MetadataModel> = [];
 }

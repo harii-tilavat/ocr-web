@@ -51,27 +51,34 @@ export const menuConfig = [
       },
     ]
   },
+  // {
+  //   id: 2,
+  //   title: 'Resources',
+  //   icon: null,
+  //   routing: '/',
+  //   subMenu: [
+  //     {
+  //       id: 1,
+  //       icon: 'blog',
+  //       title: 'Blog',
+  //       desc: 'Best practices and news on user research and insight',
+  //       link: 'blog'
+  //     },
+  //     {
+  //       id: 2,
+  //       icon: 'customer-story',
+  //       title: 'Customer stories',
+  //       desc: 'How our customers succesfully leverage GetCurious',
+  //       link: 'resources'
+  //     }
+  //   ]
+  // },
   {
-    id: 2,
+    id: 3,
     title: 'Resources',
     icon: null,
-    routing: '/',
-    subMenu: [
-      {
-        id: 1,
-        icon: 'blog',
-        title: 'Blog',
-        desc: 'Best practices and news on user research and insight',
-        link: 'blog'
-      },
-      {
-        id: 2,
-        icon: 'customer-story',
-        title: 'Customer stories',
-        desc: 'How our customers succesfully leverage GetCurious',
-        link: 'resources'
-      }
-    ]
+    routing: '/blog',
+    subMenu: []
   },
   {
     id: 3,
