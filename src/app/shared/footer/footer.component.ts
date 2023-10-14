@@ -19,9 +19,8 @@ export class FooterComponent implements OnInit, OnDestroy {
     { title: 'Contact', routing: '/contact' },
     { title: 'Pricing', routing: '/pricing' },
     { title: 'Blog', routing: '/blog' },
-    { title: 'Customer stories', routing: '/resources' },
-
   ];
+  // { title: 'Customer stories', routing: '/resources' },
   public enquiryForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required])
   })
