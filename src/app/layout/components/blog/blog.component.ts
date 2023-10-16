@@ -14,7 +14,7 @@ import { DataCacheService, NuggetService } from 'src/app/_services';
 export class BlogComponent implements OnInit, OnDestroy {
   public resourceData: ResourceDataModel = {
     blogHeader: {
-      title: 'Blog for Curious',
+      title: 'Blog for GetCurious',
       desc: 'Curated articles and guides to help you gain deeper, human insights, and build richer, human experiences.',
       isSearchable: true,
     },

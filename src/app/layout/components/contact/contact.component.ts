@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { GenericResponseList, GenericResponseType } from 'src/app/_model';
 import { NuggetService } from 'src/app/_services';
 import { ToastrService } from 'ngx-toastr';
+import { GoogleTagConfigService } from 'src/app/google-tag/google-tag-config.service';
 
 @Component({
   selector: 'app-contact',
@@ -29,13 +30,14 @@ export class ContactComponent implements OnInit, OnDestroy {
     updated_at: "2023-10-09T18:57:41.374Z",
     created_at: "2023-10-09T18:57:41.374Z"
   }
-  constructor(private nuggetService: NuggetService, private toastrService: ToastrService) {
+  constructor(private nuggetService: NuggetService, private toastrService: ToastrService, private googleTagConfigService: GoogleTagConfigService) {
   }
 
   ngOnInit(): void {
   }
   onSubmit(): void {
     if (this.contactForm.valid) {
+      this.googleTagConfigService.pushTag({ event: 'contact-form', data: `Enquiry from ${this.contactForm.value.email}` });
       this.nuggetService.createInquiry(this.contactForm.value).subscribe({
         next: (res: GenericResponseList<GenericResponseType>) => {
           if (res && res.message) {

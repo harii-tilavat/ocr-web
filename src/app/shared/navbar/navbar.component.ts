@@ -2,6 +2,7 @@ import { Component, HostListener, Input, OnChanges, OnDestroy, OnInit, SimpleCha
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MenuListModel, menuConfig } from 'src/app/_model/menu-list/menu-list.model';
+import { GoogleTagConfigService } from 'src/app/google-tag/google-tag-config.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public isScrolled = false;
   public isOpen = false;
   public menuList: MenuListModel[] = menuConfig;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private googleTagConfigService: GoogleTagConfigService) { }
   ngOnInit(): void {
     if (!sessionStorage.getItem('isAnnounce')) {
       sessionStorage.setItem('isAnnounce', '1');
@@ -36,6 +37,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.isOpen = !this.isOpen;
   }
   goToUdesk(): void {
+    this.googleTagConfigService.pushTag({ event: 'button-click', data: 'Nav bar try for free' });
     window.open('https://app.userstudy.co/', "_blank");
   }
   ngOnDestroy(): void {

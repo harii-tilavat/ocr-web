@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { GlobalEventifier } from 'src/app/_eventifier';
 import { FeaturedModel, ProductDetailModel, ReviewList } from 'src/app/_model';
 import { TeamsOfShapesModel } from 'src/app/_model';
+import { GoogleTagConfigService } from 'src/app/google-tag/google-tag-config.service';
 import Swiper from 'swiper';
 
 @Component({
@@ -253,7 +254,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ]
   public reviewList: Array<ReviewList> = [];
 
-  constructor(private globalEventifier: GlobalEventifier) {
+  constructor(private globalEventifier: GlobalEventifier, private googleTagConfigService: GoogleTagConfigService) {
   }
   ngOnInit(): void {
     setTimeout(() => {
@@ -273,6 +274,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isToggleFaster = !this.isToggleFaster;
   }
   goToUdesk(): void {
+    this.googleTagConfigService.pushTag({ event: 'button-click', data: 'Get Started Now Home' });
     window.open('https://app.userstudy.co/', "_blank");
   }
   ngAfterViewInit(): void {

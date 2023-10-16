@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, filter, map } from 'rxjs';
+import { Subscription, filter, map, pipe } from 'rxjs';
 import { TitleService } from './_services';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { BlogListResponseModel, GenericResponseList, ReviewList, TeamsModel } from './_model';
 import { NuggetService, DataCacheService } from './_services';
 import { GlobalEventifier } from './_eventifier';
+import { GoogleTagConfigService } from './google-tag/google-tag-config.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public subscription: Array<Subscription> = [];
 
   constructor(private readonly router: Router, private activatedRoute: ActivatedRoute, private readonly titleService: TitleService,
-    private nuggetService: NuggetService, private dataCacheService: DataCacheService, private globalEventifier: GlobalEventifier) {
+    private nuggetService: NuggetService, private dataCacheService: DataCacheService, private globalEventifier: GlobalEventifier, private googleTagConfigService: GoogleTagConfigService) {
 
   }
   ngOnInit(): void {
@@ -27,11 +28,16 @@ export class AppComponent implements OnInit, OnDestroy {
       while (child.firstChild) { child = child.firstChild; }
       if (child.snapshot.data['title']) { return child.snapshot.data['title']; }
       return appTitle;
-    })).subscribe((ttl: string) => {
+    })
+    ).subscribe((ttl: string) => {
       this.isNavWhite = ttl.includes('Teams') ? true : false;
       this.titleService.setTitle(ttl);
+      const gtmTag = {
+        event: 'page',
+        pageName: this.router.url
+      };
+      this.googleTagConfigService.pushTag(gtmTag);
     });
-
     this.subscription.push(this.dataCacheService.getData('TEAM').subscribe((res: TeamsModel[]) => {
       if (res) {
         this.globalEventifier.teamListEvent(res);
@@ -77,10 +83,8 @@ export class AppComponent implements OnInit, OnDestroy {
     const request = { page: 1, pageSize: 10 };
     this.subscription.push(this.nuggetService.getAllBlogList(request).subscribe({
       next: (res: GenericResponseList<BlogListResponseModel>) => {
-        if (res.data && res.data.blogList) {
-          this.dataCacheService.storeData('BLOG', res.data);
-        }
-      }, error: (err: any) => {
+        if (res.data && res.data.blogList) { this.dataCacheService.storeData('BLOG', res.data); }
+      }, error: () => {
       }
     }))
   }
