@@ -1,4 +1,4 @@
-<div class="home">
+<!-- <div class="home">
   <div class="main-section">
     <div class="main-section-content main-section-content-bg image-section">
       <div class="container">
@@ -47,17 +47,6 @@
               </div>
               <div class="logo-body">
                 <div class="logo-swiper-images">
-                  <!-- ----------------For static logo------------------ -->
-                  <!-- <ul>
-                    <li *ngFor="let item of logoList">
-                      <div class="logo-image">
-                        <span>
-                          <img [src]="item.icon" [alt]="item.title" class="img-fluid">
-                        </span>
-                      </div>
-                    </li>
-                  </ul> -->
-                  <!-- --------------------- Swiper-------------------------- -->
                   <div class="swiper mySwiper logoSwiper">
                     <div class="swiper-wrapper">
                       <div class="swiper-slide" *ngFor="let item of logoList">
@@ -68,7 +57,6 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <div class="swiper-pagination"></div> -->
                   </div>
                 </div>
               </div>
@@ -156,5 +144,31 @@
   </div>
   <div class="reviews-section" *ngIf="reviewList.length">
     <app-review [reviewList]="reviewList"></app-review>
+  </div>
+</div> -->
+
+<div class="home">
+  <div class="main-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="file-input-content">
+            <div class="file-input-header">
+              <div class="file-input-title">
+                <span>The world’s most powerful <b>free online OCR</b></span>
+              </div>
+              <div class="file-input-description">
+                <span>Thousands of developers convert images and PDFs to actionable text with Nanonets</span>
+              </div>
+            </div>
+            <div class="file-input-body">
+              <div class="card">
+                <h1>Hello</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
