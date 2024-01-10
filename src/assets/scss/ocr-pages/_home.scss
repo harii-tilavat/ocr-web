@@ -1,0 +1,69 @@
+.home {
+  @include padding(96px 0px);
+  .main-section {
+    .file-input-content {
+      text-align: center;
+      display: flex;
+      flex-flow: column;
+      gap: 50px;
+      .file-input-header {
+        display: flex;
+        flex-flow: column;
+        gap: 10px;
+        .file-input-title {
+          span {
+            @include font-size(40px);
+            font-family: $inter-semibold;
+            .mark-title {
+              color: $primary-600;
+              font-family: $inter-bold;
+            }
+          }
+        }
+        .file-input-description {
+        }
+      }
+      .file-input-body {
+        .file-input-card {
+          display: flex;
+          flex-flow: row;
+          gap: 60px;
+          background-color: $primary-100;
+          @include padding(15px);
+          .file-input-preview {
+            .file-preivew-image {
+              span {
+                display: block;
+                height: 350px;
+                width: 100%;
+              }
+            }
+          }
+          .file-upload {
+            display: flex;
+            flex-flow: column;
+            width: 100%;
+            gap: 15px;
+            align-items: flex-end;
+            .file-upload-button {
+              display: flex;
+              gap: 25px;
+              .upload-button{
+
+              }
+              .remove-file-button{
+
+              }
+            }
+            .file-output {
+              height: 100%;
+              width: 100%;
+              padding: 30px;
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
+}

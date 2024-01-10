@@ -38,56 +38,56 @@ export class AppComponent implements OnInit, OnDestroy {
       };
       this.googleTagConfigService.pushTag(gtmTag);
     });
-    this.subscription.push(this.dataCacheService.getData('TEAM').subscribe((res: TeamsModel[]) => {
-      if (res) {
-        this.globalEventifier.teamListEvent(res);
-      }
-      this.getTeamMembers();
-    }))
-    this.subscription.push(this.dataCacheService.getData('REVIEW').subscribe((res: ReviewList[]) => {
-      if (res) {
-        this.globalEventifier.reviewListEvent(res);
-      }
-      this.getReviewList();
-    }))
-    this.getAllBlog();
+    // this.subscription.push(this.dataCacheService.getData('TEAM').subscribe((res: TeamsModel[]) => {
+    //   if (res) {
+    //     this.globalEventifier.teamListEvent(res);
+    //   }
+    //   this.getTeamMembers();
+    // }))
+    // this.subscription.push(this.dataCacheService.getData('REVIEW').subscribe((res: ReviewList[]) => {
+    //   if (res) {
+    //     this.globalEventifier.reviewListEvent(res);
+    //   }
+    //   this.getReviewList();
+    // }))
+    // this.getAllBlog();
   }
 
-  private getTeamMembers(): void {
-    this.subscription.push(
-      this.nuggetService.getTeams().subscribe({
-        next: (res: GenericResponseList<TeamsModel[]>) => {
-          if (res && res.data) {
-            this.dataCacheService.storeData('TEAM', res.data);
-            this.globalEventifier.teamListEvent(res.data);
-          }
-        }
-      })
-    )
-  }
-  private getReviewList(): void {
-    this.subscription.push(
-      this.nuggetService.getReviewList().subscribe({
-        next: (res: GenericResponseList<Array<ReviewList>>) => {
-          if (res.data) {
-            this.dataCacheService.storeData('REVIEW', res.data);
-            this.globalEventifier.reviewListEvent(res.data);
-          }
-        }, error: () => {
+  // private getTeamMembers(): void {
+  //   this.subscription.push(
+  //     this.nuggetService.getTeams().subscribe({
+  //       next: (res: GenericResponseList<TeamsModel[]>) => {
+  //         if (res && res.data) {
+  //           this.dataCacheService.storeData('TEAM', res.data);
+  //           this.globalEventifier.teamListEvent(res.data);
+  //         }
+  //       }
+  //     })
+  //   )
+  // }
+  // private getReviewList(): void {
+  //   this.subscription.push(
+  //     this.nuggetService.getReviewList().subscribe({
+  //       next: (res: GenericResponseList<Array<ReviewList>>) => {
+  //         if (res.data) {
+  //           this.dataCacheService.storeData('REVIEW', res.data);
+  //           this.globalEventifier.reviewListEvent(res.data);
+  //         }
+  //       }, error: () => {
 
-        }
-      })
-    )
-  }
-  private getAllBlog(): void {
-    const request = { page: 1, pageSize: 10 };
-    this.subscription.push(this.nuggetService.getAllBlogList(request).subscribe({
-      next: (res: GenericResponseList<BlogListResponseModel>) => {
-        if (res.data && res.data.blogList) { this.dataCacheService.storeData('BLOG', res.data); }
-      }, error: () => {
-      }
-    }))
-  }
+  //       }
+  //     })
+  //   )
+  // }
+  // private getAllBlog(): void {
+  //   const request = { page: 1, pageSize: 10 };
+  //   this.subscription.push(this.nuggetService.getAllBlogList(request).subscribe({
+  //     next: (res: GenericResponseList<BlogListResponseModel>) => {
+  //       if (res.data && res.data.blogList) { this.dataCacheService.storeData('BLOG', res.data); }
+  //     }, error: () => {
+  //     }
+  //   }))
+  // }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());
   }

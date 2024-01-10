@@ -152,21 +152,65 @@
     <div class="container">
       <div class="row">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-          <div class="file-input-content">
-            <div class="file-input-header">
-              <div class="file-input-title">
-                <span>The world’s most powerful <b>free online OCR</b></span>
-              </div>
-              <div class="file-input-description">
-                <span>Thousands of developers convert images and PDFs to actionable text with Nanonets</span>
+          <form action="">
+            <div class="form-group">
+              <div class="file-input-wrapper">
+                <div class="file-input-content">
+                  <div class="file-input-header">
+                    <div class="file-input-title">
+                      <span>The world’s most powerful <span class="mark-title">free online OCR</span></span>
+                    </div>
+                    <div class="file-input-description">
+                      <span>Thousands of developers convert images and PDFs to actionable text with Nanonets</span>
+                    </div>
+                    <div class="uplading">
+                      <!-- <h1>Uploading --- {{uploading}}</h1> -->
+                    </div>
+                  </div>
+                  <div class="file-input-body">
+                    <form action="" [formGroup]="fileForm">
+                      <label for="file" class="d-block">
+                        <input type="file" id="file" class="" (change)="fileSelected($event)" formControlName="file">
+                        <div class="file-input-card card">
+
+                          <div class="file-input-preview">
+                            <div class="file-preivew-image">
+                              <span>
+                                <img [src]="filePreviewBase64?filePreviewBase64:'/assets/ocr-images/sample-file.png'"
+                                  alt="sample-file.png">
+                              </span>
+                            </div>
+                          </div>
+                          <div class="file-upload">
+                            <div class="file-upload-button">
+                              <div class="upload-button">
+                                <span class="btn btn-primary">Upload</span>
+                              </div>
+                              <div class="remove-file-button" *ngIf="isFileSelected && false">
+                                <button class="btn btn-danger" (click)="removeSelectedFile()">Remove file</button>
+                              </div>
+                            </div>
+                            <div class="file-output card" [contentEditable]="false">
+                              <ng-container *ngIf="!imageData; else showImageData">
+                                <span>
+                                  Text from your document will appear here.
+                                </span>
+                              </ng-container>
+                              <ng-template #showImageData>
+                                <div class="image-data">
+                                 <pre> {{imageData}}</pre>
+                                </div>
+                              </ng-template>
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="file-input-body">
-              <div class="card">
-                <h1>Hello</h1>
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

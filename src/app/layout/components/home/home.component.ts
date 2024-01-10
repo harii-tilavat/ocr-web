@@ -1,327 +1,86 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { HttpEventType } from '@angular/common/http';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { GlobalEventifier } from 'src/app/_eventifier';
-import { FeaturedModel, ProductDetailModel, ReviewList } from 'src/app/_model';
-import { TeamsOfShapesModel } from 'src/app/_model';
-import { GoogleTagConfigService } from 'src/app/google-tag/google-tag-config.service';
-import Swiper from 'swiper';
+import { FileUploadService } from 'src/app/_services';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  public fileForm: FormGroup = new FormGroup({
+    file: new FormControl('', [Validators.required])
+  })
   public subscription: Array<Subscription> = [];
-  public logoSwiper = new Swiper('.logoSwiper', {
-    breakpoints: {
-      300: {
-        slidesPerView: 3,
-        spaceBetween: 24
-      },
-      775: {
-        slidesPerView: 4,
-        spaceBetween: 30,
-      },
-      991: {
-        slidesPerView: 4,
-        spaceBetween: 30
-      },
-      1199: {
-        slidesPerView: 5,
-        spaceBetween: 20
-      },
-    },
-    spaceBetween: 20,
-    loop: true,
-    speed: 4000,
-    // pagination: {
-    //   el: '.swiper-pagination',
-    //   clickable: true,
-    //   type: 'bullets'
-    // },
-    autoplay: {
-      delay: 1,
-      disableOnInteraction: false
-    },
-    allowTouchMove: false,
-  });
-  public isToggleFaster = true;
-  public logoList = [
-    {
-      id: 1,
-      title: 'logo image 1',
-      icon: '/assets/images/logos/jupiter.jpg'
-    },
-    {
-      id: 2,
-      title: 'logo image 2',
-      icon: '/assets/images/logos/logo2.png'
-    },
-    {
-      id: 3,
-      title: 'logo image 3',
-      icon: '/assets/images/logos/logo3.png'
-    },
-    {
-      id: 4,
-      title: 'logo image 4',
-      icon: '/assets/images/logos/logo4.png'
-    },
-    {
-      id: 5,
-      title: 'logo image 5',
-      icon: '/assets/images/logos/logo5.png'
-    },
-    {
-      id: 1,
-      title: 'logo image 1',
-      icon: '/assets/images/logos/jupiter.jpg'
-    },
-    {
-      id: 2,
-      title: 'logo image 2',
-      icon: '/assets/images/logos/logo2.png'
-    },
-    {
-      id: 3,
-      title: 'logo image 3',
-      icon: '/assets/images/logos/logo3.png'
-    },
-    {
-      id: 4,
-      title: 'logo image 4',
-      icon: '/assets/images/logos/logo4.png'
-    },
-    {
-      id: 5,
-      title: 'logo image 5',
-      icon: '/assets/images/logos/logo5.png'
-    },
-  ];
-  public featuredList: FeaturedModel[] = [
-    {
-      id: 1,
-      icon: 'product-hunt',
-      desc: '“This is a great way to collect feedback, as you actually get to hear users opinions!”',
-    },
-    {
-      id: 2,
-      icon: 'entrepreneur',
-      desc: '“A SaaS startup that simplifies user research for product teams”',
-    },
-    {
-      id: 1,
-      icon: 'inc-42',
-      desc: '“UserStudy makes user research 10x easier for product teams globally”',
-    },
-  ]
-  public teamList: TeamsOfShapesModel[] = [
-    {
-      id: 1,
-      icon: 'icon-pm',
-      title: 'Product Managers',
-      desc: 'Uncover the "why" behind user behaviour',
-      link: ['/teams', 'managers']
-    },
-    {
-      id: 2,
-      icon: 'icon-pd',
-      title: 'Product Designers',
-      desc: 'Make design decisions powered by user insights',
-      link: ['/teams', 'designers']
-    },
-    {
-      id: 3,
-      icon: 'icon-marketer',
-      title: 'Marketers',
-      desc: 'Connect with audiences through informed understanding',
-      link: ['/teams', 'marketers']
-    },
-    {
-      id: 4,
-      icon: 'icon-uxr',
-      title: 'UX researchers',
-      desc: 'Unlock user behaviour to power better decision making',
-      link: ['/teams', 'researchers']
-    },
-    {
-      id: 5,
-      icon: 'icon-founder',
-      title: 'Founders',
-      desc: 'Drive business success with user-focussed strategy',
-      link: ['/teams', 'founders']
-    },
-  ]
-  public productList: Array<{ subMenu: Array<ProductDetailModel> }> = [
-    {
-      subMenu: [
-        {
-          id: 1,
-          title: 'Unmoderated testing',
-          subTitle: 'Conduct qualitative research at speed of survey',
-          desc: 'In depth user research wtith maximum scalability and minimum time',
-          imagePath: 'conduct-qualitative-3.mp4',
-          action: true,
-          subMenu: []
-        },
-        {
-          id: 2,
-          title: 'Unmoderated testing',
-          subTitle: 'Launch video based user research',
-          desc: 'Post the study, get insights within hours and not weeks',
-          imagePath: 'conduct-qualitative.png',
-          action: true,
-          subMenu: []
-        }
-      ]
-    },
-    {
-      subMenu: [
-        {
-          id: 1,
-          title: '1:1 interviews',
-          subTitle: 'Participant friendly interview tool',
-          desc: 'Non-intimidating experience for participants, while observers watch from behind the screen',
-          imagePath: 'distraction-free.mp4',
-          action: true,
-          subMenu: []
-        },
-        {
-          id: 2,
-          title: '1:1 interviews',
-          subTitle: 'Distraction free 1:1 interviews without switching apps',
-          desc: 'Take live notes and see interview script on the same screen as the interview',
-          imagePath: 'participent-friendly.webp',
-          action: true,
-          subMenu: []
-        },
-      ]
-    },
-    {
-      subMenu: [
-        {
-          id: 1,
-          title: 'Insight Hub',
-          subTitle: 'Never lose an insight anymore',
-          desc: 'Take time stamped notes and highlights, so that you never lose an insight',
-          imagePath: 'never-lose.mp4',
-          action: true,
-          subMenu: []
-        },
-        {
-          id: 2,
-          title: 'Insight Hub',
-          subTitle: 'Transcript available in multiple languages',
-          desc: 'Quickly find the keywords or relevant sections using the transcripts',
-          imagePath: 'transcription-available.webp',
-          action: true,
-          subMenu: []
-        },
-        {
-          id: 3,
-          title: 'Insight Hub',
-          subTitle: 'Auto-summarisation of interviews instantly',
-          desc: 'Understand pain points, delight points from the conversation',
-          imagePath: 'auto-summarisation.webp',
-          action: true,
-          subMenu: []
-        },
-      ]
-    },
-    {
-      subMenu: [
-        {
-          id: 1,
-          title: 'participant panel',
-          subTitle: 'Access our diverse database of 1 million+ participants',
-          desc: 'Find your B2B or B2C participants with 30+ filters and screeners',
-          imagePath: 'access-diverse-3.mp4',
-          action: true,
-          subMenu: []
-        },
-        {
-          id: 2,
-          title: 'participant panel',
-          subTitle: 'No fake or repeat participants',
-          desc: 'Screened and vetted participant panel with multi level checks',
-          imagePath: 'no-fake-repeat.webp',
-          action: true,
-          subMenu: []
-        }
-      ]
-    },
-  ]
-  public reviewList: Array<ReviewList> = [];
-
-  constructor(private globalEventifier: GlobalEventifier, private googleTagConfigService: GoogleTagConfigService) {
+  public progress!: number;
+  public filePreviewBase64!: string | null;
+  public isFileSelected = false;
+  public uploading!: number;
+  public files!: any;
+  public imageData!: string;
+  constructor(private globalEventifier: GlobalEventifier, private fileUploadService: FileUploadService, private toastrService: ToastrService) {
   }
   ngOnInit(): void {
-    setTimeout(() => {
-      this.isToggleFaster = false;
-    }, 1000);
-    this.subscription.push(
-      this.globalEventifier.$reviewList.subscribe((res: ReviewList[]) => {
-        if (res) {
-          this.reviewList = res;
-        } else {
-          this.reviewList = [];
-        }
-      })
-    )
+    this.getFileData();
   }
-  toggleFaster(): void {
-    this.isToggleFaster = !this.isToggleFaster;
-  }
-  goToUdesk(): void {
-    this.googleTagConfigService.pushTag({ event: 'button-click', data: 'Get Started Now Home' });
-    window.open('https://app.userstudy.co/', "_blank");
-  }
-  ngAfterViewInit(): void {
-    // this.logoSwiper = new Swiper('.logoSwiper', {
-    //   breakpoints: {
-    //     300: {
-    //       slidesPerView: 3,
-    //       spaceBetween: 24
-    //     },
-    //     775: {
-    //       slidesPerView: 4,
-    //       spaceBetween: 30,
-    //     },
-    //     991: {
-    //       slidesPerView: 4,
-    //       spaceBetween: 30
-    //     },
-    //     1199: {
-    //       slidesPerView: 5,
-    //       spaceBetween: 20
-    //     },
-    //   },
-    //   spaceBetween: 20,
-    //   loop: true,
-    //   speed: 3000,
-    //   // pagination: {
-    //   //   el: '.swiper-pagination',
-    //   //   clickable: true,
-    //   //   type: 'bullets'
-    //   // },
-    //   autoplay: {
-    //     delay: 1,
-    //     disableOnInteraction: false
-    //   },
-    //   allowTouchMove: false,
-    // });
-    this.logoSwiper.init();
-  }
+  fileSelected(event: Event): void {
+    this.files = (event.target as HTMLInputElement).files;
+    if (this.files && this.files[0]) {
+      this.convertFileToBase64(this.files[0]);
+      this.isFileSelected = true;
+      this.toastrService.success('File uploading...', 'File');
 
-  ngOnDestroy(): void {
-    this.subscription.forEach(i => i.unsubscribe());
-    // if (this.reviewSwiper) {
-    //   this.reviewSwiper.destroy();
-    // }
-    if (this.logoSwiper) {
-      this.logoSwiper.destroy();
+      const formData = new FormData();
+      formData.set("file", this.files[0]);
+
+      this.fileUploadService.uploadFile(formData).subscribe({
+        next: (res: any) => {
+          this.uploading = res.uploading;
+        },
+        error: (err) => { }
+      })
+      // this.fileUploadService.uploadFile(formData).subscribe({
+      //   next: (res) => {
+      //     console.log(res);
+      //     this.toastrService.success(JSON.stringify(res));
+      //   },
+      //   error: (err) => {
+      //     console.log(err);
+      //     this.toastrService.error(err);
+      //   }
+      // });
+      // console.log(this.fileForm);
     }
+  }
+  getFileData(): void {
+    this.fileUploadService.getData().subscribe({
+      next: (res) => {
+        console.log("Response: ", res);
+        this.imageData = res.data;
+      }, error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+  convertFileToBase64(file: File): void {
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.filePreviewBase64 = reader.result as string;
+      }
+      reader.readAsDataURL(file);
+    }
+  }
+  removeSelectedFile(): void {
+    this.filePreviewBase64 = null;
+    this.isFileSelected = false;
+    this.files = [];
+  }
+  ngOnDestroy(): void {
   }
 
 }

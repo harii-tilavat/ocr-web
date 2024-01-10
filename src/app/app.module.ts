@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataCacheService } from './_services/cache-service/data-cache.service';
 import { GlobalEventifier } from './_eventifier';
 import { GoogleTagModule } from './google-tag/google-tag.module';
+import { BaseProviderService } from './_services/base-provider.service';
 
 register();
 @NgModule({
@@ -30,15 +31,16 @@ register();
       id: 'G-TQ12FM5HXS'
     }),
     ToastrModule.forRoot({
-      progressBar: false,
+      progressBar: true,
       easing: 'ease-in',
-      timeOut: 3000,
+      timeOut: 4000,
       closeButton: true
     })],
   providers: [
     ToastrService,
     GlobalEventifier,
     DataCacheService,
+    BaseProviderService,
     { provide: 'googleTagManagerCSPNonce', useValue: 'CSP-NONCE' },
   ],
   bootstrap: [AppComponent]
