@@ -18,7 +18,7 @@ import { BaseProviderService } from './_services/base-provider.service';
 register();
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,7 @@ register();
     ToastrModule.forRoot({
       progressBar: true,
       easing: 'ease-in',
-      timeOut: 4000,
+      timeOut: 2000,
       closeButton: true
     })],
   providers: [

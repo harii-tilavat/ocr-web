@@ -1,0 +1,89 @@
+<div class="employee-info">
+  <div class="row">
+    <div class="col-4 ">
+      <div class="emp-title">
+        <h4>Employee register</h4>
+        <hr>
+      </div>
+      <div class="employee-form">
+        <form action="" [formGroup]="empForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label for="empName" class="control-label">Full name</label>
+                <input type="text" class="form-control" id="empName" formControlName="empName">
+              </div>
+              <div class="form-group">
+                <label for="empLocation" class="control-label">Location</label>
+                <input type="text" class="form-control" id="empLocation" formControlName="empLocation">
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <label for="empPosition" class="control-label">Position</label>
+                    <input type="text" class="form-control" id="empPosition" formControlName="empPosition">
+                  </div>
+                  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <label for="empSalary" class="control-label">Salary</label>
+                    <input type="number" class="form-control" id="empSalary" formControlName="empSalary">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-dark" id="">Submit</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-6 offset-1">
+      <div class="emp-data">
+        <div class="emp-data-title">
+          <h4>Employee information</h4>
+          <hr>
+        </div>
+        <!-- <h1>Data</h1> -->
+        <ng-container *ngIf="empData.length; else noEmployee">
+          <div class="table-responsive">
+            <table class="table ">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Salary</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of empData; let i=index">
+                  <td>{{i + 1}}</td>
+                  <td>{{item.empName}}</td>
+                  <td>{{item.empPosition}}</td>
+                  <td>{{item.empSalary}}</td>
+                  <td>
+                    <div class="actions d-flex gap-2">
+                      <button class="btn btn-primary" (click)="updateEmployee(item)">Edit</button>
+                      <button class="btn btn-danger" (click)="deleteEmployee(item.empId)">Delete</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </ng-container>
+        <ng-template #noEmployee>
+          <tr>
+            <td>
+              <span>No employee found!</span>
+            </td>
+          </tr>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+
+</div>

@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PipesModule } from '../_pipes/pipes.module';
 import { ReviewComponent } from './components/home/review/review.component';
 import { NgbModalModule } from '../shared/ng-modal';
+import { EmployeeComponent } from './components/home/employee/employee.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -48,6 +49,7 @@ import { NgbModalModule } from '../shared/ng-modal';
     PrivacyPolicyComponent,
     PrivacyDetailComponent,
     ReviewComponent,
+    EmployeeComponent,
   ],
   imports: [
     CommonModule,

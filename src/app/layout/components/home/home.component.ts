@@ -1,4 +1,4 @@
-import { HttpEventType } from '@angular/common/http';
+import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -22,10 +22,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   public uploading!: number;
   public files!: any;
   public imageData!: string;
+  public employees:any= [];
   constructor(private globalEventifier: GlobalEventifier, private fileUploadService: FileUploadService, private toastrService: ToastrService) {
   }
   ngOnInit(): void {
-    this.getFileData();
+    this.getEmployees();
   }
   fileSelected(event: Event): void {
     this.files = (event.target as HTMLInputElement).files;
@@ -36,7 +37,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       const formData = new FormData();
       formData.set("file", this.files[0]);
-
       this.fileUploadService.uploadFile(formData).subscribe({
         next: (res: any) => {
           this.uploading = res.uploading;
@@ -56,14 +56,30 @@ export class HomeComponent implements OnInit, OnDestroy {
       // console.log(this.fileForm);
     }
   }
+  // getFileData(): void {
+  //   this.fileUploadService.getData().subscribe({
+  //     next: (res) => {
+  //       console.log("Response: ", res);
+  //       this.imageData = res.data;
+  //       this.toastrService.success("Text extracted successfully! ", 'Success');
+  //     }, error: (err: HttpErrorResponse) => {
+  //       this.toastrService.error(err.error.message, 'ERROR');
+  //     }
+  //   })
+  // }
   getFileData(): void {
-    this.fileUploadService.getData().subscribe({
+    this.fileUploadService.getFilesData().subscribe({
       next: (res) => {
-        console.log("Response: ", res);
-        this.imageData = res.data;
+        console.log("Response ===>>> ", res);
       }, error: (err) => {
         console.log(err);
       }
+    })
+  }
+  getEmployees(): void {
+    this.fileUploadService.getEmployees().subscribe((res) => {
+      console.log("Response -> ", res);
+      this.employees = res.data;
     })
   }
   convertFileToBase64(file: File): void {
