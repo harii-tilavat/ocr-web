@@ -10,16 +10,17 @@
 @import "./ocr-pages/index" ;// OCR PAGES
 @import "./responsive";
 pre {
-  @include line-height(20px);
-  color: white;
+  @include line-height(30px);
+  // color: white;
   padding: 0 1rem 1rem;
   margin: 0;
-  background-color: #23241f;
+  // background-color: #23241f;
   border-radius: 3px;
   white-space: pre-wrap;
   margin-bottom: 5px;
   margin-top: 5px;
   padding: 5px 10px;
+  font-family: $inter-semibold;
   a {
     color: #6cff13;
   }

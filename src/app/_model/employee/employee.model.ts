@@ -5,3 +5,8 @@ export class EmployeeModel {
   empPosition!: string;
   empSalary!: number;
 }
+export class EmployeeResponseModel {
+  success!: boolean;
+  message!: string;
+  // data?: EmployeeModel;
+}

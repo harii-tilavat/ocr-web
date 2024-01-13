@@ -22,79 +22,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   public uploading!: number;
   public files!: any;
   public imageData!: string;
-  public employees:any= [];
   constructor(private globalEventifier: GlobalEventifier, private fileUploadService: FileUploadService, private toastrService: ToastrService) {
   }
   ngOnInit(): void {
-    this.getEmployees();
-  }
-  fileSelected(event: Event): void {
-    this.files = (event.target as HTMLInputElement).files;
-    if (this.files && this.files[0]) {
-      this.convertFileToBase64(this.files[0]);
-      this.isFileSelected = true;
-      this.toastrService.success('File uploading...', 'File');
-
-      const formData = new FormData();
-      formData.set("file", this.files[0]);
-      this.fileUploadService.uploadFile(formData).subscribe({
-        next: (res: any) => {
-          this.uploading = res.uploading;
-        },
-        error: (err) => { }
-      })
-      // this.fileUploadService.uploadFile(formData).subscribe({
-      //   next: (res) => {
-      //     console.log(res);
-      //     this.toastrService.success(JSON.stringify(res));
-      //   },
-      //   error: (err) => {
-      //     console.log(err);
-      //     this.toastrService.error(err);
-      //   }
-      // });
-      // console.log(this.fileForm);
-    }
-  }
-  // getFileData(): void {
-  //   this.fileUploadService.getData().subscribe({
-  //     next: (res) => {
-  //       console.log("Response: ", res);
-  //       this.imageData = res.data;
-  //       this.toastrService.success("Text extracted successfully! ", 'Success');
-  //     }, error: (err: HttpErrorResponse) => {
-  //       this.toastrService.error(err.error.message, 'ERROR');
-  //     }
-  //   })
-  // }
-  getFileData(): void {
-    this.fileUploadService.getFilesData().subscribe({
-      next: (res) => {
-        console.log("Response ===>>> ", res);
-      }, error: (err) => {
-        console.log(err);
-      }
-    })
-  }
-  getEmployees(): void {
-    this.fileUploadService.getEmployees().subscribe((res) => {
-      console.log("Response -> ", res);
-      this.employees = res.data;
-    })
-  }
-  convertFileToBase64(file: File): void {
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.filePreviewBase64 = reader.result as string;
-      }
-      reader.readAsDataURL(file);
-    }
-  }
-  removeSelectedFile(): void {
-    this.filePreviewBase64 = null;
-    this.isFileSelected = false;
-    this.files = [];
   }
   ngOnDestroy(): void {
   }

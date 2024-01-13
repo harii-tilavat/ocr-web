@@ -18,6 +18,7 @@ import { NewsLetterComponent } from './resources/news-letter/news-letter.compone
 import { ResourceListComponent } from './resources/resource-list/resource-list.component';
 import { ResourceSearchComponent } from './resources/resource-search/resource-search.component';
 import { FileLoaderComponent } from './file-loader/file-loader.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FileLoaderComponent } from './file-loader/file-loader.component';
     NewsLetterComponent,
     ResourceSearchComponent,
     FileLoaderComponent,
+    FileUploadComponent,
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,8 @@ import { FileLoaderComponent } from './file-loader/file-loader.component';
     ResourceListComponent,
     NewsLetterComponent,
     ResourceSearchComponent,
-    FileLoaderComponent
+    FileLoaderComponent,
+    FileUploadComponent
   ]
 })
 export class SharedModule { }

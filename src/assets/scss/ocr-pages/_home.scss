@@ -25,16 +25,14 @@
       }
       .file-input-body {
         .file-input-card {
-          display: flex;
-          flex-flow: row;
-          gap: 60px;
           background-color: $primary-100;
           @include padding(15px);
           .file-input-preview {
             .file-preivew-image {
               span {
                 display: block;
-                height: 350px;
+                // height: 350px;
+                height: auto;
                 width: 100%;
               }
             }
@@ -56,8 +54,10 @@
               }
             }
             .file-output {
-              height: 100%;
+              // height: 100%;
               width: 100%;
+              height: 480px;
+              overflow: auto;
               padding: 30px;
               text-align: left;
             }

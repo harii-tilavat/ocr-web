@@ -9,11 +9,12 @@ import { IconsModule } from './icons/icons.module';
 import { register } from 'swiper/element/bundle';
 
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DataCacheService } from './_services/cache-service/data-cache.service';
 import { GlobalEventifier } from './_eventifier';
 import { GoogleTagModule } from './google-tag/google-tag.module';
 import { BaseProviderService } from './_services/base-provider.service';
+import { OcrIntercepterService } from './_services';
 
 register();
 @NgModule({
@@ -42,6 +43,7 @@ register();
     DataCacheService,
     BaseProviderService,
     { provide: 'googleTagManagerCSPNonce', useValue: 'CSP-NONCE' },
+    { provide: HTTP_INTERCEPTORS, useClass: OcrIntercepterService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

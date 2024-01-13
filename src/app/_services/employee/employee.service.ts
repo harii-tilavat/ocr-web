@@ -17,6 +17,9 @@ export class EmployeeService {
   addEmployee(data: EmployeeModel) {
     return this.baseProviderService.makePostCall(`${environment.baseUrl}/employees`, data);
   }
+  updateEmployee(id: string, data: EmployeeModel) {
+    return this.baseProviderService.makePutCall(`${environment.baseUrl}/employees/${id}`,data);
+  }
   deleteEmployee(id: string): Observable<any> {
     return this.baseProviderService.makeDeleteCall(`${environment.baseUrl}/employees/${id}`);
   }

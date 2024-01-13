@@ -1,0 +1,68 @@
+<div class="file-upload-form">
+  <form action="">
+    <div class="form-group">
+      <div class="file-input-wrapper">
+        <div class="file-input-content">
+          <div class="file-input-header">
+            <div class="file-input-title">
+              <span>The world’s most powerful <span class="mark-title">free online OCR</span></span>
+            </div>
+            <div class="file-input-description">
+              <span>Thousands of developers convert images and PDFs to actionable text with Nanonets</span>
+            </div>
+            <div class="uplading">
+            </div>
+          </div>
+          <div class="file-input-body">
+            <form action="" [formGroup]="fileForm">
+              <label for="file" class="d-block">
+                <input type="file" id="file" class="" (change)="fileSelected($event)" formControlName="file" hidden>
+                <div class="file-input-card card">
+                  <div class="row g-5">
+                    <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                      <div class="file-input-preview">
+                        <div class="file-preivew-image">
+                          <span>
+                            <img [src]="filePreviewBase64?filePreviewBase64:'/assets/ocr-images/sample-file.png'"
+                              alt="sample-file.png">
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xxl-9 col-xl-9 col-lg-8 col-md-6 col-sm-12">
+                      <div class="file-upload">
+                        <div class="file-output card" [contentEditable]="false">
+                          <ng-container *ngIf="!imageData; else showImageData">
+                            <span>
+                              {{uploadingMessage ? uploadingMessage : 'Text from your document will appear here.'}}
+                            </span>
+                          </ng-container>
+                          <ng-template #showImageData>
+                            <div class="image-data">
+                              <pre>{{imageData }}</pre>
+                            </div>
+                          </ng-template>
+                        </div>
+                        <div class="file-upload-button">
+                          <div class="upload-button">
+                            <span class="btn btn-primary">Upload</span>
+                          </div>
+                          <div class="remove-file-button" *ngIf="isFileSelected">
+                            <button class="btn btn-danger" (click)="removeSelectedFile()">Remove file</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </label>
+            </form>
+          </div>
+          <div class="testing">
+            <button class="btn btn-dark" (click)="getFileData()">Test here</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

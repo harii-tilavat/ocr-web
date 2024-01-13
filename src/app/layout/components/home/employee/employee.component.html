@@ -30,7 +30,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-dark" id="">Submit</button>
+                <button type="submit" class="btn btn-dark" id="">{{isLoading ? 'Loading...':'Submit'}}</button>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@
                   <td>{{item.empSalary}}</td>
                   <td>
                     <div class="actions d-flex gap-2">
-                      <button class="btn btn-primary" (click)="updateEmployee(item)">Edit</button>
+                      <button class="btn btn-primary" (click)="editEmployee(item)">Edit</button>
                       <button class="btn btn-danger" (click)="deleteEmployee(item.empId)">Delete</button>
                     </div>
                   </td>
