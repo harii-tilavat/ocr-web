@@ -61,8 +61,7 @@
                            *ngIf="contactForm.controls['email'].dirty || contactForm.controls['email'].touched">
                         <span class="error" *ngIf="contactForm.controls['email'].hasError('required')">Email
                           required!</span>
-                        <span class="error" *ngIf="contactForm.controls['email'].hasError('pattern')">Enter valid
-                          email!</span>
+                        <span class="error" *ngIf="contactForm.controls['email'].hasError('pattern')">Enter valid email!</span>
                       </div>
                     </div>
                     <div class="form-group">

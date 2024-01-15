@@ -91,7 +91,7 @@ export class FileUploadComponent implements OnInit {
         this.toastrService.success(res.message,'Success');
       }, error: (err:HttpErrorResponse) => {
         console.log("Delete Error ==>> ", err);
-        this.toastrService.success(err.error.error,'Error');
+        this.toastrService.error(err.error.error,'Error');
       }
     })
   }
