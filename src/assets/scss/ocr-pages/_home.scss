@@ -24,6 +24,7 @@
         }
       }
       .file-input-body {
+        position: relative;
         .file-input-card {
           background-color: $primary-100;
           @include padding(15px);

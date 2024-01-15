@@ -15,7 +15,7 @@
           </div>
           <div class="file-input-body">
             <form action="" [formGroup]="fileForm">
-              <label for="file" class="d-block">
+              <label [for]="!isFileSelected?'file':null" class="d-block">
                 <input type="file" id="file" class="" (change)="fileSelected($event)" formControlName="file" hidden>
                 <div class="file-input-card card">
                   <div class="row g-5">
@@ -57,10 +57,13 @@
                 </div>
               </label>
             </form>
+            <div class="animation" *ngIf="uploadingMessage || true">
+              <app-file-loader></app-file-loader>
+            </div>
           </div>
-          <div class="testing">
+          <!-- <div class="testing">
             <button class="btn btn-dark" (click)="getFileData()">Test here</button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
