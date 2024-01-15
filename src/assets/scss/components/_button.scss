@@ -17,8 +17,21 @@
     letter-spacing: 0.32px;
   }
   &.btn-transparent {
-    @include button-size(0.8125rem, 0.9375rem, $font-size-base, $border-radius-base);
-    @include button-variant($primary-25, $transparent, $transparent, $transparent, #a4a4a4, #a4a4a4, $gray-900);
+    @include button-size(
+      0.8125rem,
+      0.9375rem,
+      $font-size-base,
+      $border-radius-base
+    );
+    @include button-variant(
+      $primary-25,
+      $transparent,
+      $transparent,
+      $transparent,
+      #a4a4a4,
+      #a4a4a4,
+      $gray-900
+    );
     opacity: 1;
   }
   &.btn-round {
@@ -155,7 +168,12 @@
       @include font-size(12px);
     }
     &.btn-transparent {
-      @include button-size(0.4125rem, 0.5375rem, $font-size-base, $border-radius-base);
+      @include button-size(
+        0.4125rem,
+        0.5375rem,
+        $font-size-base,
+        $border-radius-base
+      );
     }
     &.btn-with-icon {
       span {

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -16,9 +17,9 @@ export class FileUploadComponent implements OnInit {
   public subscription: Array<Subscription> = [];
   public filePreviewBase64!: string | null;
   public isFileSelected = false;
-  public uploadingMessage!: string | null;
+  public isUploading!: boolean;
   public files!: any;
-  public imageData!: string;
+  public fileText!: string;
   public documentData!: any;
 
   constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService) { }
@@ -26,46 +27,29 @@ export class FileUploadComponent implements OnInit {
     // this.getFileData();
   }
   getFileData(): any {
+    this.isUploading = true;
     this.fileUploadService.getFilesData().subscribe({
       next: (res) => {
-        console.log("Response ===>>> ", res.documents);
         // this.filePreviewBase64 = res.documents[0].img_url;
-        this.documentData = res.documents;
-        this.imageData = res.documents[0].ocr_text;
-        this.uploadingMessage = null;
+        if (res.documents.length) {
+          this.documentData = res.documents;
+          console.log("Response ===>>> ", this.documentData);
+          this.fileText = res.documents[0].ocr_text;
+        }
+        this.isUploading = false;
       }, error: (err) => {
-        console.log(err);
+        console.log("File getting error ==>> ", err);
+        debugger;
+        // this.removeSelectedFile();
       }
     })
   }
   fileSelected(event: Event): void {
     this.files = (event.target as HTMLInputElement).files;
+    console.log("Files ==>> ", this.files);
     if (this.files && this.files[0]) {
-      this.uploadingMessage = 'File uploading... ';
       this.convertFileToBase64(this.files[0]);
       this.isFileSelected = true;
-      this.toastrService.success('File uploading...', 'File');
-      const formData = new FormData();
-      formData.set("file", this.files[0]);
-      this.fileUploadService.uploadFile(formData).subscribe({
-        next: (res: any) => {
-          console.log("Response: ", res);
-          console.log("Uploading", this.uploadingMessage);
-          this.getFileData();
-        },
-        error: (err) => { }
-      })
-      // this.fileUploadService.uploadFile(formData).subscribe({
-      //   next: (res) => {
-      //     console.log(res);
-      //     this.toastrService.success(JSON.stringify(res));
-      //   },
-      //   error: (err) => {
-      //     console.log(err);
-      //     this.toastrService.error(err);
-      //   }
-      // });
-      // console.log(this.fileForm);
     }
   }
 
@@ -78,11 +62,31 @@ export class FileUploadComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
+  onUploadFile(): void {
+    console.log("Files ==>> ",this.files);
+    if (this.files && this.files[0]) {
+      this.toastrService.success('File uploading...', 'File');
+      this.isUploading = true;
+      const formData = new FormData();
+      formData.set("file", this.files[0]);
+      this.fileUploadService.uploadFile(formData).subscribe({
+        next: (res: any) => {
+          console.log("Response: ", res);
+          this.getFileData();
+        },
+        error: (err: HttpErrorResponse) => {
+          this.toastrService.error(err.error.error, 'Uploading error!');
+          console.log("File uploading error ==>> ", err);
+          this.removeSelectedFile();
+        }
+      })
+    }
+  }
   removeSelectedFile(): void {
     this.filePreviewBase64 = null;
     this.isFileSelected = false;
     this.files = [];
-    this.imageData = '';
-    this.uploadingMessage = '';
+    this.fileText = '';
+    this.isUploading = false;
   }
 }
