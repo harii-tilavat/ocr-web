@@ -21,8 +21,8 @@ $primary-400: #8b88ff;
   left: 4%;
   width: 10px;
   height: 90%;
-  background: $primary-500;
-  box-shadow: 0 0 50px 10px $primary-500;
+  background: $primary-400;
+  box-shadow: 0 0 50px 10px $primary-400;
   clip-path: inset(0);
   animation: x 1s ease-in-out infinite alternate, y 1s ease-in-out infinite;
 }
@@ -33,7 +33,7 @@ $primary-400: #8b88ff;
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: $primary-500;
+  background: $primary-400;
   position: relative;
   right: 4px;
 }
@@ -54,7 +54,7 @@ $primary-400: #8b88ff;
 .ocrloader:after,
 .ocrloader em:after,
 .ocrloader em:before {
-  border-color: $primary-500;
+  border-color: $primary-400;
   content: "";
   position: absolute;
   width: 45px;

@@ -1,76 +1,88 @@
 .home {
   @include padding(96px 0px);
   .main-section {
-    .file-input-content {
-      text-align: center;
-      display: flex;
-      flex-flow: column;
-      gap: 50px;
-      .file-input-header {
+    .file-upload-form{
+      .file-input-content {
+        text-align: center;
         display: flex;
         flex-flow: column;
-        gap: 10px;
-        .file-input-title {
-          span {
-            @include font-size(40px);
-            font-family: $inter-semibold;
-            .mark-title {
-              color: $primary-600;
-              font-family: $inter-bold;
+        gap: 50px;
+        .file-input-header {
+          display: flex;
+          flex-flow: column;
+          gap: 10px;
+          .file-input-title {
+            span {
+              @include font-size(40px);
+              font-family: $inter-semibold;
+              .mark-title {
+                color: $primary-600;
+                font-family: $inter-bold;
+              }
             }
           }
+          .file-input-description {
+          }
         }
-        .file-input-description {
+        .file-input-body {
+          position: relative;
+          .file-input-card {
+            background-color: $primary-100;
+            @include padding(15px);
+            .file-input-preview {
+              .file-preivew-image {
+                span {
+                  display: block;
+                  // height: 350px;
+                  height: auto;
+                  width: 100%;
+                }
+              }
+            }
+            .file-upload {
+              display: flex;
+              flex-flow: column;
+              width: 100%;
+              gap: 15px;
+              // align-items: flex-end;
+              .file-upload-button {
+                display: flex;
+                gap: 25px;
+                justify-content: flex-end;
+                .view-format{
+
+                }
+                .upload-button{
+
+                }
+                .remove-file-button{
+
+                }
+              }
+              .file-output {
+                // height: 100%;
+                width: 100%;
+                min-height: 350px;
+                max-height: 480px;
+                overflow: auto;
+                padding: 30px;
+                text-align: left;
+                &.file-selected{
+                  cursor: pointer;
+                }
+              }
+            }
+          }
         }
       }
-      .file-input-body {
-        position: relative;
-        .file-input-card {
-          background-color: $primary-100;
-          @include padding(15px);
-          .file-input-preview {
-            .file-preivew-image {
-              span {
-                display: block;
-                // height: 350px;
-                height: auto;
-                width: 100%;
-              }
-            }
-          }
-          .file-upload {
-            display: flex;
-            flex-flow: column;
-            width: 100%;
-            gap: 15px;
-            // align-items: flex-end;
-            .file-upload-button {
-              display: flex;
-              gap: 25px;
-              justify-content: flex-end;
-              .view-format{
-
-              }
-              .upload-button{
-
-              }
-              .remove-file-button{
-
-              }
-            }
-            .file-output {
-              // height: 100%;
-              width: 100%;
-              min-height: 350px;
-              max-height: 480px;
-              overflow: auto;
-              padding: 30px;
-              text-align: left;
-              &.file-selected{
-                cursor: pointer;
-              }
-            }
-          }
+    }
+    .docuemnt-data{
+      .image-thumbnail{
+        @include nugget-icon(70px);
+        span{
+          display: block;
+          height: 100%;
+          width: auto;
         }
       }
     }

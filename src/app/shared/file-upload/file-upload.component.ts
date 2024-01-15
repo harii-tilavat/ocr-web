@@ -20,27 +20,23 @@ export class FileUploadComponent implements OnInit {
   public isUploading!: boolean;
   public files!: any;
   public fileText!: string;
-  public documentData!: any;
+  public metaData: any = [];
+  public documents: any = [];
 
   constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService) { }
   ngOnInit(): void {
-    // this.getFileData();
+    this.getAllDocuments();
   }
-  getFileData(): any {
-    this.isUploading = true;
-    this.fileUploadService.getFilesData().subscribe({
+  getAllDocuments(): any {
+    this.fileUploadService.getAllDocuments().subscribe({
       next: (res) => {
-        // this.filePreviewBase64 = res.documents[0].img_url;
         if (res.documents.length) {
-          this.documentData = res.documents;
-          console.log("Response ===>>> ", this.documentData);
-          this.fileText = res.documents[0].ocr_text;
+          this.documents = res.documents;
+          console.log("Response ===>>> ", this.documents);
         }
-        this.isUploading = false;
       }, error: (err) => {
         console.log("File getting error ==>> ", err);
-        debugger;
-        // this.removeSelectedFile();
+        this.removeSelectedFile();
       }
     })
   }
@@ -63,16 +59,20 @@ export class FileUploadComponent implements OnInit {
     }
   }
   onUploadFile(): void {
-    console.log("Files ==>> ",this.files);
+
     if (this.files && this.files[0]) {
-      this.toastrService.success('File uploading...', 'File');
       this.isUploading = true;
+      this.toastrService.info('File uploading...', 'Wait');
       const formData = new FormData();
       formData.set("file", this.files[0]);
       this.fileUploadService.uploadFile(formData).subscribe({
         next: (res: any) => {
           console.log("Response: ", res);
-          this.getFileData();
+          this.fileText = res.ocr_text;
+          this.metaData = res.meta;
+          this.isUploading = false;
+          this.toastrService.success('Data fetched! ', 'Success');
+          this.getAllDocuments();
         },
         error: (err: HttpErrorResponse) => {
           this.toastrService.error(err.error.error, 'Uploading error!');
@@ -81,6 +81,19 @@ export class FileUploadComponent implements OnInit {
         }
       })
     }
+  }
+  onDeleteDocument(id: number): void {
+
+    this.fileUploadService.deleteDocument(id).subscribe({
+      next: (res: any) => {
+        console.log(res.message);
+        this.getAllDocuments();
+        this.toastrService.success(res.message,'Success');
+      }, error: (err:HttpErrorResponse) => {
+        console.log("Delete Error ==>> ", err);
+        this.toastrService.success(err.error.error,'Error');
+      }
+    })
   }
   removeSelectedFile(): void {
     this.filePreviewBase64 = null;

@@ -58,7 +58,7 @@
                             <span class="btn btn-primary" (click)="onUploadFile()">Upload</span>
                           </div>
                           <div class="remove-file-button" *ngIf="isFileSelected">
-                            <button class="btn btn-danger" (click)="removeSelectedFile()">Remove file</button>
+                            <button class="btn btn-primary-outline" (click)="removeSelectedFile()">Remove file</button>
                           </div>
                         </div>
                       </div>
@@ -70,12 +70,64 @@
             <div class="animation" *ngIf="isUploading">
               <app-file-loader></app-file-loader>
             </div>
+            <div class="test text-start" *ngIf="metaData && false">
+              <pre>{{metaData | json }}</pre>
+            </div>
           </div>
-          <!-- <div class="testing">
-            <button class="btn btn-dark" (click)="getFileData()">Test here</button>
-          </div> -->
         </div>
       </div>
     </div>
   </form>
+  <div class="docuemnt-data py-5">
+    <div class="emp-data-title">
+      <h4>Documents information</h4>
+      <hr>
+    </div>
+    <!-- <h1>Data</h1> -->
+    <ng-container *ngIf="documents.length; else noDocument">
+      <div class="table-responsive">
+        <table class="table ">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Image</th>
+              <th>Created_date</th>
+              <th>Category</th>
+              <th>Vendor</th>
+              <th>Invoice number</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of documents; let i=index">
+              <td>{{item.id}}</td>
+              <td>
+                <div class="image-thumbnail">
+                  <span>
+                    <img [src]="item.img_thumbnail_url" [alt]="item.img_file_name">
+                  </span>
+                </div>
+              </td>
+              <td>{{item.created_date ? item.created_date:'--'}}</td>
+              <td>{{item.category ? item.category:'--'}}</td>
+              <td>{{item.vendor.name ? item.vendor.name:'--'}}</td>
+              <td>{{item.invoice_number ? item.invoice_number : '--'}}</td>
+              <td>
+                <div class="delete-button">
+                  <button class="btn btn-outline-danger btn-xs" (click)="onDeleteDocument(item.id)">Delete</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
+    <ng-template #noDocument>
+      <tr>
+        <td>
+          <span>No Documents found!</span>
+        </td>
+      </tr>
+    </ng-template>
+  </div>
 </div>

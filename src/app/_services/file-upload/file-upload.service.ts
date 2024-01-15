@@ -9,21 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class FileUploadService {
   constructor(private baseProviderService: BaseProviderService, private http: HttpClient) { }
-
-  // uploadFile(file: FormData): Observable<any> {
-  //   return this.baseProviderService.makeUploadCall(`${environment.baseUrl}/uploads`, file)
-  //     .pipe(
-  //       map((res: any) => {
-  //         if (res.type === HttpEventType.UploadProgress) {
-  //           const uploading = Math.floor((100 * res.loaded) / res.total);
-  //           // uploading = uploading <= 100 ? uploading : uploading;
-  //           return { ...res, uploading: uploading }
-  //         } else {
-  //           return res;
-  //         }
-  //       })
-  //     );
-  // }
   uploadFile(file: FormData): Observable<any> {
     return this.baseProviderService.makePostCall(`${environment.apiUrl}`, file)
       .pipe(
@@ -38,12 +23,11 @@ export class FileUploadService {
         })
       );
   }
-  getFilesData(): Observable<any> {
-    // this.baseProviderService.addHeader('Accept','application/json');
-    // this.baseProviderService.addHeader('CLIENT-ID','vrfnyNiV2hYKLiMuT7NTpxLCVrXPgt9YCJWs6tl');
-    // this.baseProviderService.addHeader('Authorization','apikey jerryff81:57f6f447615b5c8d2cb9eb4107a0d572');
-    // return this.baseProviderService.makeGetCall(`${environment.apiUrl}/177897788`);
+  getAllDocuments(): Observable<any> {
     return this.baseProviderService.makeGetCall(`${environment.apiUrl}`);
+  }
+  deleteDocument(id:number){
+    return this.baseProviderService.makeDeleteCall(`${environment.apiUrl}/${id}`);
   }
   getEmployees(): Observable<any> {
     return this.baseProviderService.makeGetCall(`${environment.baseUrl}/users`);
