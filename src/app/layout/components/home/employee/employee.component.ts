@@ -19,10 +19,10 @@ export class EmployeeComponent implements OnInit {
   public editedEmployeeId!: string;
   public employeSub!: Observable<any>;
   public empForm: FormGroup = new FormGroup({
-    empName: new FormControl(null, [Validators.required]),
-    empLocation: new FormControl(null, [Validators.required]),
-    empPosition: new FormControl(null, [Validators.required]),
-    empSalary: new FormControl(null, [Validators.required]),
+    empName: new FormControl('Test', [Validators.required]),
+    empLocation: new FormControl('Surat', [Validators.required]),
+    empPosition: new FormControl('SDE', [Validators.required]),
+    empSalary: new FormControl('10000', [Validators.required]),
   })
   constructor(private employeeService: EmployeeService, private toastService: ToastrService, private ngbModel: NgbModal) { }
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class EmployeeComponent implements OnInit {
         this.resetForm();
       }, error: (err: HttpErrorResponse) => {
         console.log(err);
-        this.toastService.error(err.message ? err.message :'Something went wrong!', 'Error');
+        this.toastService.error(err.message ? err.message : 'Something went wrong!', 'Error');
         this.resetForm();
       }
     })
@@ -61,7 +61,7 @@ export class EmployeeComponent implements OnInit {
       next: (res) => {
         this.empData = res.data;
       }, error: (err) => {
-        console.log("get employee error ==>> ",err);
+        console.log("get employee error ==>> ", err);
       }
     })
   }
@@ -73,6 +73,7 @@ export class EmployeeComponent implements OnInit {
         this.getEmployess();
       },
       error: (err) => {
+        console.log("Error ==>> ", err);
         this.toastService.error(err.error.message, 'Error');
       }
     });
