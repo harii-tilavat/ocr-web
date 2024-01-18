@@ -62,6 +62,7 @@ export class EmployeeComponent implements OnInit {
         this.empData = res.data;
       }, error: (err) => {
         console.log("get employee error ==>> ", err);
+        this.toastService.error('Employee not getting!','Error');
       }
     })
   }

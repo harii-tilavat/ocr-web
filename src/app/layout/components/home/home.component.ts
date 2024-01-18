@@ -12,16 +12,7 @@ import { FileUploadService } from 'src/app/_services';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  public fileForm: FormGroup = new FormGroup({
-    file: new FormControl('', [Validators.required])
-  })
   public subscription: Array<Subscription> = [];
-  public progress!: number;
-  public filePreviewBase64!: string | null;
-  public isFileSelected = false;
-  public uploading!: number;
-  public files!: any;
-  public imageData!: string;
   constructor(private globalEventifier: GlobalEventifier, private fileUploadService: FileUploadService, private toastrService: ToastrService) {
   }
   ngOnInit(): void {

@@ -96,6 +96,7 @@
               <th>Category</th>
               <th>Vendor</th>
               <th>Invoice number</th>
+              <th>Invoice number</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -114,6 +115,7 @@
               <td>{{item.category ? item.category:'--'}}</td>
               <td>{{item.vendor.name ? item.vendor.name:'--'}}</td>
               <td>{{item.invoice_number ? item.invoice_number : '--'}}</td>
+              <td>{{item.document_type ? item.document_type : '--'}}</td>
               <td>
                 <div class="delete-button">
                   <button class="btn btn-outline-danger btn-xs" (click)="onDeleteDocument(item.id)">Delete</button>
