@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { DocumentModel, DocumentModelResponseModel } from 'src/app/_model';
 import { FileUploadService } from 'src/app/_services';
 
 @Component({
@@ -20,19 +21,21 @@ export class FileUploadComponent implements OnInit {
   public isUploading!: boolean;
   public files!: any;
   public fileText!: string;
-  public metaData: any = [];
-  public documents: any = [];
+  public documentList: Array<DocumentModel> = [];
+  public fileErrorMessage!: string | null;
+  private allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+  public maxFileSize: number = 5 * 1024 * 1024;
 
   constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService) { }
   ngOnInit(): void {
     this.getAllDocuments();
   }
-  getAllDocuments(): any {
+  getAllDocuments(): void {
     this.fileUploadService.getAllDocuments().subscribe({
       next: (res) => {
-        if (res.documents.length) {
-          this.documents = res.documents;
-          console.log("Response ===>>> ", this.documents);
+        if (res.data.length) {
+          this.documentList = res.data;
+          console.log("Response ===>>> ", this.documentList);
         }
       }, error: (err) => {
         console.log("File getting error ==>> ", err);
@@ -42,9 +45,16 @@ export class FileUploadComponent implements OnInit {
   }
   fileSelected(event: Event): void {
     this.files = (event.target as HTMLInputElement).files;
-    console.log("Files ==>> ", this.files);
+    console.log("Files ==>> ",);
+
     if (this.files && this.files[0]) {
-      this.convertFileToBase64(this.files[0]);
+      const file = this.files[0];
+      if (!this.validFile(file)) {
+        this.toastrService.error(this.fileErrorMessage || 'Something went wrong!', 'Error');
+        this.removeSelectedFile();
+        return;
+      }
+      this.convertFileToBase64(file);
       this.isFileSelected = true;
     }
   }
@@ -59,19 +69,16 @@ export class FileUploadComponent implements OnInit {
     }
   }
   onUploadFile(): void {
-
-    if (this.files && this.files[0]) {
+    if (this.isFileSelected) {
       this.isUploading = true;
       this.toastrService.info('File uploading...', 'Wait');
       const formData = new FormData();
       formData.set("file", this.files[0]);
       this.fileUploadService.uploadFile(formData).subscribe({
-        next: (res: any) => {
-          console.log("Response: ", res);
-          this.fileText = res.ocr_text;
-          this.metaData = res.meta;
+        next: (res: DocumentModelResponseModel) => {
+          this.fileText = res.data.ocr_text;
           this.isUploading = false;
-          this.toastrService.success('Data fetched! ', 'Success');
+          this.toastrService.success(res.message, 'Success');
           this.getAllDocuments();
         },
         error: (err: HttpErrorResponse) => {
@@ -82,18 +89,19 @@ export class FileUploadComponent implements OnInit {
       })
     }
   }
-  onDeleteDocument(id: number): void {
-
-    this.fileUploadService.deleteDocument(id).subscribe({
-      next: (res: any) => {
-        console.log(res.message);
-        this.getAllDocuments();
-        this.toastrService.success(res.message,'Success');
-      }, error: (err:HttpErrorResponse) => {
-        console.log("Delete Error ==>> ", err);
-        this.toastrService.error(err.error.error,'Error');
-      }
-    })
+  onDeleteDocument(id: string): void {
+    if (confirm('Are you sure to delete this ? ')) {
+      this.fileUploadService.deleteDocument(id).subscribe({
+        next: (res: any) => {
+          console.log(res.message);
+          this.toastrService.success(res.message, 'Success');
+          this.getAllDocuments();
+        }, error: (err: HttpErrorResponse) => {
+          console.log("Delete Error ==>> ", err);
+          this.toastrService.error(err.error.message, 'Error');
+        }
+      })
+    }
   }
   removeSelectedFile(): void {
     this.filePreviewBase64 = null;
@@ -101,5 +109,18 @@ export class FileUploadComponent implements OnInit {
     this.files = [];
     this.fileText = '';
     this.isUploading = false;
+    this.fileForm.reset();
+  }
+  private validFile(file: File): boolean {
+    this.fileErrorMessage = null;
+    if (!this.allowedMimeTypes.includes(file.type)) {
+      this.fileErrorMessage = 'Invalid file type. Please select a valid image or PDF file.';
+      return false;
+    }
+    if (file.size > this.maxFileSize) {
+      this.fileErrorMessage = `File size exceeds the allowed limit (${this.maxFileSize / 1024 / 1024} MB).`;
+      return false;
+    }
+    return true;
   }
 }

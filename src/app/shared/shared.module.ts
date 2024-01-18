@@ -19,6 +19,7 @@ import { ResourceListComponent } from './resources/resource-list/resource-list.c
 import { ResourceSearchComponent } from './resources/resource-search/resource-search.component';
 import { FileLoaderComponent } from './file-loader/file-loader.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { TableComponent } from './basic/table/table.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     ResourceSearchComponent,
     FileLoaderComponent,
     FileUploadComponent,
+    TableComponent,
   ],
   imports: [
     CommonModule,
