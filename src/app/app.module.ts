@@ -16,6 +16,7 @@ import { GoogleTagModule } from './google-tag/google-tag.module';
 import { BaseProviderService } from './_services/base-provider.service';
 import { OcrIntercepterService } from './_services';
 
+
 register();
 @NgModule({
   declarations: [
