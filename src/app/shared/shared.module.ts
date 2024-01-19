@@ -17,9 +17,10 @@ import { ResourceHeadingComponent } from './resources/resource-heading/resource-
 import { NewsLetterComponent } from './resources/news-letter/news-letter.component';
 import { ResourceListComponent } from './resources/resource-list/resource-list.component';
 import { ResourceSearchComponent } from './resources/resource-search/resource-search.component';
-import { FileLoaderComponent } from './file-loader/file-loader.component';
-import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FileLoaderComponent } from './ocr-components/file-loader/file-loader.component';
+import { FileUploadComponent } from './ocr-components/file-upload/file-upload.component';
 import { TableComponent } from './basic/table/table.component';
+import { FileViewComponent } from './ocr-components/file-upload/file-view/file-view.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { TableComponent } from './basic/table/table.component';
     FileLoaderComponent,
     FileUploadComponent,
     TableComponent,
+    FileViewComponent,
   ],
   imports: [
     CommonModule,
