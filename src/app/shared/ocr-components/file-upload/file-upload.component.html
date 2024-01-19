@@ -1,81 +1,84 @@
-<div class="file-upload-form">
-  <form action="">
-    <div class="form-group">
-      <div class="file-input-wrapper">
-        <div class="file-input-content">
-          <div class="file-input-header">
-            <div class="file-input-title">
-              <span>The world’s most powerful <span class="mark-title">free online OCR</span></span>
+<div class="file-upload-content">
+  <div class="file-upload-form">
+    <form action="">
+      <div class="form-group">
+        <div class="file-input-wrapper">
+          <div class="file-input-content">
+            <div class="file-input-header">
+              <div class="file-input-title">
+                <span>The world’s most powerful <span class="mark-title">free online OCR</span></span>
+              </div>
+              <div class="file-input-description">
+                <span>Thousands of developers convert images and PDFs to actionable text with Nanonets</span>
+              </div>
+              <div class="uplading">
+              </div>
             </div>
-            <div class="file-input-description">
-              <span>Thousands of developers convert images and PDFs to actionable text with Nanonets</span>
-            </div>
-            <div class="uplading">
-            </div>
-          </div>
-          <div class="file-input-body">
-            <form action="" [formGroup]="fileForm">
-              <label [for]="!isFileSelected?'file':null" class="d-block">
-                <input type="file" id="file" class="" (change)="fileSelected($event)" formControlName="file" hidden
-                  accept=".pdf, image/*">
-                <div class="file-input-card card">
-                  <div class="row g-5">
-                    <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                      <div class="file-input-preview">
-                        <div class="file-preivew-image">
-                          <span>
-                            <img [src]="filePreviewBase64?filePreviewBase64:'/assets/ocr-images/sample-file.png'"
-                              alt="sample-file.png">
-                          </span>
+            <div class="file-input-body">
+              <form action="" [formGroup]="fileForm">
+                <label [for]="!isFileSelected?'file':null" class="d-block">
+                  <input type="file" id="file" class="" (change)="fileSelected($event)" formControlName="file" hidden
+                    accept=".pdf, image/*">
+                  <div class="file-input-card card">
+                    <div class="row g-5">
+                      <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="file-input-preview">
+                          <div class="file-preivew-image">
+                            <span>
+                              <img [src]="filePreviewBase64?filePreviewBase64:'/assets/ocr-images/sample-file.png'"
+                                alt="sample-file.png">
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-xxl-9 col-xl-9 col-lg-8 col-md-6 col-sm-12">
-                      <div class="file-upload">
-                        <div class="file-output card" [contentEditable]="false"
-                          [ngClass]="{'file-selected': isFileSelected}">
-                          <ng-container *ngIf="!fileText; else showFileText">
-                            <span>
-                              {{isUploading ? 'File scanning...' : 'Text from your document will appear here.'}}
-                            </span>
-                          </ng-container>
-                          <ng-template #showFileText>
-                            <div class="image-data">
-                              <pre>{{ fileText }}</pre>
-                            </div>
-                          </ng-template>
-                        </div>
-                        <div class="file-upload-button">
-                          <div class="view-format" *ngIf="false">
-                            <div class="format-html">
-                              <button class="btn btn-dark">TEXT</button>
-                            </div>
-                            <div class="format-json">
-                              <button class="btn btn-dark">JSON</button>
-                            </div>
+                      <div class="col-xxl-9 col-xl-9 col-lg-8 col-md-6 col-sm-12">
+                        <div class="file-upload">
+                          <div class="file-output card" [contentEditable]="false"
+                            [ngClass]="{'file-selected': isFileSelected}">
+                            <ng-container *ngIf="!fileText; else showFileText">
+                              <span>
+                                {{isUploading ? 'File scanning...' : 'Text from your document will appear here.'}}
+                              </span>
+                            </ng-container>
+                            <ng-template #showFileText>
+                              <div class="image-data">
+                                <pre>{{ fileText }}</pre>
+                              </div>
+                            </ng-template>
                           </div>
-                          <div class="upload-button">
-                            <span class="btn btn-primary" (click)="onUploadFile()">Upload</span>
-                          </div>
-                          <div class="remove-file-button" *ngIf="isFileSelected">
-                            <button class="btn btn-primary-outline" (click)="removeSelectedFile()">Start again</button>
+                          <div class="file-upload-button">
+                            <div class="view-format" *ngIf="false">
+                              <div class="format-html">
+                                <button class="btn btn-dark">TEXT</button>
+                              </div>
+                              <div class="format-json">
+                                <button class="btn btn-dark">JSON</button>
+                              </div>
+                            </div>
+                            <div class="upload-button">
+                              <span class="btn btn-primary" (click)="onUploadFile()">Upload</span>
+                            </div>
+                            <div class="remove-file-button" *ngIf="isFileSelected">
+                              <button class="btn btn-primary-outline" (click)="removeSelectedFile()">Start
+                                again</button>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </label>
-            </form>
-            <div class="animation" *ngIf="isUploading">
-              <app-file-loader></app-file-loader>
+                </label>
+              </form>
+              <div class="animation" *ngIf="isUploading">
+                <app-file-loader></app-file-loader>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
-  <div class="docuemnt-data py-5">
+    </form>
+  </div>
+  <div class="docuemnt-data py-5" *ngIf="false">
     <div class="emp-data-title">
       <h4>Documents information</h4>
       <hr>
@@ -101,7 +104,8 @@
             <tr *ngFor="let item of documentList; let i=index">
               <td>{{i + 1}}</td> <!-- item.doc_id -->
               <!-- <td><button class="btn btn-primary-outline btn-xs">View</button></td> item.doc_id -->
-              <td>
+
+              <td style="cursor: pointer;" (click)="onViewFile()"> <!--adding temporary inline style-->
                 <div class="image-thumbnail">
                   <span>
                     <img [src]="'http://localhost:8000'+  item.image_url" [alt]="'image-not-found'">
@@ -131,5 +135,35 @@
         </td>
       </tr>
     </ng-template>
+  </div>
+  <div class="file-detail-model">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-6 col-6-12 col-6-12 col-6-12 col-sm-12">
+          <div class="file-viewer">
+            <div class="file-preview">
+              <h1>File Preiview</h1>
+            </div>
+            <div class="file-details">
+              <div class="card">
+                <h1>File details</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxl-6 col-6-12 col-6-12 col-6-12 col-sm-12">
+          <div class="file-viewer">
+            <div class="file-preview">
+              <h1>File Preiview</h1>
+            </div>
+            <div class="file-details">
+              <div class="card">
+                <h1>File details</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

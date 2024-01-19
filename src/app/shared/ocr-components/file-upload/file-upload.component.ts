@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { DocumentModel, DocumentModelResponseModel } from 'src/app/_model';
 import { FileUploadService } from 'src/app/_services';
+import { NgbModal } from '../../ng-modal';
+import { FileViewComponent } from './file-view/file-view.component';
 
 @Component({
   selector: 'app-file-upload',
@@ -26,7 +28,7 @@ export class FileUploadComponent implements OnInit {
   private allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
   public maxFileSize: number = 5 * 1024 * 1024;
 
-  constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService) { }
+  constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private ngbModel: NgbModal) { }
   ngOnInit(): void {
     this.getAllDocuments();
   }
@@ -110,6 +112,9 @@ export class FileUploadComponent implements OnInit {
     this.fileText = '';
     this.isUploading = false;
     this.fileForm.reset();
+  }
+  onViewFile(): void {
+    this.ngbModel.open(FileViewComponent, { scrollable: true, size: 'lg', fullscreen: 'xl' });
   }
   private validFile(file: File): boolean {
     this.fileErrorMessage = null;
