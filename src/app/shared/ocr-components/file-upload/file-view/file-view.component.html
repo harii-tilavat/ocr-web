@@ -1,0 +1,45 @@
+<div class="file-detail-model" *ngIf="true">
+  <div class="container">
+    <div class="row">
+      <div class="col-xxl-5 col-6-12 col-6-12 col-6-12 col-sm-12">
+        <div class="file-viewer">
+          <div class="file-preview">
+            <div class="file-preview-image">
+              <span>
+                <img [src]="modelData.image_url" alt="not-found">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xxl-7 col-6-12 col-6-12 col-6-12 col-sm-12">
+        <div class="file-details">
+          <div class="file-format">
+            <div class="file-format-button d-flex mb-4">
+              <button class="btn" [ngClass]="!isJson ?'btn-primary': 'btn-primary-outline'"
+                (click)="isJson = false && isActive = true ">TEXT</button>
+              <button class="btn  ms-3" [ngClass]="isJson ?'btn-primary': 'btn-primary-outline'"
+                (click)="isJson = true && isActive = true">JSON</button>
+            </div>
+          </div>
+          <div class="file-detail-card">
+            <div class="card">
+              <pre>{{isJson ? (modelData | json):modelData.ocr_text}}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="actions">
+              <div class="close-model">
+                <button class="btn btn-outline-danger">Close</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

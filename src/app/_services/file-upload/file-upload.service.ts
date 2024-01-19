@@ -41,4 +41,7 @@ export class FileUploadService {
   deleteDocument(id: string): Observable<any> {
     return this.baseProviderService.makeDeleteCall(`${environment.baseUrl}/docs/${id}`);
   }
+  downloadFile(id:string){
+    return this.baseProviderService.makeGetFile(`${environment.baseUrl}/download/${id}`,'blob');
+  }
 }

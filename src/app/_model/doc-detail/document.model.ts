@@ -10,7 +10,7 @@ export class DocumentModel {
   invoice_number!: any;
   ocr_text!: string;
 }
-export class DocumentModelResponseModel {
+export class DocumentResponseModel {
   data!: DocumentModel;
   message!: string;
 }

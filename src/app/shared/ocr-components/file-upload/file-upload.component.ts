@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { DocumentModel, DocumentModelResponseModel } from 'src/app/_model';
+import { DocumentModel, DocumentResponseModel } from 'src/app/_model';
 import { FileUploadService } from 'src/app/_services';
 import { NgbModal } from '../../ng-modal';
 import { FileViewComponent } from './file-view/file-view.component';
@@ -47,8 +47,6 @@ export class FileUploadComponent implements OnInit {
   }
   fileSelected(event: Event): void {
     this.files = (event.target as HTMLInputElement).files;
-    console.log("Files ==>> ",);
-
     if (this.files && this.files[0]) {
       const file = this.files[0];
       if (!this.validFile(file)) {
@@ -77,14 +75,14 @@ export class FileUploadComponent implements OnInit {
       const formData = new FormData();
       formData.set("file", this.files[0]);
       this.fileUploadService.uploadFile(formData).subscribe({
-        next: (res: DocumentModelResponseModel) => {
+        next: (res: DocumentResponseModel) => {
           this.fileText = res.data.ocr_text;
           this.isUploading = false;
           this.toastrService.success(res.message, 'Success');
           this.getAllDocuments();
         },
         error: (err: HttpErrorResponse) => {
-          this.toastrService.error(err.error.error, 'Uploading error!');
+          this.toastrService.error(err.error.message, 'Uploading error!');
           console.log("File uploading error ==>> ", err);
           this.removeSelectedFile();
         }
@@ -94,10 +92,9 @@ export class FileUploadComponent implements OnInit {
   onDeleteDocument(id: string): void {
     if (confirm('Are you sure to delete this ? ')) {
       this.fileUploadService.deleteDocument(id).subscribe({
-        next: (res: any) => {
-          console.log(res.message);
-          this.toastrService.success(res.message, 'Success');
+        next: (res: DocumentResponseModel) => {
           this.getAllDocuments();
+          this.toastrService.success(res.message, 'Success');
         }, error: (err: HttpErrorResponse) => {
           console.log("Delete Error ==>> ", err);
           this.toastrService.error(err.error.message, 'Error');
@@ -113,8 +110,25 @@ export class FileUploadComponent implements OnInit {
     this.isUploading = false;
     this.fileForm.reset();
   }
-  onViewFile(): void {
-    this.ngbModel.open(FileViewComponent, { scrollable: true, size: 'lg', fullscreen: 'xl' });
+  onViewFile(id: string): void {
+    this.fileUploadService.getDocumentById(id).subscribe({
+      next: (res: DocumentResponseModel) => {
+        const modelRef = this.ngbModel.open(FileViewComponent, { scrollable: true, size: 'xl', fullscreen: 'xl' });
+        modelRef.componentInstance.modelData = res.data;
+      },
+      error: (err) => {
+        this.toastrService.error('Something went wrong!', 'Error');
+      }
+    })
+  }
+  downloadFile(id: string): void {
+    this.fileUploadService.downloadFile(id).subscribe({
+      next: (res) => {
+        console.log("Response => ", res);
+      }, error: (err) => {
+        console.log("Downloading err => ", err);
+      }
+    })
   }
   private validFile(file: File): boolean {
     this.fileErrorMessage = null;

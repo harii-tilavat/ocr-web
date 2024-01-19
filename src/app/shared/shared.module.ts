@@ -21,7 +21,7 @@ import { FileLoaderComponent } from './ocr-components/file-loader/file-loader.co
 import { FileUploadComponent } from './ocr-components/file-upload/file-upload.component';
 import { TableComponent } from './basic/table/table.component';
 import { FileViewComponent } from './ocr-components/file-upload/file-view/file-view.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+// import { PdfViewerComponent, PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     IconsModule,
     PipesModule,
     DirectiveModule,
-    PdfViewerModule
   ],
   exports: [
     NavbarComponent,
