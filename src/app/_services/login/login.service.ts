@@ -12,7 +12,6 @@ export class LoginService {
   constructor(private baseProviderService: BaseProviderService) { }
 
   loginUser(userdata: any): Observable<any> {
-
     return this.baseProviderService.makePostCall(`${environment.baseUrl}/login`, userdata);
   }
 

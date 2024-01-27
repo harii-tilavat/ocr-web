@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/_services';
 import { AuthService } from 'src/app/_services/auth/auth.service';
@@ -15,7 +16,11 @@ export class LoginComponent implements OnInit {
     username: new FormControl<string | null>('hari', [Validators.required]),
     password: new FormControl<string | null>('1234', [Validators.required])
   });
-  constructor(private toastService: ToastrService, private loginService: LoginService, private auth: AuthService) { }
+  constructor(private toastService: ToastrService, private loginService: LoginService, private auth: AuthService, private router: Router) {
+    if (this.auth.isUserLoggedIn()) {
+      this.router.navigate(['/']);
+    }
+  }
   ngOnInit(): void {
   }
   onSubmit(): void {

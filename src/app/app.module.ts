@@ -15,8 +15,14 @@ import { GlobalEventifier } from './_eventifier';
 import { GoogleTagModule } from './google-tag/google-tag.module';
 import { BaseProviderService } from './_services/base-provider.service';
 import { OcrIntercepterService } from './_services';
-import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { JWT_OPTIONS, JwtModule } from 'src/package/jwt-token';
 
+export function jwtOptionsFactory() {
+  return {
+    tokenGetter: () => (localStorage.getItem('token') ? localStorage.getItem('token') : null),
+    userProfileGetter: () => (localStorage.getItem('userProfile') ? localStorage.getItem('userProfile') : null)
+  };
+}
 
 register();
 @NgModule({
@@ -31,8 +37,9 @@ register();
     SharedModule,
     IconsModule,
     JwtModule.forRoot({
-      config: {
-        tokenGetter: () => localStorage.getItem('token'),
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
       }
     }),
     GoogleTagModule.forRoot({
