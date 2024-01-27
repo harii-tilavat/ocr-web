@@ -1,25 +1,23 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OcrIntercepterService implements HttpInterceptor {
-
-  constructor() { }
+  public headerName = 'Authorization';
+  constructor(private auth: AuthService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // throw new Error('Method not implemented.');
-    if (req.url.includes(environment.apiUrl)) {
-      req = req.clone({
-        setHeaders: {
-          'Accept': 'application/json',
-          'CLIENT-ID': 'vrfnyNiV2hYKLiMuT7NTpxLCVrXPgt9YCJWs6tl',
-          'Authorization': 'apikey jerryff81:57f6f447615b5c8d2cb9eb4107a0d572'
-        },
-      })
-      return next.handle(req);
+    return from(this.handleAccess(req, next));
+  }
+  handleAccess(req: HttpRequest<any>, next: HttpHandler) {
+    const token = this.auth.token;
+    if (token) {
+      req = req.clone({ setHeaders: { [this.headerName]: token } });
     }
     return next.handle(req);
   }

@@ -123,7 +123,7 @@ export class FileUploadComponent implements OnInit {
         modelRef.componentInstance.modelData = res.data;
       },
       error: (err) => {
-        this.toastrService.error('Something went wrong!', 'Error');
+        this.toastrService.error(err && err.message ? err.message : 'Something went wrong!', 'Error');
       }
     })
   }

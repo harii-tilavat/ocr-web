@@ -32,7 +32,11 @@ export class LoginComponent implements OnInit {
     this.loginService.loginUser(this.loginForm.value).subscribe({
       next: (res: { token: string, message: string }) => {
         if (res && res.token) {
-          this.auth.login(res.token);
+          try {
+            this.auth.login(res.token);
+          } catch (error) {
+            console.log("ERRRO => ", error);
+          }
           this.toastService.success('Login successfully!', 'Success');
         }
         console.log("Respose => ", res);
