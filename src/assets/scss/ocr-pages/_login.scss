@@ -1,0 +1,30 @@
+.auth{
+  .login-box{
+    .login{
+      .login-header{
+        .login-title{
+          @include font-size(48px);
+          @include margin-bottom(12px);
+          font-family: $sora-semibold;
+          color: $gray-700;
+        }
+      }
+      .login-body{
+        .login-form-card{
+
+        }
+        .forgot-password{
+          @include margin-bottom(24px);
+          text-decoration: underline;
+          display: flex;
+          justify-content: flex-end;
+          color: $gray-700;
+          cursor: pointer;
+        }
+        .submit-button{
+
+        }
+      }
+    }
+  }
+}

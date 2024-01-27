@@ -21,3 +21,4 @@ export * from './blog/blog.model';
 export * from './review/review.model';
 export * from './employee/employee.model';
 export * from './doc-detail/document.model';
+export * from './user/user.model';

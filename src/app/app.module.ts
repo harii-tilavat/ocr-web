@@ -15,6 +15,7 @@ import { GlobalEventifier } from './_eventifier';
 import { GoogleTagModule } from './google-tag/google-tag.module';
 import { BaseProviderService } from './_services/base-provider.service';
 import { OcrIntercepterService } from './_services';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 
 register();
@@ -29,6 +30,11 @@ register();
     AppRoutingModule,
     SharedModule,
     IconsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('token'),
+      }
+    }),
     GoogleTagModule.forRoot({
       id: 'G-TQ12FM5HXS'
     }),

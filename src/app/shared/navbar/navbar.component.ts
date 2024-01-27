@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MenuListModel, menuConfig } from 'src/app/_model/menu-list/menu-list.model';
 import { GoogleTagConfigService } from 'src/app/google-tag/google-tag-config.service';
@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public isScrolled = false;
   public isOpen = false;
   public menuList: MenuListModel[] = menuConfig;
-  constructor(private googleTagConfigService: GoogleTagConfigService) { }
+  constructor(private googleTagConfigService: GoogleTagConfigService, private router: Router) { }
   ngOnInit(): void {
     if (!sessionStorage.getItem('isAnnounce')) {
       sessionStorage.setItem('isAnnounce', '1');
@@ -51,5 +51,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   @HostListener('window:resize', [])
   onWindowResize() {
     this.toggleHemburge();
+  }
+  loginUser(): void {
+    this.router.navigate(['/login']);
   }
 }

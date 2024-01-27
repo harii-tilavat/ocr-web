@@ -30,18 +30,18 @@ export class FileUploadService {
   //   return this.baseProviderService.makeDeleteCall(`${environment.apiUrl}/${id}`);
   // }
   uploadFile(formData: FormData): Observable<any> {
-    return this.baseProviderService.makePostCall(`${environment.baseUrl}/docs`, formData);
+    return this.baseProviderService.makePostCall(`${environment.baseUrl}/api/docs`, formData);
   }
   getAllDocuments(): Observable<any> {
-    return this.baseProviderService.makeGetCall(`${environment.baseUrl}/docs`);
+    return this.baseProviderService.makeGetCall(`${environment.baseUrl}/api/docs`);
   }
   getDocumentById(id: string): Observable<any> {
-    return this.baseProviderService.makeGetCall(`${environment.baseUrl}/docs/${id}`);
+    return this.baseProviderService.makeGetCall(`${environment.baseUrl}/api/docs/${id}`);
   }
   deleteDocument(id: string): Observable<any> {
-    return this.baseProviderService.makeDeleteCall(`${environment.baseUrl}/docs/${id}`);
+    return this.baseProviderService.makeDeleteCall(`${environment.baseUrl}/api/docs/${id}`);
   }
   downloadFile(id:string){
-    return this.baseProviderService.makeGetFile(`${environment.baseUrl}/download/${id}`,'blob');
+    return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`,'blob');
   }
 }

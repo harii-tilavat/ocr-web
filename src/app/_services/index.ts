@@ -4,3 +4,5 @@ export * from './cache-service/data-cache.service';
 export * from './file-upload/file-upload.service';
 export * from './employee/employee.service';
 export * from './intercepters/ocr-intercepter.service';
+export * from './login/login.service';
+export * from '../_guard/auth.guard';

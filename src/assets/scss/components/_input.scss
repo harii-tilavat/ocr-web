@@ -26,6 +26,8 @@ form {
     position: absolute;
     top: calc(100% + 6px);
     @include font-size(12px);
+    color: $red-500;
+    right: 0;
   }
   .control-label {
     font-family: $inter-medium;
