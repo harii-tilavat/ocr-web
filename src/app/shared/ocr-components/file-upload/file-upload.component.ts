@@ -22,6 +22,7 @@ export class FileUploadComponent implements OnInit {
   public isFileSelected = false;
   public isUploading!: boolean;
   public files!: any;
+  public isPdf = false;
   public fileText!: string;
   public documentList: Array<DocumentModel> = [];
   public fileErrorMessage!: string | null;
@@ -63,7 +64,11 @@ export class FileUploadComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.filePreviewBase64 = reader.result as string;
+        if (file.type.includes('pdf')) {
+          this.filePreviewBase64 = '/assets/ocr-images/placeholder-pdf.png';
+        } else {
+          this.filePreviewBase64 = reader.result as string;
+        }
       }
       reader.readAsDataURL(file);
     }
@@ -107,6 +112,7 @@ export class FileUploadComponent implements OnInit {
     this.isFileSelected = false;
     this.files = [];
     this.fileText = '';
+    this.isPdf = false;
     this.isUploading = false;
     this.fileForm.reset();
   }

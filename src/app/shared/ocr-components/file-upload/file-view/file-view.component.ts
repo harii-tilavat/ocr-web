@@ -9,10 +9,14 @@ import { environment } from 'src/environments/environment';
 })
 export class FileViewComponent implements OnInit {
   public modelData!: DocumentModel;
+  public isPdf = false;
   public isJson = false;
   public isActive = false;
   constructor() { }
   ngOnInit(): void {
     this.modelData.image_url = environment.baseUrl + this.modelData.image_url;
+    if (this.modelData.image_url.includes('.pdf')) {
+      this.isPdf = true;
+    }
   }
 }
