@@ -29,19 +29,18 @@
           </span>
         </div>
         <div id="hemburg-box" class="hemburg order-3 order-lg-2 d-lg-none " (click)="toggleButton()"
-             data-bs-toggle="collapse"
-             data-bs-target="#navbar-content"
-             aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+          data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content"
+          aria-expanded="false" aria-label="Toggle navigation">
           <span>
             <!-- <nugget-icon [name]="isOpen?'x-close':'hemburg'"  [stroke]="'#4F37E2'"></nugget-icon> -->
             <nugget-icon [name]="'hemburg'" [stroke]="'#4F37E2'"></nugget-icon>
           </span>
         </div>
         <div class="navbar-content order-4 order-lg-3 collapse navbar-collapse justify-content-center"
-             id="navbar-content">
+          id="navbar-content">
           <ul class="navbar-nav">
             <li class="nav-item" *ngFor="let item of menuList; let i=index"
-                [ngClass]="{'dropdown':item.subMenu.length!==0}">
+              [ngClass]="{'dropdown':item.subMenu.length!==0}">
               <div class="menu-item">
                 <ng-container *ngIf="item.subMenu.length; else routerlinkbox">
                   <div class="menu-title" [attr.data-bs-toggle]="'dropdown'">
@@ -56,10 +55,10 @@
                     <div class="container">
                       <div class="row">
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12"
-                             *ngFor="let subItem of item.subMenu">
+                          *ngFor="let subItem of item.subMenu">
                           <div class="dd-teams-card" [routerLink]="[item.routing, subItem.link]"
-                               routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
-                               (click)="toggleHemburge()">
+                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                            (click)="toggleHemburge()">
                             <div class="dd-teams-card-header">
                               <div class="dd-team-icon">
                                 <span>
@@ -83,7 +82,7 @@
                 </ng-container>
                 <ng-template #routerlinkbox>
                   <div class="menu-title" [routerLink]="item.routing" routerLinkActive="active"
-                       [routerLinkActiveOptions]="{exact:true}" (click)="toggleHemburge()">
+                    [routerLinkActiveOptions]="{exact:true}" (click)="toggleHemburge()">
                     <span class="nav-link">
                       {{item.title}}
                     </span>
@@ -95,9 +94,10 @@
         </div>
         <div class="order-2 order-lg-4 nav-buttons">
           <div class="nav-button d-none d-md-block">
-            <button type="button" class="btn btn-primary-outline " (click)="loginUser()">Login</button>
+            <button type="button" class="btn btn-primary-outline " (click)="loginUser()">{{isLoggedIn ?
+              'Logout':'Login'}}</button>
           </div>
-          <div class="nav-button">
+          <div class="nav-button" *ngIf="false">
             <button type="button" class="btn btn-primary " (click)="goToUdesk()">Try for free</button>
             <!-- [routerLink]="['/pricing']" -->
           </div>

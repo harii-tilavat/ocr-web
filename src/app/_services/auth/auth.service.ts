@@ -58,4 +58,8 @@ export class AuthService {
   isUserLoggedIn(): boolean {
     return this.helper.isTokenExpired();
   }
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 }

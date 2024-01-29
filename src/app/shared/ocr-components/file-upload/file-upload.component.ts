@@ -119,7 +119,7 @@ export class FileUploadComponent implements OnInit {
   onViewFile(id: string): void {
     this.fileUploadService.getDocumentById(id).subscribe({
       next: (res: DocumentResponseModel) => {
-        const modelRef = this.ngbModel.open(FileViewComponent, { scrollable: true, size: 'xl', fullscreen: 'xl' });
+        const modelRef = this.ngbModel.open(FileViewComponent, { scrollable: true, size: 'xl', fullscreen: 'xl', });
         modelRef.componentInstance.modelData = res.data;
       },
       error: (err) => {

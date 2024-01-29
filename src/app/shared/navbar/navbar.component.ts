@@ -11,6 +11,7 @@ import { GoogleTagConfigService } from 'src/app/google-tag/google-tag-config.ser
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   @Input() isNavWhite!: boolean;
+  @Input() isLoggedIn = false;
   public subscription: Array<Subscription> = [];
   public isAnnounce = sessionStorage.getItem('isAnnounce') ? (+(sessionStorage.getItem('isAnnounce') as string) === 0 ? false : true) : false;
   public isScrolled = false;
@@ -53,6 +54,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.toggleHemburge();
   }
   loginUser(): void {
-    this.router.navigate(['/login']);
+    if (this.isLoggedIn && confirm('Are you sure to logout ?')) {
+      localStorage.clear();
+      this.router.navigate(['/login']);
+    }
   }
 }

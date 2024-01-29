@@ -9,13 +9,13 @@ import { AuthService } from '../auth/auth.service';
 })
 export class OcrIntercepterService implements HttpInterceptor {
   public headerName = 'Authorization';
-  constructor(private auth: AuthService) { }
+  constructor(private authService: AuthService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // throw new Error('Method not implemented.');
     return from(this.handleAccess(req, next));
   }
   handleAccess(req: HttpRequest<any>, next: HttpHandler) {
-    const token = this.auth.token;
+    const token = this.authService.token;
     if (token) {
       req = req.clone({ setHeaders: { [this.headerName]: token } });
     }

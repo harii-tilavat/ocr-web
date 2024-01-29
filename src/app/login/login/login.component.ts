@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
     username: new FormControl<string | null>('hari', [Validators.required]),
     password: new FormControl<string | null>('1234', [Validators.required])
   });
-  constructor(private toastService: ToastrService, private loginService: LoginService, private auth: AuthService, private router: Router) {
-    if (this.auth.isUserLoggedIn()) {
+  constructor(private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router) {
+    if (this.authService.isUserLoggedIn()) {
       this.router.navigate(['/']);
     }
   }
@@ -27,23 +27,20 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.valid) {
       this.toastService.error('Please fill all fields!', 'Error');
       this.loginForm.markAllAsTouched();
+      return;
     }
 
     this.loginService.loginUser(this.loginForm.value).subscribe({
       next: (res: { token: string, message: string }) => {
         if (res && res.token) {
-          try {
-            this.auth.login(res.token);
-          } catch (error) {
-            console.log("ERRRO => ", error);
-          }
+          this.authService.login(res.token);
           this.toastService.success('Login successfully!', 'Success');
         }
         console.log("Respose => ", res);
       },
       error: (err: HttpErrorResponse) => {
         console.log("Error => ", err);
-        this.toastService.error(err.error.message, 'Try again!');
+        this.toastService.error(err && err.error && err.error.message ? err.error.message : 'Something went wrong', 'Try again!');
       }
     });
   }

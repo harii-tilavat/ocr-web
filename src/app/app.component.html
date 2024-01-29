@@ -1,5 +1,5 @@
-<div class="nav-bar" *ngIf="false">
-  <app-navbar [isNavWhite]="isNavWhite"></app-navbar>
+<div class="nav-bar" *ngIf="isLoggedIn">
+  <app-navbar [isNavWhite]="isNavWhite" [isLoggedIn]="isLoggedIn"></app-navbar>
 </div>
 <div id="curious-root" class="curious-container">
   <router-outlet></router-outlet>
