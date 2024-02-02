@@ -15,21 +15,16 @@ import { AuthService } from './_services/auth/auth.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   public title = 'nugget-web';
-  public isNavWhite = false;
+  public isNavWhite = true;
   public subscription: Array<Subscription> = [];
   public isLoggedIn = false;
 
   constructor(private readonly router: Router, private activatedRoute: ActivatedRoute, private readonly titleService: TitleService,
-    private nuggetService: NuggetService, private dataCacheService: DataCacheService, private globalEventifier: GlobalEventifier, private googleTagConfigService: GoogleTagConfigService, private authServiceL: AuthService) {
+    private nuggetService: NuggetService, private dataCacheService: DataCacheService, private globalEventifier: GlobalEventifier, private googleTagConfigService: GoogleTagConfigService, private authService: AuthService) {
 
   }
   ngOnInit(): void {
-    this.isLoggedIn = this.authServiceL.isUserLoggedIn();
-    this.authServiceL.currentUserSubject.subscribe({
-      next: (res: any) => {
-        console.log("Response ==>> ", res);
-      }
-    })
+    this.isLoggedIn = this.authService.isUserLoggedIn();
     const appTitle = this.titleService.getTitle();
     this.router.events.pipe(filter(event => event instanceof NavigationEnd), map(() => {
       let child = this.activatedRoute.firstChild as ActivatedRoute;

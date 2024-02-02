@@ -43,17 +43,6 @@ export class AuthService {
         return reject(error);
       }
     })
-    // this.setToken(token);
-    // console.log("Hello World");
-    // const newToken = this.jwthelper.tokenGetter();
-    // console.log("TOKEN ==>>", newToken);
-    // console.log("DECODED TOKEN ==>> ", this.jwthelper.decodeToken());
-
-    // console.log("DATE ", this.jwthelper.getTokenExpirationDate());
-    // // console.log("DATE ", this.jwthelper.);
-    // console.log("IS expired ? ", this.jwthelper.isTokenExpired());
-
-    // this.jwthelper.tokenGetter()
   }
   isUserLoggedIn(): boolean {
     return this.helper.isTokenExpired();

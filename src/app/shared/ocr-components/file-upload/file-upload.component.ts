@@ -87,7 +87,8 @@ export class FileUploadComponent implements OnInit {
           this.getAllDocuments();
         },
         error: (err: HttpErrorResponse) => {
-          this.toastrService.error(err.error.message, 'Uploading error!');
+          const errorMessage = err && err.error && err.error.message ? err.error.message :'Something went wrong!';
+          this.toastrService.error(errorMessage, 'Uploading error!');
           console.log("File uploading error ==>> ", err);
           this.removeSelectedFile();
         }

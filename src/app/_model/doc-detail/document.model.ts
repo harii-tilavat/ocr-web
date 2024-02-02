@@ -1,13 +1,13 @@
 export class DocumentModel {
   doc_id!: string;
   image_url!: string;
-  vendor_name!: any;
-  total!: any;
+  vendor_name!: string;
+  total!: number;
   category!: string;
   created_at!: string;
   updated_at!: string;
   document_type!: string;
-  invoice_number!: any;
+  invoice_number!: string;
   ocr_text!: string;
 }
 export class DocumentResponseModel {

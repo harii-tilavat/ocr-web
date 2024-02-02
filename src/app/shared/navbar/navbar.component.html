@@ -19,13 +19,13 @@
       </div>
     </div>
   </div>
-  <nav class="navbar navbar-expand-lg" [ngClass]="{'scrolled':isScrolled, 'navwhite':isNavWhite }">
+  <nav class="navbar navbar-expand-lg scrolled" > <!-- [ngClass]="{'scrolled':isScrolled,'navwhite':isNavWhite }"-->
     <div class="container">
       <div class="navbar-brand">
         <div class="brand order-1 order-lg-1">
           <span routerLink="/">
             <!-- <nugget-icon name="getcurious"></nugget-icon> -->
-            <nugget-icon name="uxr-userstudy-logo"></nugget-icon>
+            <nugget-icon name="ocr-web" [fill]="'#4F37E2'" [stroke]="'#4F37E2'"></nugget-icon>
           </span>
         </div>
         <div id="hemburg-box" class="hemburg order-3 order-lg-2 d-lg-none " (click)="toggleButton()"

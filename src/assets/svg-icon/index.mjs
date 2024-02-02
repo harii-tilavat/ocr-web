@@ -28,6 +28,8 @@ export * from './build/ng-jupiter.icon';
 export * from './build/ng-landing-page.icon';
 export * from './build/ng-link.icon';
 export * from './build/ng-nugget.icon';
+export * from './build/ng-ocr-web.icon';
+export * from './build/ng-ocr-web2.icon';
 export * from './build/ng-product-hunt.icon';
 export * from './build/ng-right_persona.icon';
 export * from './build/ng-right-arrow.icon';

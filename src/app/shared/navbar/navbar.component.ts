@@ -2,6 +2,7 @@ import { Component, HostListener, Input, OnChanges, OnDestroy, OnInit, SimpleCha
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MenuListModel, menuConfig } from 'src/app/_model/menu-list/menu-list.model';
+import { AuthService } from 'src/app/_services';
 import { GoogleTagConfigService } from 'src/app/google-tag/google-tag-config.service';
 
 @Component({
@@ -17,8 +18,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public isScrolled = false;
   public isOpen = false;
   public menuList: MenuListModel[] = menuConfig;
-  constructor(private googleTagConfigService: GoogleTagConfigService, private router: Router) { }
+  constructor(private googleTagConfigService: GoogleTagConfigService, private authService: AuthService) { }
   ngOnInit(): void {
+    // this.isLoggedIn = this.authService.isUserLoggedIn();
     if (!sessionStorage.getItem('isAnnounce')) {
       sessionStorage.setItem('isAnnounce', '1');
       this.isAnnounce = true;
@@ -55,8 +57,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   loginUser(): void {
     if (this.isLoggedIn && confirm('Are you sure to logout ?')) {
-      localStorage.clear();
-      this.router.navigate(['/login']);
+      this.authService.logout();
+      this.isLoggedIn = false;
     }
   }
 }
