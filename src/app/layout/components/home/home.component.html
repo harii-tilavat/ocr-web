@@ -147,22 +147,37 @@
   </div>
 </div> -->
 
-<div class="home">
-  <div class="main-section">
+<div class="ocr-home">
+  <div class="ocr-main-section">
     <div class="container">
       <div class="row">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="file-upload-selection">
             <app-file-upload></app-file-upload>
           </div>
-          <div class="file-data-viewer">
-
-          </div>
         </div>
       </div>
-      <div class="row" *ngIf="false">
+      <div class="row">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-          <app-employee></app-employee>
+          <div class="file-process-detail">
+            <div class="row">
+              <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12" *ngFor="let item of processDetail">
+                <div class="file-process-card">
+                  <div class="file-step-icon">
+                    <div class="step-icon">
+                      <span>{{item.id}}</span>
+                    </div>
+                  </div>
+                  <div class="file-detail-title">
+                    <span>{{item.title}}</span>
+                  </div>
+                  <div class="file-detail-desc">
+                    <span>{{item.desc}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

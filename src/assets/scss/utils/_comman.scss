@@ -3,7 +3,8 @@ body {
   padding: 0;
   font-family: $inter;
   font-weight: normal;
-  line-height: normal;
+  // line-height: normal;
+  line-height: 1.5;
   @include font-size($font-size-base);
   padding-top: 80px;
   overflow: auto;

@@ -21,6 +21,7 @@ import { FileLoaderComponent } from './ocr-components/file-loader/file-loader.co
 import { FileUploadComponent } from './ocr-components/file-upload/file-upload.component';
 import { TableComponent } from './basic/table/table.component';
 import { FileViewComponent } from './ocr-components/file-upload/file-view/file-view.component';
+import { FileDataComponent } from './ocr-components/file-data/file-data.component';
 // import { PdfViewerComponent, PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
@@ -41,6 +42,7 @@ import { FileViewComponent } from './ocr-components/file-upload/file-view/file-v
     FileUploadComponent,
     TableComponent,
     FileViewComponent,
+    FileDataComponent,
   ],
   imports: [
     CommonModule,
