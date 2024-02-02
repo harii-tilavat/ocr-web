@@ -165,7 +165,7 @@
                     <p class="mt-2">We quickly process your images using OCR, extracting text for immediate access. Get
                       your converted text within seconds for easy utilization.</p>
                   </div>
-                  <div class="get-started">
+                  <div class="get-started mt-3 mt-sm-4">
                     <div class="get-started-button">
                       <button class="btn btn-primary">Get started now</button>
                       <button class="btn btn-primary-outline ms-3">Get a demo</button>
@@ -221,6 +221,11 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="ocr-services" *ngIf="!false">
+    <div class="ocr-services-section" *ngFor="let item of keyPoints; let i=index" [ngClass]="{'bg-white':i%2===1}">
+      <app-slider-item [sliderItem]="item" [rtl]="i%2===1?'SLIDE_LEFT':'SLIDE_RIGHT'"></app-slider-item>
     </div>
   </div>
 </div>

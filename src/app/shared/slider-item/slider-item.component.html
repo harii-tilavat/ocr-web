@@ -6,7 +6,7 @@
           <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
             <div class="product-content">
               <div class="product-header">
-                <div class="product-title" [ngClass]="{'d-none d-lg-block':!isTeams}">
+                <div class="product-title" > <!--[ngClass]="{'d-none d-lg-block':!isTeams}"-->
                   <span>{{sliderItem.title}}</span>
                 </div>
               </div>
@@ -18,9 +18,9 @@
                   <span>{{sliderItem.desc}}</span>
                 </div>
               </div>
-              <div class="product-footer" *ngIf="sliderItem.action">
+              <div class="product-footer" > <!--*ngIf="sliderItem.action"-->
                 <div class="product-button action">
-                  <button type="button" class="btn btn-primary-outline btn-xl" (click)="goToUdesk()">Try for free</button>
+                  <button type="button" class="btn btn-primary-outline">Try for free</button>
                 </div>
               </div>
             </div>
@@ -35,7 +35,8 @@
               <div class="product-image">
                 <div class="nugget-image" [ngClass]="{'ms-lg-auto':rtl !== 'SLIDE_LEFT'}">
                   <span>
-                    <app-player-canvas [playerPath]="sliderItem.imagePath"></app-player-canvas>
+                    <!-- <app-player-canvas [playerPath]="sliderItem.imagePath"></app-player-canvas> -->
+                    <nugget-icon [name]="sliderItem.imagePath"> </nugget-icon>
                   </span>
                 </div>
               </div>
