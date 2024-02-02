@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { DocumentListComponent } from './components/document-list/document-list.component';
 
 // const routes: Routes = [
 //   { path: '', component: HomeComponent, data: { title: 'Get Curious Home' } },
@@ -20,6 +21,7 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'OcrWeb Home' } },
+  { path: 'docs', component: DocumentListComponent, data: { title: 'OcrWeb Documents' } },
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ]

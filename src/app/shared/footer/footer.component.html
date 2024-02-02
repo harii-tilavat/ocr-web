@@ -24,7 +24,7 @@
     </div>
     <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-6 col-sm-12">
       <div class="news-letter-content-footer">
-        <form [formGroup]="enquiryForm" (ngSubmit)="goToUdesk()" novalidate="novalidate" novalidate>
+        <form [formGroup]="enquiryForm" (ngSubmit)="emailSubmit()" novalidate="novalidate" novalidate>
           <div class="news-letter-footer">
             <div class="news-letter-input">
               <input id="newsletter" name="newsletter" formControlName="email" type="text" class="form-control"
@@ -33,7 +33,7 @@
             <div class="footer-button">
               <button type="submit" class="btn btn-primary">Try for free</button>
             </div>
-            <div class="social-icon-footer">
+            <div class="social-icon-footer" *ngIf="false">
               <ul class="social-icon-list">
                 <li>
                   <a href="https://www.linkedin.com/company/userstudy/" target="_blank" class="logo-icon">
@@ -51,21 +51,14 @@
         </form>
       </div>
     </div>
-    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-      <div class="footer-logo d-flex justify-content-start justify-content-md-end">
-        <span class="certificate-icon" *ngIf="false">
-          <nugget-icon name="aicpa"></nugget-icon>
-        </span>
-      </div>
-    </div>
   </div>
   <div class="row">
     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
       <div class="copyrights-content">
         <div class="copy-right">
-          <span>Copyright © {{year}} UXR Technologies Pvt. Ltd. | All Rights Reserved</span>
+          <span>Copyright © {{year}} OCRWeb Pvt. Ltd. | All Rights Reserved</span>
         </div>
-        <div class="copy-right">
+        <div class="copy-right" *ngIf="false">
           <div class="policy-links">
             <span class="policy-link" [routerLink]="['/terms','tnc']">T&C | </span>
             <span class="policy-link" [routerLink]="['/terms','tnc4p']">T&C for Participants | </span>

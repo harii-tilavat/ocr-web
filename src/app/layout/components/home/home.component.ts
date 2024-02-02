@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { GlobalEventifier } from 'src/app/_eventifier';
@@ -8,7 +9,8 @@ import { FileUploadService } from 'src/app/_services';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public processDetail: Array<DocumentProccessDetail> = [
@@ -35,5 +37,4 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
   }
-
 }

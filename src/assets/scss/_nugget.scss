@@ -7,8 +7,11 @@
 @import "./utils/index";
 @import "./components/index";
 // @import "./pages/index";
-@import "./ocr-pages/index" ;// OCR PAGES
+@import "./ocr-pages/index"; // OCR PAGES
 @import "./responsive";
+p {
+  line-height: 1.5;
+}
 pre {
   @include line-height(30px);
   // color: white;
@@ -67,7 +70,7 @@ pre {
   // #4ec9b0 formgroup
   // #808080 arrow html
 }
-img{
+img {
   height: 100%;
   width: 100%;
 }

@@ -152,16 +152,46 @@
     <div class="container">
       <div class="row">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-          <div class="file-upload-selection">
-            <app-file-upload></app-file-upload>
+          <div class="home-heading">
+            <div class="row g-5">
+              <div class="col-xxl-8 col-xl-8 col-lg-6 col-md-12 col-sm-12">
+                <div class="file-upload-header">
+                  <div class="file-input-title">
+                    <span>The world’s most powerful </span>
+                    <span class="mark-title">free online OCR</span>
+                  </div>
+                  <div class="file-input-description">
+                    <p>Thousands of developers convert images and PDFs to actionable text with us</p>
+                    <p class="mt-2">We quickly process your images using OCR, extracting text for immediate access. Get
+                      your converted text within seconds for easy utilization.</p>
+                  </div>
+                  <div class="get-started">
+                    <div class="get-started-button">
+                      <button class="btn btn-primary">Get started now</button>
+                      <button class="btn btn-primary-outline ms-3">Get a demo</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-12 col-sm-12">
+                <div class="home-page-right">
+                  <div class="home-page-image">
+                    <span>
+                      <nugget-icon [name]="'home-page-2'"></nugget-icon>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="file-process-detail">
-            <div class="row">
-              <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12" *ngFor="let item of processDetail">
+            <div class="row g-4">
+              <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4" *ngFor="let item of processDetail">
+                <hr>
                 <div class="file-process-card">
                   <div class="file-step-icon">
                     <div class="step-icon">
@@ -169,12 +199,23 @@
                     </div>
                   </div>
                   <div class="file-detail-title">
-                    <span>{{item.title}}</span>
+                    <p>{{item.title}}</p>
                   </div>
                   <div class="file-detail-desc">
-                    <span>{{item.desc}}</span>
+                    <p>{{item.desc}}</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="false">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="file-upload-body">
+            <div class="file-upload-form">
+              <div class="file-input-content">
+                <app-file-upload></app-file-upload>
               </div>
             </div>
           </div>

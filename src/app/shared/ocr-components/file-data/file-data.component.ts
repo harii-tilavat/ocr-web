@@ -15,6 +15,7 @@ export class FileDataComponent implements OnInit {
   public documentList: Array<DocumentModel> = [];
   constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private ngbModel: NgbModal) { }
   ngOnInit(): void {
+    this.getAllDocuments();
   }
   getAllDocuments(): void {
     this.fileUploadService.getAllDocuments().subscribe({

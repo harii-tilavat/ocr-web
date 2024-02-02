@@ -4,7 +4,7 @@ body {
   font-family: $inter;
   font-weight: normal;
   // line-height: normal;
-  line-height: 1.5;
+  line-height: 1.2;
   @include font-size($font-size-base);
   padding-top: 80px;
   overflow: auto;
@@ -27,7 +27,7 @@ span {
   width: 0;
   padding: 0;
 }
-.curious-container {
+.ocr-web-container {
   display: block;
   position: relative;
   min-height: 100vh;

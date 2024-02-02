@@ -17,8 +17,8 @@ export class FooterComponent implements OnInit, OnDestroy {
   public menuList: { title: string, routing: string }[] = [
     { title: 'About', routing: '/about' },
     { title: 'Contact', routing: '/contact' },
-    { title: 'Pricing', routing: '/pricing' },
-    { title: 'Blog', routing: '/blog' },
+    { title: 'Documents', routing: '/docs' },
+    // { title: 'OC', routing: '/blog' },
   ];
   // { title: 'Customer stories', routing: '/resources' },
   public enquiryForm: FormGroup = new FormGroup({
@@ -43,6 +43,9 @@ export class FooterComponent implements OnInit, OnDestroy {
     } else {
       this.enquiryForm.markAllAsTouched();
     }
+  }
+  emailSubmit(): void {
+
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

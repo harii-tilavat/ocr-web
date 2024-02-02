@@ -1,30 +1,44 @@
 .ocr-home {
   @include padding(96px 0px);
   .ocr-main-section {
-    .file-upload-selection {
+    .home-heading {
+      @include padding(24px 0px 48px 0px);
+      .file-upload-header {
+        display: flex;
+        flex-flow: column;
+        gap: 16px;
+        .file-input-title {
+          span {
+            @include font-size(56px);
+            font-family: $inter-semibold;
+            &.mark-title {
+              color: $primary-600;
+              font-family: $inter-bold;
+              display: block;
+            }
+          }
+        }
+        .file-input-description {
+        }
+      }
+      .home-page-right {
+        .home-page-image {
+          span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+    }
+    .file-upload-body {
       .file-upload-form {
         .file-input-content {
           text-align: center;
           display: flex;
           flex-flow: column;
           gap: 50px;
-          .file-input-header {
-            display: flex;
-            flex-flow: column;
-            gap: 10px;
-            .file-input-title {
-              span {
-                @include font-size(40px);
-                font-family: $inter-semibold;
-                .mark-title {
-                  color: $primary-600;
-                  font-family: $inter-bold;
-                }
-              }
-            }
-            .file-input-description {
-            }
-          }
+
           .file-input-body {
             position: relative;
             .file-input-card {
@@ -75,6 +89,7 @@
       }
     }
     .file-process-detail {
+      @include padding(48px 0px);
       .file-process-card {
         display: flex;
         flex-flow: column;
@@ -84,6 +99,8 @@
           border-radius: 50%;
           background-color: $primary-100;
           color: $primary-600;
+          @include font-size(12px);
+          font-family: $inter-semibold;
           .step-icon {
           }
         }
@@ -92,16 +109,6 @@
           font-family: $inter-semibold;
         }
         .file-detail-desc {
-        }
-      }
-    }
-    .docuemnt-data {
-      .image-thumbnail {
-        @include nugget-icon(70px);
-        span {
-          display: block;
-          height: 100%;
-          width: auto;
         }
       }
     }

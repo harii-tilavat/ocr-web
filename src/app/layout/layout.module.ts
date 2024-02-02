@@ -27,6 +27,7 @@ import { NuggetService } from 'src/app/_services';
 import { HttpClientModule } from '@angular/common/http';
 import { PipesModule } from '../_pipes/pipes.module';
 import { NgbModalModule } from '../shared/ng-modal';
+import { DocumentListComponent } from './components/document-list/document-list.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -46,6 +47,7 @@ import { NgbModalModule } from '../shared/ng-modal';
     ShareArticleComponent,
     PrivacyPolicyComponent,
     PrivacyDetailComponent,
+    DocumentListComponent,
   ],
   imports: [
     CommonModule,

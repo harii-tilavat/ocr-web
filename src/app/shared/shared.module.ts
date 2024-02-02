@@ -67,7 +67,8 @@ import { FileDataComponent } from './ocr-components/file-data/file-data.componen
     NewsLetterComponent,
     ResourceSearchComponent,
     FileLoaderComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    FileDataComponent
   ]
 })
 export class SharedModule { }

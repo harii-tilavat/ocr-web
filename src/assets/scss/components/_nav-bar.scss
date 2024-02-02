@@ -69,7 +69,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          @include nugget-icon(70px);
+          @include nugget-icon(90px);
           cursor: pointer;
         }
       }
@@ -200,7 +200,7 @@
       }
     }
     .navbar {
-      padding: 14px 0px;
+      // padding: 14px 0px;
       .navbar-brand {
         display: grid;
         grid-template-columns: 1fr 1fr 60px;
@@ -315,7 +315,7 @@
       }
     }
     .navbar {
-      padding: 10.5px 0;
+      // padding: 10.5px 0;
       .navbar-brand {
         .hemburg {
           cursor: pointer;
