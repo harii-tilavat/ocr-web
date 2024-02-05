@@ -148,7 +148,7 @@
 </div> -->
 
 <div class="ocr-home">
-  <div class="ocr-main-section">
+  <div class="ocr-main-section" *ngIf="!false">
     <div class="container">
       <div class="row">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -162,7 +162,7 @@
                   </div>
                   <div class="file-input-description">
                     <p>Thousands of developers convert images and PDFs to actionable text with us</p>
-                    <p class="mt-2">We quickly process your images using OCR, extracting text for immediate access. Get
+                    <p>We quickly process your images using OCR, extracting text for immediate access. Get
                       your converted text within seconds for easy utilization.</p>
                   </div>
                   <div class="get-started mt-3 mt-sm-4">
@@ -191,7 +191,6 @@
           <div class="file-process-detail">
             <div class="row g-4">
               <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4" *ngFor="let item of processDetail">
-                <hr>
                 <div class="file-process-card">
                   <div class="file-step-icon">
                     <div class="step-icon">
@@ -224,8 +223,50 @@
     </div>
   </div>
   <div class="ocr-services" *ngIf="!false">
-    <div class="ocr-services-section" *ngFor="let item of keyPoints; let i=index" [ngClass]="{'bg-white':i%2===1}">
+    <div class="ocr-services-section" *ngFor="let item of ocrServices; let i=index" [ngClass]="{'bg-white':i%2===1}">
       <app-slider-item [sliderItem]="item" [rtl]="i%2===1?'SLIDE_LEFT':'SLIDE_RIGHT'"></app-slider-item>
+    </div>
+  </div>
+  <div class="ocr-questions">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xxl-10 col-xl-10 col-lg-12 col-md-12 col-sm-12">
+          <div class="qna-section">
+            <div class="qna-header">
+              <div class="qna-title">
+                <span>Frequently Asked Questions</span>
+              </div>
+            </div>
+            <div class="qna-body">
+              <div class="qna-accordion accordion" *ngFor="let item of qnaList">
+                <div class="qna-accordion-item accordion-item">
+                  <div class="qna-accordion-header accordion-header collapsed" [id]="'heading-' + item.id"
+                    data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse-' + item.id">
+                    <div class="accordian-qna-title">
+                      <span>{{item.title}}</span>
+                    </div>
+                    <div class="accordian-qna-icon">
+                      <div class="arrow-icon-down">
+                        <span>
+                          <nugget-icon name="down-arrow"></nugget-icon>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div [id]="'collapse-' + item.id" class="accordion-collapse collapse"
+                    [attr.aria-labelledby]="'heading-' + item.id">
+                    <div class="qna-accordion-body accordion-body">
+                      <div class="qna-accordian-desc">
+                        <p>{{item.desc}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

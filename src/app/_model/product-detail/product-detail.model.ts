@@ -16,3 +16,11 @@ export class TeamsResponseModel {
   keyPoints: ProductDetailModel[] = [];
   helpList: FeaturedModel[] = [];
 }
+export class OcrServiceModel{
+  id!:number;
+  title!:string | null;
+  subTitle!:string;
+  desc!:string;
+  imagePath!:string;
+  subMenu!:ProductDetailModel[];
+}

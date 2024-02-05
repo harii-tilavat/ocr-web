@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { GlobalEventifier } from 'src/app/_eventifier';
-import { DocumentProccessDetail } from 'src/app/_model';
+import { DocumentProccessDetail, OcrServiceModel } from 'src/app/_model';
 import { FileUploadService } from 'src/app/_services';
 
 @Component({
@@ -13,12 +13,12 @@ import { FileUploadService } from 'src/app/_services';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  public keyPoints = [
+  public ocrServices: Array<OcrServiceModel> = [
     {
       id: 1,
       title: 'Upload Documents',
       subTitle: 'Effortless Document Management',
-      desc: 'Easily upload various document formats, including Word and Excel files. Streamline your workflow with our intuitive document upload feature.',
+      desc: 'Easily upload various document formats, including images and pdf files. Streamline your workflow with our intuitive document upload feature.',
       imagePath: 'home-page-1',
       subMenu: []
     },
@@ -55,6 +55,23 @@ export class HomeComponent implements OnInit, OnDestroy {
       title: 'Download text file',
       desc: 'Retrieve and view the organized data through a user-friendly interface with search and filter capabilities.'
     },
+  ];
+  public qnaList = [
+    {
+      id: 1,
+      title: 'How does OCRWeb work?',
+      desc: 'OCRWeb works on OCR technology that leverages AI & ML capabilities. OCR (Optical Character Recognition) is a popular technology that converts any kind of text or information stored in digital documents into machine-readable data. Hard copies and paper documents can thus be converted into computer-readable file formats, suitable for further editing or data processing.'
+    },
+    {
+      id: 2,
+      title: 'Why do I need OCR to extract data?',
+      desc: 'OCR (Optical Character Recognition) is essential for data extraction from documents as it automates the conversion of images or scanned documents into editable and searchable text.'
+    },
+    {
+      id: 3,
+      title: 'Is this tool free to use?',
+      desc: 'OCRWeb Online OCR is completely free-to-use. OCRWeb offers a range of capabilities to automate data capture from invoices, receipts, and other common document workflows.'
+    }
   ]
   public subscription: Array<Subscription> = [];
   constructor(private globalEventifier: GlobalEventifier, private fileUploadService: FileUploadService, private toastrService: ToastrService) {
