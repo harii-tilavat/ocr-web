@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       title: 'Upload Documents',
       subTitle: 'Effortless Document Management',
       desc: 'Easily upload various document formats, including images and pdf files. Streamline your workflow with our intuitive document upload feature.',
-      imagePath: 'home-page-1',
+      imagePath: 'home-page-3',
       subMenu: []
     },
     {
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       title: 'Access Processed Data',
       subTitle: 'Intuitive Data Retrieval',
       desc: 'Retrieve and view the organized data through a user-friendly interface with search and filter capabilities. Effortlessly find and analyze your processed data.',
-      imagePath: 'home-page-3',
+      imagePath: 'home-page-1',
       subMenu: []
     },
   ];
