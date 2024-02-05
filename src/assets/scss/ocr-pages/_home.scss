@@ -2,7 +2,7 @@
   .ocr-main-section {
     @include padding(96px 0px);
     .home-heading {
-      @include padding(24px 0px 48px 0px);
+      @include padding(24px 0px 96px 0px);
       .file-upload-header {
         display: flex;
         flex-flow: column;
@@ -30,63 +30,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-          }
-        }
-      }
-    }
-    .file-upload-body {
-      .file-upload-form {
-        .file-input-content {
-          text-align: center;
-          display: flex;
-          flex-flow: column;
-          gap: 50px;
-
-          .file-input-body {
-            position: relative;
-            .file-input-card {
-              background-color: $primary-100;
-              @include padding(15px);
-              .file-input-preview {
-                .file-preivew-image {
-                  span {
-                    display: block;
-                    // height: 350px;
-                    height: auto;
-                    width: 100%;
-                  }
-                }
-              }
-              .file-upload {
-                display: flex;
-                flex-flow: column;
-                width: 100%;
-                gap: 15px;
-                // align-items: flex-end;
-                .file-upload-button {
-                  display: flex;
-                  gap: 25px;
-                  justify-content: flex-end;
-                  .view-format {
-                  }
-                  .upload-button {
-                  }
-                  .remove-file-button {
-                  }
-                }
-                .file-output {
-                  width: 100%;
-                  min-height: 350px;
-                  max-height: 480px;
-                  overflow: auto;
-                  padding: 30px;
-                  text-align: left;
-                  &.file-selected {
-                    cursor: text;
-                  }
-                }
-              }
-            }
           }
         }
       }
@@ -129,7 +72,7 @@
     }
   }
   .ocr-services {
-    background-color: $primary-50;
+    // background-color: $primary-50;
     .product-title {
       @include font-size(20px);
       @include margin-bottom(32px);
@@ -209,61 +152,24 @@
         }
       }
     }
+    @include themed(){
+      background-color: t($ngt-warning);
+    }
   }
-  .ocr-questions {
-    @include padding(96px 0px);
-    .qna-section {
-      .qna-header {
-        text-align: center;
-        @include margin-bottom(48px);
-        .qna-title {
-          @include font-size(44px);
-          font-family: $sora-bold;
-        }
+}
+.ocr-questions {
+  @include padding(96px 0px);
+  .qna-section {
+    .qna-header {
+      text-align: center;
+      @include margin-bottom(48px);
+      .qna-title {
+        @include font-size(44px);
+        font-family: $sora-bold;
       }
-      .qna-body {
-        .qna-accordion {
-          .qna-accordion-item {
-            border: none;
-            border-radius: 0;
-            border-bottom: 1px solid $gray-300;
-            .qna-accordion-header {
-              display: flex;
-              justify-content: space-between;
-              @include padding(20px 20px 20px 0px);
+    }
+    .qna-body {
 
-              cursor: pointer;
-              user-select: none;
-              .accordian-qna-title {
-                @include font-size(20px);
-                font-family: $inter-medium;
-              }
-              .accordian-qna-icon {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .arrow-icon-down {
-                  @include nugget-icon(30px);
-                  transition: 0.2s;
-                }
-              }
-              &:not(.collapsed) {
-                .accordian-qna-icon {
-                  .arrow-icon-down {
-                    transform: rotate(-180deg);
-                  }
-                }
-              }
-            }
-            .qna-accordion-body {
-              @include padding(0 0 20px 0);
-              .qna-accordian-desc{
-                @include font-size(14px);
-              }
-            }
-          }
-        }
-      }
     }
   }
 }

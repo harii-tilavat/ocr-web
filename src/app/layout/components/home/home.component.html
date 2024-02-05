@@ -154,11 +154,11 @@
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="home-heading">
             <div class="row g-5">
-              <div class="col-xxl-8 col-xl-8 col-lg-6 col-md-12 col-sm-12">
+              <div class="col-xxl-7 col-xl-7 col-lg-6 col-md-12 col-sm-12">
                 <div class="file-upload-header">
                   <div class="file-input-title">
                     <span>The world’s most powerful </span>
-                    <span class="mark-title">free online OCR</span>
+                    <span class="ocr-mark-primary">free online OCR</span>
                   </div>
                   <div class="file-input-description">
                     <p>Thousands of developers convert images and PDFs to actionable text with us</p>
@@ -167,13 +167,13 @@
                   </div>
                   <div class="get-started mt-3 mt-sm-4">
                     <div class="get-started-button">
-                      <button class="btn btn-primary">Get started now</button>
-                      <button class="btn btn-primary-outline ms-3">Get a demo</button>
+                      <button class="btn btn-primary" (click)="startOCR()">Get started now</button>
+                      <button class="btn btn-primary-outline ms-3" (click)="startOCR()">Get a demo</button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-12 col-sm-12">
+              <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-12 col-sm-12">
                 <div class="home-page-right">
                   <div class="home-page-image">
                     <span>
@@ -186,7 +186,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="!false">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="file-process-detail">
             <div class="row g-4">
@@ -211,12 +211,10 @@
       </div>
       <div class="row" *ngIf="false">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-          <div class="file-upload-body">
-            <div class="file-upload-form">
-              <div class="file-input-content">
-                <app-file-upload></app-file-upload>
-              </div>
-            </div>
+          <!-- <div class="file-upload-body"> -->
+          <!-- <div class="file-upload-form"> -->
+          <div class="file-upload-section">
+            <app-file-upload></app-file-upload>
           </div>
         </div>
       </div>
@@ -227,46 +225,7 @@
       <app-slider-item [sliderItem]="item" [rtl]="i%2===1?'SLIDE_LEFT':'SLIDE_RIGHT'"></app-slider-item>
     </div>
   </div>
-  <div class="ocr-questions">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-xxl-9 col-xl-9 col-lg-10 col-md-12 col-sm-12">
-          <div class="qna-section">
-            <div class="qna-header">
-              <div class="qna-title">
-                <span>Frequently Asked Questions</span>
-              </div>
-            </div>
-            <div class="qna-body">
-              <div class="qna-accordion accordion" *ngFor="let item of qnaList">
-                <div class="qna-accordion-item accordion-item">
-                  <div class="qna-accordion-header accordion-header collapsed" [id]="'heading-' + item.id"
-                    data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse-' + item.id">
-                    <div class="accordian-qna-title">
-                      <span>{{item.title}}</span>
-                    </div>
-                    <div class="accordian-qna-icon">
-                      <div class="arrow-icon-down">
-                        <span>
-                          <nugget-icon name="down-arrow"></nugget-icon>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div [id]="'collapse-' + item.id" class="accordion-collapse collapse"
-                    [attr.aria-labelledby]="'heading-' + item.id">
-                    <div class="qna-accordion-body accordion-body">
-                      <div class="qna-accordian-desc">
-                        <p>{{item.desc}}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="ocr-qna">
+    <app-qna-accordian></app-qna-accordian>
   </div>
 </div>

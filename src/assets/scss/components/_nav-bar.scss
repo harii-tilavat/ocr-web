@@ -38,7 +38,6 @@
     text-align: center;
     padding: 0;
     transition: 0.2s;
-    background: $primary-50;
     &.scrolled {
       @include box-shadow-navbar();
     }
@@ -69,7 +68,8 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          @include nugget-icon(90px);
+          height: auto;
+          width: 110px;
           cursor: pointer;
         }
       }
@@ -179,6 +179,9 @@
     .nav-buttons {
       display: flex;
       gap: 24px;
+    }
+    @include themed() {
+      background-color: t($ngt-warning);
     }
   }
 }

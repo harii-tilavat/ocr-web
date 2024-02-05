@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableComponent } from './table.component';
+import { QnaAccordianComponent } from './qna-accordian.component';
 
-describe('TableComponent', () => {
-  let component: TableComponent;
-  let fixture: ComponentFixture<TableComponent>;
+describe('QnaAccordianComponent', () => {
+  let component: QnaAccordianComponent;
+  let fixture: ComponentFixture<QnaAccordianComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableComponent ]
+      declarations: [ QnaAccordianComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TableComponent);
+    fixture = TestBed.createComponent(QnaAccordianComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

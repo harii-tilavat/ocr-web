@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { DocumentListComponent } from './components/document-list/document-list.component';
+import { LayoutComponent } from './layout.component';
+import { FileUploadComponent } from '../shared/ocr-components/file-upload/file-upload.component';
+import { DocumentUploadComponent } from './components/document-upload/document-upload.component';
 
 // const routes: Routes = [
 //   { path: '', component: HomeComponent, data: { title: 'Get Curious Home' } },
@@ -20,8 +23,14 @@ import { DocumentListComponent } from './components/document-list/document-list.
 // ];
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, data: { title: 'OcrWeb Home' } },
-  { path: 'docs', component: DocumentListComponent, data: { title: 'OcrWeb Documents' } },
+  {
+    path: '', component: LayoutComponent, data: { title: 'OcrWeb Home' },
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'upload', component: DocumentUploadComponent, data: { title: 'OcrWeb File upload' } },
+      { path: 'docs', component: DocumentListComponent, data: { title: 'OcrWeb Documents' }, }, // canActivate:[AuthGuard]
+    ],
+  },
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ]

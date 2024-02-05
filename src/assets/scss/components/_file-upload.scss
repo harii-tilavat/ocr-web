@@ -1,9 +1,53 @@
-.docuemnt-data {
-  table {
-    th {
-      font-family: $inter-medium;
-      font-weight: normal;
-      text-transform: uppercase;
+.file-upload-form {
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  gap: 50px;
+
+  .file-input-body {
+    position: relative;
+    .file-input-card {
+      background-color: $primary-100;
+      @include padding(15px);
+      .file-input-preview {
+        .file-preivew-image {
+          span {
+            display: block;
+            // height: 350px;
+            height: auto;
+            width: 100%;
+          }
+        }
+      }
+      .file-upload {
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+        gap: 15px;
+        // align-items: flex-end;
+        .file-upload-button {
+          display: flex;
+          gap: 25px;
+          justify-content: flex-end;
+          .view-format {
+          }
+          .upload-button {
+          }
+          .remove-file-button {
+          }
+        }
+        .file-output {
+          width: 100%;
+          min-height: 350px;
+          max-height: 480px;
+          overflow: auto;
+          padding: 30px;
+          text-align: left;
+          &.file-selected {
+            cursor: text;
+          }
+        }
+      }
     }
   }
 }

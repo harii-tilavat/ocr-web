@@ -1,59 +1,65 @@
-<div class="file-input-wrapper">
-  <div class="file-input-body">
-    <form action="" [formGroup]="fileForm">
-      <label [for]="!isFileSelected?'file':null" class="d-block">
-        <input type="file" id="file" class="" (change)="fileSelected($event)" formControlName="file" hidden>
-        <div class="file-input-card card">
-          <div class="row g-5">
-            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12">
-              <div class="file-input-preview">
-                <div class="file-preivew-image">
-                  <span>
-                    <img [src]="filePreviewBase64?filePreviewBase64:'/assets/ocr-images/sample-file.png'"
-                      alt="sample-file.png">
-                  </span>
+<div class="file-upload-form">
+  <div class="file-input-wrapper">
+    <div class="file-input-body">
+      <form action="" [formGroup]="fileForm">
+        <label [for]="!isFileSelected?'file':null" class="d-block">
+          <input type="file" id="file" class="" (change)="fileSelected($event)" formControlName="file" hidden>
+          <div class="file-input-card card">
+            <div class="row g-5">
+              <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                <div class="file-input-preview">
+                  <div class="file-preivew-image">
+                    <span>
+                      <img [src]="filePreviewBase64?filePreviewBase64:'/assets/ocr-images/sample-file.png'"
+                        alt="sample-file.png">
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-xxl-9 col-xl-9 col-lg-8 col-md-6 col-sm-12">
-              <div class="file-upload">
-                <div class="file-output card" [contentEditable]="false" [ngClass]="{'file-selected': isFileSelected}">
-                  <ng-container *ngIf="!fileText; else showFileText">
-                    <span>
-                      {{isUploading ? 'File scanning...' : 'Text from your document will appear here.'}}
-                    </span>
-                  </ng-container>
-                  <ng-template #showFileText>
-                    <div class="image-data">
-                      <pre>{{ fileText }}</pre>
-                    </div>
-                  </ng-template>
-                </div>
-                <div class="file-upload-button">
-                  <div class="view-format" *ngIf="false">
-                    <div class="format-html">
-                      <button class="btn btn-dark">TEXT</button>
-                    </div>
-                    <div class="format-json">
-                      <button class="btn btn-dark">JSON</button>
-                    </div>
+              <div class="col-xxl-9 col-xl-9 col-lg-8 col-md-6 col-sm-12">
+                <div class="file-upload">
+                  <div class="file-output card" [contentEditable]="false" [ngClass]="{'file-selected': isFileSelected}">
+                    <ng-container *ngIf="!fileText; else showFileText">
+                      <span>
+                        {{isUploading ? 'File scanning...' : 'Text from your document will appear here.'}}
+                      </span>
+                    </ng-container>
+                    <ng-template #showFileText>
+                      <div class="image-data">
+                        <pre>{{ fileText }}</pre>
+                      </div>
+                    </ng-template>
                   </div>
-                  <div class="upload-button">
-                    <span class="btn btn-primary" (click)="onUploadFile()">Upload</span>
-                  </div>
-                  <div class="remove-file-button" *ngIf="isFileSelected">
-                    <button class="btn btn-primary-outline" (click)="removeSelectedFile()">Start
-                      again</button>
+                  <div class="file-upload-button">
+                    <div class="view-format" *ngIf="false">
+                      <div class="format-html">
+                        <button class="btn btn-dark">TEXT</button>
+                      </div>
+                      <div class="format-json">
+                        <button class="btn btn-dark">JSON</button>
+                      </div>
+                    </div>
+                    <div class="upload-button">
+                      <span class="btn btn-primary btn-with-icon" (click)="onUploadFile()">
+                        <span class="btn-icon">
+                          <nugget-icon name="upload-icon"></nugget-icon>
+                        </span>
+                        <span>{{true?'Upload':'Scan file'}}</span>
+                      </span>
+                    </div>
+                    <div class="remove-file-button" *ngIf="isFileSelected">
+                      <button class="btn btn-primary-outline" (click)="removeSelectedFile()">Start over</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </label>
-    </form>
-    <div class="animation" *ngIf="isUploading">
-      <app-file-loader></app-file-loader>
+        </label>
+      </form>
+      <div class="animation" *ngIf="isUploading">
+        <app-file-loader></app-file-loader>
+      </div>
     </div>
   </div>
 </div>

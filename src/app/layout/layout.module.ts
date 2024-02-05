@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PipesModule } from '../_pipes/pipes.module';
 import { NgbModalModule } from '../shared/ng-modal';
 import { DocumentListComponent } from './components/document-list/document-list.component';
+import { DocumentUploadComponent } from './components/document-upload/document-upload.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -48,6 +49,7 @@ import { DocumentListComponent } from './components/document-list/document-list.
     PrivacyPolicyComponent,
     PrivacyDetailComponent,
     DocumentListComponent,
+    DocumentUploadComponent,
   ],
   imports: [
     CommonModule,

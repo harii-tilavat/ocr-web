@@ -1,0 +1,59 @@
+<div class="document-section">
+  <div class="document-upload-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="document-wrapper">
+            <div class="container">
+              <div class="row g-5">
+                <div class="col-xxl-7 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                  <div class="document-heading-section">
+                    <div class="document-heading-title">
+                      <span><span class="ocr-mark-primary">Upload</span> your file here</span>
+                    </div>
+                    <div class="document-heading-desc">
+                      <p> Upload images or PDFs, and let OCRWeb do the work. It processes them quickly, giving you the
+                        extracted text in no time for easy access.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="document-info-list">
+                    <ul>
+                      <li class="document-info-item" *ngFor="let item of documentInfo">
+                        <div class="document-info-icon">
+                          <span>
+                            <nugget-icon name="check-true"></nugget-icon>
+                          </span>
+                        </div>
+                        <div class="document-info-title">
+                          <span>{{item.title}}</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-xxl-5 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                  <div class="document-image-section">
+                    <span>
+                      <nugget-icon [name]="'upload'"></nugget-icon>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <app-file-upload></app-file-upload>
+      </div>
+    </div>
+  </div>
+  <div class="ocr-qna">
+    <app-qna-accordian></app-qna-accordian>
+  </div>
+</div>

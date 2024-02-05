@@ -48,6 +48,8 @@ export * from './build/ng-toast-info.icon';
 export * from './build/ng-toast-success.icon';
 export * from './build/ng-toast-warning.icon';
 export * from './build/ng-transparent_recruitment.icon';
+export * from './build/ng-upload-icon.icon';
+export * from './build/ng-upload.icon';
 export * from './build/ng-uxr-userstudy-logo.icon';
 export * from './build/ng-x-close.icon';
 export * from './build/ng-anshul.icon';
