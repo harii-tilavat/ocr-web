@@ -1,4 +1,5 @@
 $bg-color: "bg-color";
+$bg-color-light: "bg-color-light";
 $text-color: "text-color";
 $dark-black: "dark-black";
 // input prop
@@ -20,10 +21,12 @@ $switch-color: "switch-color";
 $themes: (
   light: (
     bg-color: $primary-25,
+    // bg-color-light:$primary-50,
+    bg-color-light:$yellow-25,
     text-color: $gray-900,
     input-border: $primary-200,
     input-control-label: $gray-700,
-    ngt-warning: $yellow-25,
+    ngt-warning: $yellow-700,
     // ngt-warning: $primary-50,
     ngt-danger: $red-600,
     ngt-inverse: $primary-25,
@@ -35,6 +38,7 @@ $themes: (
   ),
   dark: (
     bg-color: $gray-900,
+    bg-color-light:$primary-50,
     text-color: $primary-25,
     input-border: $gray-200,
     input-control-label: $gray-700,

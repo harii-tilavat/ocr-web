@@ -15,9 +15,11 @@ export class FooterComponent implements OnInit, OnDestroy {
   public subscription: Array<Subscription> = [];
   public year = new Date().getFullYear();
   public menuList: { title: string, routing: string }[] = [
+    { title: 'Home', routing: '/' },
     { title: 'About', routing: '/about' },
     { title: 'Contact', routing: '/contact' },
-    { title: 'Documents', routing: '/docs' },
+    { title: 'Docs', routing: '/docs' },
+    { title: 'Start OCR', routing: '/upload' },
     // { title: 'OC', routing: '/blog' },
   ];
   // { title: 'Customer stories', routing: '/resources' },

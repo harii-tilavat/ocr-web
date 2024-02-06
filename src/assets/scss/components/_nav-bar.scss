@@ -181,7 +181,8 @@
       gap: 24px;
     }
     @include themed() {
-      background-color: t($ngt-warning);
+      // background-color: t($bg-color);
+      background-color: t($bg-color-light);
     }
   }
 }

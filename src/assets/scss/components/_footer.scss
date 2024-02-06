@@ -6,38 +6,44 @@
     display: flex;
     flex-flow: column;
     gap: 16px;
-    .nugget-logo {
-      span {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 70px;
-        width: auto;
-        cursor: pointer;
+    .footer-heading {
+      display: flex;
+      flex-flow: column;
+      align-items: flex-start;
+      gap: 30px;
+      .nugget-logo {
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 70px;
+          width: auto;
+          cursor: pointer;
+        }
+      }
+      .footer-title {
+        @include font-size(32px);
+        color: $primary-600;
+        font-family: $inter-bold;
+        @include line-height(30px);
       }
     }
-    .footer-title {
-      @include font-size(20px);
-      color: $primary-600;
-      font-family: $inter-semibold;
-      @include line-height(30px);
-    }
-  }
-  .footer-content {
-    // @include margin-bottom(60px);
-    .footer-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      row-gap: 24px;
-      // padding: 8px 0px;
-      color: $gray-800;
-      @include font-size(18px);
-      .footer-list-item {
-        cursor: pointer;
-        @include line-height(27px);
+    .footer-content {
+      @include margin-top(32px);
+      .footer-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 24px;
+        // padding: 8px 0px;
+        color: $gray-800;
+        @include font-size(18px);
+        .footer-list-item {
+          cursor: pointer;
+          @include line-height(27px);
+        }
       }
     }
   }
@@ -45,21 +51,21 @@
     .news-letter-footer {
       display: flex;
       flex-flow: column;
-      .news-letter-input{
-
+      align-items: flex-start;
+      .news-letter-input {
       }
-      .footer-button{
+      .footer-button {
         @include margin(16px 0px 24px 0px);
       }
-      .social-icon-footer{
-        .social-icon-list{
+      .social-icon-footer {
+        .social-icon-list {
         }
       }
     }
   }
   .footer-logo {
     @include margin(16px 0px 32px 0px);
-    .certificate-icon{
+    .certificate-icon {
       @include nugget-icon(48px);
     }
   }
@@ -80,8 +86,8 @@
       }
     }
   }
-  @include themed(){
-    background-color: t($ngt-warning);
+  @include themed() {
+    background-color: t($bg-color-light);
   }
 }
 @include media-breakpoint-down(md) {
@@ -111,7 +117,7 @@
     }
     .news-letter-content-footer {
       .news-letter-footer {
-        .footer-button{
+        .footer-button {
           margin: 1rem 0;
         }
       }
