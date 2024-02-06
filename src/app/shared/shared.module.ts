@@ -19,8 +19,9 @@ import { ResourceListComponent } from './resources/resource-list/resource-list.c
 import { ResourceSearchComponent } from './resources/resource-search/resource-search.component';
 import { FileLoaderComponent } from './ocr-components/file-loader/file-loader.component';
 import { FileUploadComponent } from './ocr-components/file-upload/file-upload.component';
-import { TableComponent } from './basic/table/table.component';
 import { FileViewComponent } from './ocr-components/file-upload/file-view/file-view.component';
+import { FileDataComponent } from './ocr-components/file-data/file-data.component';
+import { QnaAccordianComponent } from './ocr-components/qna-accordian/qna-accordian.component';
 // import { PdfViewerComponent, PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
@@ -39,8 +40,9 @@ import { FileViewComponent } from './ocr-components/file-upload/file-view/file-v
     ResourceSearchComponent,
     FileLoaderComponent,
     FileUploadComponent,
-    TableComponent,
     FileViewComponent,
+    FileDataComponent,
+    QnaAccordianComponent,
   ],
   imports: [
     CommonModule,
@@ -65,7 +67,9 @@ import { FileViewComponent } from './ocr-components/file-upload/file-view/file-v
     NewsLetterComponent,
     ResourceSearchComponent,
     FileLoaderComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    FileDataComponent,
+    QnaAccordianComponent,
   ]
 })
 export class SharedModule { }

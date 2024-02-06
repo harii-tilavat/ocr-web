@@ -24,28 +24,16 @@ export class FileUploadComponent implements OnInit {
   public files!: any;
   public isPdf = false;
   public fileText!: string;
-  public documentList: Array<DocumentModel> = [];
+
   public fileErrorMessage!: string | null;
   private allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
   public maxFileSize: number = 5 * 1024 * 1024;
 
   constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private ngbModel: NgbModal) { }
   ngOnInit(): void {
-    this.getAllDocuments();
+
   }
-  getAllDocuments(): void {
-    this.fileUploadService.getAllDocuments().subscribe({
-      next: (res) => {
-        if (res.data.length) {
-          this.documentList = res.data;
-          console.log("Response ===>>> ", this.documentList);
-        }
-      }, error: (err) => {
-        console.log("File getting error ==>> ", err);
-        this.removeSelectedFile();
-      }
-    })
-  }
+
   fileSelected(event: Event): void {
     this.files = (event.target as HTMLInputElement).files;
     if (this.files && this.files[0]) {
@@ -59,7 +47,6 @@ export class FileUploadComponent implements OnInit {
       this.isFileSelected = true;
     }
   }
-
   convertFileToBase64(file: File): void {
     if (file) {
       const reader = new FileReader();
@@ -84,26 +71,12 @@ export class FileUploadComponent implements OnInit {
           this.fileText = res.data.ocr_text;
           this.isUploading = false;
           this.toastrService.success(res.message, 'Success');
-          this.getAllDocuments();
         },
         error: (err: HttpErrorResponse) => {
           const errorMessage = err && err.error && err.error.message ? err.error.message :'Something went wrong!';
           this.toastrService.error(errorMessage, 'Uploading error!');
           console.log("File uploading error ==>> ", err);
           this.removeSelectedFile();
-        }
-      })
-    }
-  }
-  onDeleteDocument(id: string): void {
-    if (confirm('Are you sure to delete this ? ')) {
-      this.fileUploadService.deleteDocument(id).subscribe({
-        next: (res: DocumentResponseModel) => {
-          this.getAllDocuments();
-          this.toastrService.success(res.message, 'Success');
-        }, error: (err: HttpErrorResponse) => {
-          console.log("Delete Error ==>> ", err);
-          this.toastrService.error(err.error.message, 'Error');
         }
       })
     }
@@ -116,26 +89,6 @@ export class FileUploadComponent implements OnInit {
     this.isPdf = false;
     this.isUploading = false;
     this.fileForm.reset();
-  }
-  onViewFile(id: string): void {
-    this.fileUploadService.getDocumentById(id).subscribe({
-      next: (res: DocumentResponseModel) => {
-        const modelRef = this.ngbModel.open(FileViewComponent, { scrollable: true, size: 'xl', fullscreen: 'xl', });
-        modelRef.componentInstance.modelData = res.data;
-      },
-      error: (err) => {
-        this.toastrService.error(err && err.message ? err.message : 'Something went wrong!', 'Error');
-      }
-    })
-  }
-  downloadFile(id: string): void {
-    this.fileUploadService.downloadFile(id).subscribe({
-      next: (res) => {
-        console.log("Response => ", res);
-      }, error: (err) => {
-        console.log("Downloading err => ", err);
-      }
-    })
   }
   private validFile(file: File): boolean {
     this.fileErrorMessage = null;

@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public isScrolled = false;
   public isOpen = false;
   public menuList: MenuListModel[] = menuConfig;
-  constructor(private googleTagConfigService: GoogleTagConfigService, private authService: AuthService) { }
+  constructor(private googleTagConfigService: GoogleTagConfigService, private authService: AuthService, private router: Router) { }
   ngOnInit(): void {
     // this.isLoggedIn = this.authService.isUserLoggedIn();
     if (!sessionStorage.getItem('isAnnounce')) {
@@ -56,6 +56,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.toggleHemburge();
   }
   loginUser(): void {
+    this.router.navigate(['/login']);
     if (this.isLoggedIn && confirm('Are you sure to logout ?')) {
       this.authService.logout();
       this.isLoggedIn = false;

@@ -147,24 +147,85 @@
   </div>
 </div> -->
 
-<div class="home">
-  <div class="main-section">
+<div class="ocr-home">
+  <div class="ocr-main-section" *ngIf="!false">
     <div class="container">
       <div class="row">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-          <div class="file-upload-selection">
-            <app-file-upload></app-file-upload>
+          <div class="home-heading">
+            <div class="row g-5">
+              <div class="col-xxl-7 col-xl-7 col-lg-6 col-md-12 col-sm-12">
+                <div class="file-upload-header">
+                  <div class="file-input-title">
+                    <span>The world’s most powerful </span>
+                    <span class="ocr-mark-primary">free online OCR</span>
+                  </div>
+                  <div class="file-input-description">
+                    <p>Thousands of developers convert images and PDFs to actionable text with us</p>
+                    <p>We quickly process your images using OCR, extracting text for immediate access. Get
+                      your converted text within seconds for easy utilization.</p>
+                  </div>
+                  <div class="get-started mt-3 mt-sm-4">
+                    <div class="get-started-button">
+                      <button class="btn btn-primary" (click)="startOCR()">Get started now</button>
+                      <button class="btn btn-primary-outline ms-3" (click)="startOCR()">Get a demo</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-12 col-sm-12">
+                <div class="home-page-right">
+                  <div class="home-page-image">
+                    <span>
+                      <nugget-icon [name]="'home-page-2'"></nugget-icon>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="file-data-viewer">
-
+        </div>
+      </div>
+      <div class="row" *ngIf="!false">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="file-process-detail">
+            <div class="row g-4">
+              <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4" *ngFor="let item of processDetail">
+                <div class="file-process-card">
+                  <div class="file-step-icon">
+                    <div class="step-icon">
+                      <span>{{item.id}}</span>
+                    </div>
+                  </div>
+                  <div class="file-detail-title">
+                    <p>{{item.title}}</p>
+                  </div>
+                  <div class="file-detail-desc">
+                    <p>{{item.desc}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="row" *ngIf="false">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-          <app-employee></app-employee>
+          <!-- <div class="file-upload-body"> -->
+          <!-- <div class="file-upload-form"> -->
+          <div class="file-upload-section">
+            <app-file-upload></app-file-upload>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="ocr-services" *ngIf="!false">
+    <div class="ocr-services-section" *ngFor="let item of ocrServices; let i=index" [ngClass]="{'bg-white':i%2===1}">
+      <app-slider-item [sliderItem]="item" [rtl]="i%2===1?'SLIDE_LEFT':'SLIDE_RIGHT'"></app-slider-item>
+    </div>
+  </div>
+  <div class="ocr-qna">
+    <app-qna-accordian></app-qna-accordian>
   </div>
 </div>

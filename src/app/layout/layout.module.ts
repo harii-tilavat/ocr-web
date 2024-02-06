@@ -26,9 +26,9 @@ import { DirectiveModule } from '../_directive/directive.module';
 import { NuggetService } from 'src/app/_services';
 import { HttpClientModule } from '@angular/common/http';
 import { PipesModule } from '../_pipes/pipes.module';
-import { ReviewComponent } from './components/home/review/review.component';
 import { NgbModalModule } from '../shared/ng-modal';
-import { EmployeeComponent } from './components/home/employee/employee.component';
+import { DocumentListComponent } from './components/document-list/document-list.component';
+import { DocumentUploadComponent } from './components/document-upload/document-upload.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -48,8 +48,8 @@ import { EmployeeComponent } from './components/home/employee/employee.component
     ShareArticleComponent,
     PrivacyPolicyComponent,
     PrivacyDetailComponent,
-    ReviewComponent,
-    EmployeeComponent,
+    DocumentListComponent,
+    DocumentUploadComponent,
   ],
   imports: [
     CommonModule,

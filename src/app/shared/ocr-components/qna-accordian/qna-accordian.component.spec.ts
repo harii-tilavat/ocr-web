@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmployeeComponent } from './employee.component';
+import { QnaAccordianComponent } from './qna-accordian.component';
 
-describe('EmployeeComponent', () => {
-  let component: EmployeeComponent;
-  let fixture: ComponentFixture<EmployeeComponent>;
+describe('QnaAccordianComponent', () => {
+  let component: QnaAccordianComponent;
+  let fixture: ComponentFixture<QnaAccordianComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmployeeComponent ]
+      declarations: [ QnaAccordianComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EmployeeComponent);
+    fixture = TestBed.createComponent(QnaAccordianComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

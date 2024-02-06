@@ -1,0 +1,41 @@
+.document-section {
+  .document-upload-section {
+    @include padding(96px 0px);
+    .document-wrapper {
+      .document-heading-section {
+        display: flex;
+        flex-flow: column;
+        gap: 16px;
+        .document-heading-title {
+          @include font-size(56px);
+          font-family: $inter-semibold;
+        }
+        .document-heading-desc {
+          @include font-size(22px);
+        }
+      }
+      .document-info-list {
+        @include margin-top(32px);
+        ul {
+          list-style: none;
+          display: flex;
+          flex-flow: column;
+          padding: 0;
+          gap: 16px;
+          .document-info-item {
+            display: flex;
+            gap: 10px;
+            @include font-size(18px);
+            .document-info-title {
+            }
+            .document-info-icon {
+              span {
+                @include nugget-icon(20px);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

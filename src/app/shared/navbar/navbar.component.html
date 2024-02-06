@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <nav class="navbar navbar-expand-lg scrolled" > <!-- [ngClass]="{'scrolled':isScrolled,'navwhite':isNavWhite }"-->
+  <nav class="navbar navbar-expand-lg scrolled"> <!-- [ngClass]="{'scrolled':isScrolled,'navwhite':isNavWhite }"-->
     <div class="container">
       <div class="navbar-brand">
         <div class="brand order-1 order-lg-1">
@@ -94,8 +94,9 @@
         </div>
         <div class="order-2 order-lg-4 nav-buttons">
           <div class="nav-button d-none d-md-block">
-            <button type="button" class="btn btn-primary-outline " (click)="loginUser()">{{isLoggedIn ?
-              'Logout':'Login'}}</button>
+            <button type="button" class="btn btn-primary-outline " (click)="loginUser()">Login</button>
+            <button type="button" class="btn btn-primary ms-3">Create free account</button>
+            <!--{{isLoggedIn ? 'Logout':'Login'}}-->
           </div>
           <div class="nav-button" *ngIf="false">
             <button type="button" class="btn btn-primary " (click)="goToUdesk()">Try for free</button>

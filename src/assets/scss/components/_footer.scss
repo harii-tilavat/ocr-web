@@ -1,5 +1,4 @@
 .nugget-footer {
-  background-color: $yellow-25;
   // @include padding(96px 12px);
   @include padding(96px 12px 48px 12px);
   .footer-head {
@@ -12,7 +11,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 40px;
+        height: 70px;
         width: auto;
         cursor: pointer;
       }
@@ -80,6 +79,9 @@
         }
       }
     }
+  }
+  @include themed(){
+    background-color: t($ngt-warning);
   }
 }
 @include media-breakpoint-down(md) {

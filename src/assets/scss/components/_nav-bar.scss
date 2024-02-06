@@ -38,7 +38,6 @@
     text-align: center;
     padding: 0;
     transition: 0.2s;
-    background: $yellow-25;
     &.scrolled {
       @include box-shadow-navbar();
     }
@@ -69,7 +68,8 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          @include nugget-icon(70px);
+          height: auto;
+          width: 110px;
           cursor: pointer;
         }
       }
@@ -180,6 +180,9 @@
       display: flex;
       gap: 24px;
     }
+    @include themed() {
+      background-color: t($ngt-warning);
+    }
   }
 }
 @include media-breakpoint-down(lg) {
@@ -200,7 +203,7 @@
       }
     }
     .navbar {
-      padding: 14px 0px;
+      // padding: 14px 0px;
       .navbar-brand {
         display: grid;
         grid-template-columns: 1fr 1fr 60px;
@@ -315,7 +318,7 @@
       }
     }
     .navbar {
-      padding: 10.5px 0;
+      // padding: 10.5px 0;
       .navbar-brand {
         .hemburg {
           cursor: pointer;

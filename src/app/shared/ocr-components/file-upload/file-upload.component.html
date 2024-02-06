@@ -1,140 +1,65 @@
-<div class="file-upload-content">
-  <div class="file-upload-form">
-    <form action="">
-      <div class="form-group">
-        <div class="file-input-wrapper">
-          <div class="file-input-content">
-            <div class="file-input-header">
-              <div class="file-input-title">
-                <span>The world’s most powerful <span class="mark-title">free online OCR</span></span>
+<div class="file-upload-form">
+  <div class="file-input-wrapper">
+    <div class="file-input-body">
+      <form action="" [formGroup]="fileForm">
+        <label [for]="!isFileSelected?'file':null" class="d-block">
+          <input type="file" id="file" class="" (change)="fileSelected($event)" formControlName="file" hidden>
+          <div class="file-input-card card">
+            <div class="row g-5">
+              <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                <div class="file-input-preview">
+                  <div class="file-preivew-image">
+                    <span>
+                      <img [src]="filePreviewBase64?filePreviewBase64:'/assets/ocr-images/sample-file.png'"
+                        alt="sample-file.png">
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div class="file-input-description">
-                <span>Thousands of developers convert images and PDFs to actionable text with us</span>
-              </div>
-              <div class="uplading">
-              </div>
-            </div>
-            <div class="file-input-body">
-              <form action="" [formGroup]="fileForm">
-                <label [for]="!isFileSelected?'file':null" class="d-block">
-                  <input type="file" id="file" class="" (change)="fileSelected($event)" formControlName="file" hidden
-                    accept=".pdf, image/*">
-                  <div class="file-input-card card">
-                    <div class="row g-5">
-                      <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                        <div class="file-input-preview">
-                          <div class="file-preivew-image">
-                            <span>
-                              <img [src]="filePreviewBase64?filePreviewBase64:'/assets/ocr-images/sample-file.png'"
-                                alt="sample-file.png">
-                            </span>
-                          </div>
-                        </div>
+              <div class="col-xxl-9 col-xl-9 col-lg-8 col-md-6 col-sm-12">
+                <div class="file-upload">
+                  <div class="file-output card" [contentEditable]="false" [ngClass]="{'file-selected': isFileSelected}">
+                    <ng-container *ngIf="!fileText; else showFileText">
+                      <span>
+                        {{isUploading ? 'File scanning...' : 'Text from your document will appear here.'}}
+                      </span>
+                    </ng-container>
+                    <ng-template #showFileText>
+                      <div class="image-data">
+                        <pre>{{ fileText }}</pre>
                       </div>
-                      <div class="col-xxl-9 col-xl-9 col-lg-8 col-md-6 col-sm-12">
-                        <div class="file-upload">
-                          <div class="file-output card" [contentEditable]="false"
-                            [ngClass]="{'file-selected': isFileSelected}">
-                            <ng-container *ngIf="!fileText; else showFileText">
-                              <span>
-                                {{isUploading ? 'File scanning...' : 'Text from your document will appear here.'}}
-                              </span>
-                            </ng-container>
-                            <ng-template #showFileText>
-                              <div class="image-data">
-                                <pre>{{ fileText }}</pre>
-                              </div>
-                            </ng-template>
-                          </div>
-                          <div class="file-upload-button">
-                            <div class="view-format" *ngIf="false">
-                              <div class="format-html">
-                                <button class="btn btn-dark">TEXT</button>
-                              </div>
-                              <div class="format-json">
-                                <button class="btn btn-dark">JSON</button>
-                              </div>
-                            </div>
-                            <div class="upload-button">
-                              <span class="btn btn-primary" (click)="onUploadFile()">Upload</span>
-                            </div>
-                            <div class="remove-file-button" *ngIf="isFileSelected">
-                              <button class="btn btn-primary-outline" (click)="removeSelectedFile()">Start
-                                again</button>
-                            </div>
-                          </div>
-                        </div>
+                    </ng-template>
+                  </div>
+                  <div class="file-upload-button">
+                    <div class="view-format" *ngIf="false">
+                      <div class="format-html">
+                        <button class="btn btn-dark">TEXT</button>
+                      </div>
+                      <div class="format-json">
+                        <button class="btn btn-dark">JSON</button>
                       </div>
                     </div>
+                    <div class="upload-button">
+                      <span class="btn btn-primary btn-with-icon" (click)="onUploadFile()">
+                        <span class="btn-icon">
+                          <nugget-icon name="upload-icon"></nugget-icon>
+                        </span>
+                        <span>{{true?'Upload':'Scan file'}}</span>
+                      </span>
+                    </div>
+                    <div class="remove-file-button" *ngIf="isFileSelected">
+                      <button class="btn btn-primary-outline" (click)="removeSelectedFile()">Start over</button>
+                    </div>
                   </div>
-                </label>
-              </form>
-              <div class="animation" *ngIf="isUploading">
-                <app-file-loader></app-file-loader>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </label>
+      </form>
+      <div class="animation" *ngIf="isUploading">
+        <app-file-loader></app-file-loader>
       </div>
-    </form>
-  </div>
-  <div class="docuemnt-data py-5" *ngIf="true">
-    <div class="emp-data-title">
-      <h4>Documents information</h4>
-      <hr>
     </div>
-    <!-- <h1>Data</h1> -->
-    <ng-container *ngIf="documentList.length; else noDocument">
-      <div class="table-responsive">
-        <table class="table ">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Image</th>
-              <th>Category</th>
-              <th>Vendor</th>
-              <th>Document type</th>
-              <th>Invoice number</th>
-              <th>Created at</th>
-              <!-- <th>Updated at</th> -->
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of documentList; let i=index">
-              <td>{{i + 1}}</td> <!-- item.doc_id -->
-              <!-- <td><button class="btn btn-primary-outline btn-xs">View</button></td> item.doc_id -->
-
-              <td style="cursor: pointer;" (click)="onViewFile(item.doc_id)"> <!--adding temporary inline style-->
-                <div class="image-thumbnail">
-                  <span>
-                    <img [src]="'http://localhost:8000'+  item.image_url" [alt]="'image-not-found'">
-                  </span>
-                </div>
-              </td>
-              <td>{{item.category ? item.category:'--'}}</td>
-              <td>{{item.vendor_name ? item.vendor_name :'--'}}</td>
-              <td>{{item.document_type ? item.document_type : '--'}}</td>
-              <td>{{item.invoice_number ? item.invoice_number : '--'}}</td>
-              <td>{{item.created_at ? ( item.created_at | date ) :'--' }}</td>
-              <!-- <td>{{item.updated_at ? ( item.updated_at| date ) :'--' }}</td> -->
-              <td>
-                <div class="delete-button d-flex">
-                  <button class="btn btn-outline-danger btn-xs" (click)="onDeleteDocument(item.doc_id)">Delete</button>
-                  <!-- <button class="btn btn-outline-danger btn-primary-outline ms-3" (click)="downloadFile(item.doc_id)">Download</button> -->
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </ng-container>
-    <ng-template #noDocument>
-      <tr>
-        <td>
-          <span>No Documents found!</span>
-        </td>
-      </tr>
-    </ng-template>
   </div>
 </div>

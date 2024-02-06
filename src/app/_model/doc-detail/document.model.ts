@@ -14,3 +14,8 @@ export class DocumentResponseModel {
   data!: DocumentModel;
   message!: string;
 }
+export class DocumentProccessDetail {
+  id!: number;
+  title!: string;
+  desc!: string;
+}

@@ -17,9 +17,9 @@ export class LoginComponent implements OnInit {
     password: new FormControl<string | null>('1234', [Validators.required])
   });
   constructor(private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router) {
-    if (this.authService.isUserLoggedIn()) {
-      this.router.navigate(['/']);
-    }
+    // if (this.authService.isUserLoggedIn()) {
+    //   this.router.navigate(['/']);
+    // }
   }
   ngOnInit(): void {
   }

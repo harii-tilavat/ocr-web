@@ -1,0 +1,42 @@
+<div class="ocr-questions">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xxl-9 col-xl-9 col-lg-10 col-md-12 col-sm-12">
+        <div class="qna-section">
+          <div class="qna-header">
+            <div class="qna-title">
+              <span>Frequently Asked Questions</span>
+            </div>
+          </div>
+          <div class="qna-body">
+            <div class="accordion" *ngFor="let item of qnaList">
+              <div class="item accordion-item">
+                <div class="header accordion-header collapsed" [id]="'heading-' + item.id" data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#collapse-' + item.id">
+                  <div class="accordian-title">
+                    <span>{{item.title}}</span>
+                  </div>
+                  <div class="accordian-icon">
+                    <div class="arrow-icon-down">
+                      <span>
+                        <nugget-icon name="down-arrow"></nugget-icon>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div [id]="'collapse-' + item.id" class="accordion-collapse collapse"
+                  [attr.aria-labelledby]="'heading-' + item.id">
+                  <div class="accordion-body accordion-body">
+                    <div class="accordian-desc">
+                      <p>{{item.desc}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

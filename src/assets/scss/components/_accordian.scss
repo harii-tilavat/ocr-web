@@ -1,0 +1,40 @@
+.accordion {
+  .accordion-item {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $gray-300;
+    .accordion-header {
+      display: flex;
+      justify-content: space-between;
+      @include padding(20px 20px 20px 0px);
+      cursor: pointer;
+      user-select: none;
+      .accordian-title {
+        @include font-size(20px);
+        font-family: $inter-medium;
+      }
+      .accordian-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .arrow-icon-down {
+          @include nugget-icon(30px);
+          transition: 0.2s;
+        }
+      }
+      &:not(.collapsed) {
+        .accordian-icon {
+          .arrow-icon-down {
+            transform: rotate(-180deg);
+          }
+        }
+      }
+    }
+    .accordion-body {
+      @include padding(0 0 20px 0);
+      .accordian-desc{
+        @include font-size(14px);
+      }
+    }
+  }
+}
