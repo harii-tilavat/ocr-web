@@ -1,11 +1,55 @@
-.document-list {
-  .docuemnt-data {
-    .image-thumbnail {
-      @include nugget-icon(70px);
-      span {
-        display: block;
-        height: 100%;
-        width: auto;
+.document-section {
+  .document-list-section {
+    @include padding(96px 0px);
+    .document-list-heading {
+      @include margin-bottom(48px);
+      .document-list-title {
+        @include font-size(32px);
+        font-family: $sora-medium;
+      }
+      .document-list-desc {
+      }
+    }
+    .document-list {
+      .document-card-section {
+        .document-card {
+          &:hover{
+            transform: translateY(-15px);
+          }
+          .document-card-header {
+            .document-card-image {
+              .image {
+                display: flex;
+                height: 400px;
+                border-radius: 13px;
+                overflow: hidden;
+              }
+            }
+          }
+          .document-card-body {
+            .document-info-container {
+              padding: 15px 20px;
+              border-top: 1px solid $primary-300;
+              .document-info-list {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-flow: column;
+                gap: 12px;
+                .document-info-item {
+                  display: flex;
+                  justify-content: space-between;
+                  .document-info-title {
+                    font-family: $inter-medium;
+                  }
+                  .document-info-subTitle {
+                    @include font-size(14px);
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

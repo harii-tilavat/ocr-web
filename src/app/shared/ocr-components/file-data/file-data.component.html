@@ -1,4 +1,4 @@
-<div class="docuemnt-data py-5" *ngIf="true">
+<div class="docuemnt-data py-5" *ngIf="false">
   <div class="document-data-title">
     <h4>Documents information</h4>
     <hr>
@@ -53,4 +53,33 @@
       </td>
     </tr>
   </ng-template>
+</div>
+<div class="document-card-section">
+  <div class="row g-5">
+    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12" *ngFor="let item of documentList">
+      <div class="document-card card" >
+        <div class="document-card-header" (click)="onViewFile(item.doc_id)">
+          <div class="document-card-image">
+            <span class="image">
+              <img [src]="baseUrl + item.image_url" alt="document-img">
+            </span>
+          </div>
+        </div>
+        <div class="document-card-body">
+          <div class="document-info-container">
+            <ul class="document-info-list">
+              <li class="document-info-item" *ngFor="let item of metadata">
+                <div class="document-info-title">
+                  <span>{{item.title}}</span>
+                </div>
+                <div class="document-info-subTitle">
+                  <span>{{item.subTitle}}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

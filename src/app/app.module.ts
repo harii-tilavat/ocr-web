@@ -48,7 +48,7 @@ register();
     ToastrModule.forRoot({
       progressBar: true,
       easing: 'ease-in',
-      timeOut: 2500,
+      timeOut: 250000,
       closeButton: true
     })],
   providers: [
