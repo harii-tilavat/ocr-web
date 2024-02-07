@@ -52,6 +52,7 @@
       justify-content: space-between;
       width: 100%;
       margin: 0;
+      color: inherit;
       .hemburg {
         display: flex;
         justify-content: center;
@@ -107,11 +108,12 @@
                     padding: 2px;
                     transition: transform 0.3s ease-in-out;
                   }
-                  .nav-link {
-                    color: $primary-950;
+                  .menu-nav-link {
+                    // color: $primary-950;
+                    @include padding(8px);
                   }
                   &.active {
-                    .nav-link {
+                    .menu-nav-link {
                       font-family: $inter-semibold;
                     }
                   }
@@ -182,7 +184,7 @@
     }
     @include themed() {
       // background-color: t($bg-color);
-      background-color: t($bg-color-light);
+      background: t($bg-color-light);
     }
   }
 }
@@ -250,7 +252,7 @@
                     .nav-icon {
                       padding: 0;
                     }
-                    .nav-link {
+                    .menu-nav-link {
                       // font-family: $inter;
                     }
                   }

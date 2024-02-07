@@ -44,7 +44,7 @@
               <div class="menu-item">
                 <ng-container *ngIf="item.subMenu.length; else routerlinkbox">
                   <div class="menu-title" [attr.data-bs-toggle]="'dropdown'">
-                    <span class="nav-link">
+                    <span class="menu-nav-link">
                       {{item.title}}
                     </span>
                     <span class="nav-icon">
@@ -83,7 +83,7 @@
                 <ng-template #routerlinkbox>
                   <div class="menu-title" [routerLink]="item.routing" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}" (click)="toggleHemburge()">
-                    <span class="nav-link">
+                    <span class="menu-nav-link">
                       {{item.title}}
                     </span>
                   </div>

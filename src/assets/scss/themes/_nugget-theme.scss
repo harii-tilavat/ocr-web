@@ -37,8 +37,9 @@ $themes: (
     switch-color: $primary-600
   ),
   dark: (
-    bg-color: $gray-900,
-    bg-color-light:$primary-50,
+    // bg-color: $gray-900,
+    bg-color: linear-gradient(#181919,#232628),
+    bg-color-light:linear-gradient(#181919,#232628),
     text-color: $primary-25,
     input-border: $gray-200,
     input-control-label: $gray-700,

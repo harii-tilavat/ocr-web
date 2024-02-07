@@ -221,7 +221,7 @@
     </div>
   </div>
   <div class="ocr-services" *ngIf="!false">
-    <div class="ocr-services-section" *ngFor="let item of ocrServices; let i=index" [ngClass]="{'bg-white':i%2===1}">
+    <div class="ocr-services-section" *ngFor="let item of ocrServices; let i=index" [ngClass]="{'bg-white':false}">
       <app-slider-item [sliderItem]="item" [rtl]="i%2===1?'SLIDE_LEFT':'SLIDE_RIGHT'"></app-slider-item>
     </div>
   </div>

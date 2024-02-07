@@ -80,7 +80,7 @@
       font-family: $inter-semibold;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: $primary-500;
+      color: $primary-600;
     }
     .product-header-main {
       @include font-size(20px);
@@ -112,7 +112,6 @@
             @include font-size(44px);
             @include line-height(53px);
             font-family: $sora-bold;
-            color: $primary-950;
           }
           .product-desc {
             @include font-size(20px);

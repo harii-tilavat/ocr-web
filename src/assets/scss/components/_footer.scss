@@ -38,7 +38,6 @@
         grid-template-columns: repeat(2, 1fr);
         row-gap: 24px;
         // padding: 8px 0px;
-        color: $gray-800;
         @include font-size(18px);
         .footer-list-item {
           cursor: pointer;
@@ -73,8 +72,8 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap-reverse;
-    color: $gray-600;
     gap: 48px;
+    opacity: 0.9;
     @include font-size(14px);
     .copy-right {
       @include line-height(27px);
