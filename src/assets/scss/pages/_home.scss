@@ -73,15 +73,6 @@
   }
   .ocr-services {
     // background-color: $primary-50;
-    .product-title {
-      @include font-size(20px);
-      @include margin-bottom(32px);
-      padding: 0px;
-      font-family: $inter-semibold;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: $primary-600;
-    }
     .product-header-main {
       @include font-size(20px);
       font-family: $inter-semibold;
@@ -104,6 +95,11 @@
           .product-title {
             padding: 0px;
             margin-bottom: 0;
+            font-family: $inter-semibold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: $primary-600;
+            @include font-size(20px);
           }
         }
         .product-body {
@@ -150,10 +146,10 @@
           }
         }
       }
-    }
-    @include themed(){
-      // background-color: t($primary-light);
-      background-color: t($bg-color-light);
+      @include themed() {
+        // background-color: t($primary-light);
+        background: t($bg-color-light);
+      }
     }
   }
 }
@@ -169,7 +165,6 @@
       }
     }
     .qna-body {
-
     }
   }
 }

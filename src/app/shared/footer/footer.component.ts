@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { NuggetService } from 'src/app/_services';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MenuListModel, menuConfig } from 'src/app/_model/menu-list/menu-list.model';
@@ -12,6 +12,7 @@ import { GenericResponseList, GenericResponseType } from 'src/app/_model';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit, OnDestroy {
+  @Input() themeColor = '#b42318';
   public subscription: Array<Subscription> = [];
   public year = new Date().getFullYear();
   public menuList: { title: string, routing: string }[] = [

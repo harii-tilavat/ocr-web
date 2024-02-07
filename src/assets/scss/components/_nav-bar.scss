@@ -179,8 +179,10 @@
       }
     }
     .nav-buttons {
-      display: flex;
-      gap: 24px;
+      .nav-button{
+        display: flex;
+        gap: 16px;
+      }
     }
     @include themed() {
       // background-color: t($bg-color);
@@ -206,7 +208,7 @@
       }
     }
     .navbar {
-      // padding: 14px 0px;
+      padding: 14px 0px;
       .navbar-brand {
         display: grid;
         grid-template-columns: 1fr 1fr 60px;
@@ -321,7 +323,7 @@
       }
     }
     .navbar {
-      // padding: 10.5px 0;
+      padding: 10px 0;
       .navbar-brand {
         .hemburg {
           cursor: pointer;
@@ -339,7 +341,7 @@
           position: absolute;
           top: 100%;
           left: 0;
-          background: #fbf9f3;
+          // background: red;
           width: 100%;
           max-height: 50vh;
           overflow: auto;
@@ -386,6 +388,9 @@
                 }
               }
             }
+          }
+          @include themed(){
+            background: t($bg-color-light);
           }
         }
       }

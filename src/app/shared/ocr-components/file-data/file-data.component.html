@@ -36,9 +36,9 @@
             <td>{{item.created_at ? ( item.created_at | date ) :'--' }}</td>
             <!-- <td>{{item.updated_at ? ( item.updated_at| date ) :'--' }}</td> -->
             <td>
-              <div class="delete-button d-flex">
+              <div class="delete-button btn-groups">
                 <button class="btn btn-outline-danger btn-xs" (click)="onDeleteDocument(item.doc_id)">Delete</button>
-                <!-- <button class="btn btn-outline-danger btn-primary-outline ms-3" (click)="downloadFile(item.doc_id)">Download</button> -->
+                <!-- <button class="btn btn-outline-danger btn-primary-outline " (click)="downloadFile(item.doc_id)">Download</button> -->
               </div>
             </td>
           </tr>

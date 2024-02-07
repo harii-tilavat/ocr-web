@@ -1,9 +1,9 @@
 <div class="nav-bar" >
-  <app-navbar [isLoggedIn]="false"></app-navbar>
+  <app-navbar [isLoggedIn]="false" [themeColor]="themeColor"></app-navbar>
 </div>
 <div id="ocr-web-root" class="ocr-web-container">
-  <router-outlet></router-outlet>
+  <router-outlet ></router-outlet>
 </div>
 <footer class="nugget-footer">
-  <app-footer></app-footer>
+  <app-footer [themeColor]="themeColor"></app-footer>
 </footer>

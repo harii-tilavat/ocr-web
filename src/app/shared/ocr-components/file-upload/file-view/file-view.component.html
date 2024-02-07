@@ -15,10 +15,10 @@
       <div class="col-xxl-7 col-6-12 col-6-12 col-6-12 col-sm-12">
         <div class="file-details">
           <div class="file-format">
-            <div class="file-format-button d-flex mb-4">
+            <div class="file-format-button btn-groups">
               <button class="btn" [ngClass]="!isJson ?'btn-primary': 'btn-primary-outline'"
                 (click)="isJson = false && isActive = true ">TEXT</button>
-              <button class="btn  ms-3" [ngClass]="isJson ?'btn-primary': 'btn-primary-outline'"
+              <button class="btn" [ngClass]="isJson ?'btn-primary': 'btn-primary-outline'"
                 (click)="isJson = true && isActive = true">JSON</button>
             </div>
           </div>

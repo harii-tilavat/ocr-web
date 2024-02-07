@@ -1,3 +1,9 @@
+.btn-groups{
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 .btn {
   font-family: $inter-semibold;
   font-weight: normal;
@@ -6,6 +12,7 @@
   // padding: 12px 16px;
   padding: 15px 22px;
   letter-spacing: 0.28px;
+  text-transform: uppercase;
   @include font-size(14px);
   &.btn-xs{
     padding: 10px 16px;

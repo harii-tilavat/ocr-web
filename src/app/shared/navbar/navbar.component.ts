@@ -11,6 +11,7 @@ import { GoogleTagConfigService } from 'src/app/google-tag/google-tag-config.ser
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+  @Input() themeColor = '#b42318';
   @Input() isNavWhite!: boolean;
   @Input() isLoggedIn = false;
   public subscription: Array<Subscription> = [];

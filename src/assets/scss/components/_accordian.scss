@@ -36,6 +36,7 @@
       @include padding(0 0 20px 0);
       .accordian-desc{
         @include font-size(14px);
+        opacity: 0.9;
       }
     }
   }

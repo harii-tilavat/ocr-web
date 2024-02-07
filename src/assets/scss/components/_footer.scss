@@ -86,7 +86,7 @@
     }
   }
   @include themed() {
-    background-color: t($bg-color-light);
+    background: t($bg-color-light);
   }
 }
 @include media-breakpoint-down(md) {
