@@ -3,7 +3,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MenuListModel, menuConfig } from 'src/app/_model/menu-list/menu-list.model';
 import { AuthService } from 'src/app/_services';
-import { GoogleTagConfigService } from 'src/app/google-tag/google-tag-config.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +10,7 @@ import { GoogleTagConfigService } from 'src/app/google-tag/google-tag-config.ser
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+  @Input() themeColor = '#b42318';
   @Input() isNavWhite!: boolean;
   @Input() isLoggedIn = false;
   public subscription: Array<Subscription> = [];
@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public isScrolled = false;
   public isOpen = false;
   public menuList: MenuListModel[] = menuConfig;
-  constructor(private googleTagConfigService: GoogleTagConfigService, private authService: AuthService, private router: Router) { }
+  constructor( private authService: AuthService, private router: Router) { }
   ngOnInit(): void {
     // this.isLoggedIn = this.authService.isUserLoggedIn();
     if (!sessionStorage.getItem('isAnnounce')) {
@@ -38,10 +38,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   toggleButton(): void {
     this.isOpen = !this.isOpen;
-  }
-  goToUdesk(): void {
-    this.googleTagConfigService.pushTag({ event: 'button-click', data: 'Nav bar try for free' });
-    window.open('https://app.userstudy.co/', "_blank");
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

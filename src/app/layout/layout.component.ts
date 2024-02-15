@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit, OnDestroy {
+  public themeColor = '#5E35B1';
   public subscription: Array<Subscription> = [];
 
   constructor() {

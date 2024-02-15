@@ -1,62 +1,82 @@
 <div class="container">
   <div class="row">
     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-      <div class="footer-head text-center">
-        <div class="nugget-logo">
-          <span [routerLink]="['/']">
-            <!-- <img src="/assets/svg/nugget-logo.svg" alt="nugget-logo" class="img-fluid"> -->
-            <nugget-icon name="ocr-web" [fill]="'#4F37E2'"></nugget-icon>
-          </span>
-        </div>
-        <div class="footer-title">
-          <span>Elevate Your Text Recognition Experience</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
-      <div class="footer-content">
-        <ul class="footer-list text-start">
-          <li class="footer-list-item" [routerLink]="item.routing" *ngFor="let item of menuList">{{item.title}}</li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-6 col-sm-12">
-      <div class="news-letter-content-footer">
-        <form [formGroup]="enquiryForm" (ngSubmit)="emailSubmit()" novalidate="novalidate" novalidate>
-          <div class="news-letter-footer">
-            <div class="news-letter-input">
-              <input id="newsletter" name="newsletter" formControlName="email" type="text" class="form-control"
-                     placeholder="Your work email">
+      <div class="footer-head">
+        <div class="row">
+          <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-6 col-sm-12">
+            <div class="footer-heading">
+              <div class="nugget-logo" *ngIf="!false">
+                <span [routerLink]="['/']">
+                  <!-- <img src="/assets/svg/nugget-logo.svg" alt="nugget-logo" class="img-fluid"> -->
+                  <nugget-icon name="ocr-web" [fill]="themeColor"></nugget-icon>
+                </span>
+              </div>
+              <div class="footer-title">
+                <span>Elevate Your Text Recognition Experience</span>
+              </div>
+              <div class="footer-buttons btn-groups">
+                <button class="btn btn-primary btn-xl">Signup for free</button>
+                <button class="btn btn-primary-outline btn-xl ">Get a demo</button>
+              </div>
             </div>
-            <div class="footer-button">
-              <button type="submit" class="btn btn-primary">Try for free</button>
-            </div>
-            <div class="social-icon-footer" *ngIf="false">
-              <ul class="social-icon-list">
-                <li>
-                  <a href="https://www.linkedin.com/company/userstudy/" target="_blank" class="logo-icon">
-                    <nugget-icon name="linkedin" [fill]="'#4F37E2'"></nugget-icon>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/getcuriousX" target="_blank" class="logo-icon">
-                    <nugget-icon name="x" [fill]="'#4F37E2'"></nugget-icon>
-                  </a>
-                </li>
-              </ul>
+            <div class="footer-list-content">
+              <div class="row">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                  <div class="footer-content" *ngIf="!false">
+                    <ul class="footer-list text-start">
+                      <li class="footer-list-item" [routerLink]="item.routing" *ngFor="let item of menuList">{{item.title}}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-6 col-sm-12" *ngIf="false">
+                  <div class="news-letter-content-footer">
+                    <form [formGroup]="enquiryForm" (ngSubmit)="emailSubmit()" novalidate="novalidate" novalidate>
+                      <div class="news-letter-footer">
+                        <div class="news-letter-input">
+                          <input id="newsletter" name="newsletter" formControlName="email" type="text" class="form-control"
+                            placeholder="Your work email">
+                        </div>
+                        <div class="footer-button">
+                          <button type="submit" class="btn btn-primary">Try for free</button>
+                        </div>
+                        <div class="social-icon-footer" *ngIf="false">
+                          <ul class="social-icon-list">
+                            <li>
+                              <a href="https://www.linkedin.com/company/userstudy/" target="_blank" class="logo-icon">
+                                <nugget-icon name="linkedin" [fill]="'#4F37E2'"></nugget-icon>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="https://twitter.com/getcuriousX" target="_blank" class="logo-icon">
+                                <nugget-icon name="x" [fill]="'#4F37E2'"></nugget-icon>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </form>
+          <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <div class="footer-right-image">
+              <span>
+                <nugget-icon [name]="'home-page-1'"></nugget-icon>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-      <div class="copyrights-content">
+      <div class="copyrights-content text-start">
         <div class="copy-right">
-          <span>Copyright © {{year}} OCRWeb Pvt. Ltd. | All Rights Reserved</span>
+          <!-- <span>Copyright © {{year}} OCRWeb Pvt. Ltd. | All Rights Reserved</span> -->
+          <span>Upload images or PDFs, and let OCRWeb do the work. It processes them quickly, giving you the extracted text in no time for easy access.</span>
         </div>
         <div class="copy-right" *ngIf="false">
           <div class="policy-links">

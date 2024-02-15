@@ -1,4 +1,5 @@
 $bg-color: "bg-color";
+$bg-color-light: "bg-color-light";
 $text-color: "text-color";
 $dark-black: "dark-black";
 // input prop
@@ -20,12 +21,15 @@ $switch-color: "switch-color";
 $themes: (
   light: (
     bg-color: $primary-25,
+    // bg-color-light:$primary-25,
+      // bg-color-light: linear-gradient(#ffffff, #fffaf5),
+      bg-color-light: linear-gradient(#ffffff, $primary-50),
     text-color: $gray-900,
     input-border: $primary-200,
     input-control-label: $gray-700,
-    ngt-warning: $yellow-25,
+    ngt-warning: $yellow-700,
     // ngt-warning: $primary-50,
-    ngt-danger: $red-600,
+      ngt-danger: $red-600,
     ngt-inverse: $primary-25,
     ngt-inverse-dark: $gray-900,
     ngt-secondary: $primary-300,
@@ -34,7 +38,9 @@ $themes: (
     switch-color: $primary-600
   ),
   dark: (
-    bg-color: $gray-900,
+    // bg-color: $gray-900,
+      bg-color: linear-gradient(#181919, #232628),
+    bg-color-light: linear-gradient(#181919, #232628),
     text-color: $primary-25,
     input-border: $gray-200,
     input-control-label: $gray-700,

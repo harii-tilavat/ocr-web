@@ -19,13 +19,13 @@
       </div>
     </div>
   </div>
-  <nav class="navbar navbar-expand-lg scrolled"> <!-- [ngClass]="{'scrolled':isScrolled,'navwhite':isNavWhite }"-->
+  <nav class="navbar navbar-expand-lg scrolled navwhite"> <!-- [ngClass]="{'scrolled':isScrolled,'navwhite':isNavWhite }"-->
     <div class="container">
       <div class="navbar-brand">
         <div class="brand order-1 order-lg-1">
           <span routerLink="/">
             <!-- <nugget-icon name="getcurious"></nugget-icon> -->
-            <nugget-icon name="ocr-web" [fill]="'#4F37E2'" [stroke]="'#4F37E2'"></nugget-icon>
+            <nugget-icon name="ocr-web"  [fill]="themeColor" ></nugget-icon>
           </span>
         </div>
         <div id="hemburg-box" class="hemburg order-3 order-lg-2 d-lg-none " (click)="toggleButton()"
@@ -33,7 +33,7 @@
           aria-expanded="false" aria-label="Toggle navigation">
           <span>
             <!-- <nugget-icon [name]="isOpen?'x-close':'hemburg'"  [stroke]="'#4F37E2'"></nugget-icon> -->
-            <nugget-icon [name]="'hemburg'" [stroke]="'#4F37E2'"></nugget-icon>
+            <nugget-icon [name]="'hemburg'" [lineStroke]="themeColor"></nugget-icon>
           </span>
         </div>
         <div class="navbar-content order-4 order-lg-3 collapse navbar-collapse justify-content-center"
@@ -44,7 +44,7 @@
               <div class="menu-item">
                 <ng-container *ngIf="item.subMenu.length; else routerlinkbox">
                   <div class="menu-title" [attr.data-bs-toggle]="'dropdown'">
-                    <span class="nav-link">
+                    <span class="menu-nav-link">
                       {{item.title}}
                     </span>
                     <span class="nav-icon">
@@ -83,7 +83,7 @@
                 <ng-template #routerlinkbox>
                   <div class="menu-title" [routerLink]="item.routing" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}" (click)="toggleHemburge()">
-                    <span class="nav-link">
+                    <span class="menu-nav-link">
                       {{item.title}}
                     </span>
                   </div>
@@ -93,14 +93,10 @@
           </ul>
         </div>
         <div class="order-2 order-lg-4 nav-buttons">
-          <div class="nav-button d-none d-md-block">
+          <div class="nav-button d-none d-md-flex">
             <button type="button" class="btn btn-primary-outline " (click)="loginUser()">Login</button>
-            <button type="button" class="btn btn-primary ms-3">Create free account</button>
+            <button type="button" class="btn btn-primary">Create free account</button>
             <!--{{isLoggedIn ? 'Logout':'Login'}}-->
-          </div>
-          <div class="nav-button" *ngIf="false">
-            <button type="button" class="btn btn-primary " (click)="goToUdesk()">Try for free</button>
-            <!-- [routerLink]="['/pricing']" -->
           </div>
         </div>
       </div>

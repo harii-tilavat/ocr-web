@@ -166,9 +166,9 @@
                       your converted text within seconds for easy utilization.</p>
                   </div>
                   <div class="get-started mt-3 mt-sm-4">
-                    <div class="get-started-button">
-                      <button class="btn btn-primary" (click)="startOCR()">Get started now</button>
-                      <button class="btn btn-primary-outline ms-3" (click)="startOCR()">Get a demo</button>
+                    <div class="get-started-button btn-groups">
+                      <button class="btn btn-primary btn-xl" (click)="startOCR()">Get started now</button>
+                      <button class="btn btn-primary-outline btn-xl" (click)="startOCR()">Get a demo</button>
                     </div>
                   </div>
                 </div>
@@ -221,7 +221,7 @@
     </div>
   </div>
   <div class="ocr-services" *ngIf="!false">
-    <div class="ocr-services-section" *ngFor="let item of ocrServices; let i=index" [ngClass]="{'bg-white':i%2===1}">
+    <div class="ocr-services-section" *ngFor="let item of ocrServices; let i=index" [ngClass]="{'bg-white':false}">
       <app-slider-item [sliderItem]="item" [rtl]="i%2===1?'SLIDE_LEFT':'SLIDE_RIGHT'"></app-slider-item>
     </div>
   </div>

@@ -3,6 +3,8 @@
     border: none;
     border-radius: 0;
     border-bottom: 1px solid $gray-300;
+    background:transparent;
+    color: inherit;
     .accordion-header {
       display: flex;
       justify-content: space-between;
@@ -34,6 +36,7 @@
       @include padding(0 0 20px 0);
       .accordian-desc{
         @include font-size(14px);
+        opacity: 0.9;
       }
     }
   }

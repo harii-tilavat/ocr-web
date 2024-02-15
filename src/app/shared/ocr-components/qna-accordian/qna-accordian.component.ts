@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./qna-accordian.component.scss']
 })
 export class QnaAccordianComponent implements OnInit {
+  public themeColor = '#b42318';
   public qnaList = [
     {
       id: 1,

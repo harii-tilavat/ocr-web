@@ -49,9 +49,20 @@ export class NuggetIconComponent implements OnDestroy, OnChanges {
           paths[i].setAttribute('stroke', color);
         }
       }
+
     }
   }
-
+  @Input()
+  set lineStroke(color: string) {
+    if (this.svgIcon && color) {
+      const lines = this.svgIcon.getElementsByTagName('line') as HTMLCollection;
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].getAttribute('stroke')) {
+          lines[i].setAttribute('stroke', color);
+        }
+      }
+    }
+  }
   @Input()
   set rectStroke(color: string) {
     if (this.svgIcon && color) {

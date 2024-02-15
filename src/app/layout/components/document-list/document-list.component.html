@@ -1,8 +1,33 @@
-<div class="document-list">
-  <div class="container">
-    <div class="row">
-      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-        <app-file-data></app-file-data>
+<div class="document-section">
+  <div class="document-list-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="document-list-heading">
+            <div class="document-list-title">
+              <span>Document information</span>
+            </div>
+            <div class="document-search-form" *ngIf="!false">
+              <form action="">
+                <div class="form-group">
+                  <!-- <label for="">Search</label> -->
+                  <input type="text" class="form-control" placeholder="Search documents...">
+                </div>
+              </form>
+            </div>
+            <div class="document-list-desc" *ngIf="false">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius ex, dolores inventore autem maiores quia
+                voluptatem quidem vero perspiciatis sequi! Placeat, quisquam?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="document-list">
+            <app-file-data></app-file-data>
+          </div>
+        </div>
       </div>
     </div>
   </div>

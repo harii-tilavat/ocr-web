@@ -464,20 +464,14 @@
   }
   // ----------------Product Detail Section----------------
   .product-detail {
-    .product-header-main {
-      @include font-size(16px);
-      letter-spacing: 1.6px;
-    }
-    .product-title {
-      @include font-size(16px);
-      letter-spacing: 1.6px;
-      margin-bottom: 2rem;
-      // background-color: red;
-    }
     .product-section {
       padding: 2rem 0.75rem 4rem 0.75rem;
       .product-content {
         .product-header {
+          .product-title {
+            @include font-size(16px);
+            letter-spacing: 1.6px;
+          }
         }
         .product-body {
           .product-sub-title {
@@ -497,189 +491,7 @@
         }
       }
     }
-    &.teams-product-detail {
-      .product-title {
-        margin-bottom: 0;
-      }
-      .product-section {
-        padding: 2rem 0.75rem;
-        .product-content {
-          gap: 8px;
-          .product-body {
-            .product-desc {
-              @include line-height(24px);
-              @include font-size(16px);
-            }
-          }
-        }
-      }
-    }
   }
   //-----------------Blog Details--------------------------
-  .blog-detail {
-    .resource-heading {
-      .blog-image-heading {
-        .detail-content {
-          .breadcrumb {
-            @include font-size(14px);
-            @include line-height(24px);
-          }
-          .detail-title {
-            font-size: 2rem;
-          }
-        }
-      }
-      .blog-image-section {
-        .blog-image {
-          .image-content {
-            .detail-image {
-              span {
-                img {
-                }
-              }
-              &.resource-image {
-                span {
-                  max-width: 200px;
-                  min-height: 240px;
-                }
-              }
-            }
-            .meta-data {
-              .meta-data-value {
-                .meta-data-title {
-                  @include font-size(16px);
-                  @include line-height(21px);
-                  letter-spacing: 0.32px;
-                }
-                .meta-data-desc {
-                  @include line-height(21px);
-                  @include font-size(14px);
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    .share-article {
-      .article-title {
-        color: $primary-700;
-      }
-      .article-top {
-        .article-icon-list {
-        }
-      }
-      .article-bottom {
-        .article-content {
-          .article-title {
-          }
-          .arcticle-desc {
-            font-family: $inter;
-            color: $gray-900;
-          }
-        }
-        .blog-news-letter {
-          .news-letter-input {
-            .btn {
-              background-color: $primary-600;
-              color: white;
-            }
-          }
-        }
-      }
-    }
-    .blog-content {
-      .blog-description {
-        .description {
-          ul {
-            li {
-              .content {
-                .title {
-                  @include font-size(20px);
-                  @include line-height(32px);
-                }
-                .desc {
-                  @include font-size(16px);
-                  @include line-height(24px);
-                }
-              }
-              .image-section {
-                ul {
-                  gap: 16px;
-                  li {
-                    .nugget-image {
-                      span {
-                        img {
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              &:nth-child(1) {
-                .content {
-                  .title {
-                  }
-                  .desc {
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
   //-----------------privacy Details--------------------------
-  .privacy {
-    .privacy-detail {
-      .privacy-heading {
-        .privacy-title {
-        }
-        .privacy-desc {
-          @include line-height(27px);
-        }
-      }
-      .privacy-content {
-        ul {
-          li {
-            .privacy-list-item {
-              .title {
-                @include line-height(24px);
-              }
-              .desc {
-                @include line-height(24px);
-                .link {
-                }
-              }
-              &.tnc {
-                .title,
-                .desc {
-                }
-                &.inline {
-                  .title,
-                  .desc {
-                  }
-                }
-              }
-              &.faqs {
-                .title,
-                .desc {
-                }
-              }
-            }
-          }
-        }
-      }
-      .email-link {
-        .email-title {
-        }
-        .email-desc {
-          @include line-height(30px);
-          .link {
-          }
-        }
-      }
-    }
-  }
 }

@@ -11,7 +11,7 @@ body {
   transition: padding-top 0.3s ease-in-out;
   @include themed {
     color: t($text-color);
-    background-color: t($bg-color);
+    background: t($bg-color);
   }
 }
 div,

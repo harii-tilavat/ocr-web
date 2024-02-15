@@ -30,8 +30,13 @@
 }
 
 @mixin box-shadow-navbar() {
+  // for light theme
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
+  // for dark theme
+
+  // box-shadow: 0px 1px 2px 0px rgba(255, 2550, 255, 0.1);
+  // -webkit-box-shadow: 0px 1px 2px 0px rgba(255, 2550, 255, 0.1);
 }
 
 @mixin box-shadow-dropdown($color) {
