@@ -1,7 +1,9 @@
 $gray-1000: #000;
 $gray-950: #131313;
-$gray-900: #101828;
-$gray-800: #1d2939;
+// $gray-900: #101828; //orignal
+$gray-900: #181919;
+// $gray-800: #1d2939; //orignal
+$gray-800: #232628;
 $gray-700: #344054;
 $gray-600: #475467;
 $gray-500: #667085;
@@ -93,6 +95,8 @@ $primary-100: #d1c4e9;
 $primary-50: #ede7f6;
 $primary-25: #fff;
 
+$primary-gradient-light:linear-gradient($primary-25, $primary-50);
+$primary-gradient-dark:linear-gradient($gray-900,$gray-800 );
 $transparent: transparent;
 
 $font-size-base: 1rem;

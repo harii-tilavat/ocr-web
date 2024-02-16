@@ -2,10 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, filter, map, pipe } from 'rxjs';
 import { TitleService } from './_services';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
-import { BlogListResponseModel, GenericResponseList, ReviewList, TeamsModel } from './_model';
+import { GenericResponseList, } from './_model';
 import { NuggetService, DataCacheService } from './_services';
 import { GlobalEventifier } from './_eventifier';
-import { GoogleTagConfigService } from './google-tag/google-tag-config.service';
 import { AuthService } from './_services/auth/auth.service';
 
 @Component({
@@ -20,8 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public isLoggedIn = false;
 
   constructor(private readonly router: Router, private activatedRoute: ActivatedRoute, private readonly titleService: TitleService,
-    private nuggetService: NuggetService, private dataCacheService: DataCacheService, private globalEventifier: GlobalEventifier, private googleTagConfigService: GoogleTagConfigService, private authService: AuthService) {
-
+    private nuggetService: NuggetService, private dataCacheService: DataCacheService, private globalEventifier: GlobalEventifier, private authService: AuthService) {
   }
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isUserLoggedIn();
@@ -35,11 +33,6 @@ export class AppComponent implements OnInit, OnDestroy {
     ).subscribe((ttl: string) => {
       this.isNavWhite = ttl.includes('Teams') ? true : false;
       this.titleService.setTitle(ttl);
-      const gtmTag = {
-        event: 'page',
-        pageName: this.router.url
-      };
-      this.googleTagConfigService.pushTag(gtmTag);
     });
     // this.subscription.push(this.dataCacheService.getData('TEAM').subscribe((res: TeamsModel[]) => {
     //   if (res) {

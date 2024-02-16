@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BaseProviderService } from '../base-provider.service';
 import { environment } from './../../../environments/environment';
 import { map, Observable } from 'rxjs';
-import { GenericResponseList, GenericResponseType, ReviewList, TeamsModel } from 'src/app/_model';
+import { GenericResponseList, GenericResponseType } from 'src/app/_model';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,8 +30,6 @@ export class NuggetService extends BaseProviderService {
   getBlogBtId(itemId: string): Observable<any> {
     return this.makeGetCall(environment.baseUrl + '/blog/' + itemId).pipe(map(res => res));
   }
-
-
   getAllResourceList(searchParam: any): Observable<any> {
     let url = `${environment.baseUrl}/customer?`;
     if (searchParam) {
@@ -46,30 +44,11 @@ export class NuggetService extends BaseProviderService {
     }
     return this.makeGetCall(url).pipe(map(res => res));
   }
-  getResourceById(itemId: string): Observable<any> {
-    return this.makeGetCall(environment.baseUrl + '/customer/' + itemId).pipe(map(res => res));
-  }
-  getTeams(): Observable<GenericResponseList<Array<TeamsModel>>> {
-    return this.makeGetCall(environment.baseUrl + '/teams').pipe(map(res => res));
-  }
-  createInquiry(request: any): Observable<any> {
-    return this.makePostCall(environment.baseUrl + '/enquiry', request).pipe(map(res => res));
-  }
-
-  getReviewList(): Observable<GenericResponseList<Array<ReviewList>>> {
-    return this.makeGetCall(environment.baseUrl + '/review').pipe(map(res => res));
-  }
-
-
   getBlobContext(requestUrl: string): Observable<Blob> {
     return this.makeGetFile(requestUrl, 'blob').pipe(map((res) => res)) as Observable<Blob>;
   }
 
   // formal-enquiry
-  formalEnquiry(request: any): Observable<any> {
-    return this.makePostCall(environment.baseUrl + '/formal-enquiry', request).pipe(map((res) => res));
-  }
-
   // NewsLetter
   createNewsLetter(request: any): Observable<any> {
     return this.makePostCall(environment.baseUrl + '/news-letters', request).pipe(map((res) => res));
