@@ -32,21 +32,6 @@ export class FooterComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
   }
-  goToUdesk(): void {
-    if (this.enquiryForm.valid) {
-      this.nuggetService.formalEnquiry(this.enquiryForm.value).subscribe({
-        next: (res: GenericResponseList<GenericResponseType>) => {
-          if (res && res.success) {
-            this.enquiryForm.reset();
-            this.toastrService.success(res.message);
-          }
-        },
-        error: () => { }
-      })
-    } else {
-      this.enquiryForm.markAllAsTouched();
-    }
-  }
   emailSubmit(): void {
 
   }

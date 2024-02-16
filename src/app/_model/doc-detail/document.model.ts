@@ -19,3 +19,20 @@ export class DocumentProccessDetail {
   title!: string;
   desc!: string;
 }
+export class OcrServiceModel{
+  id!:number;
+  title!:string | null;
+  subTitle!:string;
+  desc!:string;
+  imagePath!:string;
+  subMenu!:ProductDetailModel[];
+}
+export class ProductDetailModel{
+  id!:number;
+  title!:string | null;
+  subTitle!:string;
+  desc!:string;
+  imagePath!:string;
+  subMenu!:ProductDetailModel[];
+  action!:boolean;
+}

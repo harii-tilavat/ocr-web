@@ -12,7 +12,6 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DataCacheService } from './_services/cache-service/data-cache.service';
 import { GlobalEventifier } from './_eventifier';
-import { GoogleTagModule } from './google-tag/google-tag.module';
 import { BaseProviderService } from './_services/base-provider.service';
 import { OcrIntercepterService } from './_services';
 import { JWT_OPTIONS, JwtModule } from 'src/package/jwt-token';
@@ -41,9 +40,6 @@ register();
         provide: JWT_OPTIONS,
         useFactory: jwtOptionsFactory,
       }
-    }),
-    GoogleTagModule.forRoot({
-      id: 'G-TQ12FM5HXS'
     }),
     ToastrModule.forRoot({
       progressBar: true,
