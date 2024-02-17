@@ -5,7 +5,7 @@
         .login-title{
           @include font-size(48px);
           @include margin-bottom(12px);
-          font-family: $sora-semibold;
+          font-family: $inter-semibold;
           color: $gray-700;
         }
       }
