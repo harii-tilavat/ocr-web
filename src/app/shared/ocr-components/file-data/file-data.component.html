@@ -21,8 +21,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of documentList; let i=index">
-            <td>{{i + 1}}</td> <!-- item.doc_id -->
-            <td style="cursor: pointer;" (click)="onViewFile(item.doc_id)"> <!--adding temporary inline style-->
+            <td>{{i + 1}}</td> <!-- item.id -->
+            <td style="cursor: pointer;" (click)="onViewFile(item.id)"> <!--adding temporary inline style-->
               <div class="image-thumbnail">
                 <span>
                   <img [src]="'http://localhost:8000'+  item.image_url" [alt]="'image-not-found'">
@@ -37,8 +37,8 @@
             <!-- <td>{{item.updated_at ? ( item.updated_at| date ) :'--' }}</td> -->
             <td>
               <div class="delete-button btn-groups">
-                <button class="btn btn-outline-danger btn-xs" (click)="onDeleteDocument(item.doc_id)">Delete</button>
-                <!-- <button class="btn btn-outline-danger btn-primary-outline " (click)="downloadFile(item.doc_id)">Download</button> -->
+                <button class="btn btn-outline-danger btn-xs" (click)="onDeleteFile(item.id)">Delete</button>
+                <!-- <button class="btn btn-outline-danger btn-primary-outline " (click)="downloadFile(item.id)">Download</button> -->
               </div>
             </td>
           </tr>
@@ -55,31 +55,81 @@
   </ng-template>
 </div>
 <div class="document-card-section">
-  <div class="row g-5">
-    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12" *ngFor="let item of documentList">
-      <div class="document-card card" >
-        <div class="document-card-header" (click)="onViewFile(item.doc_id)">
-          <div class="document-card-image">
-            <span class="image">
-              <img [src]="baseUrl + item.image_url" alt="document-img">
-            </span>
+  <ng-container *ngIf="documentList && documentList.length; else notFound">
+    <div class="row g-5">
+      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12" *ngFor="let item of documentList; let i=index">
+        <div class="document-card card">
+          <div class="document-card-header" (click)="onViewFile(item.id)">
+            <div class="document-card-image">
+              <span class="image">
+                <img [src]="baseUrl + item.image_url" alt="document-img">
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="document-card-body">
-          <div class="document-info-container">
-            <ul class="document-info-list">
-              <li class="document-info-item" *ngFor="let item of metadata">
-                <div class="document-info-title">
-                  <span>{{item.title}}</span>
-                </div>
-                <div class="document-info-subTitle">
-                  <span>{{item.subTitle}}</span>
-                </div>
-              </li>
-            </ul>
+          <div class="document-card-body">
+            <div class="document-info-container">
+              <ul class="document-info-list">
+                <li class="document-info-item">
+                  <div class="document-info-title">
+                    <span>File name</span>
+                  </div>
+                  <div class="document-info-subTitle">
+                    <span>{{item.file_name}}</span>
+                  </div>
+                </li>
+                <li class="document-info-item">
+                  <div class="document-info-title">
+                    <span>File size</span>
+                  </div>
+                  <div class="document-info-subTitle">
+                    <span>{{item.file_size}}</span>
+                  </div>
+                </li>
+                <li class="document-info-item">
+                  <div class="document-info-title">
+                    <span>File type</span>
+                  </div>
+                  <div class="document-info-subTitle">
+                    <span>{{item.file_type}}</span>
+                  </div>
+                </li>
+                <li class="document-info-item">
+                  <div class="document-info-title">
+                    <span>Created at</span>
+                  </div>
+                  <div class="document-info-subTitle">
+                    <span>{{item.created_at | date}}</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="document-card-footer">
+            <div class="dropdown">
+              <div class="dropdown-icon" [id]="'dtp-action-'+(i+1)" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="icon">
+                  <nugget-icon [name]="'3-dots'"></nugget-icon>
+                </span>
+              </div>
+              <ul class="dropdown-menu" [attr.aria-labelledby]="'dtp-action-'+(i+1)">
+                <li class="dropdown-item" (click)="onViewFile(item.id)">View file</li>
+                <li class="dropdown-item" (click)="onEditFile(item.id)">Edit file</li>
+                <li class="dropdown-item" (click)="onDeleteFile(item.id)">Delete file</li>
+                <li class="dropdown-item" (click)="onDownloadFile(item.file_name)">Download file</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+  <ng-template #notFound>
+    <div class="row">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="document-not-found">
+          <span>Documents not found!</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </div>

@@ -14,7 +14,7 @@
       </div>
       <div class="col-xxl-7 col-6-12 col-6-12 col-6-12 col-sm-12">
         <div class="file-details">
-          <div class="file-format">
+          <div class="file-format mb-3">
             <div class="file-format-button btn-groups">
               <button class="btn" [ngClass]="!isJson ?'btn-primary': 'btn-primary-outline'"
                 (click)="isJson = false && isActive = true ">TEXT</button>
@@ -22,8 +22,8 @@
                 (click)="isJson = true && isActive = true">JSON</button>
             </div>
           </div>
-          <div class="file-detail-card">
-            <div class="card">
+          <div class="file-detail-card card">
+            <div class="file-detail-card-content">
               <pre>{{isJson ? (modelData | json):modelData.ocr_text}}</pre>
             </div>
           </div>

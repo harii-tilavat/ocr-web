@@ -16,24 +16,24 @@ export class FileDataComponent implements OnInit {
   public documentList: Array<DocumentModel> = [];
   public metadata: Array<any> = [
     {
-      id:1,
-      title:'File name',
-      subTitle:'samplefile.png',
+      id: 1,
+      title: 'File name',
+      subTitle: 'samplefile.png',
     },
     {
-      id:2,
-      title:'File size',
-      subTitle:'25kb',
+      id: 2,
+      title: 'File size',
+      subTitle: '25kb',
     },
     {
-      id:3,
-      title:'File type',
-      subTitle:'PDF',
+      id: 3,
+      title: 'File type',
+      subTitle: 'PDF',
     },
     {
-      id:4,
-      title:'Created at',
-      subTitle:new Date().toLocaleString(),
+      id: 4,
+      title: 'Created at',
+      subTitle: new Date().toLocaleString(),
     },
   ];
   public baseUrl: string = environment.baseUrl;
@@ -65,7 +65,7 @@ export class FileDataComponent implements OnInit {
       }
     })
   }
-  onDeleteDocument(id: string): void {
+  onDeleteFile(id: string): void {
     if (confirm('Are you sure to delete this ? ')) {
       this.fileUploadService.deleteDocument(id).subscribe({
         next: (res: DocumentResponseModel) => {
@@ -77,5 +77,11 @@ export class FileDataComponent implements OnInit {
         }
       })
     }
+  }
+  onEditFile(id: string): void {
+
+  }
+  onDownloadFile(filename: string){
+
   }
 }
