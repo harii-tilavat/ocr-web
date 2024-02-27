@@ -15,6 +15,7 @@ import { PipesModule } from '../_pipes/pipes.module';
 import { NgbModalModule } from '../shared/ng-modal';
 import { DocumentListComponent } from './components/document-list/document-list.component';
 import { DocumentUploadComponent } from './components/document-upload/document-upload.component';
+import { DocumentDetailComponent } from './components/document-list/document-detail/document-detail.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -22,6 +23,7 @@ import { DocumentUploadComponent } from './components/document-upload/document-u
     LayoutComponent,
     DocumentListComponent,
     DocumentUploadComponent,
+    DocumentDetailComponent,
   ],
   imports: [
     CommonModule,

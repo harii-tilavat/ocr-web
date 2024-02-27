@@ -62,7 +62,7 @@
           <div class="document-card-header" (click)="onViewFile(item.id)">
             <div class="document-card-image">
               <span class="image">
-                <img [src]="baseUrl + item.image_url" alt="document-img">
+                <img [src]="item.file_type.includes('pdf')? pdfPlaceholder: baseUrl + item.image_url" alt="document-img">
               </span>
             </div>
           </div>
@@ -82,7 +82,7 @@
                     <span>File size</span>
                   </div>
                   <div class="document-info-subTitle">
-                    <span>{{item.file_size}}</span>
+                    <span>{{(item.file_size / 1024 | number:'1.0-0')+ ' kb'}}</span>
                   </div>
                 </li>
                 <li class="document-info-item">

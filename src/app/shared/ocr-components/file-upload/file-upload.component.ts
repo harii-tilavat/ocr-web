@@ -6,7 +6,8 @@ import { Subscription } from 'rxjs';
 import { DocumentModel, DocumentResponseModel } from 'src/app/_model';
 import { FileUploadService } from 'src/app/_services';
 import { NgbModal } from '../../ng-modal';
-import { FileViewComponent } from './file-view/file-view.component';
+import { FileViewComponent } from '../file-view/file-view.component';
+import { FilePreviewComponent } from '../file-preview/file-preview.component';
 
 @Component({
   selector: 'app-file-upload',
@@ -73,7 +74,7 @@ export class FileUploadComponent implements OnInit {
           this.toastrService.success(res.message, 'Success');
         },
         error: (err: HttpErrorResponse) => {
-          const errorMessage = err && err.error && err.error.message ? err.error.message :'Something went wrong!';
+          const errorMessage = err && err.error && err.error.message ? err.error.message : 'Something went wrong!';
           this.toastrService.error(errorMessage, 'Uploading error!');
           console.log("File uploading error ==>> ", err);
           this.removeSelectedFile();
@@ -89,6 +90,12 @@ export class FileUploadComponent implements OnInit {
     this.isPdf = false;
     this.isUploading = false;
     this.fileForm.reset();
+  }
+  openPreview(fileUrl: string | null): void {
+    if (this.isFileSelected) {
+      const modelRef = this.ngbModel.open(FilePreviewComponent);
+      modelRef.componentInstance.fileUrl = fileUrl;
+    }
   }
   private validFile(file: File): boolean {
     this.fileErrorMessage = null;

@@ -1,7 +1,7 @@
 export class DocumentModel {
   id!: string;
   image_url!: string;
-  file_size!: string;
+  file_size!: number;
   file_type!: string;
   file_name!: string;
   created_at!: string;
@@ -39,3 +39,4 @@ export class ProductDetailModel{
   subMenu!:ProductDetailModel[];
   action!:boolean;
 }
+export const pdfPlaceholder = '/assets/ocr-images/placeholder-pdf.png';

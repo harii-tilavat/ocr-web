@@ -1,0 +1,81 @@
+<div class="document-detail-section">
+  <ng-container *ngIf="documentDetail; ">
+    <div class="file-detail-section">
+      <div class="file-detail-header">
+        <div class="container">
+          <div class="row">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+              <div class="file-detail-header-container">
+                <div class="file-header-title">
+                  <span></span>
+                </div>
+                <div class="file-header-subtitle">
+                  <span></span>
+                </div>
+              </div>
+              <h1>Header</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="file-detail-model">
+        <div class="container">
+          <div class="row">
+            <div class="col-xxl-5 col-6-12 col-6-12 col-6-12 col-sm-12">
+              <div class="file-viewer">
+                <div class="file-preview">
+                  <div class="file-preview-image">
+                    <span>
+                      <img [src]="isPdf ? '/assets/ocr-images/placeholder-pdf.png': documentDetail.image_url"
+                        alt="not-found">
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xxl-7 col-6-12 col-6-12 col-6-12 col-sm-12">
+              <div class="file-details">
+                <div class="file-format mb-3">
+                  <div class="file-format-button btn-groups">
+                    <button class="btn" [ngClass]="!isJson ?'btn-primary': 'btn-primary-outline'"
+                      (click)="isJson = false && isActive = true ">TEXT</button>
+                    <button class="btn" [ngClass]="isJson ?'btn-primary': 'btn-primary-outline'"
+                      (click)="isJson = true && isActive = true">JSON</button>
+                  </div>
+                </div>
+                <div class="file-detail-card card">
+                  <div class="file-detail-card-content">
+                    <pre>{{isJson ? (documentDetail | json):documentDetail.ocr_text}}</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="isLoading">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="loading" *ngIf="isLoading">
+            <div class="bs-spinner py-5 text-center">
+              <div class="spinner-border" role="status">
+                <span class="sr-only"></span>
+              </div>
+            </div>
+          </div>
+          <div class="not-found-msg mt-5 text-center" *ngIf="!isLoading && !documentDetail">
+            <div class="alert alert-danger" role="alert">
+              <h1>Error 404 !</h1>
+              <hr>
+              <h3>Page not found!</h3>
+              <button class="btn btn-primary" (click)="goToBack()">Go back</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -15,7 +15,7 @@ export class FileViewComponent implements OnInit {
   constructor() { }
   ngOnInit(): void {
     this.modelData.image_url = environment.baseUrl + this.modelData.image_url;
-    if (this.modelData.image_url.includes('.pdf')) {
+    if (this.modelData.file_type.includes('.pdf')) {
       this.isPdf = true;
     }
   }
