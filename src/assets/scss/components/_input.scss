@@ -56,7 +56,7 @@ form {
   transition: background 0s ease-out;
   float: none;
   // padding: 0.7815rem 1rem;
-  @include padding(17px 25px);
+  @include padding(15px 25px);
   border-radius: 8px;
   font-family: $inter-medium;
   @include line-height(20px);
