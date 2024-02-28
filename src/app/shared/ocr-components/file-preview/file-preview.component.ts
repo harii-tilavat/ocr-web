@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilePreviewComponent implements OnInit {
   public fileUrl!: string;
+  public isPdf = false;
   ngOnInit(): void {
-
+    console.log(this.fileUrl);
   }
 }

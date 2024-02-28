@@ -6,7 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../_services';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, data: { mode: 'LOGIN' } },
+  { path: 'signup', component: LoginComponent, data: { mode: 'SIGNUP' } },
   // { path: '**', component: LoginComponent },
 ]
 
@@ -20,6 +22,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  providers:[LoginService]
+  providers: [LoginService]
 })
 export class LoginModule { }

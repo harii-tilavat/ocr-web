@@ -1,19 +1,18 @@
-.auth{
-  .login-box{
-    .login{
-      .login-header{
-        .login-title{
+.auth {
+  .login-box {
+    .login {
+      .login-header {
+        .login-title {
           @include font-size(48px);
           @include margin-bottom(12px);
           font-family: $inter-semibold;
           color: $gray-700;
         }
       }
-      .login-body{
-        .login-form-card{
-
+      .login-body {
+        .login-form-card {
         }
-        .forgot-password{
+        .forgot-password {
           @include margin-bottom(24px);
           text-decoration: underline;
           display: flex;
@@ -21,8 +20,14 @@
           color: $gray-700;
           cursor: pointer;
         }
-        .submit-button{
-
+        .submit-button {
+        }
+        .change-mode {
+          .change-mode-text {
+            cursor: pointer;
+            color: $primary-600;
+            text-decoration: underline;
+          }
         }
       }
     }

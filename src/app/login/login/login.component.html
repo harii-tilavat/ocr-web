@@ -6,34 +6,88 @@
           <div class="login">
             <div class="login-header">
               <div class="login-title">
-                <span>Login here</span>
+                <span>{{loginMode?'Login':'Signup'}} here</span>
+              </div>
+              <div class="go-to-home" *ngIf="false">
+                <span>Home</span>
               </div>
             </div>
             <div class="login-body">
-              <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div class="login-form-card">
-                  <div class="form-group">
-                    <label for="username" class="control-label">Username</label>
-                    <input type="text" class="form-control" formControlName="username">
-                    <div class="form-error" *ngIf="loginForm.controls['username'].hasError('required')">
-                      <span>Username required!</span>
+              <div class="login-form" *ngIf="loginMode; else signup">
+                <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  <div class="login-form-card">
+                    <div class="form-group">
+                      <label for="username" class="control-label">Username</label>
+                      <input type="text" class="form-control" formControlName="username">
+                      <div class="form-error" *ngIf="loginForm.controls['username'].hasError('required')">
+                        <span>Username required!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="control-label">Password</label>
+                      <input type="password" class="form-control" id="password" formControlName="password">
+                      <div class="form-error" *ngIf="loginForm.controls['password'].hasError('required')">
+                        <span>Password required!</span>
+                      </div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="password" class="control-label">Password</label>
-                    <input type="password" class="form-control" id="password" formControlName="password">
-                    <div class="form-error" *ngIf="loginForm.controls['password'].hasError('required')">
-                      <span>Password required!</span>
+                  <div class="forgot-password">
+                    <span>Forgot password</span>
+                  </div>
+                  <div class="submit-button">
+                    <button type="submit" class="btn btn-primary btn btn-primary btn-xl w-100">Login here</button>
+                  </div>
+                  <div class="change-mode mt-3">
+                    <p>Dont't have an account ?
+                      <span class="change-mode-text" (click)="changeMode()">Signup here</span>
+                    </p>
+                  </div>
+                </form>
+              </div>
+              <ng-template #signup>
+                <div class="signup-form" [formGroup]="signupForm">
+                  <div class="signup-form-card">
+                    <div class="form-group">
+                      <label for="username" class="control-label">Username</label>
+                      <input type="text" class="form-control" formControlName="username">
+                      <div class="form-error" *ngIf="signupForm.controls['username'].hasError('required')">
+                        <span>Username required!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="email" class="control-label">Email</label>
+                      <input type="email" class="form-control" id="email" formControlName="email">
+                      <div class="form-error" *ngIf="signupForm.controls['email'].hasError('required')">
+                        <span>Password required!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="control-label">Password</label>
+                      <input type="password" class="form-control" id="password" formControlName="password">
+                      <div class="form-error" *ngIf="signupForm.controls['password'].hasError('required')">
+                        <span>Password required!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="number" class="control-label">Number</label>
+                      <input type="text" class="form-control" id="number" formControlName="number">
+                      <div class="form-error" *ngIf="signupForm.controls['number'].hasError('required')">
+                        <span>Password required!</span>
+                      </div>
+                    </div>
+                    <div class="submit-button">
+                      <button type="submit" class="btn btn-primary btn btn-primary btn-xl w-100">Signup here</button>
+                    </div>
+                    <div class="change-mode mt-3">
+                      <p>
+                        <span>Have an account ? </span>
+                        <span class="change-mode-text " (click)="changeMode()">Login
+                          here</span>
+                      </p>
                     </div>
                   </div>
                 </div>
-                <div class="forgot-password">
-                  <span>Forgot password</span>
-                </div>
-                <div class="submit-button">
-                  <button type="submit" class="btn btn-primary btn btn-primary btn-xl w-100">Login here</button>
-                </div>
-              </form>
+              </ng-template>
             </div>
           </div>
         </div>

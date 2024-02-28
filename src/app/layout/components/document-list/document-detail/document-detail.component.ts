@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DocumentModel, DocumentResponseModel } from 'src/app/_model';
 import { FileUploadService } from 'src/app/_services';
 import { environment } from 'src/environments/environment';
@@ -16,7 +18,7 @@ export class DocumentDetailComponent implements OnInit {
   public isJson = false;
   public isActive = false;
   public isLoading = false;
-  constructor(private router: Router, private route: ActivatedRoute, private fileUploadService: FileUploadService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private fileUploadService: FileUploadService, private toastrService: ToastrService) { }
   ngOnInit(): void {
     this.route.params.subscribe({
       next: (res: Params) => {
@@ -34,6 +36,10 @@ export class DocumentDetailComponent implements OnInit {
                   this.isPdf = true;
                 }
               }
+            },
+            error: (err: HttpErrorResponse) => {
+              this.isLoading = false;
+              this.toastrService.error(err.error.message, 'Error 404');
             }
           })
         }

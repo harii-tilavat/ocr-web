@@ -23,6 +23,7 @@ pre {
   margin-top: 5px;
   padding: 5px 10px;
   font-family: $inter-semibold;
+  cursor: text;
   a {
     color: #6cff13;
   }
@@ -75,4 +76,7 @@ pre {
 img {
   height: 100%;
   width: 100%;
+}
+.text-primary-600 {
+  color: $primary-600;
 }

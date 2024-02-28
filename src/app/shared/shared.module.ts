@@ -15,7 +15,7 @@ import { FileViewComponent } from './ocr-components/file-view/file-view.componen
 import { FileDataComponent } from './ocr-components/file-data/file-data.component';
 import { QnaAccordianComponent } from './ocr-components/qna-accordian/qna-accordian.component';
 import { FilePreviewComponent } from './ocr-components/file-preview/file-preview.component';
-// import { PdfViewerComponent, PdfViewerModule } from 'ng2-pdf-viewer';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import { FilePreviewComponent } from './ocr-components/file-preview/file-preview
     IconsModule,
     PipesModule,
     DirectiveModule,
+    NgxExtendedPdfViewerModule
   ],
   exports: [
     NavbarComponent,

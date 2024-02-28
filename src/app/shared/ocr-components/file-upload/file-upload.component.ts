@@ -25,6 +25,7 @@ export class FileUploadComponent implements OnInit {
   public files!: any;
   public isPdf = false;
   public fileText!: string;
+  public pdfBase64!: string;
 
   public fileErrorMessage!: string | null;
   private allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
@@ -54,6 +55,9 @@ export class FileUploadComponent implements OnInit {
       reader.onload = () => {
         if (file.type.includes('pdf')) {
           this.filePreviewBase64 = '/assets/ocr-images/placeholder-pdf.png';
+          this.pdfBase64 = reader.result as string;
+          // console.log(this.pdfBase64);
+          this.isPdf = true;
         } else {
           this.filePreviewBase64 = reader.result as string;
         }
@@ -93,8 +97,13 @@ export class FileUploadComponent implements OnInit {
   }
   openPreview(fileUrl: string | null): void {
     if (this.isFileSelected) {
-      const modelRef = this.ngbModel.open(FilePreviewComponent);
-      modelRef.componentInstance.fileUrl = fileUrl;
+      const modelRef = this.ngbModel.open(FilePreviewComponent, { size: 'xl' });
+      if (this.isPdf) {
+        modelRef.componentInstance.fileUrl = this.pdfBase64.split(',')[1];
+        modelRef.componentInstance.isPdf = this.isPdf;
+      } else {
+        modelRef.componentInstance.fileUrl = fileUrl;
+      }
     }
   }
   private validFile(file: File): boolean {

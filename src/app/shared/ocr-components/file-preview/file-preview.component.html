@@ -1,5 +1,24 @@
-<div class="image">
-  <span>
-    <img [src]="fileUrl" alt="img-not-found">
-  </span>
+<div class="file-preview-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="file-priview-section">
+          <div class="image-container" *ngIf="!isPdf; else showPdf">
+            <div class="image">
+              <span>
+                <img [src]="fileUrl" alt="img-not-found">
+              </span>
+            </div>
+          </div>
+          <ng-template #showPdf>
+            <div class="pdf-container">
+              <ngx-extended-pdf-viewer [textLayer]="true" [showHandToolButton]="true" [base64Src]="fileUrl"
+                [height]="'80vh'">
+              </ngx-extended-pdf-viewer>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
