@@ -82,7 +82,7 @@
                 </ng-container>
                 <ng-template #routerlinkbox>
                   <div class="menu-title" [routerLink]="item.routing" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact:false}" (click)="toggleHemburge()">
+                    [routerLinkActiveOptions]="{exact:true}" (click)="toggleHemburge()">
                     <span class="menu-nav-link">
                       {{item.title}}
                     </span>

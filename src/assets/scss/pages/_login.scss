@@ -1,7 +1,11 @@
 .auth {
   .login-box {
+    @include padding-bottom(96px);
     .login {
       .login-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         .login-title {
           @include font-size(48px);
           @include margin-bottom(12px);

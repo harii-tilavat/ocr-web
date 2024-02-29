@@ -4,6 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../_services';
+import { SharedModule } from '../shared/shared.module';
+import { IconsModule } from '../icons/icons.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,12 +16,14 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule,
+    IconsModule,
     RouterModule.forChild(routes)
   ],
   providers: [LoginService]

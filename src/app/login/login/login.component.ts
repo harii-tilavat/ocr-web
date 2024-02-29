@@ -15,14 +15,14 @@ export class LoginComponent implements OnInit {
   public loginMode = false;
   public authMode!: string;
   public loginForm = new FormGroup({
-    username: new FormControl<string | null>('hari', [Validators.required]),
-    password: new FormControl<string | null>('1234', [Validators.required])
+    username: new FormControl<string | null>(null, [Validators.required]),
+    password: new FormControl<string | null>(null, [Validators.required])
   });
   public signupForm = new FormGroup({
-    username: new FormControl<string | null>('hari', [Validators.required]),
-    email: new FormControl<string | null>('hari', [Validators.required]),
-    password: new FormControl<string | null>('1234', [Validators.required]),
-    number: new FormControl<string | null>('1234', [Validators.required]),
+    username: new FormControl<string | null>(null, [Validators.required]),
+    email: new FormControl<string | null>(null, [Validators.required]),
+    password: new FormControl<string | null>(null, [Validators.required]),
+    number: new FormControl<string | null>(null, [Validators.required]),
   });
   constructor(private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
     // if (this.authService.isUserLoggedIn()) {
@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe({
       next: (res) => {
-        console.log("Response ==>> ", res);
-        console.log("Activated route ==>> ", this.activatedRoute);
         const data = this.activatedRoute.snapshot.data;
         if (data && data['mode']) {
           if (data['mode'] === 'LOGIN') {
@@ -72,5 +70,8 @@ export class LoginComponent implements OnInit {
     } else {
       this.router.navigate(['../', 'login'], { relativeTo: this.activatedRoute });
     }
+  }
+  goToHomepage():void{
+    this.router.navigate(['/']);
   }
 }

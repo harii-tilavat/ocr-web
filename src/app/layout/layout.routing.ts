@@ -6,6 +6,7 @@ import { LayoutComponent } from './layout.component';
 import { FileUploadComponent } from '../shared/ocr-components/file-upload/file-upload.component';
 import { DocumentUploadComponent } from './components/document-upload/document-upload.component';
 import { DocumentDetailComponent } from './components/document-list/document-detail/document-detail.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 // const routes: Routes = [
 //   { path: '', component: HomeComponent, data: { title: 'Get Curious Home' } },
@@ -30,7 +31,8 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'upload', component: DocumentUploadComponent, data: { title: 'OcrWeb File upload' } },
       { path: 'docs', component: DocumentListComponent, data: { title: 'OcrWeb Documents' }, }, // canActivate:[AuthGuard]
-      { path: 'docs/:id', component: DocumentDetailComponent, data: { title: 'OcrWeb Document details' }, }
+      { path: 'docs/:id', component: DocumentDetailComponent, data: { title: 'OcrWeb Document details' }, },
+      { path: 'contact', component: ContactComponent, data: { title: 'OcrWeb Contact' } },
     ],
   },
   { path: '', redirectTo: '', pathMatch: 'full' },
