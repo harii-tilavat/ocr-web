@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DocumentModel, DocumentResponseModel } from 'src/app/_model';
 import { FileUploadService } from 'src/app/_services';
 import { environment } from 'src/environments/environment';
+import { pdfPlaceholder } from '../../../../_model/doc-detail/document.model';
 
 @Component({
   selector: 'app-document-detail',
@@ -12,6 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./document-detail.component.scss']
 })
 export class DocumentDetailComponent implements OnInit {
+  public pdfPlaceholder = pdfPlaceholder;
   public documentDetail!: DocumentModel;
   public documentId!: string;
   public isPdf = false;
@@ -45,6 +47,13 @@ export class DocumentDetailComponent implements OnInit {
         }
       }
     })
+  }
+  copyText(data: DocumentModel): void {
+    if (this.isJson) {
+      this.fileUploadService.copyTextClipbord(JSON.stringify(data));
+    } else {
+      this.fileUploadService.copyTextClipbord(data.ocr_text);
+    }
   }
   goToBack(): void {
     this.router.navigate(['../'], { relativeTo: this.route });

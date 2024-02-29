@@ -1,23 +1,22 @@
 <div class="document-detail-section">
-  <ng-container *ngIf="documentDetail; ">
-    <div class="file-detail-section">
-      <div class="file-detail-header">
-        <div class="container">
-          <div class="row">
-            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-              <div class="file-detail-header-container">
-                <div class="file-header-title">
-                  <span></span>
-                </div>
-                <div class="file-header-subtitle">
-                  <span></span>
-                </div>
-              </div>
-              <h1>Header</h1>
+  <div class="file-detail-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="file-detail-header-container">
+            <div class="file-header-title">
+              <span>Your document detail</span>
+            </div>
+            <div class="file-header-subtitle">
+              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloribus et illum.</span>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <ng-container *ngIf="documentDetail; ">
+    <div class="file-detail-section">
       <div class="file-detail-model">
         <div class="container">
           <div class="row">
@@ -26,8 +25,7 @@
                 <div class="file-preview">
                   <div class="file-preview-image">
                     <span>
-                      <img [src]="isPdf ? '/assets/ocr-images/placeholder-pdf.png': documentDetail.image_url"
-                        alt="not-found">
+                      <img [src]="isPdf ? pdfPlaceholder: documentDetail.image_url" alt="not-found">
                     </span>
                   </div>
                 </div>
@@ -45,6 +43,11 @@
                 </div>
                 <div class="file-detail-card card">
                   <div class="file-detail-card-content">
+                    <div class="copy-text-button" (click)="copyText(documentDetail)">
+                      <span class="icon" title="Copy text">
+                        <nugget-icon name="copy"></nugget-icon>
+                      </span>
+                    </div>
                     <pre>{{isJson ? (documentDetail | json):documentDetail.ocr_text}}</pre>
                   </div>
                 </div>

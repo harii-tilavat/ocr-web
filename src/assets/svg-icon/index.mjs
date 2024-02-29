@@ -4,6 +4,7 @@ export * from './build/ng-caret-left.icon';
 export * from './build/ng-caret-right.icon';
 export * from './build/ng-check-true.icon';
 export * from './build/ng-contact.icon';
+export * from './build/ng-copy.icon';
 export * from './build/ng-down-arrow.icon';
 export * from './build/ng-favicon.icon';
 export * from './build/ng-hemburg.icon';

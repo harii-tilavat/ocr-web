@@ -2,6 +2,7 @@
   background-color: $primary-25;
   border: 1px solid $primary-100;
   transition: all 0.2s;
+  position: relative;
   overflow: hidden;
   // height: calc(100% - 64px);
   height: calc(100%);
@@ -63,94 +64,14 @@
       }
     }
   }
-  &.more-story-card {
-    .card-header {
-      background-color: $yellow-25;
-      .card-image {
-        padding-top: 79.71%;
-        position: relative;
-        height: 100%;
-        filter: grayscale(100%);
-        @include transitions(0.2s, ease-in-out);
-        &:hover {
-          filter: grayscale(0%);
-        }
-        span {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          // max-width: 300px;
-          transform: translate(-50%, -50%);
-          // @include padding(5px);
-          img {
-            width: auto;
-            height: auto;
-          }
-        }
-      }
-    }
-    .card-body {
-      .card-date {
-      }
-      .card-title {
-      }
-      .card-desc {
-      }
-    }
-    &.other-story {
-      .card-header {
-        .card-image {
-          padding-top: 56.25%;
-        }
-      }
-      .card-body {
-        .card-date {
-        }
-        .card-title {
-          @include font-size(28px);
-          font-family: $inter-semibold;
-          line-height: clamp(30px, 5vw, 37px);
-        }
-        .card-desc {
-        }
-      }
-    }
-  }
-  &.bg-purple {
-    .card-header {
-      background-color: $primary-100;
-    }
-  }
-  &.image-card {
-    .card-header {
-      .card-image {
-        padding-top: 79.71%;
-        span {
-          height: 100%;
-        }
-      }
-    }
-  }
-  &.selected-card {
-    .card-header {
-      .card-image {
-        padding-top: 30%;
-        position: relative;
-        background-color: $yellow-25;
-        span {
-          max-width: 400px;
-          display: block;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 100%;
-          transform: translate(-50%, -50%);
-          img {
-          }
-        }
+  .copy-text-button{
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    span{
+      svg{
+        fill: $primary-300;
+        filter: drop-shadow(0px 1px 2px $primary-50);
       }
     }
   }
