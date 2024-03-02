@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { DocumentModel, DocumentResponseModel } from 'src/app/_model';
+import { DocumentModel, DocumentResponseModel, pdfPlaceholder } from 'src/app/_model';
 import { FileUploadService } from 'src/app/_services';
 import { NgbModal } from '../../ng-modal';
-import { FileViewComponent } from '../file-upload/file-view/file-view.component';
+import { FileViewComponent } from '../file-view/file-view.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-file-data',
@@ -13,38 +14,39 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./file-data.component.scss']
 })
 export class FileDataComponent implements OnInit {
+  public pdfPlaceholder:string = pdfPlaceholder;
   public documentList: Array<DocumentModel> = [];
   public metadata: Array<any> = [
     {
-      id:1,
-      title:'File name',
-      subTitle:'samplefile.png',
+      id: 1,
+      title: 'File name',
+      subTitle: 'samplefile.png',
     },
     {
-      id:2,
-      title:'File size',
-      subTitle:'25kb',
+      id: 2,
+      title: 'File size',
+      subTitle: '25kb',
     },
     {
-      id:3,
-      title:'File type',
-      subTitle:'PDF',
+      id: 3,
+      title: 'File type',
+      subTitle: 'PDF',
     },
     {
-      id:4,
-      title:'Created at',
-      subTitle:new Date().toLocaleString(),
+      id: 4,
+      title: 'Created at',
+      subTitle: new Date().toLocaleString(),
     },
   ];
   public baseUrl: string = environment.baseUrl;
-  constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private ngbModel: NgbModal) { }
+  constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private router: Router, private route: ActivatedRoute) { }
   ngOnInit(): void {
     this.getAllDocuments();
   }
   getAllDocuments(): void {
     this.fileUploadService.getAllDocuments().subscribe({
       next: (res) => {
-        if (res.data.length) {
+        if (res && res.data) {
           this.documentList = res.data;
           console.log("Response ===>>> ", this.documentList);
         }
@@ -55,17 +57,9 @@ export class FileDataComponent implements OnInit {
     })
   }
   onViewFile(id: string): void {
-    this.fileUploadService.getDocumentById(id).subscribe({
-      next: (res: DocumentResponseModel) => {
-        const modelRef = this.ngbModel.open(FileViewComponent, { scrollable: true, size: 'xl', fullscreen: 'xl', });
-        modelRef.componentInstance.modelData = res.data;
-      },
-      error: (err) => {
-        this.toastrService.error(err && err.message ? err.message : 'Something went wrong!', 'Error');
-      }
-    })
+    this.router.navigate([id], { relativeTo: this.route })
   }
-  onDeleteDocument(id: string): void {
+  onDeleteFile(id: string): void {
     if (confirm('Are you sure to delete this ? ')) {
       this.fileUploadService.deleteDocument(id).subscribe({
         next: (res: DocumentResponseModel) => {
@@ -78,4 +72,11 @@ export class FileDataComponent implements OnInit {
       })
     }
   }
+  onEditFile(id: string): void {
+
+  }
+  onDownloadFile(filename: string) {
+
+  }
 }
+

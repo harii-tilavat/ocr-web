@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MenuListModel, menuConfig } from 'src/app/_model/menu-list/menu-list.model';
 import { GenericResponseList, GenericResponseType } from 'src/app/_model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -27,13 +28,16 @@ export class FooterComponent implements OnInit, OnDestroy {
   public enquiryForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required])
   })
-  constructor(private nuggetService: NuggetService, private toastrService: ToastrService) {
+  constructor(private nuggetService: NuggetService, private toastrService: ToastrService, private router:Router) {
 
   }
   ngOnInit(): void {
   }
   emailSubmit(): void {
 
+  }
+  goToSignup():void{
+    this.router.navigate(['auth','signup']);
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

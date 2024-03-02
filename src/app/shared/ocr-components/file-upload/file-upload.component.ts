@@ -6,7 +6,8 @@ import { Subscription } from 'rxjs';
 import { DocumentModel, DocumentResponseModel } from 'src/app/_model';
 import { FileUploadService } from 'src/app/_services';
 import { NgbModal } from '../../ng-modal';
-import { FileViewComponent } from './file-view/file-view.component';
+import { FileViewComponent } from '../file-view/file-view.component';
+import { FilePreviewComponent } from '../file-preview/file-preview.component';
 
 @Component({
   selector: 'app-file-upload',
@@ -24,6 +25,7 @@ export class FileUploadComponent implements OnInit {
   public files!: any;
   public isPdf = false;
   public fileText!: string;
+  public pdfBase64!: string;
 
   public fileErrorMessage!: string | null;
   private allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
@@ -53,6 +55,9 @@ export class FileUploadComponent implements OnInit {
       reader.onload = () => {
         if (file.type.includes('pdf')) {
           this.filePreviewBase64 = '/assets/ocr-images/placeholder-pdf.png';
+          this.pdfBase64 = reader.result as string;
+          // console.log(this.pdfBase64);
+          this.isPdf = true;
         } else {
           this.filePreviewBase64 = reader.result as string;
         }
@@ -73,7 +78,7 @@ export class FileUploadComponent implements OnInit {
           this.toastrService.success(res.message, 'Success');
         },
         error: (err: HttpErrorResponse) => {
-          const errorMessage = err && err.error && err.error.message ? err.error.message :'Something went wrong!';
+          const errorMessage = err && err.error && err.error.message ? err.error.message : 'Something went wrong!';
           this.toastrService.error(errorMessage, 'Uploading error!');
           console.log("File uploading error ==>> ", err);
           this.removeSelectedFile();
@@ -89,6 +94,17 @@ export class FileUploadComponent implements OnInit {
     this.isPdf = false;
     this.isUploading = false;
     this.fileForm.reset();
+  }
+  openPreview(fileUrl: string | null): void {
+    if (this.isFileSelected) {
+      const modelRef = this.ngbModel.open(FilePreviewComponent, { size: 'xl' });
+      if (this.isPdf) {
+        modelRef.componentInstance.fileUrl = this.pdfBase64.split(',')[1];
+        modelRef.componentInstance.isPdf = this.isPdf;
+      } else {
+        modelRef.componentInstance.fileUrl = fileUrl;
+      }
+    }
   }
   private validFile(file: File): boolean {
     this.fileErrorMessage = null;

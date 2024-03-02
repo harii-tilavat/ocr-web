@@ -5,7 +5,7 @@
       @include margin-bottom(48px);
       .document-list-title {
         @include font-size(32px);
-        font-family: $sora-medium;
+        font-family: $sora;
       }
       .document-list-desc {
       }
@@ -13,8 +13,8 @@
     .document-list {
       .document-card-section {
         .document-card {
-          &:hover{
-            transform: translateY(-15px);
+          &:hover {
+            transform: translateY(-10px);
           }
           .document-card-header {
             .document-card-image {
@@ -48,6 +48,23 @@
                 }
               }
             }
+          }
+          .document-card-footer {
+            @include padding(0 20px 20px 20px);
+            display: flex;
+            justify-content: flex-end;
+            .dropdown-icon {
+              span {
+                display: block;
+                @include nugget-icon(17px);
+              }
+            }
+          }
+        }
+        .document-not-found{
+          display: flex;
+          justify-content: center;
+          span{
           }
         }
       }

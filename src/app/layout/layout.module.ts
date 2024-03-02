@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
-import { ProductComponent } from './components/product/product.component';
 import { LayoutComponent } from './layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutRoutingModule } from './layout.routing';
@@ -15,13 +14,17 @@ import { PipesModule } from '../_pipes/pipes.module';
 import { NgbModalModule } from '../shared/ng-modal';
 import { DocumentListComponent } from './components/document-list/document-list.component';
 import { DocumentUploadComponent } from './components/document-upload/document-upload.component';
+import { DocumentDetailComponent } from './components/document-list/document-detail/document-detail.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { ContactComponent } from './components/contact/contact.component';
 @NgModule({
   declarations: [
     HomeComponent,
-    ProductComponent,
     LayoutComponent,
     DocumentListComponent,
     DocumentUploadComponent,
+    DocumentDetailComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,7 @@ import { DocumentUploadComponent } from './components/document-upload/document-u
     LayoutRoutingModule,
     IconsModule,
     DirectiveModule,
+    NgxExtendedPdfViewerModule,
     PipesModule,
     NgbModalModule
   ],

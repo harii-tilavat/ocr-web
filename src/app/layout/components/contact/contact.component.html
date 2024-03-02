@@ -1,0 +1,90 @@
+<div class="contact">
+  <div class="container my-5">
+    <div class="row justify-content-start">
+      <div class="col-8">
+        <div class="contact-form-header text-center mb-5 pb-2">
+          <h1 class=" inter-bold">Contact Us</h1>
+          <!-- <h4 class="mb-3 inter">Get in Touch with Us</h4> -->
+          <p>For questions please use this form or email us directly at team OCRWeb. </p>
+          <hr>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="contact-form card p-5">
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="your-name" class="control-label">Your Name</label>
+                  <input type="text" class="form-control" id="your-name" name="your-name" formControlName="name">
+                  <div class="form-error"
+                    *ngIf="contactForm.controls['name'].touched && contactForm.controls['name'].hasError('required')">
+                    <span>name required!</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="your-surname" class="control-label">Your Surname</label>
+                  <input type="text" class="form-control" id="your-surname" name="your-surname"
+                    formControlName="surname">
+                  <div class="form-error"
+                    *ngIf="contactForm.controls['surname'].touched && contactForm.controls['surname'].hasError('required')">
+                    <span>surname required!</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="your-email" class="control-label">Your Email</label>
+                  <input type="email" class="form-control" id="your-email" name="your-email" formControlName="email">
+                  <div class="form-error" *ngIf="contactForm.controls['email'].touched ">
+                    <span *ngIf="contactForm.controls['email'].hasError('required')">email required!</span>
+                    <span *ngIf="contactForm.controls['email'].hasError('email')">Enter valid email!</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="your-subject" class="control-label">Your Subject</label>
+                  <input type="text" class="form-control" id="your-subject" name="your-subject" formControlName="subject">
+                  <div class="form-error"
+                    *ngIf="contactForm.controls['subject'].touched && contactForm.controls['subject'].hasError('required')">
+                    <span>subject required!</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="your-message" class="control-label">Your Message</label>
+                  <textarea class="form-control" id="your-message" name="your-message" rows="5"
+                    formControlName="message"></textarea>
+                  <div class="form-error"
+                    *ngIf="contactForm.controls['message'].touched && contactForm.controls['message'].hasError('required')">
+                    <span>message required!</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary w-100 fw-bold" >Send</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="right-image">
+          <span>
+            <nugget-icon name="contact"></nugget-icon>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -58,4 +58,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.isLoggedIn = false;
     }
   }
+  goToLogin():void{
+    this.router.navigate(['auth','login']);
+  }
+  goToSignup():void{
+    this.router.navigate(['auth','signup']);
+  }
 }

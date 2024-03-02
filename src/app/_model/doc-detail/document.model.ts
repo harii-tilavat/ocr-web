@@ -1,14 +1,17 @@
 export class DocumentModel {
-  doc_id!: string;
+  id!: string;
   image_url!: string;
-  vendor_name!: string;
-  total!: number;
-  category!: string;
+  file_size!: number;
+  file_type!: string;
+  file_name!: string;
   created_at!: string;
   updated_at!: string;
-  document_type!: string;
-  invoice_number!: string;
   ocr_text!: string;
+  // vendor_name!: string;
+  // total!: number;
+  // category!: string;
+  // document_type!: string;
+  // invoice_number!: string;
 }
 export class DocumentResponseModel {
   data!: DocumentModel;
@@ -36,3 +39,4 @@ export class ProductDetailModel{
   subMenu!:ProductDetailModel[];
   action!:boolean;
 }
+export const pdfPlaceholder = '/assets/ocr-images/placeholder-pdf.png';

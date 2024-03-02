@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/_services';
 import { AuthService } from 'src/app/_services/auth/auth.service';
@@ -12,16 +12,36 @@ import { AuthService } from 'src/app/_services/auth/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  public loginMode = false;
+  public authMode!: string;
   public loginForm = new FormGroup({
-    username: new FormControl<string | null>('hari', [Validators.required]),
-    password: new FormControl<string | null>('1234', [Validators.required])
+    username: new FormControl<string | null>(null, [Validators.required]),
+    password: new FormControl<string | null>(null, [Validators.required])
   });
-  constructor(private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router) {
+  public signupForm = new FormGroup({
+    username: new FormControl<string | null>(null, [Validators.required]),
+    email: new FormControl<string | null>(null, [Validators.required]),
+    password: new FormControl<string | null>(null, [Validators.required]),
+    number: new FormControl<string | null>(null, [Validators.required]),
+  });
+  constructor(private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
     // if (this.authService.isUserLoggedIn()) {
     //   this.router.navigate(['/']);
     // }
   }
   ngOnInit(): void {
+    this.router.events.subscribe({
+      next: (res) => {
+        const data = this.activatedRoute.snapshot.data;
+        if (data && data['mode']) {
+          if (data['mode'] === 'LOGIN') {
+            this.loginMode = true;
+          } else {
+            this.loginMode = false;
+          }
+        }
+      }
+    })
   }
   onSubmit(): void {
     if (!this.loginForm.valid) {
@@ -43,5 +63,15 @@ export class LoginComponent implements OnInit {
         this.toastService.error(err && err.error && err.error.message ? err.error.message : 'Something went wrong', 'Try again!');
       }
     });
+  }
+  changeMode(): void {
+    if (this.loginMode) {
+      this.router.navigate(['../', 'signup'], { relativeTo: this.activatedRoute });
+    } else {
+      this.router.navigate(['../', 'login'], { relativeTo: this.activatedRoute });
+    }
+  }
+  goToHomepage():void{
+    this.router.navigate(['/']);
   }
 }
