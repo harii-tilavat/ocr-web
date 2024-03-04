@@ -18,9 +18,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public isScrolled = false;
   public isOpen = false;
   public menuList: MenuListModel[] = menuConfig;
-  constructor( private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
   ngOnInit(): void {
-    // this.isLoggedIn = this.authService.isUserLoggedIn();
+    this.authService.isLoggedInSubject.subscribe({
+      next: (res: boolean) => {
+        console.log("Is login ==>> ", res);
+      }
+    })
+    console.log("Check login => ", this.authService.isUserLoggedIn());
     if (!sessionStorage.getItem('isAnnounce')) {
       sessionStorage.setItem('isAnnounce', '1');
       this.isAnnounce = true;
@@ -58,10 +63,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.isLoggedIn = false;
     }
   }
-  goToLogin():void{
-    this.router.navigate(['auth','login']);
+  goToLogin(): void {
+    this.router.navigate(['auth', 'login']);
   }
-  goToSignup():void{
-    this.router.navigate(['auth','signup']);
+  goToSignup(): void {
+    this.router.navigate(['auth', 'signup']);
   }
 }

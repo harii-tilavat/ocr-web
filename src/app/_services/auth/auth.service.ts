@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { DecodedToken, JwtHelperService, JwtModel } from 'src/package/jwt-token';
 
 
@@ -14,6 +14,7 @@ export class AuthService {
   public helper = new JwtHelperService();
   public redirectUrl!: string;
   public currentUserSubject: BehaviorSubject<DecodedToken | null> = new BehaviorSubject(this.user);
+  public isLoggedInSubject: Subject<boolean> = new BehaviorSubject(false);
   constructor(private jwtHelper: JwtHelperService, private router: Router) { }
   get token() {
     return localStorage.getItem('token') as string || null;
@@ -29,6 +30,7 @@ export class AuthService {
         this.jwtToken.isExpired = this.jwtHelper.isTokenExpired(token);
         if (!this.jwtToken.isExpired) {
           this.isLoggedIn = true;
+          this.isLoggedInSubject.next(true);
           this.user = this.jwtToken.decodedToken;
           this.setToken = token;
           this.currentUserSubject.next(this.user);
@@ -49,6 +51,7 @@ export class AuthService {
   }
   logout(): void {
     localStorage.clear();
+    this.isLoggedInSubject.next(false);
     this.router.navigate(['/login']);
   }
 }
