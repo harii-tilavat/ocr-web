@@ -47,7 +47,13 @@ export class AuthService {
     })
   }
   isUserLoggedIn(): boolean {
-    return this.helper.isTokenExpired();
+    if(this.token){
+      return true
+    }else{
+      return false
+    }
+    // return this.isLoggedIn;
+    // return this.helper.isTokenExpired();
   }
   isAdmin():boolean{
     return false

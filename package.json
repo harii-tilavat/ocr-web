@@ -16,7 +16,7 @@
       "./src/assets/icons/*.svg",
       "./src/assets/icons/employee/*.svg",
       "./src/assets/icons/animation/*.svg",
-      "./src/assets/icons/social/*.svg"
+    "./src/assets/icons/social/*.svg"
     ],
     "outputDirectory": "./src/assets/svg-icon",
     "interfaceName": "NuggetIcon",
