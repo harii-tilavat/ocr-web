@@ -47,16 +47,15 @@ export class AuthService {
     })
   }
   isUserLoggedIn(): boolean {
-    if(this.token){
-      return true
-    }else{
+    return this.helper.isTokenExpired();
+  }
+  isAdmin(): boolean {
+    const decodedToken = this.jwtHelper.decodeToken(this.token!);
+    if (decodedToken && decodedToken.type === 'ADMIN') {
+      return true;
+    } else {
       return false
     }
-    // return this.isLoggedIn;
-    // return this.helper.isTokenExpired();
-  }
-  isAdmin():boolean{
-    return false
   }
   logout(): void {
     localStorage.clear();
