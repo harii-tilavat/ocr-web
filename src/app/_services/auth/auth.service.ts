@@ -49,6 +49,9 @@ export class AuthService {
   isUserLoggedIn(): boolean {
     return this.helper.isTokenExpired();
   }
+  isAdmin():boolean{
+    return false
+  }
   logout(): void {
     localStorage.clear();
     this.isLoggedInSubject.next(false);

@@ -44,6 +44,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   toggleButton(): void {
     this.isOpen = !this.isOpen;
   }
+
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());
   }
@@ -62,6 +63,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.authService.logout();
       this.isLoggedIn = false;
     }
+  }
+  userLogout():void{
+    this.authService.logout();
   }
   goToLogin(): void {
     this.router.navigate(['auth', 'login']);

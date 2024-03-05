@@ -96,9 +96,10 @@
           <div class="nav-button d-none d-md-flex">
             <button type="button" class="btn btn-primary-outline " (click)="goToLogin()">Login</button>
             <button type="button" class="btn btn-primary" (click)="goToSignup()">Create free account</button>
+            <button type="button" class="btn btn-primary" (click)="userLogout()">Logout</button>
             <!--{{isLoggedIn ? 'Logout':'Login'}}-->
           </div>
-          <div class="profile-account">
+          <div class="profile-account" *ngIf="false">
             <span>Account</span>
           </div>
         </div>

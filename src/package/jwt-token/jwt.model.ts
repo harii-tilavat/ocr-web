@@ -45,6 +45,7 @@ export class DecodedToken {
   given_name!: string;
   family_name!: string;
   email!: string;
+  type ?: string;
 }
 
 export class Resourceaccess {
