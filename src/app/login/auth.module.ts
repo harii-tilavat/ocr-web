@@ -28,4 +28,4 @@ const routes: Routes = [
   ],
   providers: [LoginService]
 })
-export class LoginModule { }
+export class AuthModule { }
