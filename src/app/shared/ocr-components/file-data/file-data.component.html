@@ -58,7 +58,7 @@
   <ng-container *ngIf="documentList && documentList.length; else notFound">
     <div class="row g-5">
       <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12" *ngFor="let item of documentList; let i=index">
-        <div class="document-card card">
+        <div class="document-card card-main">
           <div class="document-card-header" (click)="onViewFile(item.id)">
             <div class="document-card-image">
               <span class="image">

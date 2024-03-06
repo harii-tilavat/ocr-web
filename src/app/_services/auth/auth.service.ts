@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { DecodedToken, JwtHelperService, JwtModel } from 'src/package/jwt-token';
 
 
@@ -14,6 +14,7 @@ export class AuthService {
   public helper = new JwtHelperService();
   public redirectUrl!: string;
   public currentUserSubject: BehaviorSubject<DecodedToken | null> = new BehaviorSubject(this.user);
+  public isLoggedInSubject: Subject<boolean> = new BehaviorSubject(false);
   constructor(private jwtHelper: JwtHelperService, private router: Router) { }
   get token() {
     return localStorage.getItem('token') as string || null;
@@ -29,10 +30,11 @@ export class AuthService {
         this.jwtToken.isExpired = this.jwtHelper.isTokenExpired(token);
         if (!this.jwtToken.isExpired) {
           this.isLoggedIn = true;
+          this.isLoggedInSubject.next(true);
           this.user = this.jwtToken.decodedToken;
           this.setToken = token;
           this.currentUserSubject.next(this.user);
-          this.redirectUrl = '/';
+          this.redirectUrl = '/user';
           this.router.navigate([this.redirectUrl]);
           return resolve(this.user);
         } else {
@@ -44,11 +46,20 @@ export class AuthService {
       }
     })
   }
+  // isUserLoggedIn(): boolean {
+  //   return this.helper.isTokenExpired();
+  // }
   isUserLoggedIn(): boolean {
-    return this.helper.isTokenExpired();
+    const decodedToken = this.jwtHelper.decodeToken(this.token!);
+    if (decodedToken && decodedToken.type === 'USER') {
+      return true;
+    } else {
+      return false
+    }
   }
   logout(): void {
     localStorage.clear();
-    this.router.navigate(['/login']);
+    this.isLoggedInSubject.next(false);
+    this.router.navigate(['/auth']);
   }
 }

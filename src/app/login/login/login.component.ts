@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit {
     number: new FormControl<string | null>(null, [Validators.required]),
   });
   constructor(private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
-    // if (this.authService.isUserLoggedIn()) {
-    //   this.router.navigate(['/']);
-    // }
+    if (this.authService.isUserLoggedIn()) {
+      this.router.navigate(['/user']);
+    }
   }
   ngOnInit(): void {
     this.router.events.subscribe({
@@ -40,6 +40,11 @@ export class LoginComponent implements OnInit {
             this.loginMode = false;
           }
         }
+      }
+    });
+    this.authService.isLoggedInSubject.subscribe({
+      next: (res) => {
+        console.log("Is login auth==>> ", res);
       }
     })
   }
@@ -71,6 +76,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['../', 'login'], { relativeTo: this.activatedRoute });
     }
   }
+
   goToHomepage():void{
     this.router.navigate(['/']);
   }

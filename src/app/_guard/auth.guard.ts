@@ -15,9 +15,12 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const isAuth = this.checkLogin();
     if (isAuth) {
-      return true;
+      // debugger;
+      return true
     } else {
-      return this.router.createUrlTree(['/login']);
+      this.authService.isLoggedInSubject.next(false);
+      return this.router.createUrlTree(['/auth']);
+      // return false
     }
   }
   checkLoginToken(): boolean {
@@ -33,6 +36,7 @@ export class AuthGuard implements CanActivate {
       this.toastService.error('Session expired! ', 'Login again!');
       return false
     }
+    this.authService.isLoggedInSubject.next(false);
     return false;
   }
 }
