@@ -34,7 +34,7 @@ export class AuthService {
           this.user = this.jwtToken.decodedToken;
           this.setToken = token;
           this.currentUserSubject.next(this.user);
-          this.redirectUrl = '/';
+          this.redirectUrl = '/user';
           this.router.navigate([this.redirectUrl]);
           return resolve(this.user);
         } else {
@@ -46,12 +46,12 @@ export class AuthService {
       }
     })
   }
+  // isUserLoggedIn(): boolean {
+  //   return this.helper.isTokenExpired();
+  // }
   isUserLoggedIn(): boolean {
-    return this.helper.isTokenExpired();
-  }
-  isAdmin(): boolean {
     const decodedToken = this.jwtHelper.decodeToken(this.token!);
-    if (decodedToken && decodedToken.type === 'ADMIN') {
+    if (decodedToken && decodedToken.type === 'USER') {
       return true;
     } else {
       return false
@@ -60,6 +60,6 @@ export class AuthService {
   logout(): void {
     localStorage.clear();
     this.isLoggedInSubject.next(false);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth']);
   }
 }

@@ -16,6 +16,7 @@ import { FileDataComponent } from './ocr-components/file-data/file-data.componen
 import { QnaAccordianComponent } from './ocr-components/qna-accordian/qna-accordian.component';
 import { FilePreviewComponent } from './ocr-components/file-preview/file-preview.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     FileDataComponent,
     QnaAccordianComponent,
     FilePreviewComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     IconsModule,
     PipesModule,
     DirectiveModule,
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
   ],
   exports: [
     NavbarComponent,
@@ -49,6 +51,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     FileUploadComponent,
     FileDataComponent,
     QnaAccordianComponent,
+    SidebarComponent
   ]
 })
 export class SharedModule { }

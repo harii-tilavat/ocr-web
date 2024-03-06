@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   });
   constructor(private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
     if (this.authService.isUserLoggedIn()) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/user']);
     }
   }
   ngOnInit(): void {

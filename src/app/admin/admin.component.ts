@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin',
@@ -9,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   public isAdmin = false;
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private toastrService:ToastrService) { }
   ngOnInit(): void {
-    if (!this.authService.isAdmin()) {
-      this.router.navigate(['/home']);
-    }
+    // if (!this.authService.isUserLoggedIn()) {
+    //   this.router.navigate(['/home']);
+    // }
   }
   logout(): void {
     this.authService.logout();

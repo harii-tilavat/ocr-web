@@ -1,6 +1,6 @@
 .auth {
   .login-box {
-    @include padding-bottom(96px);
+    @include padding(80px 0);
     .login {
       .login-header {
         display: flex;

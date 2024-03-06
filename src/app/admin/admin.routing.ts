@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../_services';
 import { AdminComponent } from './admin.component';
+import { DocumentUploadComponent } from '../layout/components/document-upload/document-upload.component';
+import { DocumentListComponent } from '../layout/components/document-list/document-list.component';
+import { DocumentDetailComponent } from '../layout/components/document-list/document-detail/document-detail.component';
 
 // const routes: Routes = [
 //   { path: '', component: HomeComponent, data: { title: 'Get Curious Home' } },
@@ -22,6 +25,12 @@ import { AdminComponent } from './admin.component';
 const routes: Routes = [
   {
     path: '', component: AdminComponent, data: { title: 'OcrWeb Home' },
+    children: [
+      { path: '', redirectTo:'docs',pathMatch:'full' },
+      { path: 'upload', component: DocumentUploadComponent, data: { title: 'OcrWeb File upload' } },
+      { path: 'docs', component: DocumentListComponent, data: { title: 'OcrWeb Documents' }, }, // canActivate:[AuthGuard]
+      { path: 'docs/:id', component: DocumentDetailComponent, data: { title: 'OcrWeb Document details' }, },
+    ],
   },
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', redirectTo: '', pathMatch: 'full' },

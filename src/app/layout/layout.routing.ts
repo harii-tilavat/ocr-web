@@ -30,9 +30,6 @@ const routes: Routes = [
     path: '', component: LayoutComponent, data: { title: 'OcrWeb Home' },
     children: [
       { path: '', component: HomeComponent },
-      { path: 'upload', component: DocumentUploadComponent, data: { title: 'OcrWeb File upload' } },
-      { path: 'docs', component: DocumentListComponent, data: { title: 'OcrWeb Documents' }, }, // canActivate:[AuthGuard]
-      { path: 'docs/:id', component: DocumentDetailComponent, data: { title: 'OcrWeb Document details' }, },
       { path: 'contact', component: ContactComponent, data: { title: 'OcrWeb Contact' } },
     ],
   },

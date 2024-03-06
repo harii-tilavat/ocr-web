@@ -6,7 +6,7 @@ body {
   // line-height: normal;
   line-height: 1.2;
   @include font-size($font-size-base);
-  padding-top: 80px;
+  // padding-top: 80px;
   overflow: auto;
   transition: padding-top 0.3s ease-in-out;
   @include themed {
@@ -31,14 +31,15 @@ span {
   display: block;
   position: relative;
   min-height: 100vh;
+  padding-top: 80px;
 }
 @include media-breakpoint-down(sm) {
-  body {
-    padding-top: 75px;
-    &.announce {
-      padding-top: calc(75px + 62px);
-    }
-  }
+  // body {
+  //   padding-top: 75px;
+  //   &.announce {
+  //     padding-top: calc(75px + 62px);
+  //   }
+  // }
 }
 .popup-element {
   display: none !important;

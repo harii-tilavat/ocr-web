@@ -64,6 +64,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
   startOCR():void{
-    this.router.navigate(['/upload']);
+    this.router.navigate(['/user']);
   }
 }

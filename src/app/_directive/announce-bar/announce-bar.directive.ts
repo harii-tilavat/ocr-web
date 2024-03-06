@@ -26,12 +26,12 @@ export class AnnounceBarDirective implements OnInit, OnChanges, AfterViewInit {
     }, 100);
   }
   ngAfterViewInit(): void {
-    this.initBodyPadding();
+    // this.initBodyPadding();
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['isAnnounce'] && !changes['isAnnounce'].firstChange) {
       this.isAnnounce = changes['isAnnounce'].currentValue;
-      this.initBodyPadding();
+      // this.initBodyPadding();
     }
   }
 
