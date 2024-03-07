@@ -36,4 +36,9 @@
       }
     }
   }
+  .link {
+    cursor: pointer;
+    color: $primary-600;
+    text-decoration: underline;
+  }
 }

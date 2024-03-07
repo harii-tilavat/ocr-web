@@ -1,23 +1,20 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LoginService } from 'src/app/_services';
-import { AuthService } from 'src/app/_services/auth/auth.service';
+import { LoginService, AuthService } from 'src/app/_services';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-signup',
+
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class SignupComponent implements OnInit {
+
   public loginMode = false;
   public authMode!: string;
-  public loginForm = new FormGroup({
-    username: new FormControl<string | null>(null, [Validators.required]),
-    password: new FormControl<string | null>(null, [Validators.required])
-  });
   public signupForm = new FormGroup({
     username: new FormControl<string | null>(null, [Validators.required]),
     email: new FormControl<string | null>(null, [Validators.required]),
@@ -43,19 +40,19 @@ export class LoginComponent implements OnInit {
       }
     });
     this.authService.isLoggedInSubject.subscribe({
-      next: (res) => {
+      next: (res: any) => {
         console.log("Is login auth==>> ", res);
       }
     })
   }
-  onSubmit(): void {
-    if (!this.loginForm.valid) {
+  onSignup(): void {
+    if (!this.signupForm.valid) {
       this.toastService.error('Please fill all fields!', 'Error');
-      this.loginForm.markAllAsTouched();
+      this.signupForm.markAllAsTouched();
       return;
     }
 
-    this.loginService.loginUser(this.loginForm.value).subscribe({
+    this.loginService.loginUser(this.signupForm.value).subscribe({
       next: (res: { token: string, message: string }) => {
         if (res && res.token) {
           this.authService.login(res.token);
@@ -70,12 +67,14 @@ export class LoginComponent implements OnInit {
     });
   }
   changeMode(): void {
-    this.router.navigate(['/auth', 'signup'], { relativeTo: this.activatedRoute });
+    if (this.loginMode) {
+      this.router.navigate(['/auth', 'signup'], { relativeTo: this.activatedRoute });
+    } else {
+      this.router.navigate(['/auth', 'login'], { relativeTo: this.activatedRoute });
+    }
   }
-  goToForgotPass():void{
-    this.router.navigate(['/auth','forgot-password']);
-  }
-  goToHomepage():void{
+
+  goToHomepage(): void {
     this.router.navigate(['/']);
   }
 }

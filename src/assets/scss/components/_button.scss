@@ -102,6 +102,10 @@
     &.btn-primary {
       background: $primary-600;
       border-color: $primary-600;
+      &:hover{
+        background: $primary-600 !important;
+        border-color: $primary-600;
+      }
     }
     &.btn-warning {
       background: t($ngt-warning);

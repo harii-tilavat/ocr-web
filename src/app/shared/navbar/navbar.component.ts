@@ -22,7 +22,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authService.isLoggedInSubject.subscribe({
       next: (res: boolean) => {
-        console.log("Is login ==>> ", res);
       }
     })
     console.log("Check login => ", this.authService.isUserLoggedIn());
