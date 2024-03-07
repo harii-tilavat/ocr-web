@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './_services';
 
 const routes: Routes = [
-  { path: 'auth', loadChildren: () => import("./login/login.module").then(m => m.LoginModule) },
-  { path: 'user', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate:[AuthGuard]},
+  // { path: '', redirectTo: 'user', pathMatch: 'full' },
+  { path: 'auth', loadChildren: () => import("./login/auth.module").then(m => m.AuthModule) },
+  { path: 'user', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuard] },
   { path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule) }, //
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

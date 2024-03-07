@@ -5,6 +5,11 @@ import { AdminComponent } from './admin.component';
 import { DocumentUploadComponent } from '../layout/components/document-upload/document-upload.component';
 import { DocumentListComponent } from '../layout/components/document-list/document-list.component';
 import { DocumentDetailComponent } from '../layout/components/document-list/document-detail/document-detail.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AccountSettingComponent } from './account-setting/account-setting.component';
+import { WalletComponent } from './wallet/wallet.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { DocumentsBinComponent } from './documents-bin/documents-bin.component';
 
 // const routes: Routes = [
 //   { path: '', component: HomeComponent, data: { title: 'Get Curious Home' } },
@@ -26,13 +31,17 @@ const routes: Routes = [
   {
     path: '', component: AdminComponent, data: { title: 'OcrWeb Home' },
     children: [
-      { path: '', redirectTo:'docs',pathMatch:'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'profile', component: UserProfileComponent },
+      { path: 'account-setting', component: AccountSettingComponent },
+      { path: 'bin', component: DocumentsBinComponent },
+      { path: 'wallet', component: WalletComponent },
       { path: 'upload', component: DocumentUploadComponent, data: { title: 'OcrWeb File upload' } },
       { path: 'docs', component: DocumentListComponent, data: { title: 'OcrWeb Documents' }, }, // canActivate:[AuthGuard]
       { path: 'docs/:id', component: DocumentDetailComponent, data: { title: 'OcrWeb Document details' }, },
     ],
   },
-  { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ]
 

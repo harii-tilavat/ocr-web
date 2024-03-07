@@ -1,117 +1,61 @@
-<div class="auth">
-  <div class="login-box">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-xxl-7 col-xl-5 col-lg-4 col-md-4 col-sm-12">
-          <div class="login-svg">
-            <span>
-              <nugget-icon name="login-1"></nugget-icon>
-            </span>
-          </div>
-        </div>
-        <div class="col-xxl-5 col-xl-7 col-lg-8 col-md-8 col-sm-12">
-          <div class="login">
-            <div class="login-header">
-              <div class="login-title">
-                <span>{{loginMode?'Login':'Signup'}} here</span>
-              </div>
-              <div class="go-to-home" *ngIf="!false">
-                <button class="btn btn-primary-outline btn-with-icon" (click)="goToHomepage()">
-                  <span class="btn-icon rotate-180">
-                    <nugget-icon [name]="'right-arrow'" [fill]="'#5e35b1'" [stroke]="'#5e35b1'"></nugget-icon>
-                  </span>
-                  <span>Back</span>
-                </button>
-              </div>
+<div class="login">
+  <div class="login-header">
+    <div class="login-title">
+      <!-- <span>{{loginMode?'Login':'Signup'}} here</span> -->
+      <span>Login here</span>
+    </div>
+    <div class="go-to-home" *ngIf="!false">
+      <button class="btn btn-primary-outline btn-with-icon" (click)="goToHomepage()">
+        <span class="btn-icon rotate-180">
+          <nugget-icon [name]="'right-arrow'" [fill]="'#5e35b1'" [stroke]="'#5e35b1'"></nugget-icon>
+        </span>
+        <span>Back</span>
+      </button>
+    </div>
+  </div>
+  <div class="login-body">
+    <div class="login-form">
+      <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="login-form-card">
+          <div class="form-group">
+            <label for="username" class="control-label">Username</label>
+            <input type="text" class="form-control" formControlName="username">
+            <div class="form-error"
+              *ngIf="loginForm.controls['username'].touched && loginForm.controls['username'].hasError('required')">
+              <span>Username required!</span>
             </div>
-            <div class="login-body">
-              <div class="login-form" *ngIf="loginMode; else signup">
-                <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                  <div class="login-form-card">
-                    <div class="form-group">
-                      <label for="username" class="control-label">Username</label>
-                      <input type="text" class="form-control" formControlName="username">
-                      <div class="form-error"
-                        *ngIf="loginForm.controls['username'].touched && loginForm.controls['username'].hasError('required')">
-                        <span>Username required!</span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="password" class="control-label">Password</label>
-                      <input type="password" class="form-control" id="password" formControlName="password">
-                      <div class="form-error"
-                        *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].hasError('required')">
-                        <span>Password required!</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="forgot-password">
-                    <span>Forgot password</span>
-                  </div>
-                  <div class="submit-button">
-                    <button type="submit" class="btn btn-primary btn btn-primary  w-100"
-                      [disabled]="!loginForm.valid">Login here</button>
-                  </div>
-                  <div class="change-mode mt-3">
-                    <p>Dont't have an account ?
-                      <span class="change-mode-text" (click)="changeMode()">Signup here</span>
-                    </p>
-                  </div>
-                </form>
-              </div>
-              <ng-template #signup>
-                <div class="signup-form" [formGroup]="signupForm">
-                  <div class="signup-form-card">
-                    <div class="form-group">
-                      <label for="username" class="control-label">Username</label>
-                      <input type="text" class="form-control" formControlName="username">
-                      <div class="form-error"
-                        *ngIf="signupForm.controls['username'].touched && signupForm.controls['username'].hasError('required')">
-                        <span>Username required!</span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="email" class="control-label">Email</label>
-                      <input type="email" class="form-control" id="email" formControlName="email">
-                      <div class="form-error"
-                        *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].hasError('required')">
-                        <span>Password required!</span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="password" class="control-label">Password</label>
-                      <input type="password" class="form-control" id="password" formControlName="password">
-                      <div class="form-error"
-                        *ngIf="signupForm.controls['password'].touched && signupForm.controls['password'].hasError('required')">
-                        <span>Password required!</span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="number" class="control-label">Number</label>
-                      <input type="text" class="form-control" id="number" formControlName="number">
-                      <div class="form-error"
-                        *ngIf="signupForm.controls['number'].touched && signupForm.controls['number'].hasError('required')">
-                        <span>Number required!</span>
-                      </div>
-                    </div>
-                    <div class="submit-button">
-                      <button type="submit" class="btn btn-primary btn btn-primary  w-100"
-                        [disabled]="!signupForm.valid">Signup here</button>
-                    </div>
-                    <div class="change-mode mt-3">
-                      <p>
-                        <span>Have an account ? </span>
-                        <span class="change-mode-text " (click)="changeMode()">Login
-                          here</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </ng-template>
+          </div>
+          <div class="form-group">
+            <label for="password" class="control-label">Password</label>
+            <input type="password" class="form-control" id="password" formControlName="password">
+            <div class="form-error"
+              *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].hasError('required')">
+              <span>Password required!</span>
             </div>
           </div>
         </div>
-      </div>
+        <div class="forgot-password">
+          <span class="link" (click)="goToForgotPass()">Forgot password</span>
+        </div>
+        <div class="submit-button">
+          <div class="login-button">
+            <button type="submit" class="btn btn-primary btn btn-primary  w-100" [disabled]="!loginForm.valid">Login</button>
+          </div>
+          <div class="signin-with-google mt-3" (click)="loginWithGoogle()">
+            <button type="button" class="btn btn-primary-outline btn-with-icon w-100">
+              <span class="btn-icon">
+                <nugget-icon name="google-icon"></nugget-icon>
+              </span>
+              <span>Login with google</span>
+            </button>
+          </div>
+        </div>
+        <div class="change-mode mt-3">
+          <p>Dont't have an account ?
+            <span class="change-mode-text" (click)="changeMode()">Signup here</span>
+          </p>
+        </div>
+      </form>
     </div>
   </div>
 </div>

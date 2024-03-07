@@ -8,6 +8,7 @@ export * from './build/ng-contact.icon';
 export * from './build/ng-copy.icon';
 export * from './build/ng-down-arrow.icon';
 export * from './build/ng-favicon.icon';
+export * from './build/ng-google-icon.icon';
 export * from './build/ng-hemburg.icon';
 export * from './build/ng-home-page-1.icon';
 export * from './build/ng-home-page-2.icon';

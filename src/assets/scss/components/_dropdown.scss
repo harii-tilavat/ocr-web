@@ -61,19 +61,19 @@
     }
   }
 }
-.dropdown {
-  .dropdown-icon {
-  }
-  .dropdown-menu {
-    .dropdown-item {
-      transition: 0.1s;
-      &:hover {
-        background: $primary-50;
-      }
-      &:active {
-        background: $primary-300;
-        color: $primary-25;
-      }
-    }
-  }
-}
+// .dropdown {
+//   .dropdown-icon {
+//   }
+//   .dropdown-menu {
+//     .dropdown-item {
+//       transition: 0.1s;
+//       &:hover {
+//         background: $primary-50;
+//       }
+//       &:active {
+//         background: $primary-300;
+//         color: $primary-25;
+//       }
+//     }
+//   }
+// }
