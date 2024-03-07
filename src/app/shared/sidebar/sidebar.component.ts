@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuListModel } from 'src/app/_model/menu-list/menu-list.model';
+import { MenuListModel, sidebarMenuConfig } from 'src/app/_model/menu-list/menu-list.model';
+import { AuthService } from 'src/app/_services';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,59 +9,13 @@ import { MenuListModel } from 'src/app/_model/menu-list/menu-list.model';
 })
 export class SidebarComponent implements OnInit {
   public themeColor = '#5e35b1';
-  public menuList: Array<MenuListModel> = [
-    {
-      id: 1,
-      title: 'Dashboard',
-      routing: ['dashboard'],
-      icon: 'bx bx-home-circle',
-      subMenu: []
-    },
-    {
-      id: 2,
-      title: 'Documents',
-      routing: ['docs'],
-      icon: 'bx bx-file',
-      subMenu: []
-    },
-    {
-      id: 3,
-      title: 'Upload document',
-      routing: ['upload'],
-      icon: 'bx bx-cloud-upload',
-      subMenu: []
-    },
-    {
-      id: 3,
-      title: 'Wallet',
-      routing: ['wallet'],
-      icon: 'bx bx-dollar me-2',
-      subMenu: []
-    },
-    {
-      id: 2,
-      title: 'My account',
-      routing: ['profile'],
-      icon: 'bx bx-user',
-      subMenu: []
-    },
-    {
-      id: 2,
-      title: 'Bin',
-      routing: ['bin'],
-      icon: 'bx bx-user',
-      subMenu: []
-    },
-    {
-      id: 2,
-      title: 'Setting',
-      routing: ['account-setting'],
-      icon: 'bx bx-cog',
-      subMenu: []
-    },
-  ]
-  constructor() { }
+  public menuList: Array<MenuListModel> = sidebarMenuConfig;
+  constructor(private authService: AuthService) { }
   ngOnInit(): void {
   }
-
+  onRouting(enumValue: string): void {
+    if (enumValue && enumValue === 'LOGOUT') {
+      this.authService.logout();
+    }
+  }
 }

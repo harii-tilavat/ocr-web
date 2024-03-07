@@ -62,7 +62,8 @@
           <div class="document-card-header" (click)="onViewFile(item.id)">
             <div class="document-card-image">
               <span class="image">
-                <img [src]="item.file_type.includes('pdf')? pdfPlaceholder: baseUrl + item.image_url" alt="document-img">
+                <img [src]="item.file_type.includes('pdf')? pdfPlaceholder: baseUrl + item.image_url"
+                  alt="document-img">
               </span>
             </div>
           </div>
@@ -108,7 +109,7 @@
             <div class="dropdown">
               <div class="dropdown-icon" [id]="'dtp-action-'+(i+1)" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="icon">
-                  <nugget-icon [name]="'3-dots'"></nugget-icon>
+                  <i class='bx bx-dots-vertical-rounded'></i>
                 </span>
               </div>
               <ul class="dropdown-menu" [attr.aria-labelledby]="'dtp-action-'+(i+1)">

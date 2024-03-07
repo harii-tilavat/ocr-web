@@ -13,7 +13,7 @@
   <div class="menu-inner-shadow"></div>
   <ul class="menu-inner py-1">
     <!-- Dashboards -->
-    <li class="menu-item" *ngFor="let item of menuList" [routerLink]="item.routing" [routerLinkActive]="'active'">
+    <li class="menu-item" *ngFor="let item of menuList" (click)="onRouting(item.enum)" [routerLink]="item.routing" [routerLinkActive]="'active'">
       <a href="javascript:void(0);" class="menu-link" >
         <i [ngClass]="'menu-icon tf-icons '+ item.icon"></i>
         <div data-i18n="Dashboards">{{item.title}}</div>

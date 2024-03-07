@@ -17,6 +17,7 @@ import { QnaAccordianComponent } from './ocr-components/qna-accordian/qna-accord
 import { FilePreviewComponent } from './ocr-components/file-preview/file-preview.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { NgbModalModule } from './ng-modal';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     PipesModule,
     DirectiveModule,
     NgxExtendedPdfViewerModule,
+    NgbModalModule
   ],
   exports: [
     NavbarComponent,

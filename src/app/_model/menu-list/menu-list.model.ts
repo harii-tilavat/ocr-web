@@ -6,6 +6,7 @@ export class MenuListModel {
   icon!: string | null;
   subMenu!: Array<any>;
   routing!: Array<string | number> | null | string;
+  enum!: string;
 }
 export const menuConfig: Array<MenuListModel> = [
   {
@@ -13,6 +14,7 @@ export const menuConfig: Array<MenuListModel> = [
     title: 'Home',
     icon: null,
     routing: ['/'],
+    enum: 'HOME',
     subMenu: []
   },
   {
@@ -20,6 +22,7 @@ export const menuConfig: Array<MenuListModel> = [
     title: 'About',
     icon: null,
     routing: '/about',
+    enum: 'ABOUT',
     subMenu: []
   },
   {
@@ -27,13 +30,73 @@ export const menuConfig: Array<MenuListModel> = [
     title: 'Contact',
     icon: null,
     routing: '/contact',
+    enum: 'CONTACT',
+    subMenu: []
+  },
+]
+export const sidebarMenuConfig: Array<MenuListModel> = [
+  {
+    id: 1,
+    title: 'Dashboard',
+    routing: ['dashboard'],
+    icon: 'bx bx-home-circle',
+    enum: 'DASHBOARD',
     subMenu: []
   },
   {
-    id: 4,
+    id: 2,
     title: 'Documents',
-    icon: null,
-    routing: '/docs',
+    routing: ['docs'],
+    icon: 'bx bx-file',
+    enum: 'DOCUMENTS',
+    subMenu: []
+  },
+  {
+    id: 3,
+    title: 'Upload document',
+    routing: ['upload'],
+    icon: 'bx bx-cloud-upload',
+    enum: 'UPLOAD_DOCUMENT',
+    subMenu: []
+  },
+  {
+    id: 3,
+    title: 'Wallet',
+    routing: ['wallet'],
+    icon: 'bx bx-dollar me-2',
+    enum: 'WALLET',
+    subMenu: []
+  },
+  {
+    id: 2,
+    title: 'My account',
+    routing: ['profile'],
+    icon: 'bx bx-user',
+    enum: 'MY_ACCOUNT',
+    subMenu: []
+  },
+  {
+    id: 2,
+    title: 'Bin',
+    routing: ['bin'],
+    icon: 'bx bx-trash',
+    enum: 'BIN',
+    subMenu: []
+  },
+  {
+    id: 2,
+    title: 'Setting',
+    routing: ['account-setting'],
+    icon: 'bx bx-cog',
+    enum: 'SETTING',
+    subMenu: []
+  },
+  {
+    id: 2,
+    title: 'Logout',
+    routing: null,
+    icon: 'bx bx-power-off',
+    enum: 'LOGOUT',
     subMenu: []
   },
 ]
