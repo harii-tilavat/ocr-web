@@ -73,6 +73,9 @@ export class LoginComponent implements OnInit {
   changeMode(): void {
     this.router.navigate(['/auth', 'signup'], { relativeTo: this.activatedRoute });
   }
+  loginWithGoogle():void{
+
+  }
   goToForgotPass(): void {
     this.router.navigate(['/auth', 'forgot-password']);
   }

@@ -66,6 +66,9 @@ export class SignupComponent implements OnInit {
       }
     });
   }
+  loginWithGoogle(): void {
+
+  }
   changeMode(): void {
     if (this.loginMode) {
       this.router.navigate(['/auth', 'signup'], { relativeTo: this.activatedRoute });
