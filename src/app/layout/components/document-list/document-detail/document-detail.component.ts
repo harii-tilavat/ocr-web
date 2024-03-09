@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DocumentModel, DocumentResponseModel } from 'src/app/_model';
-import { FileUploadService } from 'src/app/_services';
+import { AuthService, FileUploadService } from 'src/app/_services';
 import { environment } from 'src/environments/environment';
-import { pdfPlaceholder } from '../../../../_model/doc-detail/document.model';
+import { UserProfileModel, pdfPlaceholder } from '../../../../_model/doc-detail/document.model';
 
 @Component({
   selector: 'app-document-detail',
@@ -20,7 +20,7 @@ export class DocumentDetailComponent implements OnInit {
   public isJson = false;
   public isActive = false;
   public isLoading = false;
-  constructor(private router: Router, private route: ActivatedRoute, private fileUploadService: FileUploadService, private toastrService: ToastrService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private fileUploadService: FileUploadService, private toastrService: ToastrService, private authService: AuthService) { }
   ngOnInit(): void {
     this.route.params.subscribe({
       next: (res: Params) => {

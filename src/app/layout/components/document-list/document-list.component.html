@@ -6,12 +6,13 @@
           <div class="document-list-heading">
             <div class="document-list-title">
               <span>Document information</span>
+              <hr>
             </div>
             <div class="document-search-form" *ngIf="!false">
-              <form action="">
+              <form action="" [formGroup]="searchForm">
                 <div class="form-group">
                   <!-- <label for="">Search</label> -->
-                  <input type="text" class="form-control" placeholder="Search documents...">
+                  <input type="text" class="form-control" placeholder="Search documents..." formControlName="query">
                 </div>
               </form>
             </div>
@@ -25,7 +26,7 @@
       <div class="row">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="document-list">
-            <app-file-data></app-file-data>
+            <app-file-data [searchQuery]="searchQuery" [isLoading]="isLoading"></app-file-data>
           </div>
         </div>
       </div>

@@ -71,8 +71,10 @@ export class AuthService {
     }
   }
   logout(): void {
-    localStorage.clear();
-    this.isLoggedInSubject.next(false);
-    this.router.navigate(['/auth']);
+    if (confirm('Are you sure to logout?')) {
+      localStorage.clear();
+      this.isLoggedInSubject.next(false);
+      this.router.navigate(['/auth']);
+    }
   }
 }

@@ -4,12 +4,14 @@ import { Observable, map } from 'rxjs';
 import { HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../auth/auth.service';
+import { UserProfileModel } from 'src/app/_model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileUploadService {
-  constructor(private baseProviderService: BaseProviderService, private http: HttpClient, private toastService: ToastrService) { }
+  constructor(private baseProviderService: BaseProviderService, private http: HttpClient, private toastService: ToastrService, private authService: AuthService) { }
   // uploadFile(file: FormData): Observable<any> {
   //   return this.baseProviderService.makePostCall(`${environment.apiUrl}`, file)
   //     .pipe(
@@ -30,32 +32,46 @@ export class FileUploadService {
   // deleteDocument(id:number){
   //   return this.baseProviderService.makeDeleteCall(`${environment.apiUrl}/${id}`);
   // }
-  uploadFile(formData: FormData, user_id: string): Observable<any> {
+  uploadFile(formData: FormData): Observable<any> {
+    // const url = `${environment.baseUrl}/api/docs`;
+
     let url = `${environment.baseUrl}/api/docs?`;
-    url = this.makeQueryparamUrl(url, { user_id });
+    url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
     return this.baseProviderService.makePostCall(url, formData);
   }
-  getAllDocuments(params: any): Observable<any> {
+  getAllDocuments(isArchivedList: boolean, query: string): Observable<any> {
+    // const url = `${environment.baseUrl}/api/docs`;
+
     let url = `${environment.baseUrl}/api/docs?`;
-    url = this.makeQueryparamUrl(url, params);
-    console.log("URL => ", url);
-    return this.baseProviderService.makeGetCall(url);
+    url = this.makeQueryparamUrl(url, { user_id: this.getUserId(), query });
+    if (isArchivedList) {
+      return this.baseProviderService.makeGetCall(url);
+    } else {
+      return this.baseProviderService.makeGetCall(url);
+    }
   }
   getDocumentById(id: string): Observable<any> {
-    return this.baseProviderService.makeGetCall(`${environment.baseUrl}/api/docs/${id}`);
+    // const url = `${environment.baseUrl}/api/docs/${id}`;
+
+    let url = `${environment.baseUrl}/api/docs/${id}?`;
+    url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
+    return this.baseProviderService.makeGetCall(url);
   }
-  deleteDocument(id: string): Observable<any> {
-    return this.baseProviderService.makeDeleteCall(`${environment.baseUrl}/api/docs/${id}`);
+  deleteDocument(id: string,): Observable<any> {
+    // const url = `${environment.baseUrl}/api/docs/${id}`;
+
+    let url = `${environment.baseUrl}/api/docs/${id}?`;
+    url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
+
+    return this.baseProviderService.makePutCall(url, {});
   }
   downloadFile(id: string) {
     return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`, 'blob');
   }
   makeQueryparamUrl(url: string, searchParam: any): any {
-    if (searchParam) {
-      for (const key in searchParam) {
-        if (searchParam[key] !== undefined && searchParam[key] !== null && searchParam[key] !== '') {
-          url = url + key + '=' + encodeURIComponent(searchParam[key]) + '&';
-        }
+    for (const key in searchParam) {
+      if (searchParam[key] !== undefined && searchParam[key] !== null && searchParam[key] !== '') {
+        url = url + key + '=' + encodeURIComponent(searchParam[key]) + '&';
       }
     }
     if (url.endsWith('&')) {
@@ -72,5 +88,9 @@ export class FileUploadService {
         this.toastService.error('Unable to copy text:', 'Error');
         console.error('Unable to copy text: ', err);
       });
+  }
+  getUserId(): string {
+    const userdata: UserProfileModel = this.authService.getUserData();
+    return userdata.id
   }
 }

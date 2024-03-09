@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DocumentModel, DocumentResponseModel, UserProfileModel, pdfPlaceholder } from 'src/app/_model';
 import { AuthService, FileUploadService, LoaderService } from 'src/app/_services';
@@ -13,7 +13,10 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
   templateUrl: './file-data.component.html',
   styleUrls: ['./file-data.component.scss']
 })
-export class FileDataComponent implements OnInit {
+export class FileDataComponent implements OnInit, OnChanges {
+  @Input() isArchivedList = false;
+  @Input() searchQuery = '';
+  @Input() isLoading = false;
   public pdfPlaceholder: string = pdfPlaceholder;
   public documentList: Array<DocumentModel> = [];
   public metadata: Array<any> = [
@@ -40,21 +43,22 @@ export class FileDataComponent implements OnInit {
   ];
   public baseUrl: string = environment.baseUrl;
   constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private router: Router, private route: ActivatedRoute, private authService: AuthService, private loaderService: LoaderService) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("Search ==> ", this.searchQuery);
+    this.getAllDocuments();
+  }
   ngOnInit(): void {
     this.getAllDocuments();
   }
   getAllDocuments(): void {
-    this.loaderService.show();
-    const userdata: UserProfileModel = this.authService.getUserData();
-    const params = {
-      user_id: userdata.id
-    }
-    this.fileUploadService.getAllDocuments(params).subscribe({
+    // this.loaderService.show();
+    this.fileUploadService.getAllDocuments(this.isArchivedList, this.searchQuery).subscribe({
       next: (res) => {
         if (res && res.data) {
           this.documentList = res.data;
           console.log("Response ===>>> ", this.documentList);
-          this.loaderService.hide();
+          // this.loaderService.hide();
+          // this.isLoading = false;
         }
       }, error: (err) => {
         console.log("File getting error ==>> ", err);
@@ -64,7 +68,9 @@ export class FileDataComponent implements OnInit {
     })
   }
   onViewFile(id: string): void {
-    this.router.navigate([id], { relativeTo: this.route })
+    if (!this.isArchivedList) {
+      this.router.navigate([id], { relativeTo: this.route })
+    }
   }
   onDeleteFile(id: string): void {
     if (confirm('Are you sure to delete this ? ')) {

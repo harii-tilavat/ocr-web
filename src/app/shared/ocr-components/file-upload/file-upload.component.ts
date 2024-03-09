@@ -72,7 +72,7 @@ export class FileUploadComponent implements OnInit {
       this.toastrService.info('File uploading...', 'Wait');
       const formData = new FormData();
       formData.set("file", this.files[0]);
-      this.fileUploadService.uploadFile(formData, userdata.id).subscribe({
+      this.fileUploadService.uploadFile(formData).subscribe({
         next: (res: DocumentResponseModel) => {
           this.fileText = res.data.ocr_text;
           this.isUploading = false;
