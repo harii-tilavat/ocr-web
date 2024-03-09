@@ -1,0 +1,21 @@
+<ng-container *ngIf="!isLoadingProggress else uploder">
+  <div class="ocrweb-loader" [class.loader-hidden]="!show"> <!---->
+    <div class="loader-box">
+      <!-- <div class='loader loader--circularSquare'></div> -->
+      <div class="spinner-square">
+        <div class="square-1 square"></div>
+        <div class="square-2 square"></div>
+        <div class="square-3 square"></div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #uploder>
+  <div class="upload-progress">
+    <div class="loading-page">
+      <span class="title">uploading</span>
+      <span class="loader-proggress">{{uploadinProggress + '%'}}</span>
+      <!-- <span class="hr-line" [ngStyle]="{'width': uploadinProggress + '%'}"></span>s -->
+    </div>
+  </div>
+</ng-template>

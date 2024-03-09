@@ -55,82 +55,106 @@
   </ng-template>
 </div>
 <div class="document-card-section">
-  <ng-container *ngIf="documentList && documentList.length; else notFound">
-    <div class="row g-5">
-      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12" *ngFor="let item of documentList; let i=index">
-        <div class="document-card card-main">
-          <div class="document-card-header" (click)="onViewFile(item.id)">
-            <div class="document-card-image">
-              <span class="image">
-                <img [src]="item.file_type.includes('pdf')? pdfPlaceholder: baseUrl + item.image_url"
-                  alt="document-img">
-              </span>
-            </div>
-          </div>
-          <div class="document-card-body">
-            <div class="document-info-container">
-              <ul class="document-info-list">
-                <li class="document-info-item">
-                  <div class="document-info-title">
-                    <span>File name</span>
-                  </div>
-                  <div class="document-info-subTitle">
-                    <span>{{item.file_name}}</span>
-                  </div>
-                </li>
-                <li class="document-info-item">
-                  <div class="document-info-title">
-                    <span>File size</span>
-                  </div>
-                  <div class="document-info-subTitle">
-                    <span>{{(item.file_size / 1024 | number:'1.0-0')+ ' kb'}}</span>
-                  </div>
-                </li>
-                <li class="document-info-item">
-                  <div class="document-info-title">
-                    <span>File type</span>
-                  </div>
-                  <div class="document-info-subTitle">
-                    <span>{{item.file_type}}</span>
-                  </div>
-                </li>
-                <li class="document-info-item">
-                  <div class="document-info-title">
-                    <span>Created at</span>
-                  </div>
-                  <div class="document-info-subTitle">
-                    <span>{{item.created_at | date}}</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="document-card-footer">
-            <div class="dropdown">
-              <div class="dropdown-icon" [id]="'dtp-action-'+(i+1)" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="icon">
-                  <i class='bx bx-dots-vertical-rounded'></i>
+  <div class="row g-5">
+    <ng-container *ngIf="!isLoading; else showLoading">
+      <ng-container *ngIf="documentList && documentList.length; else notFound">
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12" *ngFor="let item of documentList; let i=index">
+          <div class="document-card card-main">
+            <div class="document-card-header" (click)="onViewFile(item.id)">
+              <div class="document-card-image">
+                <span class="image">
+                  <img [src]="item.file_type.includes('pdf')? pdfPlaceholder: baseUrl + item.image_url"
+                    alt="document-img">
                 </span>
               </div>
-              <ul class="dropdown-menu" [attr.aria-labelledby]="'dtp-action-'+(i+1)">
-                <li class="dropdown-item" (click)="onViewFile(item.id)">View file</li>
-                <li class="dropdown-item" (click)="onEditFile(item.id)">Edit file</li>
-                <li class="dropdown-item" (click)="onDeleteFile(item.id)">Delete file</li>
-                <li class="dropdown-item" (click)="onDownloadFile(item.file_name)">Download file</li>
-              </ul>
+            </div>
+            <div class="document-card-body">
+              <div class="document-info-container">
+                <ul class="document-info-list">
+                  <li class="document-info-item">
+                    <div class="document-info-title">
+                      <span>File name</span>
+                    </div>
+                    <div class="document-info-subTitle">
+                      <span>{{item.file_name}}</span>
+                    </div>
+                  </li>
+                  <li class="document-info-item">
+                    <div class="document-info-title">
+                      <span>File size</span>
+                    </div>
+                    <div class="document-info-subTitle">
+                      <span>{{(item.file_size / 1024 | number:'1.0-0')+ ' kb'}}</span>
+                    </div>
+                  </li>
+                  <li class="document-info-item">
+                    <div class="document-info-title">
+                      <span>File type</span>
+                    </div>
+                    <div class="document-info-subTitle">
+                      <span>{{item.file_type}}</span>
+                    </div>
+                  </li>
+                  <li class="document-info-item">
+                    <div class="document-info-title">
+                      <span>Created at</span>
+                    </div>
+                    <div class="document-info-subTitle">
+                      <span>{{item.created_at | date}}</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="document-card-footer">
+              <div class="dropdown">
+                <div class="dropdown-icon" [id]="'dtp-action-'+(i+1)" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="icon">
+                    <i class='bx bx-dots-vertical-rounded'></i>
+                  </span>
+                </div>
+                <ul class="dropdown-menu" [attr.aria-labelledby]="'dtp-action-'+(i+1)">
+                  <ng-container *ngIf="isArchivedList; else unarchive">
+                    <li *ngIf="isArchivedList" class="dropdown-item" (click)="onRestoreFile(item.id)">Restore file</li>
+                    <li class="dropdown-item" (click)="onDeleteFile(item.id)">Delete file</li>
+                  </ng-container>
+                  <ng-template #unarchive>
+                    <li class="dropdown-item" (click)="onViewFile(item.id)">View file</li>
+                    <li class="dropdown-item" (click)="onEditFile(item.id)">Edit file</li>
+                    <li class="dropdown-item" (click)="onDownloadFile(item.file_name)">Download file</li>
+                    <li class="dropdown-item" (click)="onDeleteFile(item.id)">Move to bin</li>
+                  </ng-template>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #notFound>
+        <div class="row">
+          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="document-not-found mt-5">
+              <span>Documents not found!</span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+    <ng-template #showLoading>
+      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12" *ngFor="let item of [1,2,3,4,5,6]">
+        <div class="ph-item h-100 ph-card">
+          <div class="ph-col-12">
+            <div class="ph-picture"></div>
+            <div class="ph-row">
+              <div class="ph-col-4 "></div>
+              <div class="ph-col-8 empty"></div>
+              <div class="ph-col-12 big"></div>
+              <div class="ph-col-12 big mt-2"></div>
+              <div class="ph-col-12 "></div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </ng-container>
-  <ng-template #notFound>
-    <div class="row">
-      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-        <div class="document-not-found">
-          <span>Documents not found!</span>
-        </div>
-      </div>
-    </div>
-  </ng-template>
+    </ng-template>
+  </div>
 </div>

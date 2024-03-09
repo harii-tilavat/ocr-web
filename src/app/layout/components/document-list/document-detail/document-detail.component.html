@@ -5,10 +5,12 @@
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="file-detail-header-container">
             <div class="file-header-title">
-              <span>Your document detail</span>
+              <h2>Your document detail</h2>
+              <hr>
             </div>
-            <div class="file-header-subtitle">
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloribus et illum.</span>
+            <div class="file-header-subtitle pb-5">
+              <h4>Your document detail is here!</h4>
+              <hr>
             </div>
           </div>
         </div>
@@ -25,7 +27,7 @@
                 <div class="file-preview">
                   <div class="file-preview-image">
                     <span>
-                      <img [src]="isPdf ? pdfPlaceholder: documentDetail.image_url" alt="not-found">
+                      <img [src]="isPdf ? pdfPlaceholder: documentDetail.image_url" alt="not-found" class="">
                     </span>
                   </div>
                 </div>

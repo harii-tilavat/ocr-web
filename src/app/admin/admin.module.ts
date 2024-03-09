@@ -11,12 +11,15 @@ import { IconsModule } from '../icons/icons.module';
 import { LayoutRoutingModule } from '../layout/layout.routing';
 import { NgbModalModule } from '../shared/ng-modal';
 import { AdminComponent } from './admin.component';
+import { DocumentsBinComponent } from './documents-bin/documents-bin.component';
+import { LayoutModule } from '../layout/layout.module';
 
 
 
 @NgModule({
   declarations: [
-    AdminComponent
+    AdminComponent,
+    DocumentsBinComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ import { AdminComponent } from './admin.component';
     AdminRoutingModule,
     NgxExtendedPdfViewerModule,
     PipesModule,
+    LayoutModule,
     NgbModalModule
   ]
 })

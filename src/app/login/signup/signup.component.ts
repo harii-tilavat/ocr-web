@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService, AuthService } from 'src/app/_services';
+import { CustomValidatorRules } from 'src/app/_validators';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,7 @@ export class SignupComponent implements OnInit {
   public authMode!: string;
   public signupForm = new FormGroup({
     username: new FormControl<string | null>(null, [Validators.required]),
-    email: new FormControl<string | null>(null, [Validators.required]),
+    email: new FormControl<string | null>(null, [Validators.required, CustomValidatorRules.emailValidation]),
     password: new FormControl<string | null>(null, [Validators.required]),
     number: new FormControl<string | null>(null, [Validators.required]),
   });

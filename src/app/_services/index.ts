@@ -7,3 +7,4 @@ export * from './intercepters/ocr-intercepter.service';
 export * from './login/login.service';
 export * from '../_guard/auth.guard';
 export * from './auth/auth.service';
+export * from './loaderservice/loader.service';

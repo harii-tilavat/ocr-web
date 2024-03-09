@@ -56,13 +56,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   onWindowResize() {
     this.toggleHemburge();
   }
-  loginUser(): void {
-    this.router.navigate(['/login']);
-    if (this.isLoggedIn && confirm('Are you sure to logout ?')) {
-      this.authService.logout();
-      this.isLoggedIn = false;
-    }
-  }
   userLogout():void{
     this.authService.logout();
   }

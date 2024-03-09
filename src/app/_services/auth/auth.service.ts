@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { UserProfileModel } from 'src/app/_model';
 import { DecodedToken, JwtHelperService, JwtModel } from 'src/package/jwt-token';
 
 
@@ -50,16 +51,30 @@ export class AuthService {
   //   return this.helper.isTokenExpired();
   // }
   isUserLoggedIn(): boolean {
-    const decodedToken = this.jwtHelper.decodeToken(this.token!);
-    if (decodedToken && decodedToken.type === 'USER') {
-      return true;
+    if (this.token) {
+      const decodedToken = this.jwtHelper.decodeToken(this.token);
+      if (decodedToken && decodedToken.type === 'USER') {
+        return true;
+      } else {
+        return false
+      }
     } else {
       return false
     }
   }
+  getUserData(): any {
+    if (this.token) {
+      const decodedToken = this.jwtHelper.decodeToken(this.token);
+      return decodedToken;
+    } else {
+      return null
+    }
+  }
   logout(): void {
-    localStorage.clear();
-    this.isLoggedInSubject.next(false);
-    this.router.navigate(['/auth']);
+    if (confirm('Are you sure to logout?')) {
+      localStorage.clear();
+      this.isLoggedInSubject.next(false);
+      this.router.navigate(['/auth']);
+    }
   }
 }

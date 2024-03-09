@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { DocumentModel, DocumentResponseModel } from 'src/app/_model';
-import { FileUploadService } from 'src/app/_services';
+import { DocumentModel, DocumentResponseModel, UserProfileModel } from 'src/app/_model';
+import { AuthService, FileUploadService, LoaderService } from 'src/app/_services';
 import { NgbModal } from '../../ng-modal';
 import { FileViewComponent } from '../file-view/file-view.component';
 import { FilePreviewComponent } from '../file-preview/file-preview.component';
@@ -31,9 +31,8 @@ export class FileUploadComponent implements OnInit {
   private allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
   public maxFileSize: number = 5 * 1024 * 1024;
 
-  constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private ngbModel: NgbModal) { }
+  constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private ngbModel: NgbModal, private authService: AuthService, private loaderService:LoaderService) { }
   ngOnInit(): void {
-
   }
 
   fileSelected(event: Event): void {
@@ -66,6 +65,8 @@ export class FileUploadComponent implements OnInit {
     }
   }
   onUploadFile(): void {
+    const userdata: UserProfileModel = this.authService.getUserData();
+    console.log("Userdata => ", userdata);
     if (this.isFileSelected) {
       this.isUploading = true;
       this.toastrService.info('File uploading...', 'Wait');
