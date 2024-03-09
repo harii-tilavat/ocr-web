@@ -43,12 +43,8 @@ export class FileUploadService {
     // const url = `${environment.baseUrl}/api/docs`;
 
     let url = `${environment.baseUrl}/api/docs?`;
-    url = this.makeQueryparamUrl(url, { user_id: this.getUserId(), query });
-    if (isArchivedList) {
-      return this.baseProviderService.makeGetCall(url);
-    } else {
-      return this.baseProviderService.makeGetCall(url);
-    }
+    url = this.makeQueryparamUrl(url, { user_id: this.getUserId(), query, isArchivedList });
+    return this.baseProviderService.makeGetCall(url);
   }
   getDocumentById(id: string): Observable<any> {
     // const url = `${environment.baseUrl}/api/docs/${id}`;
@@ -57,13 +53,13 @@ export class FileUploadService {
     url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
     return this.baseProviderService.makeGetCall(url);
   }
-  deleteDocument(id: string,): Observable<any> {
+  deleteDocument(isArchivedList: boolean, id: string,): Observable<any> {
     // const url = `${environment.baseUrl}/api/docs/${id}`;
 
     let url = `${environment.baseUrl}/api/docs/${id}?`;
-    url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
+    url = this.makeQueryparamUrl(url, { user_id: this.getUserId(), isArchivedList });
 
-    return this.baseProviderService.makePutCall(url, {});
+    return this.baseProviderService.makeDeleteCall(url);
   }
   downloadFile(id: string) {
     return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`, 'blob');

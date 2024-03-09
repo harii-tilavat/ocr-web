@@ -39,7 +39,11 @@ import { ContactComponent } from './components/contact/contact.component';
     PipesModule,
     NgbModalModule
   ],
-  exports: [],
+  exports: [
+    DocumentDetailComponent,
+    DocumentListComponent,
+    DocumentUploadComponent
+  ],
   providers: [NuggetService]
 })
 export class LayoutModule { }

@@ -69,12 +69,18 @@ export class FileDataComponent implements OnInit, OnChanges {
   }
   onViewFile(id: string): void {
     if (!this.isArchivedList) {
-      this.router.navigate([id], { relativeTo: this.route })
+      this.router.navigate([id], { relativeTo: this.route });
+    } else {
+      this.toastrService.error('Please resotre this file to see!', 'Error');
     }
   }
+  onRestoreFile(id: string): void {
+
+  }
   onDeleteFile(id: string): void {
-    if (confirm('Are you sure to delete this ? ')) {
-      this.fileUploadService.deleteDocument(id).subscribe({
+
+    if (confirm(!this.isArchivedList?'Are you sure to moved in recycle bin? ':'Are you sure to permenentaly delete this file?')) {
+      this.fileUploadService.deleteDocument(this.isArchivedList, id).subscribe({
         next: (res: DocumentResponseModel) => {
           this.getAllDocuments();
           this.toastrService.success(res.message, 'Success');
