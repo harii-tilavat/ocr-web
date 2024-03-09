@@ -29,8 +29,9 @@
             <label for="email" class="control-label">Email</label>
             <input type="email" class="form-control" id="email" formControlName="email">
             <div class="form-error"
-              *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].hasError('required')">
-              <span>Password required!</span>
+              *ngIf="signupForm.controls['email'].touched">
+              <span *ngIf="signupForm.controls['email'].hasError('required')">Email required!</span>
+              <span *ngIf="signupForm.controls['email'].hasError('emailValidation')">Enter valid email!</span>
             </div>
           </div>
           <div class="form-group">

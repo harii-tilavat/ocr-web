@@ -22,21 +22,31 @@ export class DocumentProccessDetail {
   title!: string;
   desc!: string;
 }
-export class OcrServiceModel{
-  id!:number;
-  title!:string | null;
-  subTitle!:string;
-  desc!:string;
-  imagePath!:string;
-  subMenu!:ProductDetailModel[];
+export class OcrServiceModel {
+  id!: number;
+  title!: string | null;
+  subTitle!: string;
+  desc!: string;
+  imagePath!: string;
+  subMenu!: ProductDetailModel[];
 }
-export class ProductDetailModel{
-  id!:number;
-  title!:string | null;
-  subTitle!:string;
-  desc!:string;
-  imagePath!:string;
-  subMenu!:ProductDetailModel[];
-  action!:boolean;
+export class ProductDetailModel {
+  id!: number;
+  title!: string | null;
+  subTitle!: string;
+  desc!: string;
+  imagePath!: string;
+  subMenu!: ProductDetailModel[];
+  action!: boolean;
+}
+export class UserProfileModel {
+  exp!: number;
+  id!: string;
+  created_at!: string;
+  name!: string;
+  email!: string;
+  type!: 'USER' | 'ADMIN';
+  username!: string;
+  iat!: number;
 }
 export const pdfPlaceholder = '/assets/ocr-images/placeholder-pdf.png';

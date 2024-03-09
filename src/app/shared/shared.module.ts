@@ -18,6 +18,7 @@ import { FilePreviewComponent } from './ocr-components/file-preview/file-preview
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NgbModalModule } from './ng-modal';
+import { LoaderComponent } from './basic/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NgbModalModule } from './ng-modal';
     FileDataComponent,
     QnaAccordianComponent,
     FilePreviewComponent,
-    SidebarComponent
+    SidebarComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ import { NgbModalModule } from './ng-modal';
     FileUploadComponent,
     FileDataComponent,
     QnaAccordianComponent,
-    SidebarComponent
+    SidebarComponent,
+    LoaderComponent
   ]
 })
 export class SharedModule { }
