@@ -19,6 +19,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NgbModalModule } from './ng-modal';
 import { LoaderComponent } from './basic/loader/loader.component';
+import { AlertBoxComponent } from './basic/alert-box/alert-box.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LoaderComponent } from './basic/loader/loader.component';
     QnaAccordianComponent,
     FilePreviewComponent,
     SidebarComponent,
-    LoaderComponent
+    LoaderComponent,
+    AlertBoxComponent
   ],
   imports: [
     CommonModule,

@@ -62,7 +62,8 @@
 }
 .modal-backdrop {
   @include themed() {
-    background: t($bg-color);
+    // background: t($bg-color);
+    background: rgba(0, 0, 0, 0.9);
   }
 }
 #alertbox {

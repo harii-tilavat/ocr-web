@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { UserProfileModel } from 'src/app/_model';
+import { AlertBoxComponent } from 'src/app/shared/basic/alert-box/alert-box.component';
+import { NgbModal } from 'src/app/shared/ng-modal';
 import { DecodedToken, JwtHelperService, JwtModel } from 'src/package/jwt-token';
 
 
@@ -16,7 +19,7 @@ export class AuthService {
   public redirectUrl!: string;
   public currentUserSubject: BehaviorSubject<DecodedToken | null> = new BehaviorSubject(this.user);
   public isLoggedInSubject: Subject<boolean> = new BehaviorSubject(false);
-  constructor(private jwtHelper: JwtHelperService, private router: Router) { }
+  constructor(private jwtHelper: JwtHelperService, private router: Router, private modalService: NgbModal) { }
   get token() {
     return localStorage.getItem('token') as string || null;
   }
@@ -70,11 +73,25 @@ export class AuthService {
       return null
     }
   }
-  logout(): void {
-    if (confirm('Are you sure to logout?')) {
-      localStorage.clear();
-      this.isLoggedInSubject.next(false);
-      this.router.navigate(['/auth']);
+  async logout(): Promise<any> {
+    if (!this.modalService.hasOpenModals()) {
+      const modalRef = this.modalService.open(AlertBoxComponent, { size: 'sm', backdrop: 'static', keyboard: false, centered: true, windowClass: 'alertbox', container: '#alertbox' });
+      modalRef.componentInstance.title = 'Are you sure?';
+      modalRef.componentInstance.message = 'Do you want to Logout!';
+      modalRef.componentInstance.icon = { name: 'bx bx-power-off' };
+      modalRef.componentInstance.type = 'danger';
+      modalRef.componentInstance.primeBtn = 'Logout';
+      const result = await modalRef.result;
+      if (result) {
+        localStorage.clear();
+        this.isLoggedInSubject.next(false);
+        this.router.navigate(['/auth']);
+      }
     }
+    // if (confirm('Are you sure to logout?')) {
+    //   localStorage.clear();
+    //   this.isLoggedInSubject.next(false);
+    //   this.router.navigate(['/auth']);
+    // }
   }
 }

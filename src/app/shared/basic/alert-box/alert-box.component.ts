@@ -14,7 +14,7 @@ export class AlertBoxComponent implements OnInit {
     color: '#000'
   };
   @Input() iconColor!: string;
-  @Input() type: 'success' | 'error' | 'info' | 'warning' = 'success';
+  @Input() type: 'success' | 'error' | 'info' | 'warning' | 'danger' = 'success';
   @Input() isPrimeBtn = true;
   @Input() primeBtn = 'Save';
   @Input() isSecoundBtn = true;

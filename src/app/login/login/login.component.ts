@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LoginService } from 'src/app/_services';
+import { LoaderService, LoginService } from 'src/app/_services';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import { AlertBoxComponent } from 'src/app/shared/basic/alert-box/alert-box.component';
 import { NgbModal } from 'src/app/shared/ng-modal';
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl<string | null>(null, [Validators.required]),
     number: new FormControl<string | null>(null, [Validators.required]),
   });
-  constructor(private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private ngbModel: NgbModal) {
+  constructor(private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private ngbModel: NgbModal, private loaderService: LoaderService) {
     if (this.authService.isUserLoggedIn()) {
       this.router.navigate(['/user']);
     }
@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
       this.loginForm.markAllAsTouched();
       return;
     }
+    this.loaderService.show();
     this.loginService.loginUser(this.loginForm.value).subscribe({
       next: (res: { token: string, message: string }) => {
         if (res && res.token) {
@@ -63,17 +64,19 @@ export class LoginComponent implements OnInit {
           this.toastService.success('Login successfully!', 'Success');
         }
         console.log("Respose => ", res);
+        this.loaderService.hide();
       },
       error: (err: HttpErrorResponse) => {
         console.log("Error => ", err);
         this.toastService.error(err && err.error && err.error.message ? err.error.message : 'Something went wrong', 'Try again!');
+        this.loaderService.hide();
       }
     });
   }
   changeMode(): void {
     this.router.navigate(['/auth', 'signup'], { relativeTo: this.activatedRoute });
   }
-  loginWithGoogle():void{
+  loginWithGoogle(): void {
 
   }
   goToForgotPass(): void {
