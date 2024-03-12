@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { DocumentModel } from 'src/app/_model';
 
 @Component({
   selector: 'app-document-list',
@@ -12,6 +13,8 @@ export class DocumentListComponent implements OnInit, OnDestroy {
   public searchQuery = '';
   public searchForm: FormGroup = new FormGroup({ query: new FormControl('', []) });
   public isLoading = false;
+  public documentList: Array<DocumentModel> = [];
+  // public pagination
   constructor() { }
   ngOnInit(): void {
     console.log("recycle => ", this.isArchivedList);
@@ -22,7 +25,10 @@ export class DocumentListComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       })
   }
-
+  getDocuments(event: Array<DocumentModel>): void {
+    this.documentList = event;
+    // this.displayDocuments = this.documentList.slice(0, 3);
+  }
   ngOnDestroy(): void {
     this.searchForm.reset();
   }

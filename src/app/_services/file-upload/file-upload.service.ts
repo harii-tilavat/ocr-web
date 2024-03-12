@@ -61,6 +61,12 @@ export class FileUploadService {
 
     return this.baseProviderService.makeDeleteCall(url);
   }
+  restoreDocument(id: string): Observable<any> {
+    let url = `${environment.baseUrl}/api/docs/${id}?`;
+    url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
+
+    return this.baseProviderService.makePatchCall(url, {});
+  }
   downloadFile(id: string) {
     return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`, 'blob');
   }
