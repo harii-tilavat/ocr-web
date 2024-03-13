@@ -29,7 +29,7 @@ export class CustomValidatorRules {
   }
   static onlyDigit(control: AbstractControl): ValidationErrors | null {
     const ONLY_STRING_REGEXP = /^[0-9]*$/;
-    return !ONLY_STRING_REGEXP.test(control.value) ? { onlyString: true } : null;
+    return !ONLY_STRING_REGEXP.test(control.value) ? { onlyDigit: true } : null;
   }
   static emailValidation(control: AbstractControl): ValidationErrors | null {
     const EMAIL_MUST_REGEXP = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

@@ -35,14 +35,14 @@ export const menuConfig: Array<MenuListModel> = [
   },
 ]
 export const sidebarMenuConfig: Array<MenuListModel> = [
-  {
-    id: 1,
-    title: 'Dashboard',
-    routing: ['dashboard'],
-    icon: 'bx bx-home-circle',
-    enum: 'DASHBOARD',
-    subMenu: []
-  },
+  // {
+  //   id: 1,
+  //   title: 'Dashboard',
+  //   routing: ['dashboard'],
+  //   icon: 'bx bx-home-circle',
+  //   enum: 'DASHBOARD',
+  //   subMenu: []
+  // },
   {
     id: 2,
     title: 'Documents',

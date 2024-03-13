@@ -44,6 +44,10 @@ export class UserProfileModel {
   id!: string;
   created_at!: string;
   name!: string;
+  lastname!: string;
+  number!: number;
+  country!: string;
+  ref_code!: string;
   email!: string;
   type!: 'USER' | 'ADMIN';
   username!: string;

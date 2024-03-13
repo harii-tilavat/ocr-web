@@ -13,13 +13,15 @@ import { NgbModalModule } from '../shared/ng-modal';
 import { AdminComponent } from './admin.component';
 import { DocumentsBinComponent } from './documents-bin/documents-bin.component';
 import { LayoutModule } from '../layout/layout.module';
+import { AccountSettingComponent } from './account-setting/account-setting.component';
 
 
 
 @NgModule({
   declarations: [
     AdminComponent,
-    DocumentsBinComponent
+    DocumentsBinComponent,
+    AccountSettingComponent
   ],
   imports: [
     CommonModule,
