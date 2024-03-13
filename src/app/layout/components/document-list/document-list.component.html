@@ -4,13 +4,17 @@
       <div class="row">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="document-list-heading">
-            <div class="document-list-title">
-              <h2>{{!isArchivedList?'Document information':'Recycle bin information'}} </h2>
-              <h2>Total :- {{documentList.length}}</h2>
-            </div>
-            <div class="document-list-subtitle">
-              <h5>{{isArchivedList?'Do you want to recover this file? Click on the dropdown icon!':'Here is your Documents information :)'}}</h5><hr>
-              <hr>
+            <div class="documen-list-header-wrapper d-flex justify-content-between">
+              <div class="document-list-title">
+                <h2>{{!isArchivedList?'Document information':'Recycle bin information'}} </h2>
+                <h2>Total :- {{documentList.length}}</h2>
+                <h5>{{isArchivedList?'Do you want to recover this file? Click on the dropdown icon!':'Here is your Documents information :)'}}</h5>
+              </div>
+              <div class="document-header-right">
+                <div class="export-section">
+                  <button class="btn btn-primary-outline" (click)="exportExcel()">Export data in excel</button>
+                </div>
+              </div>
             </div>
             <div class="document-search-form" *ngIf="!false">
               <form action="" [formGroup]="searchForm">

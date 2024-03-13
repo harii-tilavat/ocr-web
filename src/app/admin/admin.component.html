@@ -34,8 +34,8 @@
             <ul class="navbar-nav flex-row align-items-center ms-auto">
               <!-- Place this tag where you want the button to render. -->
               <li class="nav-item lh-1 me-3">
-                <a class="github-button" href="javascript:void(0);"
-                  data-icon="octicon-star" data-size="large" data-show-count="true"
+                <a class="github-button" href="javascript:void(0);" data-icon="octicon-star" data-size="large"
+                  data-show-count="true"
                   aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
               </li>
 
@@ -65,16 +65,10 @@
                   <li>
                     <div class="dropdown-divider"></div>
                   </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      <i class="bx bx-user me-2"></i>
-                      <span class="align-middle">My Profile</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      <i class="bx bx-cog me-2"></i>
-                      <span class="align-middle">Settings</span>
+                  <li *ngFor="let item of profileMenuList" [routerLink]="item.routing" >
+                    <a class="dropdown-item" href="javascript:void(0);" >
+                      <i class=" me-2" [ngClass]="item.icon"></i>
+                      <span class="align-middle">{{item.title}}</span>
                     </a>
                   </li>
                   <li>
@@ -96,7 +90,7 @@
         <!-- / Navbar -->
 
         <!-- Content wrapper -->
-        <div class="content-wrapper-right">
+        <div class="content-wrapper-right py-5">
           <router-outlet></router-outlet>
         </div>
         <!-- Content wrapper -->

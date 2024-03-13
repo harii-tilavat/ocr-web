@@ -7,6 +7,7 @@ import { FileViewComponent } from '../file-view/file-view.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { AlertBoxComponent } from '../../basic/alert-box/alert-box.component';
 
 @Component({
   selector: 'app-file-data',
@@ -44,7 +45,7 @@ export class FileDataComponent implements OnInit, OnChanges {
     },
   ];
   public baseUrl: string = environment.baseUrl;
-  constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private router: Router, private route: ActivatedRoute, private authService: AuthService, private loaderService: LoaderService) { }
+  constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private router: Router, private route: ActivatedRoute, private authService: AuthService, private loaderService: LoaderService, private modalService: NgbModal) { }
   ngOnChanges(changes: SimpleChanges): void {
     console.log("Search ==> ", this.searchQuery);
     this.getAllDocuments();
@@ -89,31 +90,26 @@ export class FileDataComponent implements OnInit, OnChanges {
       }
     })
   }
-  onDeleteFile(id: string): void {
-    // if (!this.modalService.hasOpenModals()) {
-    //   const modalRef = this.modalService.open(AlertBoxComponent, { size: 'sm', backdrop: 'static', keyboard: false, centered: true, windowClass: 'alertbox', container: '#alertbox' });
-    //   modalRef.componentInstance.title = 'Are you sure?';
-    //   modalRef.componentInstance.message = 'Do you want to Logout!';
-    //   modalRef.componentInstance.icon = { name: 'bx bx-power-off' };
-    //   modalRef.componentInstance.type = 'danger';
-    //   modalRef.componentInstance.primeBtn = 'Logout';
-    //   const result = await modalRef.result;
-    //   if (result) {
-    //     localStorage.clear();
-    //     this.isLoggedInSubject.next(false);
-    //     this.router.navigate(['/auth']);
-    //   }
-    // }
-    if (confirm(!this.isArchivedList ? 'Are you sure to moved in recycle bin? ' : 'Are you sure to permenentaly delete this file?')) {
-      this.fileUploadService.deleteDocument(this.isArchivedList, id).subscribe({
-        next: (res: DocumentResponseModel) => {
-          this.getAllDocuments();
-          this.toastrService.success(res.message, 'Success');
-        }, error: (err: HttpErrorResponse) => {
-          console.log("Delete Error ==>> ", err);
-          this.toastrService.error(err.error.message, 'Error');
-        }
-      })
+  async onDeleteFile(id: string): Promise<void> {
+    if (!this.modalService.hasOpenModals()) {
+      const modalRef = this.modalService.open(AlertBoxComponent, { size: 'sm', backdrop: 'static', keyboard: false, centered: true, windowClass: 'alertbox', container: '#alertbox' });
+      modalRef.componentInstance.title ='Are you sure';
+      modalRef.componentInstance.message = !this.isArchivedList?`Don't worry! You can recover this file from recycle bin!`:`This file will be deleted forever and you won't be able to restore it.`;
+      modalRef.componentInstance.icon = { name: 'bx bx-trash' };
+      modalRef.componentInstance.type = 'danger';
+      modalRef.componentInstance.primeBtn = !this.isArchivedList?'Moved to bin':'Delete forever';
+      const result = await modalRef.result;
+      if (result) {
+        this.fileUploadService.deleteDocument(this.isArchivedList, id).subscribe({
+          next: (res: DocumentResponseModel) => {
+            this.getAllDocuments();
+            this.toastrService.success(res.message, 'Success');
+          }, error: (err: HttpErrorResponse) => {
+            console.log("Delete Error ==>> ", err);
+            this.toastrService.error(err.error.message, 'Error');
+          }
+        })
+      }
     }
   }
   onEditFile(id: string): void {

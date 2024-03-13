@@ -1,0 +1,17 @@
+<div class="rating-container">
+  <div class="rating-stars" (mouseleave)="resetHover()" *ngIf="!rated">
+    <ng-container *ngFor="let star of stars; let i = index">
+      <i class="fs-1 bx" [ngClass]="{'bx-trash': star, 'bx-star': !star}"
+         (click)="rateProject(i + 1)" (mouseenter)="hoverStar(i)" (mouseleave)="resetHover()">
+      </i>
+    </ng-container>
+  </div>
+  <div class="rating-stars" *ngIf="rated">
+    <ng-container *ngFor="let star of stars; let i = index">
+      <i class="fs-1 bx" [ngClass]="{'bx-trash': star, 'bx-star': !star, 'active': i < userRating}"
+         (click)="rateProject(i + 1)" (mouseenter)="hoverStar(i)" (mouseleave)="resetHover()">
+      </i>
+    </ng-container>
+  </div>
+  <p class="rating-message" *ngIf="rated">Thank you for rating! {{userRating}}</p>
+</div>

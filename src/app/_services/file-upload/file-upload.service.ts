@@ -70,6 +70,10 @@ export class FileUploadService {
   downloadFile(id: string) {
     return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`, 'blob');
   }
+  exportDataInExcel(id: string): void {
+    // return this.baseProviderService.makeGetCall(`${environment.baseUrl}/api/export/${id}`);
+    window.open(`${environment.baseUrl}/api/export/${id}`, '_blank');
+  }
   makeQueryparamUrl(url: string, searchParam: any): any {
     for (const key in searchParam) {
       if (searchParam[key] !== undefined && searchParam[key] !== null && searchParam[key] !== '') {

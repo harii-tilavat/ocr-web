@@ -20,6 +20,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NgbModalModule } from './ng-modal';
 import { LoaderComponent } from './basic/loader/loader.component';
 import { AlertBoxComponent } from './basic/alert-box/alert-box.component';
+import { RatingComponent } from './basic/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AlertBoxComponent } from './basic/alert-box/alert-box.component';
     FilePreviewComponent,
     SidebarComponent,
     LoaderComponent,
-    AlertBoxComponent
+    AlertBoxComponent,
+    RatingComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +60,8 @@ import { AlertBoxComponent } from './basic/alert-box/alert-box.component';
     FileDataComponent,
     QnaAccordianComponent,
     SidebarComponent,
-    LoaderComponent
+    LoaderComponent,
+    RatingComponent
   ]
 })
 export class SharedModule { }

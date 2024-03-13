@@ -3,6 +3,7 @@ import { AuthService } from '../_services';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserProfileModel } from '../_model';
+import { MenuListModel } from '../_model/menu-list/menu-list.model';
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +13,25 @@ import { UserProfileModel } from '../_model';
 export class AdminComponent implements OnInit {
   public isAdmin = false;
   public userata!: UserProfileModel;
-  constructor(private authService: AuthService, private router: Router, private toastrService: ToastrService) { }
+  public profileMenuList: MenuListModel[] = [
+    {
+      id: 1,
+      title: 'My profile',
+      icon: 'bx bx-user',
+      routing: ['/user', 'profile'],
+      subMenu: [],
+      enum: 'MY_PROFILE'
+    },
+    {
+      id: 2,
+      title: 'Setting',
+      icon: 'bx bx-cog',
+      routing: ['/user', 'account-setting'],
+      subMenu: [],
+      enum: 'SETTING'
+    },
+  ]
+  constructor(private authService: AuthService, private toastrService: ToastrService, private router: Router) { }
   ngOnInit(): void {
     // if (!this.authService.isUserLoggedIn()) {
     //   this.router.navigate(['/home']);

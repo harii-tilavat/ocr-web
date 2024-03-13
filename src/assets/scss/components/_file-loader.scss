@@ -1,7 +1,7 @@
 .file-loader-section {
 
   .ocrloader {
-    width: 280px;
+    width: 310px;
     height: 82%;
     margin: 16px;
     outline-offset: 10px;
@@ -9,7 +9,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
   }
 
   .ocrloader span::before {
