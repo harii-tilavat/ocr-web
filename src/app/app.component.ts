@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, filter, map, pipe } from 'rxjs';
+import { Subject, Subscription, filter, map, pipe } from 'rxjs';
 import { TitleService } from './_services';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { GenericResponseList, } from './_model';
@@ -84,6 +84,7 @@ export class AppComponent implements OnInit, OnDestroy {
   //     }
   //   }))
   // }
+
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());
   }

@@ -21,7 +21,8 @@ import { NgbModalModule } from './ng-modal';
 import { LoaderComponent } from './basic/loader/loader.component';
 import { AlertBoxComponent } from './basic/alert-box/alert-box.component';
 import { RatingComponent } from './basic/rating/rating.component';
-
+import { WebcamModule } from 'ngx-webcam';
+import { OcrWebcamComponent } from './ocr-webcam/ocr-webcam.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -37,7 +38,8 @@ import { RatingComponent } from './basic/rating/rating.component';
     SidebarComponent,
     LoaderComponent,
     AlertBoxComponent,
-    RatingComponent
+    RatingComponent,
+    OcrWebcamComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,9 @@ import { RatingComponent } from './basic/rating/rating.component';
     PipesModule,
     DirectiveModule,
     NgxExtendedPdfViewerModule,
-    NgbModalModule
+    NgbModalModule,
+    WebcamModule
+    // NgxQRCodeModule
   ],
   exports: [
     NavbarComponent,
