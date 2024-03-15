@@ -147,3 +147,21 @@ img {
   // visibility: hidden;
   display: none;
 }
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .profile-icon {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $primary-600;
+    background: $primary-600;
+    @include font-size(10px);
+    color: $primary-25;
+    border-radius: 50%;
+    text-transform: uppercase;
+  }
+}

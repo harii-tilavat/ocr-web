@@ -10,12 +10,13 @@
                 <h2>Total :- {{documentList.length}}</h2>
                 <h5>{{isArchivedList?'Do you want to recover this file? Click on the dropdown icon!':'Here is your Documents information :)'}}</h5>
               </div>
-              <div class="document-header-right">
+              <div class="document-header-right" *ngIf="!isArchivedList">
                 <div class="export-section">
                   <button class="btn btn-primary-outline" (click)="exportExcel()">Export data in excel</button>
                 </div>
               </div>
             </div>
+            <hr>
             <div class="document-search-form" *ngIf="!false">
               <form action="" [formGroup]="searchForm">
                 <div class="form-group">

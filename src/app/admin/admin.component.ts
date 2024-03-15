@@ -12,6 +12,7 @@ import { MenuListModel } from '../_model/menu-list/menu-list.model';
 })
 export class AdminComponent implements OnInit {
   public isAdmin = false;
+  public unameIcon!: string;
   public userata!: UserProfileModel;
   public profileMenuList: MenuListModel[] = [
     {
@@ -37,6 +38,7 @@ export class AdminComponent implements OnInit {
     //   this.router.navigate(['/home']);
     // }
     this.userata = this.authService.getUserData();
+    this.unameIcon = this.userata.lastname ? (this.userata.name.slice(0, 1)  + this.userata.lastname.slice(0, 1)) : this.userata.name.slice(0, 1);
   }
   logout(): void {
     this.authService.logout();
