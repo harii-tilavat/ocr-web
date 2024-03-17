@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DocumentModel, DocumentResponseModel, UserProfileModel, pdfPlaceholder } from 'src/app/_model';
 import { AuthService, FileUploadService, LoaderService } from 'src/app/_services';
@@ -7,6 +7,7 @@ import { FileViewComponent } from '../file-view/file-view.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { AlertBoxComponent } from '../../basic/alert-box/alert-box.component';
 
 @Component({
   selector: 'app-file-data',
@@ -17,6 +18,8 @@ export class FileDataComponent implements OnInit, OnChanges {
   @Input() isArchivedList = false;
   @Input() searchQuery = '';
   @Input() isLoading = false;
+  @Output() documentListEvent = new EventEmitter<Array<DocumentModel>>();
+  public displayedDocuments: Array<DocumentModel> = [];
   public pdfPlaceholder: string = pdfPlaceholder;
   public documentList: Array<DocumentModel> = [];
   public metadata: Array<any> = [
@@ -42,7 +45,7 @@ export class FileDataComponent implements OnInit, OnChanges {
     },
   ];
   public baseUrl: string = environment.baseUrl;
-  constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private router: Router, private route: ActivatedRoute, private authService: AuthService, private loaderService: LoaderService) { }
+  constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private router: Router, private route: ActivatedRoute, private authService: AuthService, private loaderService: LoaderService, private modalService: NgbModal) { }
   ngOnChanges(changes: SimpleChanges): void {
     console.log("Search ==> ", this.searchQuery);
     this.getAllDocuments();
@@ -57,6 +60,8 @@ export class FileDataComponent implements OnInit, OnChanges {
         if (res && res.data) {
           this.documentList = res.data;
           console.log("Response ===>>> ", this.documentList);
+          this.displayedDocuments = this.documentList.slice(0, 3);
+          this.documentListEvent.emit(this.documentList);
           // this.loaderService.hide();
           // this.isLoading = false;
         }
@@ -75,20 +80,36 @@ export class FileDataComponent implements OnInit, OnChanges {
     }
   }
   onRestoreFile(id: string): void {
-
+    this.fileUploadService.restoreDocument(id).subscribe({
+      next: (res: DocumentResponseModel) => {
+        this.getAllDocuments();
+        this.toastrService.success(res.message, 'Success');
+      },
+      error: (err: HttpErrorResponse) => {
+        this.toastrService.error(err.error.message || 'This file can not be restored!', 'ERROR');
+      }
+    })
   }
-  onDeleteFile(id: string): void {
-
-    if (confirm(!this.isArchivedList?'Are you sure to moved in recycle bin? ':'Are you sure to permenentaly delete this file?')) {
-      this.fileUploadService.deleteDocument(this.isArchivedList, id).subscribe({
-        next: (res: DocumentResponseModel) => {
-          this.getAllDocuments();
-          this.toastrService.success(res.message, 'Success');
-        }, error: (err: HttpErrorResponse) => {
-          console.log("Delete Error ==>> ", err);
-          this.toastrService.error(err.error.message, 'Error');
-        }
-      })
+  async onDeleteFile(id: string): Promise<void> {
+    if (!this.modalService.hasOpenModals()) {
+      const modalRef = this.modalService.open(AlertBoxComponent, { size: 'sm', backdrop: 'static', keyboard: false, centered: true, windowClass: 'alertbox', container: '#alertbox' });
+      modalRef.componentInstance.title ='Are you sure';
+      modalRef.componentInstance.message = !this.isArchivedList?`Don't worry! You can recover this file from recycle bin!`:`This file will be deleted forever and you won't be able to restore it.`;
+      modalRef.componentInstance.icon = { name: 'bx bx-trash' };
+      modalRef.componentInstance.type = 'danger';
+      modalRef.componentInstance.primeBtn = !this.isArchivedList?'Moved to bin':'Delete forever';
+      const result = await modalRef.result;
+      if (result) {
+        this.fileUploadService.deleteDocument(this.isArchivedList, id).subscribe({
+          next: (res: DocumentResponseModel) => {
+            this.getAllDocuments();
+            this.toastrService.success(res.message, 'Success');
+          }, error: (err: HttpErrorResponse) => {
+            console.log("Delete Error ==>> ", err);
+            this.toastrService.error(err.error.message, 'Error');
+          }
+        })
+      }
     }
   }
   onEditFile(id: string): void {
@@ -96,6 +117,13 @@ export class FileDataComponent implements OnInit, OnChanges {
   }
   onDownloadFile(filename: string) {
 
+  }
+  loadDocuments(total_page: number): void {
+    this.displayedDocuments = this.documentList.slice(0, this.displayedDocuments.length + total_page);
+    // this.isLoading = true;
+    // setTimeout(() => {
+    //   this.isLoading = false;
+    // }, 0);
   }
 }
 

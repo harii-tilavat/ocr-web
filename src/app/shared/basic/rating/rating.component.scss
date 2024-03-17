@@ -1,0 +1,29 @@
+.rating-container {
+  display: flex;
+  align-items: center;
+}
+
+.rating-stars {
+  display: flex;
+  cursor: pointer;
+
+  .fa {
+    font-size: 24px;
+    color: #ccc;
+    transition: color 0.2s;
+    margin-right: 5px;
+
+    &.fa-star {
+      color: gold;
+    }
+
+    &.active {
+      color: #ffc107;
+    }
+  }
+}
+
+.rating-message {
+  margin-left: 10px;
+  color: green;
+}

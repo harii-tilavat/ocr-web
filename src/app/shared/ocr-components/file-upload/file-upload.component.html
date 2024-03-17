@@ -18,7 +18,7 @@
               </div>
               <div class="col-xxl-9 col-xl-9 col-lg-8 col-md-6 col-sm-12">
                 <div class="file-upload">
-                  <div class="file-output card" [contentEditable]="false" [ngClass]="{'file-selected': isFileSelected}">
+                  <div class="file-output card-main" [contentEditable]="false" [ngClass]="{'file-selected': isFileSelected}">
                     <ng-container *ngIf="!fileText; else showFileText">
                       <span>
                         {{isUploading ? 'File scanning...' : 'Text from your document will appear here.'}}

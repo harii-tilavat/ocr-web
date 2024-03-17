@@ -2,9 +2,9 @@
   <div class="ngx-alert" [class]="type">
     <div class="alert-card">
       <div class="alert-icon-box">
-        <div class="alert-icon">
+        <div class="alert-icon-bx">
           <span>
-            <i class="bx bx-trash"></i>
+            <i [class]="icon.name" [ngStyle]="{'color': icon.color}"></i>
             <!-- <uxr-icons [name]="icon.name"
                         [fill]="type === 'success' ? '#027a48' : type === 'info' ? '#175cd3' : type === 'warning' ? '#8e5d19': type === 'error' ? '#b42318': '#344054'"
                         [stroke]="type === 'success' ? '#027a48' : type === 'info' ? '#175cd3' : type === 'warning' ? '#8e5d19': type === 'error' ? '#b42318': '#344054'"></uxr-icons> -->
@@ -21,12 +21,12 @@
       </div>
     </div>
     <div class="alert-footer">
-      <!-- alert-btn-group [ngStyle]="{'grid-template-columns': isPrimeBtn && isSecoundBtn ? '1fr 1fr' : '1fr'}" -->
-      <div class="alert-btn-group" >
+      <!-- alert-btn-group  -->
+      <div class="alert-btn-group" [ngStyle]="{'grid-template-columns': isPrimeBtn && isSecoundBtn ? '1fr 1fr' : '1fr'}">
         <ng-container *ngIf="isSecoundBtn">
-          <!-- [class]="'btn-alert-outline-' + type" -->
-          <button type="button" class="btn btn-secondary-outline mat-button"
+          <button type="button" class="btn btn-outline-secondary"
                   (click)="activeModal.close(false)">{{secoundaryBtn}}</button>
+          <!-- [class]="'btn-alert-outline-' + type" -->
         </ng-container>
         <ng-container *ngIf="isPrimeBtn">
           <button type="button" class="btn mat-button" [class]="'btn-alert-' + type"

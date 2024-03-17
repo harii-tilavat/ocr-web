@@ -139,6 +139,11 @@
         background: $green-700;
         border-color: $green-700;
       }
+      &-danger {
+        color: t($ngt-inverse);
+        background: $red-700;
+        border-color: $red-700;
+      }
       &-error {
         color: t($ngt-inverse);
         background: $red-700;
@@ -151,8 +156,8 @@
       }
       &-warning {
         color: t($ngt-inverse);
-        background: $yellow-700;
-        border-color: $yellow-700;
+        background: $yellow-600;
+        border-color: $yellow-600;
       }
       &-primary {
         color: t($ngt-inverse);

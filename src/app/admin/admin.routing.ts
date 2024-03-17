@@ -31,15 +31,15 @@ const routes: Routes = [
   {
     path: '', component: AdminComponent, data: { title: 'OcrWeb Home' },
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardComponent },
+      { path: '', redirectTo: 'docs', pathMatch: 'full' },
+      // { path: 'dashboard', component: DashboardComponent },
+      { path: 'docs', component: DocumentListComponent, data: { title: 'OcrWeb Documents' }, }, // canActivate:[AuthGuard]
+      { path: 'docs/:id', component: DocumentDetailComponent, data: { title: 'OcrWeb Document details' }, },
       { path: 'profile', component: UserProfileComponent },
       { path: 'account-setting', component: AccountSettingComponent },
       { path: 'bin', component: DocumentsBinComponent },
       { path: 'wallet', component: WalletComponent },
       { path: 'upload', component: DocumentUploadComponent, data: { title: 'OcrWeb File upload' } },
-      { path: 'docs', component: DocumentListComponent, data: { title: 'OcrWeb Documents' }, }, // canActivate:[AuthGuard]
-      { path: 'docs/:id', component: DocumentDetailComponent, data: { title: 'OcrWeb Document details' }, },
     ],
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
