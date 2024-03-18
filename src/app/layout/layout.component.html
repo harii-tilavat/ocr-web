@@ -2,8 +2,8 @@
   <app-navbar [isLoggedIn]="false" [themeColor]="themeColor"></app-navbar>
 </div>
 <div id="ocr-web-root" class="ocr-web-container">
-  <!-- <router-outlet ></router-outlet> -->
-  <div class="pricing">
+  <router-outlet ></router-outlet>
+  <div class="pricing" *ngIf="false">
     <div class="container">
       <div class="col-xxl-12">
         <div class="pricing-section">
