@@ -10,6 +10,7 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
 import { WalletComponent } from './wallet/wallet.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DocumentsBinComponent } from './documents-bin/documents-bin.component';
+import { PricingComponent } from '../shared/pricing/pricing.component';
 
 // const routes: Routes = [
 //   { path: '', component: HomeComponent, data: { title: 'Get Curious Home' } },
@@ -39,6 +40,7 @@ const routes: Routes = [
       { path: 'account-setting', component: AccountSettingComponent },
       { path: 'bin', component: DocumentsBinComponent },
       { path: 'wallet', component: WalletComponent },
+      { path: 'pricing', component: PricingComponent },
       { path: 'upload', component: DocumentUploadComponent, data: { title: 'OcrWeb File upload' } },
     ],
   },

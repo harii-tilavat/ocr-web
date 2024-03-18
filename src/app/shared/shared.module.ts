@@ -23,6 +23,7 @@ import { AlertBoxComponent } from './basic/alert-box/alert-box.component';
 import { RatingComponent } from './basic/rating/rating.component';
 import { WebcamModule } from 'ngx-webcam';
 import { OcrWebcamComponent } from './ocr-webcam/ocr-webcam.component';
+import { PricingComponent } from './pricing/pricing.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -39,7 +40,8 @@ import { OcrWebcamComponent } from './ocr-webcam/ocr-webcam.component';
     LoaderComponent,
     AlertBoxComponent,
     RatingComponent,
-    OcrWebcamComponent
+    OcrWebcamComponent,
+    PricingComponent
   ],
   imports: [
     CommonModule,

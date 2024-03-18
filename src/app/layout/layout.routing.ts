@@ -8,6 +8,7 @@ import { DocumentUploadComponent } from './components/document-upload/document-u
 import { DocumentDetailComponent } from './components/document-list/document-detail/document-detail.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AuthGuard } from '../_services';
+import { PricingComponent } from '../shared/pricing/pricing.component';
 
 // const routes: Routes = [
 //   { path: '', component: HomeComponent, data: { title: 'Get Curious Home' } },
@@ -30,6 +31,7 @@ const routes: Routes = [
     path: '', component: LayoutComponent, data: { title: 'OcrWeb Home' },
     children: [
       { path: '', component: HomeComponent },
+      { path: 'pricing', component: PricingComponent,data: { title: 'OcrWeb Pricing' } },
       { path: 'contact', component: ContactComponent, data: { title: 'OcrWeb Contact' } },
     ],
   },
