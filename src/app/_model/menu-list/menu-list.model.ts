@@ -33,6 +33,14 @@ export const menuConfig: Array<MenuListModel> = [
     enum: 'CONTACT',
     subMenu: []
   },
+  {
+    id: 5,
+    title: 'Pricing',
+    icon: null,
+    routing: '/pricing',
+    enum: 'PRICING',
+    subMenu: []
+  }
 ]
 export const sidebarMenuConfig: Array<MenuListModel> = [
   // {
