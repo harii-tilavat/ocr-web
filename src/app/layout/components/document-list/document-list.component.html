@@ -8,9 +8,10 @@
               <div class="document-list-title">
                 <h2>{{!isArchivedList?'Document information':'Recycle bin information'}} </h2>
                 <h2>Total :- {{documentList.length}}</h2>
-                <h5>{{isArchivedList?'Do you want to recover this file? Click on the dropdown icon!':'Here is your Documents information :)'}}</h5>
+                <h5>
+                  {{isArchivedList?'Do you want to recover this file? Click on the dropdown icon!':'Here is your Documents information :)'}}</h5>
               </div>
-              <div class="document-header-right" *ngIf="!isArchivedList">
+              <div class="document-header-right" *ngIf="!isArchivedList && documentList.length > 0">
                 <div class="export-section">
                   <button class="btn btn-primary-outline" (click)="exportExcel()">Export data in excel</button>
                 </div>
@@ -35,8 +36,8 @@
       <div class="row">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="document-list">
-            <app-file-data [isArchivedList]="isArchivedList" [searchQuery]="searchQuery"
-              [isLoading]="isLoading" (documentListEvent)="getDocuments($event)"></app-file-data>
+            <app-file-data [isArchivedList]="isArchivedList" [searchQuery]="searchQuery" [isLoading]="isLoading"
+              (documentListEvent)="getDocuments($event)"></app-file-data>
           </div>
         </div>
       </div>

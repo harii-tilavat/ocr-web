@@ -15,7 +15,6 @@ import { GlobalEventifier } from './_eventifier';
 import { BaseProviderService } from './_services/base-provider.service';
 import { OcrIntercepterService } from './_services';
 import { JWT_OPTIONS, JwtModule } from 'src/package/jwt-token';
-import { WebcamModule } from 'ngx-webcam';
 
 export function jwtOptionsFactory() {
   return {
@@ -36,7 +35,6 @@ register();
     AppRoutingModule,
     SharedModule,
     IconsModule,
-    WebcamModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
@@ -54,6 +52,7 @@ register();
     GlobalEventifier,
     DataCacheService,
     BaseProviderService,
+    { provide: 'googleTagManagerCSPNonce', useValue: 'CSP-NONCE' },
     { provide: HTTP_INTERCEPTORS, useClass: OcrIntercepterService, multi: true }
   ],
   bootstrap: [AppComponent]

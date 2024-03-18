@@ -67,6 +67,12 @@ export class FileUploadService {
 
     return this.baseProviderService.makePatchCall(url, {});
   }
+  getCredits(): Observable<any> {
+    let url = `${environment.baseUrl}/api/credits?`;
+    url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
+
+    return this.baseProviderService.makeGetCall(url);
+  }
   downloadFile(id: string) {
     return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`, 'blob');
   }

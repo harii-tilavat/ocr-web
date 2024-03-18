@@ -47,7 +47,7 @@ export class FileDataComponent implements OnInit, OnChanges {
   public baseUrl: string = environment.baseUrl;
   constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private router: Router, private route: ActivatedRoute, private authService: AuthService, private loaderService: LoaderService, private modalService: NgbModal) { }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("Search ==> ", this.searchQuery);
+    // console.log("Search ==> ", this.searchQuery);
     this.getAllDocuments();
   }
   ngOnInit(): void {

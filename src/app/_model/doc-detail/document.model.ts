@@ -17,6 +17,10 @@ export class DocumentResponseModel {
   data!: DocumentModel;
   message!: string;
 }
+export class CreditResponseModel {
+  data!: CreditInfoModel;
+  message!: string;
+}
 export class DocumentProccessDetail {
   id!: number;
   title!: string;
@@ -52,5 +56,10 @@ export class UserProfileModel {
   type!: 'USER' | 'ADMIN';
   username!: string;
   iat!: number;
+}
+
+export class CreditInfoModel {
+  avail_credit!: number;
+  max_credit!: number;
 }
 export const pdfPlaceholder = '/assets/ocr-images/placeholder-pdf.png';

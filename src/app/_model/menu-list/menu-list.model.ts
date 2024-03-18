@@ -67,14 +67,14 @@ export const sidebarMenuConfig: Array<MenuListModel> = [
     enum: 'WALLET',
     subMenu: []
   },
-  {
-    id: 2,
-    title: 'My account',
-    routing: ['profile'],
-    icon: 'bx bx-user',
-    enum: 'MY_ACCOUNT',
-    subMenu: []
-  },
+  // {
+  //   id: 2,
+  //   title: 'My account',
+  //   routing: ['profile'],
+  //   enum: 'MY_ACCOUNT',
+  //   icon: 'bx bx-user',
+  //   subMenu: []
+  // },
   {
     id: 2,
     title: 'Bin',
@@ -85,9 +85,9 @@ export const sidebarMenuConfig: Array<MenuListModel> = [
   },
   {
     id: 2,
-    title: 'Setting',
+    title: 'My account',
     routing: ['account-setting'],
-    icon: 'bx bx-cog',
+    icon: 'bx bx-user',
     enum: 'SETTING',
     subMenu: []
   },

@@ -19,7 +19,8 @@ export class AdminComponent implements OnInit {
       id: 1,
       title: 'My profile',
       icon: 'bx bx-user',
-      routing: ['/user', 'profile'],
+      // routing: ['/user', 'profile'],
+      routing: ['/user', 'account-setting'],
       subMenu: [],
       enum: 'MY_PROFILE'
     },
