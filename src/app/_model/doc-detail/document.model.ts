@@ -17,6 +17,10 @@ export class DocumentResponseModel {
   data!: DocumentModel;
   message!: string;
 }
+export class UserResponseModel {
+  data!: Array<UserProfileModel>;
+  message!: string;
+}
 export class CreditResponseModel {
   data!: CreditInfoModel;
   message!: string;

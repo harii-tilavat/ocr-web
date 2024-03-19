@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { UserProfileModel } from 'src/app/_model';
-import { AuthService, LoginService } from 'src/app/_services';
+import { DocumentResponseModel, UserProfileModel, UserResponseModel } from 'src/app/_model';
+import { AuthService, FileUploadService, LoginService } from 'src/app/_services';
 import { CustomValidatorRules } from 'src/app/_validators';
 
 @Component({
@@ -13,11 +13,14 @@ import { CustomValidatorRules } from 'src/app/_validators';
 export class AccountSettingComponent implements OnInit {
   public userForm!: FormGroup;
   public userdata !: UserProfileModel;
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private loginService: LoginService, private toastrService: ToastrService) { }
+  public referalList!: Array<UserProfileModel>;
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private loginService: LoginService, private toastrService: ToastrService, private fileuploadService: FileUploadService) { }
   ngOnInit(): void {
+    this.getReferalDetail();
     this.userdata = this.authService.getUserData();
     console.log("Userdata => ", this.userdata);
     this.setUserForm(this.userdata);
+
 
   }
   onUpdate(): void {
@@ -50,5 +53,12 @@ export class AccountSettingComponent implements OnInit {
       // email: [this.userdata.email, [Validators.required, CustomValidatorRules.emailValidation]],
       number: [userdata.number, [Validators.required, Validators.minLength(10)]],
     });
+  }
+  getReferalDetail(): void {
+    this.fileuploadService.getReferalDetail().subscribe({
+      next: (res: UserResponseModel) => {
+        this.referalList = res.data;
+      }
+    })
   }
 }

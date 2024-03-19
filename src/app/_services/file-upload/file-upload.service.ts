@@ -33,7 +33,7 @@ export class FileUploadService {
   //   return this.baseProviderService.makeDeleteCall(`${environment.apiUrl}/${id}`);
   // }
   uploadFile(formData: FormData): Observable<any> {
-    // const url = `${environment.baseUrl}/api/docs`;
+    // let url = `${environment.baseUrl}/pdf-to-word?`;
 
     let url = `${environment.baseUrl}/api/docs?`;
     url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
@@ -71,6 +71,16 @@ export class FileUploadService {
     let url = `${environment.baseUrl}/api/credits?`;
     url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
 
+    return this.baseProviderService.makeGetCall(url);
+  }
+  getReferalDetail(): Observable<any> {
+    let url = `${environment.baseUrl}/api/referal?`;
+    url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
+
+    return this.baseProviderService.makeGetCall(url);
+  }
+  getReferals(): Observable<any> {
+    const url = `${environment.baseUrl}/api/referal`;
     return this.baseProviderService.makeGetCall(url);
   }
   downloadFile(id: string) {

@@ -18,4 +18,7 @@ export class SidebarComponent implements OnInit {
       this.authService.logout();
     }
   }
+  hidemenu(): void {
+    document.getElementsByTagName('html')[0].classList.remove('layout-menu-expanded');
+  }
 }

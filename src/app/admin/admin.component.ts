@@ -41,6 +41,9 @@ export class AdminComponent implements OnInit {
     this.userata = this.authService.getUserData();
     this.unameIcon = this.userata.lastname ? (this.userata.name.slice(0, 1)  + this.userata.lastname.slice(0, 1)) : this.userata.name.slice(0, 1);
   }
+  openMenu():void{
+    document.getElementsByTagName('html')[0].classList.add('layout-menu-expanded');
+  }
   logout(): void {
     this.authService.logout();
   }
