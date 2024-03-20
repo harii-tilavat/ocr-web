@@ -126,6 +126,16 @@ Return Type: Observable<T>
   makeGetFile(resourceURL: string, resType: any): Observable<{} | HttpResponse<any>> {
     return this.http.get(resourceURL, { responseType: resType }).pipe(catchError(this.handleError));
   }
+  /*
+ Function for POST File call
+ Parameters:
+ resourceURL: The resource on which POST FILE call has to be made.
+ requestModel: The Request model to be sent along with the call.
+ Return Type: Observable<T>
+ */
+  makePostFile(resourceURL: string, body: any, resType: any): Observable<{} | HttpResponse<any>> {
+    return this.http.post(resourceURL, body, { responseType: resType }).pipe(catchError(this.handleError));
+  }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.status === 500 || error.status === 503) {

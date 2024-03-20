@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AlertBoxComponent } from '../../basic/alert-box/alert-box.component';
 import { FileTypeEnum } from 'src/app/_enum';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-file-data',
@@ -118,12 +119,13 @@ export class FileDataComponent implements OnInit, OnChanges {
   }
   onDownloadFile(data: DocumentModel) {
     this.fileUploadService.downloadFile(data, FileTypeEnum.UPLOADED_FILE).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         console.log("File download response ", res);
+        saveAs(res, data.file_name);
         this.toastrService.success('File dowloaded successfully! ', 'Success');
       }, error: (err) => {
         console.log("File dowload error => ", err);
-        this.toastrService.error(err.error ? err.error?.message : 'Something went wrong', 'ERROR');
+        this.toastrService.error(err && err.error && err.error.message || 'File not exists', 'ERROR');
       }
     });
   }

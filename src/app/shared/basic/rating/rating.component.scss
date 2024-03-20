@@ -1,29 +1,116 @@
-.rating-container {
-  display: flex;
-  align-items: center;
+$ff-main: "Mulish", sans-serif;
+
+
+body {
+  font-family: $ff-main;
+  background-color: #f1f1f1;
+  color: #1a1a1a;
 }
 
-.rating-stars {
-  display: flex;
-  cursor: pointer;
+main {
+  display: grid;
+  place-items: center;
+  // min-height: 100vh;
+  padding: 2em;
+}
 
-  .fa {
-    font-size: 24px;
-    color: #ccc;
-    transition: color 0.2s;
-    margin-right: 5px;
+form {
+  // max-width: 420px;
+  padding: 2em;
+  // background-color: white;
+  // box-shadow: 2px 0 15px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
 
-    &.fa-star {
-      color: gold;
+  & > h1 {
+    text-align: center;
+    font-weight: 900;
+    color: #443c68;
+  }
+
+  & > p {
+    text-align: center;
+    margin-bottom: 2.4em;
+    line-height: 1.8;
+    font-weight: 600;
+  }
+
+  & > .textarea-group {
+    margin-top: 2.4em;
+
+    & > label {
+      display: block;
+      width: 100%;
     }
 
-    &.active {
-      color: #ffc107;
+    & > label > span {
+      display: block;
+      font-size: 0.9em;
+      font-weight: 600;
+      margin-bottom: 0.8em;
+    }
+
+  }
+}
+
+// ==================================================
+// ==================================================
+/* Input Rating */
+.rating {
+  $rating-star-color: #d3d3d3;
+  $rating-star-active-color: #4a4a4a;
+  $rating-star-selected-color: orange;
+
+  user-select: none;
+
+  & > input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    z-index: -999;
+  }
+
+  &__box {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+  }
+
+  &__star {
+    font-size: 3.2em;
+    color: $rating-star-color;
+
+    transition: all 0.1s ease-in-out;
+
+    &:active {
+      color: $rating-star-active-color !important;
+
+      text-shadow: 1px 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        transform: scale(1.3);
+      }
+    }
+  }
+
+  // State
+  @for $i from 1 through 5 {
+    // Selected Star
+    &
+      > input[type="radio"]:nth-child(#{$i}):checked
+      ~ &__box
+      > &__star:nth-child(-n + #{$i}) {
+      color: $rating-star-selected-color;
+    }
+
+    // Keyboard Tab Focus
+    &
+      > input[type="radio"]:nth-child(#{$i}):focus-visible
+      ~ &__box
+      > &__star:nth-child(#{$i}) {
+      outline: solid 1px black;
     }
   }
 }
 
-.rating-message {
-  margin-left: 10px;
-  color: green;
-}
+/* End Input Rating */

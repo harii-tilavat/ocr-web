@@ -23,8 +23,9 @@ export class SignupComponent implements OnInit {
     password: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)]),
     confirmPassword: new FormControl<string | null>(null, [Validators.required]),
     number: new FormControl<string | null>(null, []),
+    user_ref_code: new FormControl<string | null>(null),
   });
-  constructor(private loaderService: LoaderService,private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private loaderService: LoaderService, private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
     if (this.authService.isUserLoggedIn()) {
       this.router.navigate(['/user']);
     }

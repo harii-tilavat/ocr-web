@@ -67,7 +67,7 @@
                   <li>
                     <div class="dropdown-divider"></div>
                   </li>
-                  <li *ngFor="let item of profileMenuList" [routerLink]="item.routing">
+                  <li *ngFor="let item of profileMenuList" [routerLink]="item.routing" (click)="giveRating(item.enum)">
                     <a class="dropdown-item" href="javascript:void(0);">
                       <i class=" me-2" [ngClass]="item.icon"></i>
                       <span class="align-middle">{{item.title}}</span>

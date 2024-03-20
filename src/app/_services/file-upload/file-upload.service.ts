@@ -83,7 +83,7 @@ export class FileUploadService {
     const url = `${environment.baseUrl}/api/referal`;
     return this.baseProviderService.makeGetCall(url);
   }
-  downloadFile(data: DocumentModel, type: string) {
+  downloadFile(data: DocumentModel | null, type: string) {
     // return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`, 'blob');
     const user_id = this.getUserId();
     const body = {
@@ -91,11 +91,7 @@ export class FileUploadService {
       user_id,
       type
     }
-    return this.http.post(`${environment.baseUrl}/download`, body,{responseType:'blob'});
-  }
-  exportDataInExcel(id: string): void {
-    // return this.baseProviderService.makeGetCall(`${environment.baseUrl}/api/export/${id}`);
-    window.open(`${environment.baseUrl}/api/export/${id}`, '_blank');
+    return this.baseProviderService.makePostFile(`${environment.baseUrl}/download`, body, 'blob');
   }
   makeQueryparamUrl(url: string, searchParam: any): any {
     for (const key in searchParam) {
