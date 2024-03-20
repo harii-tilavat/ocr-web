@@ -8,6 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AlertBoxComponent } from '../../basic/alert-box/alert-box.component';
+import { FileTypeEnum } from 'src/app/_enum';
 
 @Component({
   selector: 'app-file-data',
@@ -93,11 +94,11 @@ export class FileDataComponent implements OnInit, OnChanges {
   async onDeleteFile(id: string): Promise<void> {
     if (!this.modalService.hasOpenModals()) {
       const modalRef = this.modalService.open(AlertBoxComponent, { size: 'sm', backdrop: 'static', keyboard: false, centered: true, windowClass: 'alertbox', container: '#alertbox' });
-      modalRef.componentInstance.title ='Are you sure';
-      modalRef.componentInstance.message = !this.isArchivedList?`Don't worry! You can recover this file from recycle bin!`:`This file will be deleted forever and you won't be able to restore it.`;
+      modalRef.componentInstance.title = 'Are you sure';
+      modalRef.componentInstance.message = !this.isArchivedList ? `Don't worry! You can recover this file from recycle bin!` : `This file will be deleted forever and you won't be able to restore it.`;
       modalRef.componentInstance.icon = { name: 'bx bx-trash' };
       modalRef.componentInstance.type = 'danger';
-      modalRef.componentInstance.primeBtn = !this.isArchivedList?'Moved to bin':'Delete forever';
+      modalRef.componentInstance.primeBtn = !this.isArchivedList ? 'Moved to bin' : 'Delete forever';
       const result = await modalRef.result;
       if (result) {
         this.fileUploadService.deleteDocument(this.isArchivedList, id).subscribe({
@@ -115,8 +116,16 @@ export class FileDataComponent implements OnInit, OnChanges {
   onEditFile(id: string): void {
 
   }
-  onDownloadFile(filename: string) {
-
+  onDownloadFile(data: DocumentModel) {
+    this.fileUploadService.downloadFile(data, FileTypeEnum.UPLOADED_FILE).subscribe({
+      next: (res) => {
+        console.log("File download response ", res);
+        this.toastrService.success('File dowloaded successfully! ', 'Success');
+      }, error: (err) => {
+        console.log("File dowload error => ", err);
+        this.toastrService.error(err.error ? err.error?.message : 'Something went wrong', 'ERROR');
+      }
+    });
   }
   loadDocuments(total_page: number): void {
     this.displayedDocuments = this.documentList.slice(0, this.displayedDocuments.length + total_page);

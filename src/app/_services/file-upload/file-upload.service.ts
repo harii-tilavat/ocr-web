@@ -5,7 +5,7 @@ import { HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpParams } from '@
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth/auth.service';
-import { UserProfileModel } from 'src/app/_model';
+import { DocumentModel, UserProfileModel } from 'src/app/_model';
 
 @Injectable({
   providedIn: 'root'
@@ -83,8 +83,15 @@ export class FileUploadService {
     const url = `${environment.baseUrl}/api/referal`;
     return this.baseProviderService.makeGetCall(url);
   }
-  downloadFile(id: string) {
-    return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`, 'blob');
+  downloadFile(data: DocumentModel, type: string) {
+    // return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`, 'blob');
+    const user_id = this.getUserId();
+    const body = {
+      data,
+      user_id,
+      type
+    }
+    return this.http.post(`${environment.baseUrl}/download`, body,{responseType:'blob'});
   }
   exportDataInExcel(id: string): void {
     // return this.baseProviderService.makeGetCall(`${environment.baseUrl}/api/export/${id}`);
