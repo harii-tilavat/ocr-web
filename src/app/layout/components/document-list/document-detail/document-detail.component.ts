@@ -6,7 +6,10 @@ import { DocumentModel, DocumentResponseModel } from 'src/app/_model';
 import { AuthService, FileUploadService } from 'src/app/_services';
 import { environment } from 'src/environments/environment';
 import { UserProfileModel, pdfPlaceholder } from '../../../../_model/doc-detail/document.model';
-import { PDFDocument } from 'pdf-lib';
+import { PDFDocument, PDFPage } from 'pdf-lib';
+import * as JSZip from 'jszip';
+import { saveAs } from 'file-saver';
+import { FileTypeEnum } from 'src/app/_enum';
 
 @Component({
   selector: 'app-document-detail',
@@ -16,11 +19,13 @@ import { PDFDocument } from 'pdf-lib';
 export class DocumentDetailComponent implements OnInit {
   public pdfPlaceholder = pdfPlaceholder;
   public documentDetail!: DocumentModel;
+  public isViewFull = false;
   public documentId!: string;
   public isPdf = false;
   public isJson = false;
   public isActive = false;
   public isLoading = false;
+  public fileType!: FileTypeEnum;
   // public testPdf !: string;
   constructor(private router: Router, private route: ActivatedRoute, private fileUploadService: FileUploadService, private toastrService: ToastrService, private authService: AuthService) { }
   async ngOnInit(): Promise<any> {
@@ -63,6 +68,18 @@ export class DocumentDetailComponent implements OnInit {
   }
   goToBack(): void {
     this.router.navigate(['../'], { relativeTo: this.route });
+  }
+  onDownloadFile(type: string) {
+    this.fileUploadService.downloadFile(this.documentDetail, type).subscribe({
+      next: (res: any) => {
+        console.log("File download response ", res);
+        saveAs(res, this.documentDetail.file_name.split('.')[0]);
+        this.toastrService.success('File dowloaded successfully! ', 'Success');
+      }, error: (err) => {
+        console.log("File dowload error => ", err);
+        this.toastrService.error(err && err.error && err.error.message || 'File not exists', 'ERROR');
+      }
+    });
   }
   // async convertImageToPDF(imageUrl: string): Promise<any> {
   //   // Load the image from the URL

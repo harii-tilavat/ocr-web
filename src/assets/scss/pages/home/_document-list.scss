@@ -54,10 +54,6 @@
             display: flex;
             justify-content: flex-end;
             .dropdown-icon {
-              span {
-                display: block;
-                @include nugget-icon(17px);
-              }
             }
           }
         }

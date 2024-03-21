@@ -119,7 +119,7 @@ export class FileUploadComponent implements OnInit {
     this.fileUploadService.getCredits().subscribe({
       next: (res: CreditResponseModel) => {
         this.creditInfo = res.data;
-        console.log("Credits => ", this.creditInfo);
+        // console.log("Credits => ", this.creditInfo);
         if (this.creditInfo.avail_credit <= 0) {
           this.creditAvailable = false;
         } else {

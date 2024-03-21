@@ -17,7 +17,6 @@ export class WalletComponent implements OnInit {
     this.fileUploadService.getCredits().subscribe({
       next: (res: DocumentResponseModel) => {
         this.creditInfo = res.data;
-        console.log("Credits => ", this.creditInfo);
       },
       error: (err) => {
         console.log("ERRORROR => ", err);
