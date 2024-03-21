@@ -21,14 +21,20 @@
     <div class="file-detail-section">
       <div class="file-detail-model">
         <div class="container">
-          <div class="row">
+          <div class="row g-4">
             <div class="col-xxl-5 col-6-12 col-6-12 col-6-12 col-sm-12">
               <div class="file-viewer">
                 <div class="file-preview">
                   <div class="file-preview-image">
-                    <span>
-                      <img [src]="isPdf ? pdfPlaceholder: documentDetail.image_url" alt="not-found" class="">
-                    </span>
+                    <ng-container *ngIf="isPdf; else notPdf">
+                      <ngx-extended-pdf-viewer [src]="documentDetail.image_url" ></ngx-extended-pdf-viewer>
+                    </ng-container>
+                    <ng-template #notPdf>
+                      <span>
+                        <img [src]="isPdf ? pdfPlaceholder: documentDetail.image_url" alt="not-found" class="">
+                      </span>
+                    </ng-template>
+
                   </div>
                 </div>
               </div>

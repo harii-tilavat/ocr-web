@@ -57,6 +57,7 @@ export class FileDataComponent implements OnInit, OnChanges {
   }
   getAllDocuments(): void {
     // this.loaderService.show();
+    this.isLoading = true;
     this.fileUploadService.getAllDocuments(this.isArchivedList, this.searchQuery).subscribe({
       next: (res) => {
         if (res && res.data) {
@@ -65,7 +66,9 @@ export class FileDataComponent implements OnInit, OnChanges {
           this.displayedDocuments = this.documentList.slice(0, 3);
           this.documentListEvent.emit(this.documentList);
           // this.loaderService.hide();
-          // this.isLoading = false;
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 800);
         }
       }, error: (err) => {
         console.log("File getting error ==>> ", err);
