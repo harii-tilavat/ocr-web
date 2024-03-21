@@ -28,7 +28,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   public enquiryForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required])
   })
-  constructor(private nuggetService: NuggetService, private toastrService: ToastrService, private router:Router) {
+  constructor(private toastrService: ToastrService, private router: Router) {
 
   }
   ngOnInit(): void {
@@ -36,8 +36,8 @@ export class FooterComponent implements OnInit, OnDestroy {
   emailSubmit(): void {
 
   }
-  goToSignup():void{
-    this.router.navigate(['auth','signup']);
+  goToSignup(): void {
+    this.router.navigate(['auth', 'signup']);
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

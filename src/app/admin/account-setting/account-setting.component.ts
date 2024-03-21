@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserProfileModel } from 'src/app/_model';
-import { AuthService } from 'src/app/_services';
+import { ToastrService } from 'ngx-toastr';
+import { DocumentResponseModel, UserProfileModel, UserResponseModel } from 'src/app/_model';
+import { AuthService, FileUploadService, LoginService } from 'src/app/_services';
 import { CustomValidatorRules } from 'src/app/_validators';
 
 @Component({
@@ -12,11 +13,14 @@ import { CustomValidatorRules } from 'src/app/_validators';
 export class AccountSettingComponent implements OnInit {
   public userForm!: FormGroup;
   public userdata !: UserProfileModel;
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
+  public referalList!: Array<UserProfileModel>;
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private loginService: LoginService, private toastrService: ToastrService, private fileuploadService: FileUploadService) { }
   ngOnInit(): void {
+    this.getReferalDetail();
     this.userdata = this.authService.getUserData();
     console.log("Userdata => ", this.userdata);
     this.setUserForm(this.userdata);
+
 
   }
   onUpdate(): void {
@@ -26,6 +30,15 @@ export class AccountSettingComponent implements OnInit {
       return;
     }
     this.setUserForm(this.userForm.value);
+    this.loginService.updateUser(this.userdata.id, this.userForm.value).subscribe({
+      next: (res: any) => {
+        this.toastrService.success(res.message, 'Sucess');
+      },
+      error: (err) => {
+        console.log("UPdate error => ", err);
+        this.toastrService.error('Data not updated! ', 'ERROR');
+      }
+    })
     console.log("Form => ", this.userForm.value);
 
   }
@@ -35,10 +48,17 @@ export class AccountSettingComponent implements OnInit {
   setUserForm(userdata: UserProfileModel): void {
     this.userForm = this.formBuilder.group({
       name: [userdata.name, Validators.required],
-      lastname: [userdata.lastname,Validators.required],
+      lastname: [userdata.lastname, Validators.required],
       country: [userdata.country, Validators.required],
       // email: [this.userdata.email, [Validators.required, CustomValidatorRules.emailValidation]],
       number: [userdata.number, [Validators.required, Validators.minLength(10)]],
     });
+  }
+  getReferalDetail(): void {
+    this.fileuploadService.getReferalDetail().subscribe({
+      next: (res: UserResponseModel) => {
+        this.referalList = res.data;
+      }
+    })
   }
 }

@@ -5,7 +5,7 @@ import { HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpParams } from '@
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth/auth.service';
-import { UserProfileModel } from 'src/app/_model';
+import { DocumentModel, UserProfileModel } from 'src/app/_model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class FileUploadService {
   //   return this.baseProviderService.makeDeleteCall(`${environment.apiUrl}/${id}`);
   // }
   uploadFile(formData: FormData): Observable<any> {
-    // const url = `${environment.baseUrl}/api/docs`;
+    // let url = `${environment.baseUrl}/pdf-to-word?`;
 
     let url = `${environment.baseUrl}/api/docs?`;
     url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
@@ -67,12 +67,31 @@ export class FileUploadService {
 
     return this.baseProviderService.makePatchCall(url, {});
   }
-  downloadFile(id: string) {
-    return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`, 'blob');
+  getCredits(): Observable<any> {
+    let url = `${environment.baseUrl}/api/credits?`;
+    url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
+
+    return this.baseProviderService.makeGetCall(url);
   }
-  exportDataInExcel(id: string): void {
-    // return this.baseProviderService.makeGetCall(`${environment.baseUrl}/api/export/${id}`);
-    window.open(`${environment.baseUrl}/api/export/${id}`, '_blank');
+  getReferalDetail(): Observable<any> {
+    let url = `${environment.baseUrl}/api/referal?`;
+    url = this.makeQueryparamUrl(url, { user_id: this.getUserId() });
+
+    return this.baseProviderService.makeGetCall(url);
+  }
+  getReferals(): Observable<any> {
+    const url = `${environment.baseUrl}/api/referal`;
+    return this.baseProviderService.makeGetCall(url);
+  }
+  downloadFile(data: DocumentModel | null, type: string) {
+    // return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`, 'blob');
+    const user_id = this.getUserId();
+    const body = {
+      data,
+      user_id,
+      type
+    }
+    return this.baseProviderService.makePostFile(`${environment.baseUrl}/download`, body, 'blob');
   }
   makeQueryparamUrl(url: string, searchParam: any): any {
     for (const key in searchParam) {

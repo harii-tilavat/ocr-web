@@ -17,14 +17,14 @@ export const menuConfig: Array<MenuListModel> = [
     enum: 'HOME',
     subMenu: []
   },
-  {
-    id: 3,
-    title: 'About',
-    icon: null,
-    routing: '/about',
-    enum: 'ABOUT',
-    subMenu: []
-  },
+  // {
+  //   id: 3,
+  //   title: 'About',
+  //   icon: null,
+  //   routing: '/about',
+  //   enum: 'ABOUT',
+  //   subMenu: []
+  // },
   {
     id: 4,
     title: 'Contact',
@@ -71,16 +71,16 @@ export const sidebarMenuConfig: Array<MenuListModel> = [
     id: 3,
     title: 'Wallet',
     routing: ['wallet'],
-    icon: 'bx bx-dollar me-2',
+    icon: 'bx bx-dollar ',
     enum: 'WALLET',
     subMenu: []
   },
   {
-    id: 2,
-    title: 'My account',
-    routing: ['profile'],
-    icon: 'bx bx-user',
-    enum: 'MY_ACCOUNT',
+    id: 5,
+    title: 'Pricing',
+    icon: 'bx bxs-credit-card',
+    routing: ['pricing'],
+    enum: 'PRICING',
     subMenu: []
   },
   {
@@ -93,9 +93,75 @@ export const sidebarMenuConfig: Array<MenuListModel> = [
   },
   {
     id: 2,
-    title: 'Setting',
+    title: 'My account',
     routing: ['account-setting'],
-    icon: 'bx bx-cog',
+    icon: 'bx bx-user',
+    enum: 'SETTING',
+    subMenu: []
+  },
+  {
+    id: 2,
+    title: 'Logout',
+    routing: null,
+    icon: 'bx bx-power-off',
+    enum: 'LOGOUT',
+    subMenu: []
+  },
+]
+export const adminMenuConfig: Array<MenuListModel> = [
+  {
+    id: 1,
+    title: 'Dashboard',
+    routing: ['dashboard'],
+    icon: 'bx bx-home-circle',
+    enum: 'DASHBOARD',
+    subMenu: []
+  },
+  {
+    id: 2,
+    title: 'Contact list',
+    routing: ['docs'],
+    icon: 'bx bx-file',
+    enum: 'DOCUMENTS',
+    subMenu: []
+  },
+  {
+    id: 3,
+    title: 'Feedback list',
+    routing: ['upload'],
+    icon: 'bx bx-cloud-upload',
+    enum: 'UPLOAD_DOCUMENT',
+    subMenu: []
+  },
+  {
+    id: 3,
+    title: 'Credits list',
+    routing: ['wallet'],
+    icon: 'bx bx-dollar me-2',
+    enum: 'WALLET',
+    subMenu: []
+  },
+  // {
+  //   id: 2,
+  //   title: 'My account',
+  //   routing: ['profile'],
+  //   enum: 'MY_ACCOUNT',
+  //   icon: 'bx bx-user',
+  //   subMenu: []
+  // },
+  {
+    id: 2,
+    title: 'Bin',
+    routing: ['bin'],
+    icon: 'bx bx-trash',
+    enum: 'BIN',
+    subMenu: []
+  },
+  {
+    id: 2,
+    title: 'My account',
+    routing: ['account-setting'],
+    icon: 'bx bx-user',
     enum: 'SETTING',
     subMenu: []
   },

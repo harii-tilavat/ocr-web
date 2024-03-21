@@ -59,7 +59,8 @@
                   </div>
                   <div class="mb-3 col-md-6">
                     <label for="lastName" class="form-label">Last Name</label>
-                    <input class="form-control" type="text" name="lastName" formControlName="lastname" placeholder="xyz"/>
+                    <input class="form-control" type="text" name="lastName" formControlName="lastname"
+                      placeholder="xyz" />
                     <div class="form-error" *ngIf="userForm.controls['lastname'].touched ">
                       <span class="error error-msg" *ngIf="userForm.controls['lastname'].hasError('required')">Lastname
                         required!</span>
@@ -166,6 +167,49 @@
                 <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
               </form>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="refer-detail">
+            <h4 class="py-3">
+              <span class=" ">Your referal detail</span> <hr>
+            </h4>
+            <div class="refer-table">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Referal name</th>
+                      <th>Referal email</th>
+                      <th>Referal date</th>
+                      <th>Referal code</th>
+                      <th>Credit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngIf="referalList && referalList.length; else noReferal">
+                      <tr *ngFor="let item of referalList; let i=index">
+                        <td>{{i + 1}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.created_at | date}}</td>
+                        <td>{{item.ref_code}}</td>
+                        <td>+10</td>
+                      </tr>
+                    </ng-container>
+                    <ng-template #noReferal>
+                      <div class="no-refer text-start mt-4">
+                        <span class="h6">No referal found!</span>
+                      </div>
+                    </ng-template>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <hr>
           </div>
         </div>
       </div>

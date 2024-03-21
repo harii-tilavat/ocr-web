@@ -66,7 +66,7 @@
                   <ng-template #unarchive>
                     <li class="dropdown-item" (click)="onViewFile(item.id)">View file</li>
                     <li class="dropdown-item" (click)="onEditFile(item.id)">Edit file</li>
-                    <li class="dropdown-item" (click)="onDownloadFile(item.file_name)">Download file</li>
+                    <li class="dropdown-item" (click)="onDownloadFile(item)">Download file</li>
                     <li class="dropdown-item" (click)="onDeleteFile(item.id)">Move to bin</li>
                   </ng-template>
                 </ul>
@@ -76,8 +76,9 @@
         </div>
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12" *ngIf="documentList.length > 3">
           <div class="document-pagination">
-            <div class="document-pagination-button d-flex justify-content-center ">
+            <div class="document-pagination-button d-flex justify-content-center gap-3" *ngIf="!(displayedDocuments.length === documentList.length)">
               <button class="btn btn-primary-outline" (click)="loadDocuments(3)">Load more...</button>
+              <button class="btn btn-primary" (click)="loadDocuments(documentList.length)">Show all...</button>
             </div>
           </div>
         </div>
@@ -93,7 +94,7 @@
       </ng-template>
     </ng-container>
     <ng-template #showLoading>
-      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12" *ngFor="let item of [1,2,3,4,5,6]">
+      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12" *ngFor="let item of [1,2,3]">
         <div class="ph-item h-100 ph-card">
           <div class="ph-col-12">
             <div class="ph-picture"></div>

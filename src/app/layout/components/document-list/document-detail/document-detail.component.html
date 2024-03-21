@@ -9,7 +9,8 @@
               <hr>
             </div>
             <div class="file-header-subtitle pb-5">
-              <h4>Your document detail is here!</h4>
+              <h4>Highlighted below are the essential details concerning your document!</h4>
+              <!-- <ngx-extended-pdf-viewer [base64Src]="testPdf" ></ngx-extended-pdf-viewer> -->
               <hr>
             </div>
           </div>
@@ -21,26 +22,50 @@
     <div class="file-detail-section">
       <div class="file-detail-model">
         <div class="container">
-          <div class="row">
-            <div class="col-xxl-5 col-6-12 col-6-12 col-6-12 col-sm-12">
+          <div class="row g-4">
+            <div class="col-lg-12 col-md-12 col-sm-12"
+              [ngClass]="isViewFull ? 'col-xxl-12 col-xl-12 ':'col-xxl-5 col-xl-6 '">
               <div class="file-viewer">
                 <div class="file-preview">
                   <div class="file-preview-image">
-                    <span>
-                      <img [src]="isPdf ? pdfPlaceholder: documentDetail.image_url" alt="not-found" class="">
-                    </span>
+                    <ng-container *ngIf="isPdf; else notPdf">
+                      <ngx-extended-pdf-viewer [src]="documentDetail.image_url"></ngx-extended-pdf-viewer>
+                    </ng-container>
+                    <ng-template #notPdf>
+                      <span>
+                        <img [src]="isPdf ? pdfPlaceholder: documentDetail.image_url" alt="not-found" class="">
+                      </span>
+                    </ng-template>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-xxl-7 col-6-12 col-6-12 col-6-12 col-sm-12">
+            <div class="col-xxl-7 col-xl-6 col-lg-12 col-md-12 col-sm-12"
+              [ngClass]="isViewFull ? 'col-xxl-12 col-xl-12 ':'col-xxl-5 col-xl-6 '">
               <div class="file-details">
-                <div class="file-format mb-3">
+                <div class="file-format mb-3 d-flex align-items-center justify-content-between">
                   <div class="file-format-button btn-groups">
                     <button class="btn" [ngClass]="!isJson ?'btn-primary': 'btn-primary-outline'"
                       (click)="isJson = false && isActive = true ">TEXT</button>
                     <button class="btn" [ngClass]="isJson ?'btn-primary': 'btn-primary-outline'"
                       (click)="isJson = true && isActive = true">JSON</button>
+                  </div>
+                  <div class="download-dropdown">
+                    <div class="dropdown">
+                      <div class="dropdown-icon" [id]="'dtp-action-'" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="icon">
+                          <i class='bx bx-dots-vertical-rounded'></i>
+                        </span>
+                      </div>
+                      <ul class="dropdown-menu" [attr.aria-labelledby]="'dtp-action-'">
+                        <li class="dropdown-item" (click)="onDownloadFile('TEXT')">Download text file</li>
+                        <li class="dropdown-item" (click)="onDownloadFile('WORD')">Download word file</li>
+                        <!-- <li class="dropdown-item" (click)="onDownloadFile('EXCEL')">Download Excel file</li> -->
+                        <!-- <li class="dropdown-item" (click)="onDownloadFile('UPLOADED_FILE')">Download this file</li> -->
+                        <li class="dropdown-item" (click)="isViewFull = !isViewFull">View {{isViewFull ? 'Half':'Full'}}
+                          file</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
                 <div class="file-detail-card card-main">

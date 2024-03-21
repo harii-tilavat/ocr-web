@@ -14,6 +14,7 @@ import { AdminComponent } from './admin.component';
 import { DocumentsBinComponent } from './documents-bin/documents-bin.component';
 import { LayoutModule } from '../layout/layout.module';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
+import { WalletComponent } from './wallet/wallet.component';
 
 
 
@@ -21,7 +22,8 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
   declarations: [
     AdminComponent,
     DocumentsBinComponent,
-    AccountSettingComponent
+    AccountSettingComponent,
+    WalletComponent
   ],
   imports: [
     CommonModule,

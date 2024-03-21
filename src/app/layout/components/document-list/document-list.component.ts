@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { saveAs } from 'file-saver';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { FileTypeEnum } from 'src/app/_enum';
 import { DocumentModel } from 'src/app/_model';
 import { FileUploadService } from 'src/app/_services';
 import { AlertBoxComponent } from 'src/app/shared/basic/alert-box/alert-box.component';
@@ -45,8 +47,16 @@ export class DocumentListComponent implements OnInit, OnDestroy {
       modalRef.componentInstance.primeBtn = 'Export';
       const result = await modalRef.result;
       if (result) {
-        const id = this.fileUploadService.getUserId();
-        this.fileUploadService.exportDataInExcel(id);
+        this.fileUploadService.downloadFile(null, FileTypeEnum.EXPORT_EXCEL).subscribe({
+          next: (res: any) => {
+            this.toastrService.success('Data sucessfully exported in excel!', 'Sucess');
+            saveAs(res, 'downloaded_file');
+          },
+          error: (err) => {
+            console.log("ERROR => ", err);
+            this.toastrService.error(err && err.error && err.error.message || 'Something went wrong', 'ERROR');
+          }
+        });
       }
     }
   }

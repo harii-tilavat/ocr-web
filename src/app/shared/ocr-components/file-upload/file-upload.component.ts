@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { DocumentModel, DocumentResponseModel, UserProfileModel } from 'src/app/_model';
+import { CreditInfoModel, CreditResponseModel, DocumentModel, DocumentResponseModel, UserProfileModel } from 'src/app/_model';
 import { AuthService, FileUploadService, LoaderService } from 'src/app/_services';
 import { NgbModal } from '../../ng-modal';
 import { FileViewComponent } from '../file-view/file-view.component';
@@ -19,6 +19,8 @@ export class FileUploadComponent implements OnInit {
     file: new FormControl('', [Validators.required])
   })
   public subscription: Array<Subscription> = [];
+  public creditInfo!: CreditInfoModel;
+  public creditAvailable = false;
   public filePreviewBase64!: string | null;
   public isFileSelected = false;
   public isUploading!: boolean;
@@ -31,21 +33,27 @@ export class FileUploadComponent implements OnInit {
   private allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
   public maxFileSize: number = 5 * 1024 * 1024;
 
-  constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private ngbModel: NgbModal, private authService: AuthService, private loaderService:LoaderService) { }
+  constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private ngbModel: NgbModal, private authService: AuthService, private loaderService: LoaderService) { }
   ngOnInit(): void {
+    this.getCredits();
   }
 
   fileSelected(event: Event): void {
-    this.files = (event.target as HTMLInputElement).files;
-    if (this.files && this.files[0]) {
-      const file = this.files[0];
-      if (!this.validFile(file)) {
-        this.toastrService.error(this.fileErrorMessage || 'Something went wrong!', 'Error');
-        this.removeSelectedFile();
-        return;
+    if (this.creditAvailable) {
+      console.log("Available =? ", this.creditAvailable);
+      this.files = (event.target as HTMLInputElement).files;
+      if (this.files && this.files[0]) {
+        const file = this.files[0];
+        if (!this.validFile(file)) {
+          this.toastrService.error(this.fileErrorMessage || 'Something went wrong!', 'Error');
+          this.removeSelectedFile();
+          return;
+        }
+        this.convertFileToBase64(file);
+        this.isFileSelected = true;
       }
-      this.convertFileToBase64(file);
-      this.isFileSelected = true;
+    } else {
+      this.toastrService.error(`You don't have enough credits! Upgrade your package`, 'ERROR');
     }
   }
   convertFileToBase64(file: File): void {
@@ -66,7 +74,7 @@ export class FileUploadComponent implements OnInit {
   }
   onUploadFile(): void {
     const userdata: UserProfileModel = this.authService.getUserData();
-    console.log("Userdata => ", userdata);
+    // console.log("Userdata => ", userdata);
     if (this.isFileSelected) {
       this.isUploading = true;
       this.toastrService.info('File uploading...', 'Wait');
@@ -106,6 +114,22 @@ export class FileUploadComponent implements OnInit {
         modelRef.componentInstance.fileUrl = fileUrl;
       }
     }
+  }
+  getCredits(): any {
+    this.fileUploadService.getCredits().subscribe({
+      next: (res: CreditResponseModel) => {
+        this.creditInfo = res.data;
+        // console.log("Credits => ", this.creditInfo);
+        if (this.creditInfo.avail_credit <= 0) {
+          this.creditAvailable = false;
+        } else {
+          this.creditAvailable = true;
+        }
+      },
+      error: (err) => {
+        console.log("Credit error => ", err);
+      }
+    })
   }
   private validFile(file: File): boolean {
     this.fileErrorMessage = null;
