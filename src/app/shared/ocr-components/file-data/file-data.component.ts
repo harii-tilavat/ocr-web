@@ -62,7 +62,7 @@ export class FileDataComponent implements OnInit, OnChanges {
       next: (res) => {
         if (res && res.data) {
           this.documentList = res.data;
-          console.log("Response ===>>> ", this.documentList);
+          // console.log("Response ===>>> ", this.documentList);
           this.displayedDocuments = this.documentList.slice(0, 3);
           this.documentListEvent.emit(this.documentList);
           // this.loaderService.hide();

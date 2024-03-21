@@ -49,7 +49,7 @@ export class DocumentListComponent implements OnInit, OnDestroy {
       if (result) {
         this.fileUploadService.downloadFile(null, FileTypeEnum.EXPORT_EXCEL).subscribe({
           next: (res: any) => {
-            this.toastrService.error('Data sucessfully exported in excel!', 'Sucess');
+            this.toastrService.success('Data sucessfully exported in excel!', 'Sucess');
             saveAs(res, 'downloaded_file');
           },
           error: (err) => {

@@ -76,8 +76,9 @@
         </div>
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12" *ngIf="documentList.length > 3">
           <div class="document-pagination">
-            <div class="document-pagination-button d-flex justify-content-center ">
+            <div class="document-pagination-button d-flex justify-content-center gap-3" *ngIf="!(displayedDocuments.length === documentList.length)">
               <button class="btn btn-primary-outline" (click)="loadDocuments(3)">Load more...</button>
+              <button class="btn btn-primary-outline" (click)="loadDocuments(documentList.length)">Show all...</button>
             </div>
           </div>
         </div>
