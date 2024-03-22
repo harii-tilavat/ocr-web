@@ -30,7 +30,7 @@ import { PricingComponent } from '../shared/pricing/pricing.component';
 
 const routes: Routes = [
   {
-    path: '', component: AdminComponent, data: { title: 'OcrWeb Home' },
+    path: 'u', component: AdminComponent, data: { title: 'OcrWeb Home' },
     children: [
       { path: '', redirectTo: 'docs', pathMatch: 'full' },
       // { path: 'dashboard', component: DashboardComponent },
@@ -44,6 +44,16 @@ const routes: Routes = [
       { path: 'upload', component: DocumentUploadComponent, data: { title: 'OcrWeb File upload' } },
     ],
   },
+  {
+    path: 'a', component: AdminComponent, data: { title: 'OcrWeb Home Admin' },
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      // { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard', component: DashboardComponent, data: { title: 'Admin Dashboard' }, }, // canActivate:[AuthGuard]
+      { path: 'account-setting', component: AccountSettingComponent },
+    ],
+  },
+
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ]
 
