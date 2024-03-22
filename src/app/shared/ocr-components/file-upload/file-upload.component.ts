@@ -73,14 +73,13 @@ export class FileUploadComponent implements OnInit {
     }
   }
   onUploadFile(): void {
-    const userdata: UserProfileModel = this.authService.getUserData();
     // console.log("Userdata => ", userdata);
     if (this.isFileSelected) {
       this.isUploading = true;
       this.toastrService.info('File uploading...', 'Wait');
       const formData = new FormData();
       formData.set("file", this.files[0]);
-      this.fileUploadService.uploadFile(formData).subscribe({
+      this.subscription.push(this.fileUploadService.uploadFile(formData).subscribe({
         next: (res: DocumentResponseModel) => {
           this.fileText = res.data.ocr_text;
           this.isUploading = false;
@@ -92,7 +91,7 @@ export class FileUploadComponent implements OnInit {
           console.log("File uploading error ==>> ", err);
           this.removeSelectedFile();
         }
-      })
+      }));
     }
   }
   removeSelectedFile(): void {
@@ -116,7 +115,7 @@ export class FileUploadComponent implements OnInit {
     }
   }
   getCredits(): any {
-    this.fileUploadService.getCredits().subscribe({
+    this.subscription.push(this.fileUploadService.getCredits().subscribe({
       next: (res: CreditResponseModel) => {
         this.creditInfo = res.data;
         // console.log("Credits => ", this.creditInfo);
@@ -129,7 +128,7 @@ export class FileUploadComponent implements OnInit {
       error: (err) => {
         console.log("Credit error => ", err);
       }
-    })
+    }));
   }
   private validFile(file: File): boolean {
     this.fileErrorMessage = null;
@@ -142,5 +141,8 @@ export class FileUploadComponent implements OnInit {
       return false;
     }
     return true;
+  }
+  ngOnDestroy(): void {
+    this.subscription.forEach(i => i.unsubscribe());
   }
 }

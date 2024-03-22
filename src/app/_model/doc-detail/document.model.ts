@@ -1,3 +1,15 @@
+export class PricingModel {
+  id!: number;
+  planName!: string;
+  fileStorage!: boolean;
+  downloadText!: boolean;
+  downloadWord!: boolean;
+  exportExcel!: boolean;
+  viewPdf!: boolean;
+  getJson!: boolean;
+  maxCredits!: number;
+  price!: number;
+}
 export class DocumentModel {
   id!: string;
   image_url!: string;

@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 import { FileTypeEnum } from 'src/app/_enum';
 import { DocumentModel } from 'src/app/_model';
-import { FileUploadService } from 'src/app/_services';
+import { FileUploadService, LoaderService } from 'src/app/_services';
 import { AlertBoxComponent } from 'src/app/shared/basic/alert-box/alert-box.component';
 import { NgbModal } from 'src/app/shared/ng-modal';
 import { environment } from 'src/environments/environment';
@@ -23,7 +23,7 @@ export class DocumentListComponent implements OnInit, OnDestroy {
   public isLoading = false;
   public documentList: Array<DocumentModel> = [];
   // public pagination
-  constructor(private modalService: NgbModal, private fileUploadService: FileUploadService, private toastrService: ToastrService) { }
+  constructor(private modalService: NgbModal, private fileUploadService: FileUploadService, private toastrService: ToastrService, private loaderService: LoaderService) { }
   ngOnInit(): void {
     console.log("recycle => ", this.isArchivedList);
     // this.searchLoading.emit(true);
@@ -47,14 +47,17 @@ export class DocumentListComponent implements OnInit, OnDestroy {
       modalRef.componentInstance.primeBtn = 'Export';
       const result = await modalRef.result;
       if (result) {
+        this.loaderService.show();
         this.fileUploadService.downloadFile(null, FileTypeEnum.EXPORT_EXCEL).subscribe({
           next: (res: any) => {
             this.toastrService.success('Data sucessfully exported in excel!', 'Sucess');
             saveAs(res, 'downloaded_file');
+            this.loaderService.hide();
           },
           error: (err) => {
             console.log("ERROR => ", err);
             this.toastrService.error(err && err.error && err.error.message || 'Something went wrong', 'ERROR');
+            this.loaderService.hide();
           }
         });
       }
@@ -62,5 +65,6 @@ export class DocumentListComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.searchForm.reset();
+
   }
 }

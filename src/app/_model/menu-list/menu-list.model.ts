@@ -71,7 +71,7 @@ export const sidebarMenuConfig: Array<MenuListModel> = [
     id: 3,
     title: 'Wallet',
     routing: ['wallet'],
-    icon: 'bx bx-dollar ',
+    icon: 'bx bx-wallet ',
     enum: 'WALLET',
     subMenu: []
   },

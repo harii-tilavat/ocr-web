@@ -82,7 +82,7 @@
                     <div class="input-group input-group-merge">
                       <!-- <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" formControlName="number"
                         placeholder="9974587548" /> -->
-                      <span class="form-control">Active</span>
+                      <span class="form-control not-editable">Active</span>
                     </div>
                   </div>
                   <div class="mb-3 col-md-6">
@@ -139,6 +139,13 @@
                     <div class="form-error"
                       *ngIf="userForm.controls['country'].touched && userForm.controls['country'].hasError('required')">
                       <span class="error error-msg">Select country!</span>
+                    </div>
+                  </div>
+                  <div class="mb-3 col-md-12">
+                    <label class="form-label" for="country">Your referal link!</label>
+                    <div class="refer-link form-control d-flex justify-content-between ">
+                      <span>{{this.referalLink}}</span>
+                      <span class="icon cursor-pointer text-primary-600" (click)="copyReferLink(this.referalLink)"><i class='bx bx-copy'></i></span>
                     </div>
                   </div>
                 </div>

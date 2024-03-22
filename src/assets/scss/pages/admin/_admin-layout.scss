@@ -7,6 +7,9 @@ $sidebar-width: 280px;
     // z-index: 100;
     // height: 100vh;
     // overflow: auto;
+    .layout-menu{
+      @include box-shadow-default($gray-300);
+    }
   }
   .layout-page {
     // margin-left: $sidebar-width;

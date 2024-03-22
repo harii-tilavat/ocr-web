@@ -12,7 +12,12 @@
   &:hover {
     @include box-shadow-default($primary-100);
   }
-  .file-detail-card-content{
+  &.card-hover {
+    &:hover {
+      transform: translateY(-10px);
+    }
+  }
+  .file-detail-card-content {
     max-height: 500px;
     overflow: auto;
   }
@@ -65,12 +70,12 @@
       }
     }
   }
-  .copy-text-button{
+  .copy-text-button {
     position: absolute;
     right: 30px;
     top: 10px;
-    span{
-      svg{
+    span {
+      svg {
         fill: $primary-300;
         filter: drop-shadow(0px 1px 2px $primary-50);
       }

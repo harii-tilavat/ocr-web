@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { LoginService, AuthService, LoaderService } from 'src/app/_services';
 import { CustomValidatorRules } from 'src/app/_validators';
 
@@ -12,8 +13,8 @@ import { CustomValidatorRules } from 'src/app/_validators';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
-
+export class SignupComponent implements OnInit, OnDestroy {
+  public subscription: Array<Subscription> = [];
   public loginMode = false;
   public authMode!: string;
   public signupForm = new FormGroup({
@@ -31,9 +32,10 @@ export class SignupComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.router.events.subscribe({
+    this.subscription.push(this.router.events.subscribe({
       next: (res) => {
         const data = this.activatedRoute.snapshot.data;
+        const user_ref_code = this.activatedRoute.snapshot.queryParams['user_ref_code'];
         if (data && data['mode']) {
           if (data['mode'] === 'LOGIN') {
             this.loginMode = true;
@@ -41,13 +43,11 @@ export class SignupComponent implements OnInit {
             this.loginMode = false;
           }
         }
+        this.signupForm.patchValue({
+          user_ref_code: user_ref_code
+        })
       }
-    });
-    this.authService.isLoggedInSubject.subscribe({
-      next: (res: any) => {
-        console.log("Is login auth==>> ", res);
-      }
-    })
+    }));
   }
   onSignup(): void {
     if (!this.signupForm.valid) {
@@ -57,7 +57,7 @@ export class SignupComponent implements OnInit {
     }
 
     this.loaderService.show();
-    this.loginService.registerUser(this.signupForm.value).subscribe({
+    this.subscription.push(this.loginService.registerUser(this.signupForm.value).subscribe({
       next: (res: { token: string, message: string }) => {
         if (res && res.token) {
           this.authService.login(res.token);
@@ -68,10 +68,10 @@ export class SignupComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         console.log("Error => ", err);
-        this.toastService.error(err && err.error && err.error.message ? err.error.message : 'Something went wrong', 'Try again!');
+        this.toastService.error(err && err.error && err.error.message || 'Something went wrong', 'Try again!');
         this.loaderService.hide();
       }
-    });
+    }));
   }
   loginWithGoogle(): void {
 
@@ -86,5 +86,8 @@ export class SignupComponent implements OnInit {
 
   goToHomepage(): void {
     this.router.navigate(['/']);
+  }
+  ngOnDestroy(): void {
+    this.subscription.forEach(i => i.unsubscribe());
   }
 }
