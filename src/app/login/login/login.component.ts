@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   });
   constructor(private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private ngbModel: NgbModal, private loaderService: LoaderService) {
     if (this.authService.isUserLoggedIn()) {
-      this.router.navigate(['/user']);
+      this.router.navigate(['/admin']);
     }
   }
   ngOnInit(): void {

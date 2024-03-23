@@ -151,14 +151,6 @@ export const adminMenuConfig: Array<MenuListModel> = [
   // },
   {
     id: 2,
-    title: 'Bin',
-    routing: ['bin'],
-    icon: 'bx bx-trash',
-    enum: 'BIN',
-    subMenu: []
-  },
-  {
-    id: 2,
     title: 'My account',
     routing: ['account-setting'],
     icon: 'bx bx-user',

@@ -6,8 +6,8 @@
         <h5>You can upload document as if you have credit amount.</h5>
         <hr>
         <div class="credit-info mt-5">
-          <h2>Max credits :- {{creditInfo?.max_credit}} </h2>
-          <h2>Available Credits :- {{creditInfo?.avail_credit }} </h2>
+          <h2>Max credits :- {{creditInfo?.max_credit || 0}} </h2>
+          <h2>Available Credits :- {{creditInfo?.avail_credit > 0 ? creditInfo?.avail_credit : 0 }} </h2>
         </div>
       </div>
     </div>

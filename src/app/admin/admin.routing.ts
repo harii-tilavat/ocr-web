@@ -11,6 +11,7 @@ import { WalletComponent } from './wallet/wallet.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DocumentsBinComponent } from './documents-bin/documents-bin.component';
 import { PricingComponent } from '../shared/pricing/pricing.component';
+import { AdminAuthGuard } from '../_guard/adminAuth.guard';
 
 // const routes: Routes = [
 //   { path: '', component: HomeComponent, data: { title: 'Get Curious Home' } },
@@ -30,7 +31,20 @@ import { PricingComponent } from '../shared/pricing/pricing.component';
 
 const routes: Routes = [
   {
-    path: 'u', component: AdminComponent, data: { title: 'OcrWeb Home' },
+    path: 'a', component: AdminComponent, data: { title: 'OcrWeb Home Admin' },
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      // { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard', component: DashboardComponent, data: { title: 'Admin Dashboard' }, }, // canActivate:[AuthGuard]
+      { path: 'contact-list', component: DashboardComponent },
+      { path: 'feedback-list', component: DashboardComponent },
+      { path: 'account-setting', component: DashboardComponent },
+      { path: 'account-setting', component: DashboardComponent },
+    ],
+    canActivate:[AdminAuthGuard]
+  },
+  {
+    path: '', component: AdminComponent, data: { title: 'OcrWeb Home' },
     children: [
       { path: '', redirectTo: 'docs', pathMatch: 'full' },
       // { path: 'dashboard', component: DashboardComponent },
@@ -43,17 +57,8 @@ const routes: Routes = [
       { path: 'pricing', component: PricingComponent },
       { path: 'upload', component: DocumentUploadComponent, data: { title: 'OcrWeb File upload' } },
     ],
+    canActivate:[AuthGuard]
   },
-  {
-    path: 'a', component: AdminComponent, data: { title: 'OcrWeb Home Admin' },
-    children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      // { path: 'dashboard', component: DashboardComponent },
-      { path: 'dashboard', component: DashboardComponent, data: { title: 'Admin Dashboard' }, }, // canActivate:[AuthGuard]
-      { path: 'account-setting', component: AccountSettingComponent },
-    ],
-  },
-
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ]
 

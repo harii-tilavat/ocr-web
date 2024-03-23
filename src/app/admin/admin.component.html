@@ -3,7 +3,7 @@
     <div class="layout-container">
       <!-- Menu -->
       <div class="sidebar-left">
-        <app-sidebar></app-sidebar>
+        <app-sidebar [menuList]="this.isAdmin ? adminMenuConfig:sidebarMenuConfig"></app-sidebar>
       </div>
       <!-- / Menu -->
       <!-- <app-sidebar></app-sidebar> -->
@@ -12,8 +12,8 @@
         <!-- Navbar -->
 
         <nav
-          class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme " style="flex-flow: row;"
-          id="layout-navbar">
+          class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme "
+          style="flex-flow: row;" id="layout-navbar">
           <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none" (click)="openMenu()">
             <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
               <i class="bx bx-menu bx-sm"></i>

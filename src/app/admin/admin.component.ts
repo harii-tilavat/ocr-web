@@ -3,7 +3,7 @@ import { AuthService } from '../_services';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserProfileModel } from '../_model';
-import { MenuListModel } from '../_model/menu-list/menu-list.model';
+import { MenuListModel, adminMenuConfig, sidebarMenuConfig } from '../_model/menu-list/menu-list.model';
 import { NgbModal } from '../shared/ng-modal';
 import { RatingComponent } from '../shared/basic/rating/rating.component';
 
@@ -16,6 +16,8 @@ export class AdminComponent implements OnInit {
   public isAdmin = false;
   public unameIcon!: string;
   public userata!: UserProfileModel;
+  public sidebarMenuConfig = sidebarMenuConfig;
+  public adminMenuConfig = adminMenuConfig;
   public profileMenuList: MenuListModel[] = [
     {
       id: 1,
@@ -48,6 +50,8 @@ export class AdminComponent implements OnInit {
     // if (!this.authService.isUserLoggedIn()) {
     //   this.router.navigate(['/home']);
     // }
+    console.log("IS ADMIN => ", this.authService.isAdmin());
+    this.isAdmin = this.authService.isAdmin();
     this.userata = this.authService.getUserData();
     this.unameIcon = this.userata.lastname ? (this.userata.name.slice(0, 1) + this.userata.lastname.slice(0, 1)) : this.userata.name.slice(0, 1);
   }

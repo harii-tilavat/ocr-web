@@ -102,6 +102,7 @@ export class FileUploadComponent implements OnInit {
     this.isPdf = false;
     this.isUploading = false;
     this.fileForm.reset();
+    this.subscription.forEach(i => i.unsubscribe());
   }
   openPreview(fileUrl: string | null): void {
     if (this.isFileSelected) {

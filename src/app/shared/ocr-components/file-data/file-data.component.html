@@ -9,7 +9,7 @@
               <div class="document-card-image">
                 <span class="image">
                   <img [src]="item.file_type.includes('pdf')? pdfPlaceholder: baseUrl + item.image_url"
-                    alt="document-img">
+                    [alt]="item.file_name">
                 </span>
               </div>
             </div>
