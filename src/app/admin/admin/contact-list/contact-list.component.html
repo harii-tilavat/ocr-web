@@ -1,0 +1,70 @@
+<div class="user-list-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="ocr-web-header">
+          <div class="ocr-web-title">
+            <h2>Contact list</h2>
+            <hr>
+          </div>
+        </div>
+        <div class="ocr-web-body">
+          <div class="user-list">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of displayList; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{item.name || '--'}}</td>
+                    <td>{{item.surname || '--'}}</td>
+                    <td>{{item.subject || '--'}}</td>
+                    <td>{{item.message || '--'}}</td>
+                    <td>{{item.created_at | date}}</td>
+                    <td>
+                      <div class="dropdown">
+                        <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                          <!-- <a class="dropdown-item" href="javascript:void(0);" (click)="editItem(item)">Edit</a> -->
+                          <a class="dropdown-item" href="javascript:void(0);" (click)="viewItem(item)">View</a>
+                          <!-- <a class="dropdown-item" href="javascript:void(0);" (click)="deleteItem(item)">Delete</a> -->
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="loading d-flex justify-content-center" *ngIf="isLoading">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <div class="no-data-found" *ngIf="displayList.length <= 0 && !isLoading">
+              <p>No data found!</p>
+            </div>
+            <div class="table-pagination">
+              <app-pagination
+              [currentPage]="pagination.currentPage"
+              [totalPages]="totalPages"
+              (pageChanged)="onPageChange($event)">
+            </app-pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

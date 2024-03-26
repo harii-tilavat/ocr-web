@@ -165,3 +165,10 @@ img {
     text-transform: uppercase;
   }
 }
+.not-editable{
+  cursor: not-allowed;
+  user-select: none;
+}
+.error-msg{
+  font-size: 12px;
+}

@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { LoaderService, LoginService } from 'src/app/_services';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import { AlertBoxComponent } from 'src/app/shared/basic/alert-box/alert-box.component';
@@ -13,7 +14,8 @@ import { NgbModal } from 'src/app/shared/ng-modal';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  public subscription: Array<Subscription> = [];
   public loginMode = false;
   public authMode!: string;
   public loginForm = new FormGroup({
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
   });
   constructor(private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private ngbModel: NgbModal, private loaderService: LoaderService) {
     if (this.authService.isUserLoggedIn()) {
-      this.router.navigate(['/user']);
+      this.router.navigate(['/admin']);
     }
   }
   ngOnInit(): void {
@@ -84,5 +86,8 @@ export class LoginComponent implements OnInit {
   }
   goToHomepage(): void {
     this.router.navigate(['/']);
+  }
+  ngOnDestroy(): void {
+    this.subscription.forEach(i => i.unsubscribe());
   }
 }

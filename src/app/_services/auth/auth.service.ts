@@ -19,7 +19,9 @@ export class AuthService {
   public redirectUrl!: string;
   public currentUserSubject: BehaviorSubject<DecodedToken | null> = new BehaviorSubject(this.user);
   public isLoggedInSubject: Subject<boolean> = new BehaviorSubject(false);
-  constructor(private jwtHelper: JwtHelperService, private router: Router, private modalService: NgbModal) { }
+  constructor(private jwtHelper: JwtHelperService, private router: Router, private modalService: NgbModal) {
+
+  }
   get token() {
     return localStorage.getItem('token') as string || null;
   }
@@ -34,11 +36,11 @@ export class AuthService {
         this.jwtToken.isExpired = this.jwtHelper.isTokenExpired(token);
         if (!this.jwtToken.isExpired) {
           this.isLoggedIn = true;
-          this.isLoggedInSubject.next(true);
           this.user = this.jwtToken.decodedToken;
           this.setToken = token;
           this.currentUserSubject.next(this.user);
-          this.redirectUrl = '/user';
+          this.redirectUrl = this.isAdmin() ? '/admin/a' : '/user';
+          console.log("Constructrer => ", this.isAdmin(), this.redirectUrl);
           this.router.navigate([this.redirectUrl]);
           return resolve(this.user);
         } else {
@@ -53,10 +55,41 @@ export class AuthService {
   // isUserLoggedIn(): boolean {
   //   return this.helper.isTokenExpired();
   // }
+  // isUserLoggedIn(): boolean {
+  //   if (this.token) {
+  //     const decodedToken = this.jwtHelper.decodeToken(this.token);
+  //     if (decodedToken && decodedToken.type === 'USER') {
+  //       return true;
+  //     } else {
+  //       return false
+  //     }
+  //   } else {
+  //     return false
+  //   }
+  // }
   isUserLoggedIn(): boolean {
     if (this.token) {
+      return true
+    } else {
+      return false
+    }
+  }
+  roleType(): string | any {
+    if (this.isUserLoggedIn()) {
+      const decodedToken = this.jwtHelper.decodeToken(this.token!);
+      if (decodedToken && decodedToken.type === 'ADMIN') {
+        return 'ADMIN';
+      } else {
+        return 'USER'
+      }
+    } else {
+      return false
+    }
+  }
+  isAdmin(): boolean {
+    if (this.token) {
       const decodedToken = this.jwtHelper.decodeToken(this.token);
-      if (decodedToken && decodedToken.type === 'USER') {
+      if (decodedToken && decodedToken.type === 'ADMIN') {
         return true;
       } else {
         return false

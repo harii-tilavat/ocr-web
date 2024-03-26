@@ -82,7 +82,15 @@
                     <div class="input-group input-group-merge">
                       <!-- <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" formControlName="number"
                         placeholder="9974587548" /> -->
-                      <span class="form-control">Active</span>
+                      <span class="form-control not-editable">Active</span>
+                    </div>
+                  </div>
+                  <div class="mb-3 col-md-6">
+                    <label class="form-label" for="phoneNumber">TYPE</label>
+                    <div class="input-group input-group-merge">
+                      <!-- <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" formControlName="number"
+                        placeholder="9974587548" /> -->
+                      <span class="form-control not-editable">{{isAdmin ? 'ADMIN':'USER'}}</span>
                     </div>
                   </div>
                   <div class="mb-3 col-md-6">
@@ -98,7 +106,7 @@
                         minimum 10 digits!</span>
                     </div>
                   </div>
-                  <div class="mb-3 col-md-6">
+                  <div class="mb-3 col-md-6" *ngIf="!isAdmin">
                     <label class="form-label" for="phoneNumber">Your Referal Code</label>
                     <div class="input-group input-group-merge">
 
@@ -141,6 +149,13 @@
                       <span class="error error-msg">Select country!</span>
                     </div>
                   </div>
+                  <div class="mb-3 col-md-12" *ngIf="!isAdmin">
+                    <label class="form-label" for="country">Your referal link!</label>
+                    <div class="refer-link form-control d-flex justify-content-between ">
+                      <span>{{this.referalLink}}</span>
+                      <span class="icon cursor-pointer text-primary-600" (click)="copyReferLink(this.referalLink)"><i class='bx bx-copy'></i></span>
+                    </div>
+                  </div>
                 </div>
                 <div class="mt-2">
                   <button type="submit" class="btn btn-primary me-2">Save changes</button>
@@ -170,7 +185,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="!isAdmin">
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="refer-detail">
             <h4 class="py-3">

@@ -24,6 +24,7 @@ import { RatingComponent } from './basic/rating/rating.component';
 import { WebcamModule } from 'ngx-webcam';
 import { OcrWebcamComponent } from './ocr-webcam/ocr-webcam.component';
 import { PricingComponent } from './pricing/pricing.component';
+import { PaginationComponent } from './basic/pagination/pagination.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -41,7 +42,8 @@ import { PricingComponent } from './pricing/pricing.component';
     AlertBoxComponent,
     RatingComponent,
     OcrWebcamComponent,
-    PricingComponent
+    PricingComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -67,7 +69,8 @@ import { PricingComponent } from './pricing/pricing.component';
     QnaAccordianComponent,
     SidebarComponent,
     LoaderComponent,
-    RatingComponent
+    RatingComponent,
+    PaginationComponent
   ]
 })
 export class SharedModule { }

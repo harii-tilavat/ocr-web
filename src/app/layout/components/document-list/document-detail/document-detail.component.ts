@@ -10,6 +10,7 @@ import { PDFDocument, PDFPage } from 'pdf-lib';
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { FileTypeEnum } from 'src/app/_enum';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-document-detail',
@@ -17,6 +18,7 @@ import { FileTypeEnum } from 'src/app/_enum';
   styleUrls: ['./document-detail.component.scss']
 })
 export class DocumentDetailComponent implements OnInit {
+  public subscription: Array<Subscription> = [];
   public pdfPlaceholder = pdfPlaceholder;
   public documentDetail!: DocumentModel;
   public isViewFull = false;
@@ -35,7 +37,7 @@ export class DocumentDetailComponent implements OnInit {
         if (res && res['id']) {
           this.documentId = res['id'];
           console.log("Response => ", res);
-          this.fileUploadService.getDocumentById(this.documentId).subscribe({
+          this.subscription.push(this.fileUploadService.getDocumentById(this.documentId).subscribe({
             next: async (res: DocumentResponseModel) => {
               if (res && res.data) {
                 this.isLoading = false;
@@ -54,7 +56,7 @@ export class DocumentDetailComponent implements OnInit {
               this.isLoading = false;
               this.toastrService.error(err.error.message, 'Error 404');
             }
-          })
+          }));
         }
       }
     })
@@ -80,6 +82,9 @@ export class DocumentDetailComponent implements OnInit {
         this.toastrService.error(err && err.error && err.error.message || 'File not exists', 'ERROR');
       }
     });
+  }
+  ngOnDestroy(): void {
+    this.subscription.forEach(i => i.unsubscribe());
   }
   // async convertImageToPDF(imageUrl: string): Promise<any> {
   //   // Load the image from the URL

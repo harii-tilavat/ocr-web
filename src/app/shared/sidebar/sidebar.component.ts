@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MenuListModel, sidebarMenuConfig } from 'src/app/_model/menu-list/menu-list.model';
 import { AuthService } from 'src/app/_services';
 
@@ -8,8 +8,9 @@ import { AuthService } from 'src/app/_services';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  @Input() menuList: Array<MenuListModel> = sidebarMenuConfig;
+  @Input() isAdmin = false;
   public themeColor = '#5e35b1';
-  public menuList: Array<MenuListModel> = sidebarMenuConfig;
   constructor(private authService: AuthService) { }
   ngOnInit(): void {
   }

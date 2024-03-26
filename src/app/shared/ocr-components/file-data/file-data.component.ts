@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DocumentModel, DocumentResponseModel, UserProfileModel, pdfPlaceholder } from 'src/app/_model';
 import { AuthService, FileUploadService, LoaderService } from 'src/app/_services';
@@ -10,17 +10,19 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AlertBoxComponent } from '../../basic/alert-box/alert-box.component';
 import { FileTypeEnum } from 'src/app/_enum';
 import { saveAs } from 'file-saver';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-file-data',
   templateUrl: './file-data.component.html',
   styleUrls: ['./file-data.component.scss']
 })
-export class FileDataComponent implements OnInit, OnChanges {
+export class FileDataComponent implements OnInit, OnChanges, OnDestroy {
   @Input() isArchivedList = false;
   @Input() searchQuery = '';
   @Input() isLoading = false;
   @Output() documentListEvent = new EventEmitter<Array<DocumentModel>>();
+  public subscription: Array<Subscription> = [];
   public displayedDocuments: Array<DocumentModel> = [];
   public pdfPlaceholder: string = pdfPlaceholder;
   public documentList: Array<DocumentModel> = [];
@@ -48,17 +50,18 @@ export class FileDataComponent implements OnInit, OnChanges {
   ];
   public baseUrl: string = environment.baseUrl;
   constructor(private fileUploadService: FileUploadService, private toastrService: ToastrService, private router: Router, private route: ActivatedRoute, private authService: AuthService, private loaderService: LoaderService, private modalService: NgbModal) { }
+
   ngOnChanges(changes: SimpleChanges): void {
     // console.log("Search ==> ", this.searchQuery);
     this.getAllDocuments();
   }
   ngOnInit(): void {
-    this.getAllDocuments();
+    // this.getAllDocuments();
   }
   getAllDocuments(): void {
     // this.loaderService.show();
     this.isLoading = true;
-    this.fileUploadService.getAllDocuments(this.isArchivedList, this.searchQuery).subscribe({
+    this.subscription.push(this.fileUploadService.getAllDocuments(this.isArchivedList, this.searchQuery).subscribe({
       next: (res) => {
         if (res && res.data) {
           this.documentList = res.data;
@@ -75,7 +78,7 @@ export class FileDataComponent implements OnInit, OnChanges {
         this.loaderService.hide();
         // this.removeSelectedFile();
       }
-    })
+    }));
   }
   onViewFile(id: string): void {
     if (!this.isArchivedList) {
@@ -85,15 +88,18 @@ export class FileDataComponent implements OnInit, OnChanges {
     }
   }
   onRestoreFile(id: string): void {
-    this.fileUploadService.restoreDocument(id).subscribe({
+    this.loaderService.show();
+    this.subscription.push(this.fileUploadService.restoreDocument(id).subscribe({
       next: (res: DocumentResponseModel) => {
         this.getAllDocuments();
         this.toastrService.success(res.message, 'Success');
+        this.loaderService.hide();
       },
       error: (err: HttpErrorResponse) => {
         this.toastrService.error(err.error.message || 'This file can not be restored!', 'ERROR');
+        this.loaderService.hide();
       }
-    })
+    }));
   }
   async onDeleteFile(id: string): Promise<void> {
     if (!this.modalService.hasOpenModals()) {
@@ -105,15 +111,18 @@ export class FileDataComponent implements OnInit, OnChanges {
       modalRef.componentInstance.primeBtn = !this.isArchivedList ? 'Moved to bin' : 'Delete forever';
       const result = await modalRef.result;
       if (result) {
-        this.fileUploadService.deleteDocument(this.isArchivedList, id).subscribe({
+        this.loaderService.show();
+        this.subscription.push(this.fileUploadService.deleteDocument(this.isArchivedList, id).subscribe({
           next: (res: DocumentResponseModel) => {
             this.getAllDocuments();
             this.toastrService.success(res.message, 'Success');
+            this.loaderService.hide();
           }, error: (err: HttpErrorResponse) => {
             console.log("Delete Error ==>> ", err);
             this.toastrService.error(err.error.message, 'Error');
+            this.loaderService.hide();
           }
-        })
+        }));
       }
     }
   }
@@ -121,7 +130,7 @@ export class FileDataComponent implements OnInit, OnChanges {
 
   }
   onDownloadFile(data: DocumentModel) {
-    this.fileUploadService.downloadFile(data, FileTypeEnum.UPLOADED_FILE).subscribe({
+    this.subscription.push(this.fileUploadService.downloadFile(data, FileTypeEnum.UPLOADED_FILE).subscribe({
       next: (res: any) => {
         console.log("File download response ", res);
         saveAs(res, data.file_name);
@@ -130,7 +139,7 @@ export class FileDataComponent implements OnInit, OnChanges {
         console.log("File dowload error => ", err);
         this.toastrService.error(err && err.error && err.error.message || 'File not exists', 'ERROR');
       }
-    });
+    }));
   }
   loadDocuments(total_page: number): void {
     this.displayedDocuments = this.documentList.slice(0, this.displayedDocuments.length + total_page);
@@ -138,6 +147,9 @@ export class FileDataComponent implements OnInit, OnChanges {
     // setTimeout(() => {
     //   this.isLoading = false;
     // }, 0);
+  }
+  ngOnDestroy(): void {
+    this.subscription.forEach(i => i.unsubscribe());
   }
 }
 

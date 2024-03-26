@@ -9,7 +9,7 @@
               <div class="document-card-image">
                 <span class="image">
                   <img [src]="item.file_type.includes('pdf')? pdfPlaceholder: baseUrl + item.image_url"
-                    alt="document-img">
+                    [alt]="item.file_name">
                 </span>
               </div>
             </div>
@@ -65,7 +65,7 @@
                   </ng-container>
                   <ng-template #unarchive>
                     <li class="dropdown-item" (click)="onViewFile(item.id)">View file</li>
-                    <li class="dropdown-item" (click)="onEditFile(item.id)">Edit file</li>
+                    <!-- <li class="dropdown-item" (click)="onEditFile(item.id)">Edit file</li> -->
                     <li class="dropdown-item" (click)="onDownloadFile(item)">Download file</li>
                     <li class="dropdown-item" (click)="onDeleteFile(item.id)">Move to bin</li>
                   </ng-template>

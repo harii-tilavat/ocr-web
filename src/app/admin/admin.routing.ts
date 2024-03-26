@@ -5,12 +5,17 @@ import { AdminComponent } from './admin.component';
 import { DocumentUploadComponent } from '../layout/components/document-upload/document-upload.component';
 import { DocumentListComponent } from '../layout/components/document-list/document-list.component';
 import { DocumentDetailComponent } from '../layout/components/document-list/document-detail/document-detail.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DocumentsBinComponent } from './documents-bin/documents-bin.component';
 import { PricingComponent } from '../shared/pricing/pricing.component';
+import { AdminAuthGuard } from '../_guard/adminAuth.guard';
+import { UsersListComponent } from './admin/users-list/users-list.component';
+import { CreditListComponent } from './admin/credit-list/credit-list.component';
+import { FeedbackListComponent } from './admin/feedback-list/feedback-list.component';
+import { ContactListComponent } from './admin/contact-list/contact-list.component';
 
 // const routes: Routes = [
 //   { path: '', component: HomeComponent, data: { title: 'Get Curious Home' } },
@@ -30,6 +35,21 @@ import { PricingComponent } from '../shared/pricing/pricing.component';
 
 const routes: Routes = [
   {
+    path: 'a', component: AdminComponent, data: { title: 'OcrWeb Home Admin' },
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      // { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard', component: DashboardComponent, data: { title: 'Admin Dashboard' }, }, // canActivate:[AuthGuard]
+      { path: 'users-list', component: UsersListComponent },
+      { path: 'contact-list', component: ContactListComponent },
+      { path: 'feedback-list', component: FeedbackListComponent },
+      { path: 'credit-list', component: CreditListComponent },
+      { path: 'account-setting', component: AccountSettingComponent },
+      { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
+    ],
+    canActivate: [AdminAuthGuard]
+  },
+  {
     path: '', component: AdminComponent, data: { title: 'OcrWeb Home' },
     children: [
       { path: '', redirectTo: 'docs', pathMatch: 'full' },
@@ -43,6 +63,7 @@ const routes: Routes = [
       { path: 'pricing', component: PricingComponent },
       { path: 'upload', component: DocumentUploadComponent, data: { title: 'OcrWeb File upload' } },
     ],
+    canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ]
