@@ -20,6 +20,8 @@ import { CreditListComponent } from './admin/credit-list/credit-list.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { FeedbackListComponent } from './admin/feedback-list/feedback-list.component';
 import { UsersListComponent } from './admin/users-list/users-list.component';
+import { UserDetailComponent } from './admin/users-list/user-detail/user-detail.component';
+import { CreditDetailComponent } from './admin/credit-list/credit-detail/credit-detail.component';
 
 
 
@@ -33,7 +35,9 @@ import { UsersListComponent } from './admin/users-list/users-list.component';
     CreditListComponent,
     DashboardComponent,
     FeedbackListComponent,
-    UsersListComponent
+    UsersListComponent,
+    UserDetailComponent,
+    CreditDetailComponent
   ],
   imports: [
     CommonModule,

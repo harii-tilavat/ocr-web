@@ -62,7 +62,6 @@ export class ProductDetailModel {
 export class UserProfileModel {
   exp!: number;
   id!: string;
-  created_at!: string;
   name!: string;
   lastname!: string;
   number!: number;
@@ -72,10 +71,38 @@ export class UserProfileModel {
   type!: 'USER' | 'ADMIN';
   username!: string;
   iat!: number;
+  created_at!: string;
+  updated_at!: string;
+  last_login!: number;
 }
 
 export class CreditInfoModel {
   avail_credit!: number;
   max_credit!: number;
+}
+export class FeedbackListModel {
+  id!: number;
+  user_id!: number;
+  rating!: number;
+  comment!: string;
+  created_at!: string;
+}
+export class ContactListModel {
+  id!: number;
+  name!: string;
+  surname!: string;
+  email!: string;
+  subject!: string;
+  message!: string;
+  created_at!: string;
+  updated_at!: string;
+}
+export class CreditListModel {
+  id!: number;
+  user_id!: string;
+  max_credit!: number;
+  avail_credit!: number;
+  created_at!: string;
+  updated_at!: string;
 }
 export const pdfPlaceholder = '/assets/ocr-images/placeholder-pdf.png';

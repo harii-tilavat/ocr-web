@@ -17,6 +17,7 @@ import { DocumentUploadComponent } from './components/document-upload/document-u
 import { DocumentDetailComponent } from './components/document-list/document-detail/document-detail.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { ContactComponent } from './components/contact/contact.component';
+import { ContactDetailComponent } from '../admin/admin/contact-list/contact-detail/contact-detail.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -24,7 +25,8 @@ import { ContactComponent } from './components/contact/contact.component';
     DocumentListComponent,
     DocumentUploadComponent,
     DocumentDetailComponent,
-    ContactComponent
+    ContactComponent,
+    ContactDetailComponent
   ],
   imports: [
     CommonModule,

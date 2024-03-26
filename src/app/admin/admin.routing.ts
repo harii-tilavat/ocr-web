@@ -12,6 +12,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DocumentsBinComponent } from './documents-bin/documents-bin.component';
 import { PricingComponent } from '../shared/pricing/pricing.component';
 import { AdminAuthGuard } from '../_guard/adminAuth.guard';
+import { UsersListComponent } from './admin/users-list/users-list.component';
+import { CreditListComponent } from './admin/credit-list/credit-list.component';
+import { FeedbackListComponent } from './admin/feedback-list/feedback-list.component';
+import { ContactListComponent } from './admin/contact-list/contact-list.component';
 
 // const routes: Routes = [
 //   { path: '', component: HomeComponent, data: { title: 'Get Curious Home' } },
@@ -36,12 +40,12 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       // { path: 'dashboard', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent, data: { title: 'Admin Dashboard' }, }, // canActivate:[AuthGuard]
-      { path: 'users-list', component: DashboardComponent },
-      { path: 'contact-list', component: DashboardComponent },
-      { path: 'feedback-list', component: DashboardComponent },
-      { path: 'credit-list', component: DashboardComponent },
+      { path: 'users-list', component: UsersListComponent },
+      { path: 'contact-list', component: ContactListComponent },
+      { path: 'feedback-list', component: FeedbackListComponent },
+      { path: 'credit-list', component: CreditListComponent },
       { path: 'account-setting', component: AccountSettingComponent },
-      { path: '**', redirectTo:'dashboard',pathMatch:'full' },
+      { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
     canActivate: [AdminAuthGuard]
   },

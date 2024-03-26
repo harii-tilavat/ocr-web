@@ -1,0 +1,84 @@
+<div class="user-detail-section">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <h2>User detail</h2> <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="user-detail-container">
+          <form action="">
+            <div class="row">
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">First Name</label>
+                  <span class="form-control not-editable">{{userDetail.name}}</span>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Last Name</label>
+                  <span class="form-control not-editable">{{userDetail.lastname || '--'}}</span>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Username</label>
+                  <span class="form-control not-editable">{{userDetail.username}}</span>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Email</label>
+                  <span class="form-control not-editable">{{userDetail.email}}</span>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">TYPE</label>
+                  <!-- <select name="" id="" class="form-control" [value]="userDetail.type">
+                    <option>USER</option>
+                    <option>ADMIN</option>
+                  </select> -->
+                  <span class="form-control not-editable">{{userDetail.type}}</span>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Country</label>
+                  <span class="form-control not-editable">{{userDetail.country || 'India'}}</span>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Created at</label>
+                  <span class="form-control not-editable">{{userDetail.created_at | date}}</span>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Updated at</label>
+                  <span class="form-control not-editable">{{userDetail.updated_at | date}}</span>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Last login</label>
+                  <span class="form-control not-editable">{{userDetail.last_login | date}}</span>
+                </div>
+              </div>
+              <!-- <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Is active</label>
+                  <span class="form-control not-editable">{{userDetail.is_active}}</span>
+                </div>
+              </div> -->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="web-detail-section">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <h2>Credit detail</h2>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="user-detail-container">
+          <form action="">
+            <div class="row">
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">ID</label>
+                  <span class="form-control not-editable">{{creditDetail.user_id}}</span>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Max credit</label>
+                  <span class="form-control not-editable">{{creditDetail.max_credit }}</span>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Available credit</label>
+                  <span class="form-control not-editable">{{creditDetail.avail_credit}}</span>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Created at</label>
+                  <span class="form-control not-editable">{{creditDetail.created_at | date}}</span>
+                </div>
+              </div>
+              <!-- <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Is active</label>
+                  <span class="form-control not-editable">{{userDetail.is_active}}</span>
+                </div>
+              </div> -->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
