@@ -5,7 +5,7 @@ import { AdminComponent } from './admin.component';
 import { DocumentUploadComponent } from '../layout/components/document-upload/document-upload.component';
 import { DocumentListComponent } from '../layout/components/document-list/document-list.component';
 import { DocumentDetailComponent } from '../layout/components/document-list/document-detail/document-detail.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -36,12 +36,14 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       // { path: 'dashboard', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent, data: { title: 'Admin Dashboard' }, }, // canActivate:[AuthGuard]
+      { path: 'users-list', component: DashboardComponent },
       { path: 'contact-list', component: DashboardComponent },
       { path: 'feedback-list', component: DashboardComponent },
-      { path: 'account-setting', component: DashboardComponent },
-      { path: 'account-setting', component: DashboardComponent },
+      { path: 'credit-list', component: DashboardComponent },
+      { path: 'account-setting', component: AccountSettingComponent },
+      { path: '**', redirectTo:'dashboard',pathMatch:'full' },
     ],
-    canActivate:[AdminAuthGuard]
+    canActivate: [AdminAuthGuard]
   },
   {
     path: '', component: AdminComponent, data: { title: 'OcrWeb Home' },
@@ -57,7 +59,7 @@ const routes: Routes = [
       { path: 'pricing', component: PricingComponent },
       { path: 'upload', component: DocumentUploadComponent, data: { title: 'OcrWeb File upload' } },
     ],
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ]

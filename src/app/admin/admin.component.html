@@ -3,7 +3,7 @@
     <div class="layout-container">
       <!-- Menu -->
       <div class="sidebar-left">
-        <app-sidebar [menuList]="this.isAdmin ? adminMenuConfig:sidebarMenuConfig"></app-sidebar>
+        <app-sidebar [menuList]="isAdmin ? adminMenuConfig:sidebarMenuConfig" [isAdmin]="isAdmin"></app-sidebar>
       </div>
       <!-- / Menu -->
       <!-- <app-sidebar></app-sidebar> -->

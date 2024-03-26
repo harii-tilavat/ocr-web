@@ -119,26 +119,34 @@ export const adminMenuConfig: Array<MenuListModel> = [
   },
   {
     id: 2,
+    title: 'Users',
+    routing: ['users-list'],
+    icon: 'bx bxs-user-circle',
+    enum: 'CONTACT_LIST',
+    subMenu: []
+  },
+  {
+    id: 2,
     title: 'Contact list',
-    routing: ['docs'],
-    icon: 'bx bx-file',
-    enum: 'DOCUMENTS',
+    routing: ['contact-list'],
+    icon: 'bx bxs-contact',
+    enum: 'CONTACT_LIST',
     subMenu: []
   },
   {
     id: 3,
     title: 'Feedback list',
-    routing: ['upload'],
-    icon: 'bx bx-cloud-upload',
-    enum: 'UPLOAD_DOCUMENT',
+    routing: ['feedback-list'],
+    icon: 'bx bx-star',
+    enum: 'FEEDBACK_LIST',
     subMenu: []
   },
   {
     id: 3,
     title: 'Credits list',
-    routing: ['wallet'],
+    routing: ['credit-list'],
     icon: 'bx bx-dollar me-2',
-    enum: 'WALLET',
+    enum: 'CREDIT_LIST',
     subMenu: []
   },
   // {

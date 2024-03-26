@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/_services';
 })
 export class SidebarComponent implements OnInit {
   @Input() menuList: Array<MenuListModel> = sidebarMenuConfig;
+  @Input() isAdmin = false;
   public themeColor = '#5e35b1';
   constructor(private authService: AuthService) { }
   ngOnInit(): void {

@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit {
       title: 'My profile',
       icon: 'bx bx-user',
       // routing: ['/user', 'profile'],
-      routing: ['/user', 'account-setting'],
+      routing: ['account-setting'],
       subMenu: [],
       enum: 'MY_PROFILE'
     },
@@ -40,7 +40,7 @@ export class AdminComponent implements OnInit {
       id: 3,
       title: 'Setting',
       icon: 'bx bx-cog',
-      routing: ['/user', 'account-setting'],
+      routing: ['account-setting'],
       subMenu: [],
       enum: 'SETTING'
     },

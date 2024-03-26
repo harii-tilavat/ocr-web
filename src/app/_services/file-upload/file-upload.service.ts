@@ -118,4 +118,33 @@ export class FileUploadService {
     const userdata: UserProfileModel = this.authService.getUserData();
     return userdata.id
   }
+
+  // Admin side
+  getUserList(): Observable<any> {
+    const url = `${environment.baseUrl}/api/users`;
+    return this.baseProviderService.makeGetCall(url);
+  }
+
+  getContactList(): Observable<any> {
+    const url = `${environment.baseUrl}/api/contact`;
+    return this.baseProviderService.makeGetCall(url);
+  }
+  setContact(data: any): Observable<any> {
+    const url = `${environment.baseUrl}/api/contact`;
+    return this.baseProviderService.makePostCall(url, data);
+  }
+
+  getFeedbackList(): Observable<any> {
+    const url = `${environment.baseUrl}/api/feedback`;
+    return this.baseProviderService.makeGetCall(url);
+  }
+  setFeedback(data: any): Observable<any> {
+    const url = `${environment.baseUrl}/api/feedback`;
+    return this.baseProviderService.makePostCall(url, data);
+  }
+
+  getCreditList(): Observable<any> {
+    const url = `${environment.baseUrl}/api/credits`;
+    return this.baseProviderService.makeGetCall(url);
+  }
 }

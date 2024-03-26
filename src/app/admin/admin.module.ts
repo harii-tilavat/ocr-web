@@ -15,6 +15,11 @@ import { DocumentsBinComponent } from './documents-bin/documents-bin.component';
 import { LayoutModule } from '../layout/layout.module';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
 import { WalletComponent } from './wallet/wallet.component';
+import { ContactListComponent } from './admin/contact-list/contact-list.component';
+import { CreditListComponent } from './admin/credit-list/credit-list.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { FeedbackListComponent } from './admin/feedback-list/feedback-list.component';
+import { UsersListComponent } from './admin/users-list/users-list.component';
 
 
 
@@ -23,7 +28,12 @@ import { WalletComponent } from './wallet/wallet.component';
     AdminComponent,
     DocumentsBinComponent,
     AccountSettingComponent,
-    WalletComponent
+    WalletComponent,
+    ContactListComponent,
+    CreditListComponent,
+    DashboardComponent,
+    FeedbackListComponent,
+    UsersListComponent
   ],
   imports: [
     CommonModule,
