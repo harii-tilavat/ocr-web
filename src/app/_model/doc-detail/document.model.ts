@@ -10,6 +10,15 @@ export class PricingModel {
   maxCredits!: number;
   price!: number;
 }
+export class PricingCheckoutModel {
+  items!: Array<PricingCheckoutDataModel>;
+}
+export class PricingCheckoutDataModel {
+  name!: string;
+  price!: number;
+  quantity!: number;
+}
+
 export class DocumentModel {
   id!: string;
   image_url!: string;

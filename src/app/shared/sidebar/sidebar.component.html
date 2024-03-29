@@ -1,8 +1,11 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme h-100">
-  <div class="app-brand demo border-bottom">
+  <div class="app-brand demo border-bottom m-0 h-px-75">
     <a [routerLink]="['/']" class="app-brand-link">
       <!-- <nugget-icon name="ocr-web" [fill]="themeColor"></nugget-icon> -->
-      <span class="app-brand-text demo menu-text fw-bold ms-2">{{isAdmin ? 'ADMIN ':'OcrWeb'}}</span>
+      <!-- <span class="app-brand-text demo menu-text fw-bold ms-2">{{isAdmin ? 'ADMIN ':'OcrWeb'}}</span> -->
+      <span class="icon h-px-75 w-px-75">
+        <nugget-icon name="ocr"></nugget-icon>
+      </span>
     </a>
 
     <a href="javascript:void(0);" (click)="hidemenu()" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">

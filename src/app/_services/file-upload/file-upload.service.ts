@@ -5,7 +5,7 @@ import { HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpParams } from '@
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth/auth.service';
-import { DocumentModel, UserProfileModel } from 'src/app/_model';
+import { DocumentModel, PricingCheckoutModel, UserProfileModel } from 'src/app/_model';
 
 @Injectable({
   providedIn: 'root'
@@ -83,7 +83,7 @@ export class FileUploadService {
     const url = `${environment.baseUrl}/api/referal`;
     return this.baseProviderService.makeGetCall(url);
   }
-  downloadFile(data: DocumentModel | null, type: string) {
+  downloadFile(data: any, type: string) {
     // return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`, 'blob');
     const user_id = this.getUserId();
     const body = {
@@ -117,6 +117,10 @@ export class FileUploadService {
   getUserId(): string {
     const userdata: UserProfileModel = this.authService.getUserData();
     return userdata.id
+  }
+  purchasePlan(data: PricingCheckoutModel): Observable<any> {
+    const url = `${environment.baseUrl}/api/checkout`;
+    return this.baseProviderService.makePostCall(url, data);
   }
 
   // Admin side

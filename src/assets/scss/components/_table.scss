@@ -1,0 +1,38 @@
+.table-csv {
+  max-height: 300px;
+  overflow: auto;
+  .table-main {
+    position: relative;
+    table {
+      min-width: 1100px;
+      thead {
+        tr {
+          background: $primary-25;
+          th {
+            &:nth-child(1) {
+              position: sticky;
+              left: 0;
+              box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+            }
+          }
+          position: sticky;
+          top: 0;
+          box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+          z-index: 1;
+        }
+      }
+      tbody {
+        tr {
+          td {
+            &:nth-child(1) {
+              position: sticky;
+              left: 0;
+              box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+              background: $primary-25;
+            }
+          }
+        }
+      }
+    }
+  }
+}

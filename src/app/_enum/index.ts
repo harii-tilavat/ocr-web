@@ -8,4 +8,5 @@ export enum FileTypeEnum {
   TEXT = 'TEXT',
   UPLOADED_FILE = 'UPLOADED_FILE',
   EXPORT_EXCEL = 'EXPORT_EXCEL',
+  EXCEL= 'EXCEL'
 }

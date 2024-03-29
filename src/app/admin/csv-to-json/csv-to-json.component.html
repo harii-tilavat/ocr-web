@@ -1,0 +1,167 @@
+<div class="csv-to-json-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="csv-file-container">
+          <div class="tool-header tet-center">
+            <div class="">
+              <h2>Read CSV file.</h2>
+            </div>
+          </div>
+          <hr>
+          <div class="tool-body">
+            <form action="" [formGroup]="fileForm">
+              <div class="formbold-main-wrapper">
+                <div class="formbold-form-wrapper">
+                  <div class="">
+                    <label class="fw-semibold text-primary-600">
+                      Upload File
+                    </label>
+
+                    <div class="formbold-mb-5 formbold-file-input">
+                      <input type="file" name="file" id="file" (change)="onFileChange($event)" formControlName="file" />
+                      <label for="file">
+                        <div>
+                          <span class="formbold-drop-file"> Drop files here </span>
+                          <span class="formbold-or"> Or </span>
+                          <span class="btn btn-primary-outline"> Browse </span>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="formbold-file-list formbold-mb-5 my-4" *ngFor="let item of files">
+                      <div class="formbold-file-item">
+                        <span class="formbold-file-name"> {{item.name}} </span>
+                        <span class="formbold-file-name"> {{(item.size / 1024).toFixed(1) + '
+                          kb'}} </span>
+                        <button (click)="removeFiles()">
+                          <span><i class='bx bx-x'></i></span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="fileErrorMessage">
+                      {{fileErrorMessage}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="loading text-center" *ngIf="isLoading && !fileErrorMessage">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+              <div class="form-data" *ngIf="fileData && fileData.length && !fileErrorMessage">
+                <div class="search-list">
+                  <div class="form-group">
+                    <label for="" class="control-label">Select column to search in.</label>
+                    <select name="" id="" class="form-control" formControlName="columnHeader" placeholder="Select..."
+                      (change)="onSelectChange()">
+                      <option value="" disabled selected>Select...</option>
+                      <option [value]="item" *ngFor="let item of headers">{{item}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="search-input">
+                  <div class="form-group">
+                    <label for="" class="control-label">Enter search term</label>
+                    <input type="text" class="form-control" formControlName="searchQuery"
+                      placeholder="Enter search term...">
+                  </div>
+                </div>
+                <div class="table-csv">
+                  <div class="table-main">
+                    <table class="table  table-bordered ">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th *ngFor="let item of headers ">{{ item }}</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngIf="displayData && displayData.length; else nodata">
+                        <tr *ngFor="let row of displayData">
+                          <ng-container *ngIf="row">
+                            <td>{{row.id}}</td>
+                            <td *ngFor="let header of headers ">{{ row[header] }}</td>
+                          </ng-container>
+                        </tr>
+                      </tbody>
+                      <ng-template #nodata>
+                        <span>No data found!</span>
+                      </ng-template>
+                    </table>
+                  </div>
+                </div>
+                <div class="select-row mt-4">
+                  <div class="form-group">
+                    <label for="" class="control-label">Select items</label>
+                    <div class="select-list">
+                      <select name="" id="" class="form-control" formControlName="rowIndex" placeholder="Select..."
+                        (change)="onSelectChange()">
+                        <option value="" disabled selected>Select...</option>
+                        <option [value]="item.id" *ngFor="let item of displayData">{{item.id}}
+                        </option>
+                      </select>
+                      <div class="select-row-index" *ngIf="selectedRowIndex && selectedRowIndex.length">
+                        <div class="index-badge bg-danger" *ngFor="let item of selectedRowIndex; let i=index"
+                          (click)="removeRowIndex(i)">
+                          <span>{{item}}</span>
+                          <span>
+                            <svg width="7" height="7" viewBox="0 0 10 10" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0.279337 0.279338C0.651787 -0.0931121 1.25565 -0.0931121 1.6281 0.279338L9.72066 8.3719C10.0931 8.74435 10.0931 9.34821 9.72066 9.72066C9.34821 10.0931 8.74435 10.0931 8.3719 9.72066L0.279337 1.6281C-0.0931125 1.25565 -0.0931125 0.651788 0.279337 0.279338Z"
+                                fill="currentColor" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0.279337 9.72066C-0.0931125 9.34821 -0.0931125 8.74435 0.279337 8.3719L8.3719 0.279338C8.74435 -0.0931127 9.34821 -0.0931123 9.72066 0.279338C10.0931 0.651787 10.0931 1.25565 9.72066 1.6281L1.6281 9.72066C1.25565 10.0931 0.651787 10.0931 0.279337 9.72066Z"
+                                fill="currentColor" />
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="close-icon" (click)="removeAllIndex()"
+                        *ngIf="selectedRowIndex && selectedRowIndex.length">
+                        <span>
+                          <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M0.279337 0.279338C0.651787 -0.0931121 1.25565 -0.0931121 1.6281 0.279338L9.72066 8.3719C10.0931 8.74435 10.0931 9.34821 9.72066 9.72066C9.34821 10.0931 8.74435 10.0931 8.3719 9.72066L0.279337 1.6281C-0.0931125 1.25565 -0.0931125 0.651788 0.279337 0.279338Z"
+                              fill="currentColor" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M0.279337 9.72066C-0.0931125 9.34821 -0.0931125 8.74435 0.279337 8.3719L8.3719 0.279338C8.74435 -0.0931127 9.34821 -0.0931123 9.72066 0.279338C10.0931 0.651787 10.0931 1.25565 9.72066 1.6281L1.6281 9.72066C1.25565 10.0931 0.651787 10.0931 0.279337 9.72066Z"
+                              fill="currentColor" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="table-csv new-filtered-table" *ngIf="newTableData && newTableData.length;">
+                  <div class="table-main">
+                    <table class="table  table-bordered ">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th *ngFor="let item of headers ">{{ item }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let row of newTableData">
+                          <ng-container *ngIf="row">
+                            <td>{{row.id}}</td>
+                            <td *ngFor="let header of headers ">{{ row[header] }}</td>
+                          </ng-container>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="download-excel">
+                    <button class="btn btn-primary" (click)="downloadExcel()">Downlod excel file</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

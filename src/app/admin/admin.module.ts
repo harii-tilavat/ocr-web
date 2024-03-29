@@ -22,6 +22,7 @@ import { FeedbackListComponent } from './admin/feedback-list/feedback-list.compo
 import { UsersListComponent } from './admin/users-list/users-list.component';
 import { UserDetailComponent } from './admin/users-list/user-detail/user-detail.component';
 import { CreditDetailComponent } from './admin/credit-list/credit-detail/credit-detail.component';
+import { CsvToJsonComponent } from './csv-to-json/csv-to-json.component';
 
 
 
@@ -37,7 +38,8 @@ import { CreditDetailComponent } from './admin/credit-list/credit-detail/credit-
     FeedbackListComponent,
     UsersListComponent,
     UserDetailComponent,
-    CreditDetailComponent
+    CreditDetailComponent,
+    CsvToJsonComponent
   ],
   imports: [
     CommonModule,

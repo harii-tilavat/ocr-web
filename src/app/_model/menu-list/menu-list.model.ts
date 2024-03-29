@@ -43,14 +43,6 @@ export const menuConfig: Array<MenuListModel> = [
   }
 ]
 export const sidebarMenuConfig: Array<MenuListModel> = [
-  // {
-  //   id: 1,
-  //   title: 'Dashboard',
-  //   routing: ['dashboard'],
-  //   icon: 'bx bx-home-circle',
-  //   enum: 'DASHBOARD',
-  //   subMenu: []
-  // },
   {
     id: 2,
     title: 'Documents',
@@ -65,6 +57,14 @@ export const sidebarMenuConfig: Array<MenuListModel> = [
     routing: ['upload'],
     icon: 'bx bx-cloud-upload',
     enum: 'UPLOAD_DOCUMENT',
+    subMenu: []
+  },
+  {
+    id: 3,
+    title: 'CSV to JSON',
+    routing: ['csv-to-json'],
+    icon: 'bx bx-table',
+    enum: 'CSV_TO_JSON',
     subMenu: []
   },
   {
