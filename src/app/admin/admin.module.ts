@@ -23,6 +23,7 @@ import { UsersListComponent } from './admin/users-list/users-list.component';
 import { UserDetailComponent } from './admin/users-list/user-detail/user-detail.component';
 import { CreditDetailComponent } from './admin/credit-list/credit-detail/credit-detail.component';
 import { CsvToJsonComponent } from './csv-to-json/csv-to-json.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -53,7 +54,8 @@ import { CsvToJsonComponent } from './csv-to-json/csv-to-json.component';
     NgxExtendedPdfViewerModule,
     PipesModule,
     LayoutModule,
-    NgbModalModule
+    NgbModalModule,
+    NgxPaginationModule
   ]
 })
 export class AdminModule { }

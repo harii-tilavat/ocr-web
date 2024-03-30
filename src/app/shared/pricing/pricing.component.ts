@@ -50,7 +50,7 @@ export class PricingComponent implements OnInit, OnDestroy {
       getJson: true,
       exportExcel: true,
       csvToJson: true,
-      maxCredits: -1,
+      maxCredits: 500,
       price: 599,
       viewPdf: true
     },

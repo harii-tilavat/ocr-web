@@ -92,6 +92,7 @@ export class CreditInfoModel {
 }
 export class CreditListModel {
   user_id!: string;
+  id!: string;
   max_credit!: number;
   avail_credit!: number;
   created_at!: string;

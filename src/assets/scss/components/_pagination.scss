@@ -1,0 +1,17 @@
+.pagination-container {
+  .table-pagination {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .ngx-pagination {
+    a,
+    .current {
+      border-radius: 8px;
+      @include padding(7px 14px);
+      margin: auto 3px;
+    }
+    .current {
+      background: $primary-600;
+    }
+  }
+}
