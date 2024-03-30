@@ -13,6 +13,7 @@ import { RatingComponent } from '../shared/basic/rating/rating.component';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  public year = new Date().getFullYear();
   public isAdmin = false;
   public unameIcon!: string;
   public userata!: UserProfileModel;

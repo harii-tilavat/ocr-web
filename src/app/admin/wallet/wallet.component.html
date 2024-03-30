@@ -9,6 +9,14 @@
           <h2>Max credits :- {{creditInfo?.max_credit || 0}} </h2>
           <h2>Available Credits :- {{creditInfo?.avail_credit > 0 ? creditInfo?.avail_credit : 0 }} </h2>
         </div>
+        <div class="want-more mt-5 h5">
+          <p>Do you want more credits? Upgrade your package OR Refer your friend.</p>
+          <p>After successfully referal You will get extra 10 credit.</p>
+        </div>
+        <div class="btn-groups mt-5 h5">
+          <button class="btn btn-primary" [routerLink]="['/user','pricing']">Upgrade package</button>
+          <button class="btn btn-primary-outline" [routerLink]="['/user','account-setting']">Refer your friend</button>
+        </div>
       </div>
     </div>
   </div>

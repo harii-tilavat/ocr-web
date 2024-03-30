@@ -37,6 +37,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       imagePath: 'home-page-1',
       subMenu: []
     },
+    {
+      id: 4,
+      title: 'Manage CSV file',
+      subTitle: 'CSV to JSON',
+      desc: 'Manage your csv files. Effortlessly find and analyze your processed data.',
+      imagePath: 'home-page-3',
+      subMenu: []
+    },
   ];
   public processDetail: Array<DocumentProccessDetail> = [
     {

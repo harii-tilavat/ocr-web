@@ -19,12 +19,13 @@
                     <th>Email</th>
                     <th>Subject</th>
                     <th>Message</th>
+                    <th>Created at</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of displayList; let i=index">
-                    <td>{{i+1}}</td>
+                  <tr *ngFor="let item of itemList | paginate: { itemsPerPage: 10, currentPage: currentPage}; let i=index">
+                    <td>{{item.id}}</td>
                     <td>{{item.name || '--'}}</td>
                     <td>{{item.surname || '--'}}</td>
                     <td>{{item.subject || '--'}}</td>
@@ -52,15 +53,13 @@
                 <span class="visually-hidden">Loading...</span>
               </div>
             </div>
-            <div class="no-data-found" *ngIf="displayList.length <= 0 && !isLoading">
+            <div class="no-data-found" *ngIf="itemList.length <= 0 && !isLoading">
               <p>No data found!</p>
             </div>
-            <div class="table-pagination">
-              <app-pagination
-              [currentPage]="pagination.currentPage"
-              [totalPages]="totalPages"
-              (pageChanged)="onPageChange($event)">
-            </app-pagination>
+            <div class="pagination-container">
+              <div class="table-pagination">
+                <pagination-controls (pageChange)="currentPage =  $event"></pagination-controls>
+              </div>
             </div>
           </div>
         </div>

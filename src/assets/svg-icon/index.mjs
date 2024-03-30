@@ -17,6 +17,7 @@ export * from './build/ng-login-1.icon';
 export * from './build/ng-login.icon';
 export * from './build/ng-ocr-web.icon';
 export * from './build/ng-ocr-web2.icon';
+export * from './build/ng-ocr.icon';
 export * from './build/ng-right-arrow.icon';
 export * from './build/ng-search.icon';
 export * from './build/ng-secure.icon';

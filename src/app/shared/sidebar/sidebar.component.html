@@ -1,11 +1,19 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme h-100">
-  <div class="app-brand demo border-bottom">
+  <div class="app-brand demo border-bottom m-0 h-px-75">
     <a [routerLink]="['/']" class="app-brand-link">
       <!-- <nugget-icon name="ocr-web" [fill]="themeColor"></nugget-icon> -->
-      <span class="app-brand-text demo menu-text fw-bold ms-2">{{isAdmin ? 'ADMIN ':'OcrWeb'}}</span>
+      <span class="app-brand-text demo menu-text fw-bold ms-2" *ngIf="isAdmin; else isNotAdmin">
+        ADMIN</span>
+      <ng-template #isNotAdmin>
+        <span class="icon h-px-75 w-px-75">
+          <nugget-icon name="ocr"></nugget-icon>
+        </span>
+      </ng-template>
+
     </a>
 
-    <a href="javascript:void(0);" (click)="hidemenu()" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+    <a href="javascript:void(0);" (click)="hidemenu()"
+      class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
       <i class="bx bx-chevron-left bx-sm align-middle"></i>
     </a>
   </div>
@@ -13,8 +21,9 @@
   <div class="menu-inner-shadow"></div>
   <ul class="menu-inner py-1">
     <!-- Dashboards -->
-    <li class="menu-item" *ngFor="let item of menuList" (click)="onRouting(item.enum)" [routerLink]="item.routing" [routerLinkActive]="'active'">
-      <a href="javascript:void(0);" class="menu-link" >
+    <li class="menu-item" *ngFor="let item of menuList" (click)="onRouting(item.enum)" [routerLink]="item.routing"
+      [routerLinkActive]="'active'">
+      <a href="javascript:void(0);" class="menu-link">
         <i [ngClass]="'menu-icon tf-icons '+ item.icon"></i>
         <div data-i18n="Dashboards">{{item.title}}</div>
         <!-- <div class="badge bg-danger rounded-pill ms-auto">5</div> -->

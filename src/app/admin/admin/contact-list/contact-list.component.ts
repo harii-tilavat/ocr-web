@@ -1,4 +1,4 @@
-import { Component,OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -15,14 +15,9 @@ import { ContactDetailComponent } from 'src/app/admin/admin/contact-list/contact
 })
 export class ContactListComponent implements OnInit, OnDestroy {
   public isLoading = false;
-  public pagination = {
-    currentPage: 1,
-    totalPage: 15,
-    itemsPerPage: 100
-  }
+  public currentPage = 1;
   public itemList: Array<ContactListModel> = [];
   public subscription: Array<Subscription> = [];
-  public displayList: Array<ContactListModel> = [];
 
   constructor(private authService: AuthService, private toastrService: ToastrService, private router: Router, private modalService: NgbModal, private fileUploadService: FileUploadService) { }
   ngOnInit(): void {
@@ -31,7 +26,6 @@ export class ContactListComponent implements OnInit, OnDestroy {
       this.fileUploadService.getContactList().subscribe({
         next: (res) => {
           this.itemList = res.data;
-          this.getPaginatedData();
           console.log("Response => ", res);
           this.isLoading = false;
         },
@@ -66,18 +60,6 @@ export class ContactListComponent implements OnInit, OnDestroy {
       // if (result) {
       // }
     }
-  }
-  getPaginatedData() {
-    const startIndex = (this.pagination.currentPage - 1) * this.pagination.itemsPerPage;
-    const endIndex = startIndex + this.pagination.itemsPerPage;
-    this.displayList = this.itemList.slice(startIndex, endIndex);
-  }
-  onPageChange(page: number): void {
-    this.pagination.currentPage = page;
-  }
-  get totalPages(): number {
-    const totalPages = Math.floor(this.itemList.length / this.pagination.itemsPerPage) + (this.itemList.length % this.pagination.itemsPerPage === 0 ? 0 : 1);
-    return totalPages;
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

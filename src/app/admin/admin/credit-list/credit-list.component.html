@@ -18,7 +18,8 @@
                 <thead>
                   <tr>
                     <!-- <th>Id</th> -->
-                    <th>User id</th>
+                    <th>ID</th>
+                    <th>Username</th>
                     <th>Max credit</th>
                     <th>Available credit</th>
                     <th>Created at</th>
@@ -27,10 +28,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of displayList; let i=index">
+                  <tr
+                    *ngFor="let item of itemList | paginate: { itemsPerPage: 10, currentPage: currentPage }; let i=index">
                     <!-- <td>{{i+1}}</td> -->
-                    <!-- <td>{{item.id}}</td> -->
-                    <td>{{item.user_id}}</td>
+                    <!-- <td>{{item.user_id}}</td> -->
+                    <td>{{item.id}}</td>
+                    <td>{{item.username}}</td>
                     <td>{{item?.max_credit}}</td>
                     <td>{{item?.avail_credit || '--'}}</td>
                     <td>{{item.created_at | date}}</td>
@@ -57,15 +60,13 @@
                 <span class="visually-hidden">Loading...</span>
               </div>
             </div>
-            <div class="no-data-found" *ngIf="displayList.length <= 0 && !isLoading">
+            <div class="no-data-found" *ngIf="itemList.length <= 0 && !isLoading">
               <p>No data found!</p>
             </div>
-            <div class="table-pagination">
-              <app-pagination
-              [currentPage]="pagination.currentPage"
-              [totalPages]="totalPages"
-              (pageChanged)="onPageChange($event)">
-            </app-pagination>
+            <div class="pagination-container">
+              <div class="table-pagination">
+                <pagination-controls (pageChange)="currentPage =  $event"></pagination-controls>
+              </div>
             </div>
           </div>
         </div>

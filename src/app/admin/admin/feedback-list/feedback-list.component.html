@@ -14,8 +14,8 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <!-- <th>ID</th> -->
-                    <th>User id</th>
+                    <th>ID</th>
+                    <th>User name</th>
                     <th>Rating</th>
                     <th>Comment</th>
                     <th>created_at</th>
@@ -23,9 +23,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of displayList; let i=index">
-                    <!-- <td>{{i+1}}</td> -->
-                    <td>{{item.user_id}}</td>
+                  <tr
+                    *ngFor="let item of itemList  | paginate: { itemsPerPage: 10, currentPage: currentPage}; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{item.username}}</td>
                     <td>{{item.rating}}</td>
                     <td>{{item.comment}}</td>
                     <td>{{item.created_at | date}}</td>
@@ -51,13 +52,13 @@
                 <span class="visually-hidden">Loading...</span>
               </div>
             </div>
-            <div class="no-data-found" *ngIf="displayList.length <= 0 && !isLoading">
+            <div class="no-data-found" *ngIf="itemList.length <= 0 && !isLoading">
               <p>No data found!</p>
             </div>
-            <div class="table-pagination">
-              <app-pagination [currentPage]="pagination.currentPage" [totalPages]="totalPages"
-                (pageChanged)="onPageChange($event)">
-              </app-pagination>
+            <div class="pagination-container">
+              <div class="table-pagination">
+                <pagination-controls (pageChange)="currentPage =  $event"></pagination-controls>
+              </div>
             </div>
           </div>
         </div>

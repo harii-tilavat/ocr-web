@@ -1,4 +1,4 @@
-import { Component,OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -14,15 +14,10 @@ import { CreditDetailComponent } from './credit-detail/credit-detail.component';
   styleUrls: ['./credit-list.component.scss']
 })
 export class CreditListComponent implements OnInit, OnDestroy {
+  public currentPage = 1;
   public isLoading = false;
-  public pagination = {
-    currentPage: 1,
-    totalPage: 15,
-    itemsPerPage: 10
-  }
   public itemList: Array<CreditListModel> = [];
   public subscription: Array<Subscription> = [];
-  public displayList: Array<CreditListModel> = [];
 
   constructor(private authService: AuthService, private toastrService: ToastrService, private router: Router, private modalService: NgbModal, private fileUploadService: FileUploadService) { }
   ngOnInit(): void {
@@ -31,7 +26,6 @@ export class CreditListComponent implements OnInit, OnDestroy {
       this.fileUploadService.getCreditList().subscribe({
         next: (res) => {
           this.itemList = res.data;
-          this.getPaginatedData();
           console.log("Response => ", res);
           this.isLoading = false;
         },
@@ -66,20 +60,6 @@ export class CreditListComponent implements OnInit, OnDestroy {
       // if (result) {
       // }
     }
-  }
-  getPaginatedData() {
-    if(this.itemList && this.itemList.length){
-      const startIndex = (this.pagination.currentPage - 1) * this.pagination.itemsPerPage;
-      const endIndex = startIndex + this.pagination.itemsPerPage;
-      this.displayList = this.itemList.slice(startIndex, endIndex);
-    }
-  }
-  onPageChange(page: number): void {
-    this.pagination.currentPage = page;
-  }
-  get totalPages(): number {
-    const totalPages = Math.floor(this.itemList.length / this.pagination.itemsPerPage) + (this.itemList.length % this.pagination.itemsPerPage === 0 ? 0 : 1);
-    return totalPages;
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());
