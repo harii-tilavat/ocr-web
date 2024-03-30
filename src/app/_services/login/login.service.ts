@@ -21,5 +21,7 @@ export class LoginService {
   updateUser(user_id: string, userdata: any): Observable<any> {
     return this.baseProviderService.makePutCall(`${environment.baseUrl}/update-user/${user_id}`, userdata);
   }
-
+  forgotPassword(email: string | null): Observable<any> {
+    return this.baseProviderService.makePostCall(`${environment.baseUrl}/forgot-password`, {email});
+  }
 }

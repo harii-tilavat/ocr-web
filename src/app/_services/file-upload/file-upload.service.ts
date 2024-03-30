@@ -122,7 +122,6 @@ export class FileUploadService {
     const url = `${environment.baseUrl}/api/checkout`;
     return this.baseProviderService.makePostCall(url, data);
   }
-
   // Admin side
   getUserList(): Observable<any> {
     const url = `${environment.baseUrl}/api/users`;
