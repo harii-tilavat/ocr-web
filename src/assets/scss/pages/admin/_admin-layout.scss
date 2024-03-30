@@ -1,5 +1,6 @@
-$sidebar-width: 280px;
+$sidebar-width: 260px;
 .admin-wrapper {
+  position: relative;
   .sidebar-left {
     // position: fixed;
     // // width: $sidebar-width;
@@ -19,5 +20,13 @@ $sidebar-width: 280px;
       // top: 12px;
     }
   }
-
+  .ocr-footer{
+    position: absolute;
+    bottom: 0;
+    left: $sidebar-width;
+    right: 0;
+    @include media-breakpoint-down('xl'){
+      left: 0;
+    }
+  }
 }

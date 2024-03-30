@@ -19,6 +19,7 @@ export class CsvToJsonComponent implements OnInit, OnDestroy {
   public selectedRowIndex: number[] = [];
   public selectedHeader!: string;
   public searchQuery!: string;
+  public isJson = false;
   public fileForm = new FormGroup({
     file: new FormControl<any>(null, []),
     columnHeader: new FormControl<string | null>('', []),
@@ -33,6 +34,7 @@ export class CsvToJsonComponent implements OnInit, OnDestroy {
   public newTableData: any[] = [];
   public displayData: any[] = [];
   public subscription: Array<Subscription> = [];
+  public maxFileSize = 1 * 1024; // 1 MB
 
   constructor(private router: Router, private modalService: NgbModal, private fileUploadService: FileUploadService, private toastrService: ToastrService, private loaderService: LoaderService) {
 
@@ -72,7 +74,12 @@ export class CsvToJsonComponent implements OnInit, OnDestroy {
     }
     if (!file.type.includes('text/csv')) {
       this.fileErrorMessage = 'Please select CSV file!';
+      // this.toastrService.error('Please select CSV file!','Error');
       return
+    }
+    if ((file.size / 1024) > this.maxFileSize) {
+      this.fileErrorMessage = 'File should less than 1 MB!';
+      return;
     }
     this.isLoading = true;
     Papa.parse(file, {
@@ -175,7 +182,8 @@ export class CsvToJsonComponent implements OnInit, OnDestroy {
     this.newTableData = this.fileData.filter(obj => indices.includes(obj.id.toString()));
   }
   downloadExcel(): void {
-    this.fileUploadService.downloadFile(this.newTableData, FileTypeEnum.EXCEL).subscribe({
+    this.loaderService.show();
+    this.subscription.push(this.fileUploadService.downloadFile(this.newTableData, FileTypeEnum.EXCEL).subscribe({
       next: (res: any) => {
         this.toastrService.success('Data sucessfully exported in excel!', 'Success');
         saveAs(res, 'downloaded_file');
@@ -186,8 +194,7 @@ export class CsvToJsonComponent implements OnInit, OnDestroy {
         this.toastrService.error(err && err.error && err.error.message || 'Something went wrong', 'ERROR');
         this.loaderService.hide();
       }
-    });
-
+    }));
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

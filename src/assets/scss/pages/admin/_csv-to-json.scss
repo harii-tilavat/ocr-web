@@ -234,6 +234,10 @@
     overflow: auto;
     table{
     }
+    .table-csv-json{
+      max-height: 300px;
+      overflow: auto;
+    }
   }
 
 }

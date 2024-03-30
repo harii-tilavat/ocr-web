@@ -23,6 +23,7 @@ export class PricingComponent implements OnInit, OnDestroy {
       downloadWord: false,
       getJson: false,
       exportExcel: false,
+      csvToJson: false,
       maxCredits: 5,
       price: 0,
       viewPdf: false
@@ -35,6 +36,7 @@ export class PricingComponent implements OnInit, OnDestroy {
       downloadWord: true,
       getJson: true,
       exportExcel: false,
+      csvToJson: false,
       maxCredits: 50,
       price: 199,
       viewPdf: false
@@ -47,6 +49,7 @@ export class PricingComponent implements OnInit, OnDestroy {
       downloadWord: true,
       getJson: true,
       exportExcel: true,
+      csvToJson: true,
       maxCredits: -1,
       price: 599,
       viewPdf: true

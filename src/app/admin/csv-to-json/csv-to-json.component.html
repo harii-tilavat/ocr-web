@@ -1,4 +1,4 @@
-<div class="csv-to-json-section">
+<div class="csv-to-json-section mb-5">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -22,7 +22,7 @@
                       <input type="file" name="file" id="file" (change)="onFileChange($event)" formControlName="file" />
                       <label for="file">
                         <div>
-                          <span class="formbold-drop-file"> Drop files here </span>
+                          <span class="formbold-drop-file"> Drop files here ( CSV )</span>
                           <span class="formbold-or"> Or </span>
                           <span class="btn btn-primary-outline"> Browse </span>
                         </div>
@@ -32,8 +32,9 @@
                     <div class="formbold-file-list formbold-mb-5 my-4" *ngFor="let item of files">
                       <div class="formbold-file-item">
                         <span class="formbold-file-name"> {{item.name}} </span>
-                        <span class="formbold-file-name"> {{(item.size / 1024).toFixed(1) + '
-                          kb'}} </span>
+                        <span class="formbold-file-name">
+                          {{(item.size / 1024) > 500 ? (item.size / 1024 / 1024).toFixed(2) + ' MB' : (item.size / 1024
+                          ).toFixed(2) + ' KB'}} </span>
                         <button (click)="removeFiles()">
                           <span><i class='bx bx-x'></i></span>
                         </button>
@@ -81,7 +82,7 @@
                         <tr *ngFor="let row of displayData">
                           <ng-container *ngIf="row">
                             <td>{{row.id}}</td>
-                            <td *ngFor="let header of headers ">{{ row[header] }}</td>
+                            <td *ngFor="let header of headers ">{{ row[header] ?row[header]:'NULL' }}</td>
                           </ng-container>
                         </tr>
                       </tbody>
@@ -134,27 +135,38 @@
                     </div>
                   </div>
                 </div>
-                <div class="table-csv new-filtered-table" *ngIf="newTableData && newTableData.length;">
-                  <div class="table-main">
-                    <table class="table  table-bordered ">
-                      <thead>
-                        <tr>
-                          <th></th>
-                          <th *ngFor="let item of headers ">{{ item }}</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let row of newTableData">
-                          <ng-container *ngIf="row">
-                            <td>{{row.id}}</td>
-                            <td *ngFor="let header of headers ">{{ row[header] }}</td>
-                          </ng-container>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                <div class="table-csv-container new-filtered-table d-flex flex-column gap-2"
+                  *ngIf="newTableData && newTableData.length;">
+                  <div class="table-csv">
+                    <div class="table-main" *ngIf="!isJson">
+                      <table class="table  table-bordered ">
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th *ngFor="let item of headers ">{{ item }}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of newTableData">
+                            <ng-container *ngIf="row">
+                              <td>{{row.id}}</td>
+                              <td *ngFor="let header of headers ">{{ row[header] }}</td>
+                            </ng-container>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="card-main table-csv-json" *ngIf="isJson">
+                      <pre>
+                        {{newTableData | json}}
+                      </pre>
+                    </div>
                   </div>
-                  <div class="download-excel">
+                  <div class="download-excel d-flex justify-content-end btn-groups">
                     <button class="btn btn-primary" (click)="downloadExcel()">Downlod excel file</button>
+                    <button class="btn btn-primary-outline" (click)="isJson = !isJson">View {{isJson ? 'EXCEL':'JSON'}}
+                      format</button>
                   </div>
                 </div>
               </div>

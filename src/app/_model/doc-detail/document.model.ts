@@ -5,6 +5,7 @@ export class PricingModel {
   downloadText!: boolean;
   downloadWord!: boolean;
   exportExcel!: boolean;
+  csvToJson!: boolean;
   viewPdf!: boolean;
   getJson!: boolean;
   maxCredits!: number;
@@ -89,12 +90,21 @@ export class CreditInfoModel {
   avail_credit!: number;
   max_credit!: number;
 }
+export class CreditListModel {
+  user_id!: string;
+  max_credit!: number;
+  avail_credit!: number;
+  created_at!: string;
+  updated_at!: string;
+  username?: string;
+}
 export class FeedbackListModel {
   id!: number;
   user_id!: number;
   rating!: number;
   comment!: string;
   created_at!: string;
+  username?: string;
 }
 export class ContactListModel {
   id!: number;
@@ -106,12 +116,5 @@ export class ContactListModel {
   created_at!: string;
   updated_at!: string;
 }
-export class CreditListModel {
-  id!: number;
-  user_id!: string;
-  max_credit!: number;
-  avail_credit!: number;
-  created_at!: string;
-  updated_at!: string;
-}
+
 export const pdfPlaceholder = '/assets/ocr-images/placeholder-pdf.png';

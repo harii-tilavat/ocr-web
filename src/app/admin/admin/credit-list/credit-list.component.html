@@ -18,7 +18,8 @@
                 <thead>
                   <tr>
                     <!-- <th>Id</th> -->
-                    <th>User id</th>
+                    <!-- <th>User id</th> -->
+                    <th>Username</th>
                     <th>Max credit</th>
                     <th>Available credit</th>
                     <th>Created at</th>
@@ -30,7 +31,8 @@
                   <tr *ngFor="let item of displayList; let i=index">
                     <!-- <td>{{i+1}}</td> -->
                     <!-- <td>{{item.id}}</td> -->
-                    <td>{{item.user_id}}</td>
+                    <!-- <td>{{item.user_id}}</td> -->
+                    <td>{{item.username}}</td>
                     <td>{{item?.max_credit}}</td>
                     <td>{{item?.avail_credit || '--'}}</td>
                     <td>{{item.created_at | date}}</td>
