@@ -9,6 +9,7 @@ import { IconsModule } from '../icons/icons.module';
 import { AuthComponent } from './auth.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent, data: { title: 'Ocrweb login' } },
       { path: 'signup', component: SignupComponent, data: { title: 'Ocrweb signup' } },
       { path: 'forgot-password', component: ForgotPasswordComponent, data: { title: 'Ocrweb signup' } },
+      { path: 'verify-otp', component: VerifyOtpComponent, data: { title: 'Ocrweb signup' } },
       { path: '**', redirectTo: 'login', pathMatch: 'full' },
     ]
   },

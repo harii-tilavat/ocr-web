@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { GenericresponseModel, } from 'src/app/_model';
 import { LoginService, AuthService, LoaderService } from 'src/app/_services';
 import { CustomValidatorRules } from 'src/app/_validators';
 
@@ -17,14 +18,18 @@ export class SignupComponent implements OnInit, OnDestroy {
   public subscription: Array<Subscription> = [];
   public loginMode = false;
   public authMode!: string;
+  public isRegistered!: string;
   public signupForm = new FormGroup({
-    name: new FormControl<string | null>(null, Validators.required),
+    name: new FormControl<string | null>(null, [Validators.required]),
     username: new FormControl<string | null>(null, [Validators.required]),
     email: new FormControl<string | null>(null, [Validators.required, CustomValidatorRules.emailValidation]),
     password: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)]),
     confirmPassword: new FormControl<string | null>(null, [Validators.required]),
     number: new FormControl<string | null>(null, []),
     user_ref_code: new FormControl<string | null>(null),
+  });
+  public otpForm = new FormGroup({
+    otp: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)]),
   });
   constructor(private loaderService: LoaderService, private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
     if (this.authService.isUserLoggedIn()) {
@@ -58,12 +63,10 @@ export class SignupComponent implements OnInit, OnDestroy {
 
     this.loaderService.show();
     this.subscription.push(this.loginService.registerUser(this.signupForm.value).subscribe({
-      next: (res: { token: string, message: string }) => {
-        if (res && res.token) {
-          this.authService.login(res.token);
-          this.toastService.success('Login successfully!', 'Success');
+      next: (res: GenericresponseModel) => {
+        if (res && res.message) {
+          this.toastService.success(res.message, 'Success');
         }
-        console.log("Respose => ", res);
         this.loaderService.hide();
       },
       error: (err: HttpErrorResponse) => {
