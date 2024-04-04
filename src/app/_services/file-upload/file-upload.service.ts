@@ -79,10 +79,6 @@ export class FileUploadService {
 
     return this.baseProviderService.makeGetCall(url);
   }
-  getReferals(): Observable<any> {
-    const url = `${environment.baseUrl}/api/referal`;
-    return this.baseProviderService.makeGetCall(url);
-  }
   downloadFile(data: any, type: string) {
     // return this.baseProviderService.makeGetFile(`${environment.baseUrl}/api/download/${id}`, 'blob');
     const user_id = this.getUserId();
@@ -136,7 +132,10 @@ export class FileUploadService {
     const url = `${environment.baseUrl}/api/contact`;
     return this.baseProviderService.makePostCall(url, data);
   }
-
+  getReferalList(): Observable<any> {
+    const url = `${environment.baseUrl}/api/referal`;
+    return this.baseProviderService.makeGetCall(url);
+  }
   getFeedbackList(): Observable<any> {
     const url = `${environment.baseUrl}/api/feedback`;
     return this.baseProviderService.makeGetCall(url);

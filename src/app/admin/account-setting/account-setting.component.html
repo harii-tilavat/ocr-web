@@ -2,12 +2,12 @@
   <div class="content-wrapper">
     <!-- Content -->
 
-    <div class="container-xxl flex-grow-1 container-p-y">
-      <h4 class="py-3 mb-4"><span class="text-muted fw-light">Account Settings /</span> Account</h4>
+    <div class="container-xxl flex-grow-1 container-p-y pt-0">
+      <h4 class="py-3 mb-4 pt-0"><span class="text-muted fw-light">Account Settings /</span> Account</h4>
 
       <div class="row">
         <div class="col-md-12">
-          <!-- <ul class="nav nav-pills flex-column flex-md-row mb-3">
+          <ul class="nav nav-pills flex-column flex-md-row mb-3" *ngIf="false">
             <li class="nav-item">
               <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Account</a>
             </li>
@@ -19,7 +19,7 @@
               <a class="nav-link" href="pages-account-settings-connections.html"><i class="bx bx-link-alt me-1"></i>
                 Connections</a>
             </li>
-          </ul> -->
+          </ul>
           <div class="card mb-4">
             <h5 class="card-header">Profile Details</h5>
             <!-- Account -->
@@ -46,7 +46,7 @@
             </div>
             <hr class="my-0" />
             <div class="card-body">
-              <form id="formAccountSettings" [formGroup]="userForm" (ngSubmit)="onUpdate()">
+              <form id="reset-password-form" [formGroup]="userForm" (ngSubmit)="onUpdate()">
                 <div class="row">
                   <div class="mb-3 col-md-6">
                     <label for="firstName" class="form-label">First Name</label>
@@ -153,13 +153,14 @@
                     <label class="form-label" for="country">Your referal link!</label>
                     <div class="refer-link form-control d-flex justify-content-between ">
                       <span>{{this.referalLink}}</span>
-                      <span class="icon cursor-pointer text-primary-600" (click)="copyReferLink(this.referalLink)"><i class='bx bx-copy'></i></span>
+                      <span class="icon cursor-pointer text-primary-600" (click)="copyReferLink(this.referalLink)"><i
+                          class='bx bx-copy'></i></span>
                     </div>
                   </div>
                 </div>
                 <div class="mt-2">
                   <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                  <button type="button" class="btn btn-outline-secondary" (click)="resetForm()">Cancel</button>
+                  <button type="button" class="btn btn-primary-outline" (click)="normalForm()">Cancel</button>
                 </div>
               </form>
             </div>
@@ -189,7 +190,8 @@
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <div class="refer-detail">
             <h4 class="py-3">
-              <span class=" ">Your referal detail</span> <hr>
+              <span class=" ">Your referal detail</span>
+              <hr>
             </h4>
             <div class="refer-table">
               <div class="table-responsive">
@@ -225,6 +227,112 @@
               </div>
             </div>
             <hr>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="card mb-4">
+            <h5 class="card-header d-flex justify-content-between">
+              <span>Change pasword </span>
+              <span><i class='bx bx-lock'></i></span>
+            </h5>
+            <!-- Account -->
+            <div class="card-body" *ngIf="false">
+              <div class="d-flex align-items-start align-items-sm-center gap-4">
+                <div class="profile-img">
+                  <img src="../assets/img/avatars/1.png" alt="user-avatar" class="d-block rounded" height="100"
+                    width="100" id="uploadedAvatar" />
+                </div>
+                <div class="button-wrapper">
+                  <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                    <span class="d-none d-sm-block">Upload new photo</span>
+                    <i class="bx bx-upload d-block d-sm-none"></i>
+                    <input type="file" id="upload" class="account-file-input" hidden accept="image/png, image/jpeg" />
+                  </label>
+                  <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                    <i class="bx bx-reset d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Reset</span>
+                  </button>
+
+                  <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                </div>
+              </div>
+            </div>
+            <hr class="my-0" />
+            <div class="card-body">
+              <form id="formAccountSettings" [formGroup]="resetPassForm" (ngSubmit)="resetPassowrd()">
+                <div class="row">
+                  <div class="mb-3 col-md-12">
+                    <label for="password" class="form-label">Current password</label>
+                    <input class="form-control" type="password" id="password" name="password" formControlName="password"
+                      placeholder="******" />
+                    <div class="form-error" *ngIf="resetPassForm.controls['password'].touched">
+                      <span class="error error-msg"
+                        *ngIf="resetPassForm.controls['password'].hasError('required')">Current password
+                        required!
+                      </span>
+                      <span class="error error-msg"
+                        *ngIf="resetPassForm.controls['password'].hasError('minlength')">Minimum 6 character
+                        required!
+                      </span>
+                    </div>
+                  </div>
+                  <div class="mb-3 col-md-12">
+                    <label for="newPassword" class="form-label">New password</label>
+                    <input class="form-control" type="password" name="newPassword" formControlName="newPassword"
+                      placeholder="******" />
+                    <div class="form-error" *ngIf="resetPassForm.controls['newPassword'].touched ">
+                      <span class="error error-msg" *ngIf="resetPassForm.controls['newPassword'].hasError('required')">
+                        New password required!</span>
+                      <span class="error error-msg"
+                        *ngIf="resetPassForm.controls['newPassword'].hasError('minlength')">Minimum 6 character
+                        required!
+                      </span>
+                    </div>
+                  </div>
+                  <div class="mb-3 col-md-12" *ngIf="resetPassForm.controls['newPassword'].valid">
+                    <label for="confirmPassword" class="form-label">confirmPassword</label>
+                    <input class="form-control" type="password" name="confirmPassword" formControlName="confirmPassword"
+                      placeholder="******" />
+                    <div class="form-error" *ngIf="resetPassForm.controls['confirmPassword'].touched ">
+                      <span class="error error-msg"
+                        *ngIf="resetPassForm.controls['confirmPassword'].hasError('required')">Confirm password
+                        required!</span>
+                      <span class="error error-msg"
+                        *ngIf="!resetPassForm.controls['confirmPassword'].hasError('required') && resetPassForm.controls['confirmPassword'].value !== resetPassForm.controls['newPassword'].value">
+                        Password should be same!</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <button type="submit" class="btn btn-primary me-2"
+                    [disabled]="!resetPassForm.valid || resetPassForm.controls['confirmPassword'].value !== resetPassForm.controls['newPassword'].value">Update
+                    password</button>
+                  <button type="button" class="btn btn-primary-outline me-2"
+                    (click)="resetPassForm.reset()">Cancle</button>
+                </div>
+              </form>
+            </div>
+            <!-- /Account -->
+          </div>
+          <div class="card" *ngIf="false">
+            <h5 class="card-header">Delete Account</h5>
+            <div class="card-body">
+              <div class="mb-3 col-12 mb-0">
+                <div class="alert alert-warning">
+                  <h6 class="alert-heading mb-1">Are you sure you want to delete your account?</h6>
+                  <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
+                </div>
+              </div>
+              <form id="formAccountDeactivation" onsubmit="return false">
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" />
+                  <label class="form-check-label" for="accountActivation">I confirm my account deactivation</label>
+                </div>
+                <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

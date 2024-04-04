@@ -24,6 +24,7 @@ import { UserDetailComponent } from './admin/users-list/user-detail/user-detail.
 import { CreditDetailComponent } from './admin/credit-list/credit-detail/credit-detail.component';
 import { CsvToJsonComponent } from './csv-to-json/csv-to-json.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ReferalListComponent } from './admin/referal-list/referal-list.component';
 
 
 
@@ -40,7 +41,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     UsersListComponent,
     UserDetailComponent,
     CreditDetailComponent,
-    CsvToJsonComponent
+    CsvToJsonComponent,
+    ReferalListComponent
   ],
   imports: [
     CommonModule,

@@ -145,8 +145,16 @@ export const adminMenuConfig: Array<MenuListModel> = [
     id: 3,
     title: 'Credits list',
     routing: ['credit-list'],
-    icon: 'bx bx-dollar me-2',
+    icon: 'bx bx-dollar ',
     enum: 'CREDIT_LIST',
+    subMenu: []
+  },
+  {
+    id: 3,
+    title: 'Referal list',
+    routing: ['referal-list'],
+    icon: 'bx bxs-user-check',
+    enum: 'REFERAL_LIST',
     subMenu: []
   },
   // {

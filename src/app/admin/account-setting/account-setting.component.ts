@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { DocumentResponseModel, UserProfileModel, UserResponseModel } from 'src/app/_model';
@@ -14,6 +14,11 @@ import { environment } from 'src/environments/environment';
 })
 export class AccountSettingComponent implements OnInit {
   public isAdmin = false;
+  public resetPassForm = new FormGroup({
+    password: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)]),
+    newPassword: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)]),
+    confirmPassword: new FormControl<string | null>(null, [Validators.required,])
+  });
   public subscription: Array<Subscription> = [];
   public userForm!: FormGroup;
   public userdata !: UserProfileModel;
@@ -30,7 +35,6 @@ export class AccountSettingComponent implements OnInit {
     }
   }
   onUpdate(): void {
-    console.log(this.userForm);
     if (!this.userForm.valid) {
       this.userForm.markAllAsTouched();
       return;
@@ -50,7 +54,27 @@ export class AccountSettingComponent implements OnInit {
     }));
 
   }
-  resetForm(): void {
+  resetPassowrd(): void {
+    if (!this.resetPassForm.valid) {
+      this.resetPassForm.markAllAsTouched();
+      return;
+    }
+    const userdata = { ...this.resetPassForm.value, user_id: this.fileuploadService.getUserId() }
+    this.loaderService.show();
+    this.subscription.push(this.loginService.resetPassword(userdata).subscribe({
+      next: (res: any) => {
+        this.toastrService.success(res.message, 'Sucess');
+        this.loaderService.hide();
+        this.resetPassForm.reset();
+      },
+      error: (err) => {
+        console.log("Password change => ", err);
+        this.toastrService.error(err && err.error && err.error.message, 'ERROR');
+        this.loaderService.hide();
+      }
+    }))
+  }
+  normalForm(): void {
     this.setUserForm(this.userdata);
   }
   setUserForm(userdata: UserProfileModel): void {
