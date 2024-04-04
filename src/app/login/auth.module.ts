@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent, data: { title: 'Ocrweb login' } },
       { path: 'signup', component: SignupComponent, data: { title: 'Ocrweb signup' } },
       { path: 'forgot-password', component: ForgotPasswordComponent, data: { title: 'Ocrweb signup' } },
-      { path: 'verify-otp', component: VerifyOtpComponent, data: { title: 'Ocrweb signup' } },
+      { path: 'verify-otp', component: VerifyOtpComponent, data: { title: 'Ocrweb OTP' } },
       { path: '**', redirectTo: 'login', pathMatch: 'full' },
     ]
   },
@@ -31,7 +31,8 @@ const routes: Routes = [
     AuthComponent,
     SignupComponent,
     LoginComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    VerifyOtpComponent
   ],
   imports: [
     CommonModule,

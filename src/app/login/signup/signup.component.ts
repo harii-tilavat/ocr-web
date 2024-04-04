@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Route } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { GenericresponseModel, } from 'src/app/_model';
@@ -31,7 +31,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   public otpForm = new FormGroup({
     otp: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)]),
   });
-  constructor(private loaderService: LoaderService, private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private loaderService: LoaderService, private toastService: ToastrService, private loginService: LoginService, private authService: AuthService, private router: Router,private route: ActivatedRoute ,private activatedRoute: ActivatedRoute) {
     if (this.authService.isUserLoggedIn()) {
       this.router.navigate(['/user']);
     }
@@ -66,6 +66,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       next: (res: GenericresponseModel) => {
         if (res && res.message) {
           this.toastService.success(res.message, 'Success');
+          this.router.navigate(['/auth','verify-otp']);
         }
         this.loaderService.hide();
       },

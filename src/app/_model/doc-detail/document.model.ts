@@ -43,6 +43,10 @@ export class UserResponseModel {
   data!: Array<UserProfileModel>;
   message!: string;
 }
+export class GenericresponseModel {
+  data!: Array<UserProfileModel>;
+  message!: string;
+}
 export class CreditResponseModel {
   data!: CreditInfoModel;
   message!: string;

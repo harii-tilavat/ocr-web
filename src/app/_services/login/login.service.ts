@@ -22,6 +22,9 @@ export class LoginService {
     return this.baseProviderService.makePutCall(`${environment.baseUrl}/update-user/${user_id}`, userdata);
   }
   forgotPassword(email: string | null): Observable<any> {
-    return this.baseProviderService.makePostCall(`${environment.baseUrl}/forgot-password`, {email});
+    return this.baseProviderService.makePostCall(`${environment.baseUrl}/forgot-password`, { email });
+  }
+  verifyOtp(otp: string | null): Observable<any> {
+    return this.baseProviderService.makePostCall(`${environment.baseUrl}/verify-otp`, { otp });
   }
 }
