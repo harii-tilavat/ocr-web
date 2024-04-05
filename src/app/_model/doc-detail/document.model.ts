@@ -83,6 +83,7 @@ export class UserProfileModel {
   ref_code!: string;
   email!: string;
   type!: 'USER' | 'ADMIN';
+  is_verified!: boolean;
   username!: string;
   iat!: number;
   created_at!: string;

@@ -18,17 +18,29 @@
                     <th>username</th>
                     <th>Email</th>
                     <th>Type</th>
+                    <th>Is verified</th>
                     <th>created_at</th>
                     <th>Last login</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of itemList | paginate: { itemsPerPage: 10, currentPage: currentPage }; let i=index">
+                  <tr
+                    *ngFor="let item of itemList | paginate: { itemsPerPage: 10, currentPage: currentPage }; let i=index">
                     <!-- <td>{{i+1}}</td> -->
                     <td>{{item.username}}</td>
                     <td>{{item.email}}</td>
                     <td>{{item.type}}</td>
+                    <td>
+                      <span class="badge bg-primary" *ngIf="item.is_verified;else noVerified">
+                        <i class='bx bx-check'></i>
+                      </span>
+                      <ng-template #noVerified>
+                        <span class="badge bg-danger">
+                          <i class='bx bx-x'></i>
+                        </span>
+                      </ng-template>
+                    </td>
                     <td>{{item.created_at | date}}</td>
                     <td>{{item.last_login | date}}</td>
                     <td>
@@ -38,9 +50,8 @@
                           <i class="bx bx-dots-vertical-rounded"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                          <!-- <a class="dropdown-item" href="javascript:void(0);" (click)="editItem(item)">Edit</a> -->
-                          <a class="dropdown-item" href="javascript:void(0);" (click)="viewItem(item)">View</a>
-                          <a class="dropdown-item" href="javascript:void(0);" (click)="deleteItem(item)">Delete</a>
+                          <a class="dropdown-item" href="javascript:void(0);" (click)="editItem(item,true)">Edit</a>
+                          <a class="dropdown-item" href="javascript:void(0);" (click)="editItem(item,false)">View</a>
                         </div>
                       </div>
                     </td>

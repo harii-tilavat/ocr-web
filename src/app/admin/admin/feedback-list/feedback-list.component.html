@@ -27,7 +27,14 @@
                     *ngFor="let item of itemList  | paginate: { itemsPerPage: 10, currentPage: currentPage}; let i=index">
                     <td>{{i+1}}</td>
                     <td>{{item.username}}</td>
-                    <td>{{item.rating}}</td>
+                    <!-- <td>{{item.rating}}</td> -->
+                    <td>
+                      <div class="rating-star d-flex gap-1">
+                        <span *ngFor="let star of getStarsArray(item.rating)">
+                          <i class='bx bx-star'></i>
+                        </span>
+                      </div>
+                    </td>
                     <td>{{item.comment}}</td>
                     <td>{{item.created_at | date}}</td>
                     <td *ngIf="false">

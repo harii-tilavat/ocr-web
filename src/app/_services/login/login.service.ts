@@ -30,4 +30,14 @@ export class LoginService {
   resetPassword(userdata: any): Observable<any> {
     return this.baseProviderService.makePostCall(`${environment.baseUrl}/reset-password`, userdata);
   }
+
+  setType(user_id:string,type: 'ADMIN' | 'USER', is_verified: number): Observable<any> {
+    const data = {
+      user_id,
+      type,
+      is_verified
+    }
+    const url = `${environment.baseUrl}/update-type`;
+    return this.baseProviderService.makePutCall(url, data);
+  }
 }

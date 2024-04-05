@@ -123,7 +123,10 @@ export class FileUploadService {
     const url = `${environment.baseUrl}/api/users`;
     return this.baseProviderService.makeGetCall(url);
   }
-
+  getAllDocsForAdmin(): Observable<any> {
+    const url = `${environment.baseUrl}/api/documents`;
+    return this.baseProviderService.makeGetCall(url);
+  }
   getContactList(): Observable<any> {
     const url = `${environment.baseUrl}/api/contact`;
     return this.baseProviderService.makeGetCall(url);
@@ -144,7 +147,6 @@ export class FileUploadService {
     const url = `${environment.baseUrl}/api/feedback`;
     return this.baseProviderService.makePostCall(url, data);
   }
-
   getCreditList(): Observable<any> {
     const url = `${environment.baseUrl}/api/credits`;
     return this.baseProviderService.makeGetCall(url);
