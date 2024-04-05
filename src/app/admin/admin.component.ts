@@ -6,6 +6,7 @@ import { UserProfileModel } from '../_model';
 import { MenuListModel, adminMenuConfig, sidebarMenuConfig } from '../_model/menu-list/menu-list.model';
 import { NgbModal } from '../shared/ng-modal';
 import { RatingComponent } from '../shared/basic/rating/rating.component';
+import { Editor } from 'ngx-editor';
 
 @Component({
   selector: 'app-admin',
@@ -13,6 +14,9 @@ import { RatingComponent } from '../shared/basic/rating/rating.component';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  public editor!: Editor;
+
+
   public year = new Date().getFullYear();
   public isAdmin = false;
   public unameIcon!: string;
@@ -51,6 +55,7 @@ export class AdminComponent implements OnInit {
     // if (!this.authService.isUserLoggedIn()) {
     //   this.router.navigate(['/home']);
     // }
+    this.editor = new Editor();
     console.log("IS ADMIN => ", this.authService.isAdmin());
     this.isAdmin = this.authService.isAdmin();
     this.userata = this.authService.getUserData();

@@ -25,9 +25,6 @@ import { CreditDetailComponent } from './admin/credit-list/credit-detail/credit-
 import { CsvToJsonComponent } from './csv-to-json/csv-to-json.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ReferalListComponent } from './admin/referal-list/referal-list.component';
-
-
-
 @NgModule({
   declarations: [
     AdminComponent,
@@ -57,7 +54,7 @@ import { ReferalListComponent } from './admin/referal-list/referal-list.componen
     PipesModule,
     LayoutModule,
     NgbModalModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ]
 })
 export class AdminModule { }
