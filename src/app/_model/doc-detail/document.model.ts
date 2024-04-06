@@ -43,6 +43,10 @@ export class UserResponseModel {
   data!: Array<UserProfileModel>;
   message!: string;
 }
+export class GenericresponseModel {
+  data!: Array<UserProfileModel>;
+  message!: string;
+}
 export class CreditResponseModel {
   data!: CreditInfoModel;
   message!: string;
@@ -79,6 +83,7 @@ export class UserProfileModel {
   ref_code!: string;
   email!: string;
   type!: 'USER' | 'ADMIN';
+  is_verified!: boolean;
   username!: string;
   iat!: number;
   created_at!: string;
@@ -116,6 +121,13 @@ export class ContactListModel {
   message!: string;
   created_at!: string;
   updated_at!: string;
+}
+export class DashboardModel {
+  docsList: any;
+  contactList: any
+  feedbackList: any
+  creditList: any;
+  usersList: any;
 }
 
 export const pdfPlaceholder = '/assets/ocr-images/placeholder-pdf.png';

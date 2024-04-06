@@ -1,4 +1,4 @@
-import { Component,OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -25,17 +25,17 @@ export class FeedbackListComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService, private toastrService: ToastrService, private router: Router, private modalService: NgbModal, private fileUploadService: FileUploadService) { }
   ngOnInit(): void {
-    this.isLoading  = true;
+    this.isLoading = true;
     this.subscription.push(
       this.fileUploadService.getFeedbackList().subscribe({
         next: (res) => {
           this.itemList = res.data;
           console.log("Response => ", res);
-          this.isLoading  = false;
+          this.isLoading = false;
         },
         error: (err) => {
           console.log("Feedback list error => ", err);
-          this.isLoading  = false;
+          this.isLoading = false;
         }
       })
     );
@@ -64,6 +64,9 @@ export class FeedbackListComponent implements OnInit, OnDestroy {
       // if (result) {
       // }
     }
+  }
+  getStarsArray(rating:number): Array<any> {
+    return Array.from({length: rating}, (_, index) => index + 1);
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

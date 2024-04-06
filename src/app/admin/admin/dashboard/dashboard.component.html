@@ -1,16 +1,16 @@
 <div class="content-wrapper">
   <!-- Content -->
 
-  <div class="container-xxl flex-grow-1 container-p-y">
+  <div class="container-xxl flex-grow-1 container-p-y p-0" *ngIf="dashboardDetail && !isLoading; else showLoader">
     <div class="row">
-      <div class="col-lg-12 mb-4 order-0">
-        <div class="card">
+      <div class="col-lg-8 mb-4 order-0">
+        <div class="card h-100">
           <div class="d-flex align-items-end row">
             <div class="col-sm-7">
               <div class="card-body">
                 <h5 class="card-title text-primary">Welcome back {{username}}! 🎉</h5>
                 <p class="mb-4">
-                  <span class="fw-medium">5</span> Users registerd today.
+                  <span class="fw-medium">{{totalFiles.totalPng / 2}}</span> File uploads today.
                 </p>
 
                 <!-- <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a> -->
@@ -29,7 +29,7 @@
       <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
         <div class="row">
           <div class="col-lg-6 col-md-12 col-6 mb-4">
-            <div class="card">
+            <div class="card h-100">
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
                   <div class="avatar flex-shrink-0">
@@ -41,18 +41,19 @@
                       <i class="bx bx-dots-vertical-rounded"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                      <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                      <a class="dropdown-item" href="javascript:void(0);" (click)="refreshDashboard()">Refresh</a>
                     </div>
                   </div>
                 </div>
                 <span class="fw-medium d-block mb-1">Users</span>
-                <h3 class="card-title mb-2">16</h3>
+                <h3 class="card-title mb-2">{{dashboardDetail.usersList &&
+                  dashboardDetail.usersList.length || 0}}</h3>
                 <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +5.80%</small>
               </div>
             </div>
           </div>
           <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
-            <div class="card">
+            <div class="card h-100">
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
                   <div class="avatar flex-shrink-0">
@@ -64,13 +65,14 @@
                       <i class="bx bx-dots-vertical-rounded"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                      <a class="dropdown-item" href="javascript:void(0);" >View More</a>
+                      <a class="dropdown-item" href="javascript:void(0);" (click)="refreshDashboard()">Refresh</a>
                       <!-- <a class="dropdown-item" href="javascript:void(0);">Delete</a> -->
                     </div>
                   </div>
                 </div>
                 <span>Contact</span>
-                <h3 class="card-title text-nowrap mb-1">11</h3>
+                <h3 class="card-title mb-2">{{dashboardDetail.contactList &&
+                  dashboardDetail.contactList.length || 0}}</h3>
                 <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +1.42%</small>
               </div>
             </div>
@@ -81,7 +83,7 @@
       <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
         <div class="row">
           <div class="col-6 mb-4">
-            <div class="card">
+            <div class="card h-100">
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
                   <div class="avatar flex-shrink-0">
@@ -93,19 +95,20 @@
                       <i class="bx bx-dots-vertical-rounded"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
-                      <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                      <a class="dropdown-item" href="javascript:void(0);" (click)="refreshDashboard()">Refresh</a>
                       <!-- <a class="dropdown-item" href="javascript:void(0);">Delete</a> -->
                     </div>
                   </div>
                 </div>
                 <span class="d-block mb-1">Total credits</span>
-                <h3 class="card-title text-nowrap mb-2">310</h3>
+                <h3 class="card-title mb-2">{{dashboardDetail.creditList &&
+                  dashboardDetail.creditList.length || 0}}</h3>
                 <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +10.82%</small>
               </div>
             </div>
           </div>
           <div class="col-6 mb-4">
-            <div class="card">
+            <div class="card h-100">
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
                   <div class="avatar flex-shrink-0">
@@ -117,13 +120,14 @@
                       <i class="bx bx-dots-vertical-rounded"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                      <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                      <a class="dropdown-item" href="javascript:void(0);" (click)="refreshDashboard()">Refresh</a>
                       <!-- <a class="dropdown-item" href="javascript:void(0);">creditDetail</a> -->
                     </div>
                   </div>
                 </div>
                 <span class="fw-medium d-block mb-1">Total feedback</span>
-                <h3 class="card-title mb-2">11</h3>
+                <h3 class="card-title mb-2">{{dashboardDetail.feedbackList &&
+                  dashboardDetail.feedbackList.length || 0}}</h3>
                 <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +1.14%</small>
               </div>
             </div>
@@ -149,7 +153,7 @@
               </button>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
                 <!-- <a class="dropdown-item" href="javascript:void(0);">Select All</a> -->
-                <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                <a class="dropdown-item" href="javascript:void(0);" (click)="refreshDashboard()">Refresh</a>
                 <!-- <a class="dropdown-item" href="javascript:void(0);">Share</a> -->
               </div>
             </div>
@@ -157,7 +161,7 @@
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <div class="d-flex flex-column  gap-1">
-                <h2 class="mb-2">82</h2>
+                <h2 class="mb-2">{{documentList.length}}</h2>
                 <span>Total Files uploads</span>
               </div>
               <div id="orderStatisticsChart"></div>
@@ -173,13 +177,13 @@
                     <small class="text-muted">Total PDF Files</small>
                   </div>
                   <div class="user-progress">
-                    <small class="fw-medium">12</small>
+                    <small class="fw-medium">{{totalFiles.totalPdf}}</small>
                   </div>
                 </div>
               </li>
-              <li class="d-flex mb-4 pb-1">
+              <li class="d-flex mb-4 pb-1" *ngIf="false">
                 <div class="avatar flex-shrink-0 me-3">
-                  <span class="avatar-initial rounded bg-label-success"><i class='bx bxs-file-jpg' ></i></span>
+                  <span class="avatar-initial rounded bg-label-info"><i class='bx bxs-file-jpg'></i></span>
                 </div>
                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                   <div class="me-2">
@@ -187,13 +191,13 @@
                     <small class="text-muted">Total JPG Files</small>
                   </div>
                   <div class="user-progress">
-                    <small class="fw-medium">23</small>
+                    <small class="fw-medium">{{totalFiles.totalJpeg}}</small>
                   </div>
                 </div>
               </li>
               <li class="d-flex mb-4 pb-1">
                 <div class="avatar flex-shrink-0 me-3">
-                  <span class="avatar-initial rounded bg-label-info"><i class='bx bxs-file-image' ></i></span>
+                  <span class="avatar-initial rounded bg-label-success"><i class='bx bxs-file-image'></i></span>
                 </div>
                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                   <div class="me-2">
@@ -201,13 +205,13 @@
                     <small class="text-muted">Total JPEG Files</small>
                   </div>
                   <div class="user-progress">
-                    <small class="fw-medium">21</small>
+                    <small class="fw-medium">{{totalFiles.totalJpeg}}</small>
                   </div>
                 </div>
               </li>
               <li class="d-flex">
                 <div class="avatar flex-shrink-0 me-3">
-                  <span class="avatar-initial rounded bg-label-secondary"><i class='bx bxs-file-png' ></i></span>
+                  <span class="avatar-initial rounded bg-label-secondary"><i class='bx bxs-file-png'></i></span>
                 </div>
                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                   <div class="me-2">
@@ -215,7 +219,7 @@
                     <small class="text-muted">Total PNG Files</small>
                   </div>
                   <div class="user-progress">
-                    <small class="fw-medium">21</small>
+                    <small class="fw-medium">{{totalFiles.totalPng}}</small>
                   </div>
                 </div>
               </li>
@@ -396,6 +400,65 @@
       <!--/ Transactions -->
     </div>
   </div>
+  <ng-template #showLoader>
+    <div class="container-xxl flex-grow-1 container-p-y p-0 d-flex flex-column gap-4">
+      <div class="row">
+        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 ">
+          <div class="ph-item  ph-card">
+            <div class="ph-col-12">
+              <div class="ph-row">
+                <div class="ph-col-4 "></div>
+                <div class="ph-col-4 "></div>
+                <div class="ph-col-4 "></div>
+                <div class="ph-col-4 "></div>
+                <div class="ph-col-4 "></div>
+                <div class="ph-col-4 "></div>
+                <div class="ph-col-4 "></div>
+                <div class="ph-col-4 "></div>
+                <div class="ph-col-8 empty"></div>
+
+                <div class="ph-col-12 big mt-2"></div>
+                <div class="ph-col-12 "></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let item of [1,2,3,4]">
+          <div class="ph-item  ph-card">
+            <div class="ph-col-12">
+              <div class="ph-row">
+                <div class="ph-col-4 "></div>
+                <div class="ph-col-8 empty"></div>
+
+                <div class="ph-col-12 big mt-2"></div>
+                <div class="ph-col-12 "></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="ph-item  ph-card">
+            <div class="ph-col-12">
+              <div class="ph-row">
+                <div class="ph-col-4 "></div>
+                <div class="ph-col-8 empty"></div>
+
+                <div class="ph-col-12 big mt-2"></div>
+                <div class="ph-col-12 "></div>
+                <div class="ph-col-12 "></div>
+                <div class="ph-col-12 "></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
   <!-- / Content -->
 
   <!-- Footer -->

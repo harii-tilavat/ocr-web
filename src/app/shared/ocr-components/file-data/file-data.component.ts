@@ -21,6 +21,7 @@ export class FileDataComponent implements OnInit, OnChanges, OnDestroy {
   @Input() isArchivedList = false;
   @Input() searchQuery = '';
   @Input() isLoading = false;
+  @Input() itemPerPage = 4;
   @Output() documentListEvent = new EventEmitter<Array<DocumentModel>>();
   public subscription: Array<Subscription> = [];
   public displayedDocuments: Array<DocumentModel> = [];
@@ -66,7 +67,7 @@ export class FileDataComponent implements OnInit, OnChanges, OnDestroy {
         if (res && res.data) {
           this.documentList = res.data;
           // console.log("Response ===>>> ", this.documentList);
-          this.displayedDocuments = this.documentList.slice(0, 3);
+          this.displayedDocuments = this.documentList.slice(0, 4);
           this.documentListEvent.emit(this.documentList);
           // this.loaderService.hide();
           setTimeout(() => {

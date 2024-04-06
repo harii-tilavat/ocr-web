@@ -1,0 +1,17 @@
+<ckeditor [config]="editorConfig" [(ngModel)]="html"></ckeditor>
+<div class="html-viewer py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="html-viewer-title">
+          <!-- <h3><b>Your HTML Content</b></h3> -->
+          <hr>
+          <!-- <button class="btn btn-primary" (click)="generatePDF()">Generate PDF</button> -->
+        </div>
+        <div class="html-content-wrapper">
+          <div [innerHTML]="html" id="htmlContent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

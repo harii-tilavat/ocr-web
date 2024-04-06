@@ -24,9 +24,8 @@ import { UserDetailComponent } from './admin/users-list/user-detail/user-detail.
 import { CreditDetailComponent } from './admin/credit-list/credit-detail/credit-detail.component';
 import { CsvToJsonComponent } from './csv-to-json/csv-to-json.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
-
-
+import { ReferalListComponent } from './admin/referal-list/referal-list.component';
+import { CreatePdfComponent } from './create-pdf/create-pdf.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -40,7 +39,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     UsersListComponent,
     UserDetailComponent,
     CreditDetailComponent,
-    CsvToJsonComponent
+    CsvToJsonComponent,
+    ReferalListComponent,
+    CreatePdfComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +56,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PipesModule,
     LayoutModule,
     NgbModalModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ]
 })
 export class AdminModule { }

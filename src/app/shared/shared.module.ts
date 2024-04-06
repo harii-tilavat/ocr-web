@@ -25,6 +25,8 @@ import { WebcamModule } from 'ngx-webcam';
 import { OcrWebcamComponent } from './ocr-webcam/ocr-webcam.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { PaginationComponent } from './basic/pagination/pagination.component';
+import { TextEditorComponent } from './text-editor/text-editor.component';
+import { CKEditorModule } from 'ckeditor4-angular';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -43,7 +45,8 @@ import { PaginationComponent } from './basic/pagination/pagination.component';
     RatingComponent,
     OcrWebcamComponent,
     PricingComponent,
-    PaginationComponent
+    PaginationComponent,
+    TextEditorComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +58,8 @@ import { PaginationComponent } from './basic/pagination/pagination.component';
     DirectiveModule,
     NgxExtendedPdfViewerModule,
     NgbModalModule,
-    WebcamModule
+    WebcamModule,
+    CKEditorModule,
     // NgxQRCodeModule
   ],
   exports: [
@@ -70,7 +74,8 @@ import { PaginationComponent } from './basic/pagination/pagination.component';
     SidebarComponent,
     LoaderComponent,
     RatingComponent,
-    PaginationComponent
+    PaginationComponent,
+    TextEditorComponent
   ]
 })
 export class SharedModule { }

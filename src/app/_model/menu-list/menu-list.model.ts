@@ -69,6 +69,14 @@ export const sidebarMenuConfig: Array<MenuListModel> = [
   },
   {
     id: 3,
+    title: 'Create your pdf',
+    routing: ['create-pdf'],
+    icon: 'bx bxs-file-pdf',
+    enum: 'CREATE_PDF',
+    subMenu: []
+  },
+  {
+    id: 3,
     title: 'Wallet',
     routing: ['wallet'],
     icon: 'bx bx-wallet ',
@@ -145,18 +153,18 @@ export const adminMenuConfig: Array<MenuListModel> = [
     id: 3,
     title: 'Credits list',
     routing: ['credit-list'],
-    icon: 'bx bx-dollar me-2',
+    icon: 'bx bx-dollar ',
     enum: 'CREDIT_LIST',
     subMenu: []
   },
-  // {
-  //   id: 2,
-  //   title: 'My account',
-  //   routing: ['profile'],
-  //   enum: 'MY_ACCOUNT',
-  //   icon: 'bx bx-user',
-  //   subMenu: []
-  // },
+  {
+    id: 3,
+    title: 'Referal list',
+    routing: ['referal-list'],
+    icon: 'bx bxs-user-check',
+    enum: 'REFERAL_LIST',
+    subMenu: []
+  },
   {
     id: 2,
     title: 'My account',

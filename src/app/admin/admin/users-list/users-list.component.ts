@@ -21,30 +21,17 @@ export class UsersListComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private toastrService: ToastrService, private router: Router, private modalService: NgbModal, private fileUploadService: FileUploadService) { }
   ngOnInit(): void {
     this.isLoading = true;
-    this.subscription.push(
-      this.fileUploadService.getUserList().subscribe({
-        next: (res) => {
-          this.itemList = res.data;
-          console.log("Response => ", res);
-          this.isLoading = false;
-        },
-        error: (err) => {
-          console.log("Users list error => ", err);
-          this.isLoading = false;
-        }
-      })
-    );
+    this.getUserlist();
   }
-  async viewItem(item: UserProfileModel): Promise<any> {
+  async editItem(item: UserProfileModel, editMode: boolean): Promise<any> {
     if (!this.modalService.hasOpenModals()) {
       const modalRef = this.modalService.open(UserDetailComponent, { size: 'xl', keyboard: false });
       modalRef.componentInstance.userDetail = item;
-    }
-  }
-  async editItem(item: UserProfileModel): Promise<any> {
-    if (!this.modalService.hasOpenModals()) {
-      const modalRef = this.modalService.open(UserDetailComponent, { size: 'xl', keyboard: false });
-      modalRef.componentInstance.userDetail = item;
+      modalRef.componentInstance.editMode = editMode;
+      const result = await modalRef.result;
+      if (result) {
+        this.getUserlist();
+      }
     }
   }
   async deleteItem(item: UserProfileModel): Promise<any> {
@@ -59,6 +46,22 @@ export class UsersListComponent implements OnInit, OnDestroy {
       // if (result) {
       // }
     }
+  }
+  getUserlist(): void {
+    this.isLoading = true;
+    this.subscription.push(
+      this.fileUploadService.getUserList().subscribe({
+        next: (res) => {
+          this.itemList = res.data;
+          console.log("Response => ", res);
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.log("Users list error => ", err);
+          this.isLoading = false;
+        }
+      })
+    );
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

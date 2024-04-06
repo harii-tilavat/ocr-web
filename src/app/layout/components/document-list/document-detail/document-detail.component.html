@@ -27,9 +27,9 @@
               [ngClass]="isViewFull ? 'col-xxl-12 col-xl-12 ':'col-xxl-5 col-xl-6 '">
               <div class="file-viewer">
                 <div class="file-preview">
-                  <div class="file-preview-image">
+                  <div class="file-preview-image" style="min-height: 80vh;">
                     <ng-container *ngIf="isPdf; else notPdf">
-                      <ngx-extended-pdf-viewer [src]="documentDetail.image_url"></ngx-extended-pdf-viewer>
+                      <ngx-extended-pdf-viewer [src]="documentDetail.image_url" [minHeight]="isViewFull?'70vh':'auto'"></ngx-extended-pdf-viewer>
                     </ng-container>
                     <ng-template #notPdf>
                       <span>

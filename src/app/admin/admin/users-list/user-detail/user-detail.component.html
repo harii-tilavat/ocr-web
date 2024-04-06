@@ -3,13 +3,14 @@
 
     <div class="row">
       <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-        <h2>User detail</h2> <hr>
+        <h2>User detail</h2>
+        <hr>
       </div>
     </div>
     <div class="row">
       <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="user-detail-container">
-          <form action="">
+          <form action="" [formGroup]="userForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <div class="form-group">
@@ -38,11 +39,16 @@
               <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <div class="form-group">
                   <label for="" class="control-label">TYPE</label>
-                  <!-- <select name="" id="" class="form-control" [value]="userDetail.type">
-                    <option>USER</option>
-                    <option>ADMIN</option>
-                  </select> -->
-                  <span class="form-control not-editable">{{userDetail.type}}</span>
+                  <ng-container *ngIf="editMode; else notEdit">
+                    <select class="form-control" [value]="userDetail.type" formControlName="type">
+                      <option value="USER">USER</option>
+                      <option value="ADMIN">ADMIN</option>
+                    </select>
+                  </ng-container>
+                  <ng-template #notEdit>
+                    <span class="form-control not-editable">{{userDetail.type}}</span>
+                  </ng-template>
+
                 </div>
               </div>
               <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
@@ -69,12 +75,32 @@
                   <span class="form-control not-editable">{{userDetail.last_login | date}}</span>
                 </div>
               </div>
-              <!-- <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                <div class="form-group">
-                  <label for="" class="control-label">Is active</label>
-                  <span class="form-control not-editable">{{userDetail.is_active}}</span>
+              <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group d-flex ">
+                  <label for="" class="control-label">Is verified</label>
+                  <div class="is-verified ms-3" *ngIf="!editMode; else editMode1">
+                    <span class="badge bg-primary" *ngIf="userDetail.is_verified;else noVerified">
+                      <i class='bx bx-check'></i>
+                    </span>
+                    <ng-template #noVerified>
+                      <span class="badge bg-danger">
+                        <i class='bx bx-x'></i>
+                      </span>
+                    </ng-template>
+                  </div>
+                  <ng-template #editMode1>
+                    <input type="checkbox" formControlName="is_verified" class="ms-3">
+                  </ng-template>
+
                 </div>
-              </div> -->
+              </div>
+              <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12" *ngIf="editMode">
+                <div class="form-group btn-groups justify-content-end">
+                  <button type="button" class="btn btn-primary-outline"
+                    (click)="activeModal.close(false)">Cancle</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </div>
             </div>
           </form>
         </div>

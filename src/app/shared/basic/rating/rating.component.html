@@ -30,7 +30,7 @@
               </div>
 
               <div class="">
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
+                <button type="submit" class="btn btn-primary w-100" [disabled]="!ratingForm.valid">Submit</button>
                 <button type="submit" class="btn btn-primary-outline mt-4 w-100" (click)="activeModal.close(false)">Cancle</button>
               </div>
             </form>
