@@ -55,11 +55,12 @@ export class AccountSettingComponent implements OnInit {
 
   }
   resetPassowrd(): void {
+    const userInfo: UserProfileModel = this.authService.getUserData();
     if (!this.resetPassForm.valid) {
       this.resetPassForm.markAllAsTouched();
       return;
     }
-    const userdata = { ...this.resetPassForm.value, user_id: this.fileuploadService.getUserId() }
+    const userdata = { ...this.resetPassForm.value, user_id: userInfo.id, email: userInfo.email }
     this.loaderService.show();
     this.subscription.push(this.loginService.resetPassword(userdata).subscribe({
       next: (res: any) => {

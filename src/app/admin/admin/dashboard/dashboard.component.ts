@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { DocumentModel } from 'src/app/_model';
+import { DashboardModel, DocumentModel } from 'src/app/_model';
 import { AuthService, FileUploadService } from 'src/app/_services';
 import { NgbModal } from 'src/app/shared/ng-modal';
 
@@ -14,10 +14,11 @@ import { NgbModal } from 'src/app/shared/ng-modal';
 })
 export class DashboardComponent implements OnInit {
   public documentList: Array<DocumentModel> = [];
+  public dashboardDetail!: DashboardModel;
   public totalFiles = {
-    totalPdf:0,
-    totalPng:0,
-    totalJpeg:0
+    totalPdf: 0,
+    totalPng: 0,
+    totalJpeg: 0
   };
   public username!: string;
   public isLoading!: boolean;
@@ -32,16 +33,17 @@ export class DashboardComponent implements OnInit {
 
   }
   getAllDocs(): void {
-    this.subscription.push(this.fileUploadService.getAllDocsForAdmin().subscribe({
+    this.isLoading = true;
+    this.subscription.push(this.fileUploadService.getDashboard().subscribe({
       next: (res) => {
         if (res && res.data) {
-          this.documentList = res.data;
+          this.dashboardDetail = res.data;
+          this.documentList = this.dashboardDetail.docsList;
           // this.loaderService.hide();
           this.isLoading = false;
-          console.log(this.documentList);
-          this.totalFiles.totalPdf = this.documentList.filter(i=>i.file_type === 'application/pdf').length;
-          this.totalFiles.totalPng = this.documentList.filter(i=>i.file_type === 'image/png').length;
-          this.totalFiles.totalJpeg = this.documentList.filter(i=>i.file_type === 'image/jpeg').length;
+          this.totalFiles.totalPdf = this.documentList.filter(i => i.file_type === 'application/pdf').length;
+          this.totalFiles.totalPng = this.documentList.filter(i => i.file_type === 'image/png').length;
+          this.totalFiles.totalJpeg = this.documentList.filter(i => i.file_type === 'image/jpeg').length;
         }
       }, error: (err) => {
         console.log("File getting error ==>> ", err);
@@ -49,6 +51,9 @@ export class DashboardComponent implements OnInit {
         // this.removeSelectedFile();
       }
     }));
+  }
+  refreshDashboard():void{
+    this.getAllDocs();
   }
   ngOnDestroy(): void {
     this.subscription.forEach(i => i.unsubscribe());

@@ -122,5 +122,12 @@ export class ContactListModel {
   created_at!: string;
   updated_at!: string;
 }
+export class DashboardModel {
+  docsList: any;
+  contactList: any
+  feedbackList: any
+  creditList: any;
+  usersList: any;
+}
 
 export const pdfPlaceholder = '/assets/ocr-images/placeholder-pdf.png';

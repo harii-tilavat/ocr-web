@@ -28,7 +28,7 @@ export class LoginService {
     return this.baseProviderService.makePostCall(`${environment.baseUrl}/verify-otp`, { otp });
   }
   resetPassword(userdata: any): Observable<any> {
-    return this.baseProviderService.makePostCall(`${environment.baseUrl}/reset-password`, userdata);
+    return this.baseProviderService.makePostCall(`${environment.baseUrl}/change-password`, userdata);
   }
 
   setType(user_id:string,type: 'ADMIN' | 'USER', is_verified: number): Observable<any> {

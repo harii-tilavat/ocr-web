@@ -151,4 +151,8 @@ export class FileUploadService {
     const url = `${environment.baseUrl}/api/credits`;
     return this.baseProviderService.makeGetCall(url);
   }
+  getDashboard(): Observable<any> {
+    const url = `${environment.baseUrl}/api/dashboard`;
+    return this.baseProviderService.makeGetCall(url);
+  }
 }
