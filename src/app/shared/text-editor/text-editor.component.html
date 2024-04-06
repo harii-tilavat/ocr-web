@@ -1,6 +1,13 @@
 <ckeditor [config]="editorConfig" [(ngModel)]="html"></ckeditor>
-<div class="html-viewer">
-  <div [innerHTML]="html">
-
+<div class="html-viewer py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="html-viewer-title">
+          <h3><b>Your HTML Content</b></h3> <hr>
+        </div>
+        <div [innerHTML]="html | dompurify"></div>
+      </div>
+    </div>
   </div>
 </div>

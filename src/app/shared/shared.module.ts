@@ -74,7 +74,8 @@ import { CKEditorModule } from 'ckeditor4-angular';
     SidebarComponent,
     LoaderComponent,
     RatingComponent,
-    PaginationComponent
+    PaginationComponent,
+    TextEditorComponent
   ]
 })
 export class SharedModule { }

@@ -18,6 +18,7 @@ import { FeedbackListComponent } from './admin/feedback-list/feedback-list.compo
 import { ContactListComponent } from './admin/contact-list/contact-list.component';
 import { CsvToJsonComponent } from './csv-to-json/csv-to-json.component';
 import { ReferalListComponent } from './admin/referal-list/referal-list.component';
+import { CreatePdfComponent } from './create-pdf/create-pdf.component';
 
 // const routes: Routes = [
 //   { path: '', component: HomeComponent, data: { title: 'Get Curious Home' } },
@@ -61,6 +62,7 @@ const routes: Routes = [
       { path: 'docs/:id', component: DocumentDetailComponent, data: { title: 'OcrWeb Document details' }, },
       { path: 'upload', component: DocumentUploadComponent, data: { title: 'OcrWeb File upload' } },
       { path: 'csv-to-json', component: CsvToJsonComponent, data: { title: 'OcrWeb File CSV to JSON' } },
+      { path: 'create-pdf', component: CreatePdfComponent, data: { title: 'OcrWeb File CSV to JSON' } },
       { path: 'profile', component: UserProfileComponent },
       { path: 'account-setting', component: AccountSettingComponent },
       { path: 'bin', component: DocumentsBinComponent },
