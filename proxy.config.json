@@ -1,7 +1,0 @@
-{
-  "/api": {
-    "target": "https://api.veryfi.com",
-    "secure": false,
-    "changeOrigin": true
-  }
-}
