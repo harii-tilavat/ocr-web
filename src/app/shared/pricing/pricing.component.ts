@@ -73,20 +73,21 @@ export class PricingComponent implements OnInit, OnDestroy {
       modalRef.componentInstance.primeBtn = 'Buy now';
       const result = await modalRef.result;
       if (result) {
-        this.loaderService.show();
-        this.subscription.push(
-          this.fileUploadService.purchasePlan(this.getPricingData(planDetail)).subscribe({
-            next: (res) => {
-              this.loaderService.hide();
-              if (res && res.url) {
-                window.open(res.url);
-              }
-            }, error: (err) => {
-              console.log("ERROR => ", err);
-              this.loaderService.hide();
-            }
-          })
-        );
+        this.toastrService.info('We will add this soon. Now its free.',planDetail.planName + `(₹ ${planDetail.price})`)
+        // this.loaderService.show();
+        // this.subscription.push(
+        //   this.fileUploadService.purchasePlan(this.getPricingData(planDetail)).subscribe({
+        //     next: (res) => {
+        //       this.loaderService.hide();
+        //       if (res && res.url) {
+        //         window.open(res.url);
+        //       }
+        //     }, error: (err) => {
+        //       console.log("ERROR => ", err);
+        //       this.loaderService.hide();
+        //     }
+        //   })
+        // );
       }
     }
   }

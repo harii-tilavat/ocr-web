@@ -10,6 +10,10 @@
   box-shadow: 0 3px 6px $color;
 }
 
+@mixin box-shadow-simple() {
+  box-shadow: 0 0.05rem 0.35rem rgba(161, 172, 184, 0.45);
+}
+
 @mixin box-shadow-card($direction: "bottom") {
   background:
     linear-gradient($primary-25, $primary-25) padding-box,

@@ -70,6 +70,7 @@
     }
   }
   .dropdown-menu {
+   @include box-shadow-simple();
     .dropdown-item {
       // transition: 0.1s;
       cursor: pointer;

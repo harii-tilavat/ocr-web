@@ -10,7 +10,6 @@ import { register } from 'swiper/element/bundle';
 
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { DataCacheService } from './_services/cache-service/data-cache.service';
 import { GlobalEventifier } from './_eventifier';
 import { BaseProviderService } from './_services/base-provider.service';
 import { OcrIntercepterService } from './_services';
@@ -50,9 +49,7 @@ register();
   providers: [
     ToastrService,
     GlobalEventifier,
-    DataCacheService,
     BaseProviderService,
-    { provide: 'googleTagManagerCSPNonce', useValue: 'CSP-NONCE' },
     { provide: HTTP_INTERCEPTORS, useClass: OcrIntercepterService, multi: true }
   ],
   bootstrap: [AppComponent]

@@ -98,6 +98,9 @@
     }
   }
 }
+.card{
+  @include box-shadow-simple();
+}
 @include media-breakpoint-down(sm) {
   .card {
     .card-header {
