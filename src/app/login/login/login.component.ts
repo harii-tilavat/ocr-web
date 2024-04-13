@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { UserProfileModel } from 'src/app/_model';
 import { LoaderService, LoginService } from 'src/app/_services';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import { AlertBoxComponent } from 'src/app/shared/basic/alert-box/alert-box.component';
@@ -63,7 +64,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       next: (res: { token: string, message: string }) => {
         if (res && res.token) {
           this.authService.login(res.token);
-          this.toastService.success('Login successfully!', 'Success');
+          const userdata: UserProfileModel = this.authService.getUserData();
+          this.toastService.success('',`Welcome back ${userdata.username}!`);
         }
         console.log("Respose => ", res);
         this.loaderService.hide();

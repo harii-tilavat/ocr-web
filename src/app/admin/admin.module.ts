@@ -11,10 +11,10 @@ import { IconsModule } from '../icons/icons.module';
 import { LayoutRoutingModule } from '../layout/layout.routing';
 import { NgbModalModule } from '../shared/ng-modal';
 import { AdminComponent } from './admin.component';
-import { DocumentsBinComponent } from './documents-bin/documents-bin.component';
+import { DocumentsBinComponent } from './user/documents-bin/documents-bin.component';
 import { LayoutModule } from '../layout/layout.module';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
-import { WalletComponent } from './wallet/wallet.component';
+import { WalletComponent } from './user/wallet/wallet.component';
 import { ContactListComponent } from './admin/contact-list/contact-list.component';
 import { CreditListComponent } from './admin/credit-list/credit-list.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
@@ -22,10 +22,10 @@ import { FeedbackListComponent } from './admin/feedback-list/feedback-list.compo
 import { UsersListComponent } from './admin/users-list/users-list.component';
 import { UserDetailComponent } from './admin/users-list/user-detail/user-detail.component';
 import { CreditDetailComponent } from './admin/credit-list/credit-detail/credit-detail.component';
-import { CsvToJsonComponent } from './csv-to-json/csv-to-json.component';
+import { CsvToJsonComponent } from './user/csv-to-json/csv-to-json.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ReferalListComponent } from './admin/referal-list/referal-list.component';
-import { CreatePdfComponent } from './create-pdf/create-pdf.component';
+import { CreatePdfComponent } from './user/create-pdf/create-pdf.component';
 @NgModule({
   declarations: [
     AdminComponent,

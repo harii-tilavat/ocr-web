@@ -67,14 +67,14 @@ export const sidebarMenuConfig: Array<MenuListModel> = [
     enum: 'CSV_TO_JSON',
     subMenu: []
   },
-  {
-    id: 3,
-    title: 'Create your pdf',
-    routing: ['create-pdf'],
-    icon: 'bx bxs-file-pdf',
-    enum: 'CREATE_PDF',
-    subMenu: []
-  },
+  // {
+  //   id: 3,
+  //   title: 'Create your pdf',
+  //   routing: ['create-pdf'],
+  //   icon: 'bx bxs-file-pdf',
+  //   enum: 'CREATE_PDF',
+  //   subMenu: []
+  // },
   {
     id: 3,
     title: 'Wallet',

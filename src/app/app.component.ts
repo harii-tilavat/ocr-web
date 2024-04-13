@@ -19,7 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public isLoggedIn = false;
 
   constructor(private readonly router: Router, private activatedRoute: ActivatedRoute, private readonly titleService: TitleService,
-    private nuggetService: NuggetService, private dataCacheService: DataCacheService, private globalEventifier: GlobalEventifier, private authService: AuthService) {
+    private nuggetService: NuggetService, private globalEventifier: GlobalEventifier, private authService: AuthService) {
   }
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isUserLoggedIn();

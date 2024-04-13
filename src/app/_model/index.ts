@@ -13,6 +13,5 @@ export class GenericResponseList<T> {
 export class GenericResponseType {
   [key: string]: string
 }
-export * from './employee/employee.model';
-export * from './doc-detail/document.model';
+export * from './generic/generic.model';
 export * from './user/user.model';

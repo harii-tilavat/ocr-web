@@ -11,10 +11,10 @@ export class DataCacheService {
   }
   private openDatabase() {
     return new Promise((resolve, reject) => {
-      const request = indexedDB.open('GETCURIOUS', 1);
+      const request = indexedDB.open('OCRWEB', 1);
       request.onupgradeneeded = (event: any) => {
         this.db = event.target.result;
-        this.db.createObjectStore('curious', { keyPath: 'id' });
+        this.db.createObjectStore('ocr', { keyPath: 'id' });
       };
       request.onsuccess = (event: any) => {
         this.db = event.target.result;

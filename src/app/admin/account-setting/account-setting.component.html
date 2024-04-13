@@ -85,7 +85,7 @@
                       <span class="form-control not-editable">Active</span>
                     </div>
                   </div>
-                  <div class="mb-3 col-md-6">
+                  <div class="mb-3 col-md-6" *ngIf="false">
                     <label class="form-label" for="phoneNumber">TYPE</label>
                     <div class="input-group input-group-merge">
                       <!-- <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" formControlName="number"
@@ -292,7 +292,7 @@
                     </div>
                   </div>
                   <div class="mb-3 col-md-12" *ngIf="resetPassForm.controls['newPassword'].valid">
-                    <label for="confirmPassword" class="form-label">confirmPassword</label>
+                    <label for="confirmPassword" class="form-label">Confirm password</label>
                     <input class="form-control" type="password" name="confirmPassword" formControlName="confirmPassword"
                       placeholder="******" />
                     <div class="form-error" *ngIf="resetPassForm.controls['confirmPassword'].touched ">

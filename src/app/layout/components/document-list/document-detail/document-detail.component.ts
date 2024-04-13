@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DocumentModel, DocumentResponseModel } from 'src/app/_model';
 import { AuthService, FileUploadService } from 'src/app/_services';
 import { environment } from 'src/environments/environment';
-import { UserProfileModel, pdfPlaceholder } from '../../../../_model/doc-detail/document.model';
+import { UserProfileModel, pdfPlaceholder } from '../../../../_model/generic/generic.model';
 import { PDFDocument, PDFPage } from 'pdf-lib';
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
