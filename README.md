@@ -1,4 +1,18 @@
 # OCRWeb
+•	User Authentication: Implemented user authentication to manage accounts securely.
+
+•	File Upload & Extraction: Enabled users to upload and extract text (OCR) from various documents effortlessly.
+
+•	Document Management: Provided functionality for organizing, moving, and restoring documents.
+
+•	Profile Management: Users can manage profiles, update passwords, and view referral details.
+
+•	Admin Panel: Equipped administrators with tools to manage users, monitor feedback, manage referrals, and update profiles
+Technology: Angular, Typescript, SCSS, Node.js, MySQL				     
+
+👉 [Backend link](https://github.com/harii-tilavat/ocr-web-api)
+
+👉 [Visit this website](https://ocrweb-12bfa.web.app/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.5.
 
